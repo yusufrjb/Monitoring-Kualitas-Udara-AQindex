@@ -36,6 +36,7 @@ import {
   Minus,
   Info,
   Shield,
+  ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { RealtimeData } from "@/types";
@@ -308,6 +309,7 @@ interface OverviewTabProps {
 export default function OverviewTab({ realtimeData, historicalData: _historicalData }: OverviewTabProps) {
   const [timePeriod, setTimePeriod] = useState<1 | 7 | 14 | 30 | 90>(7);
   const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [classExpanded, setClassExpanded] = useState(false);
   const [chartData, setChartData] = useState<ChartPoint[]>([]);
   const [chartLoading, setChartLoading] = useState(false);
   const [bmkgData, setBmkgData] = useState<BmkgWeather | null>(null);
@@ -594,12 +596,21 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
               <Shield size={14} className="text-slate-400" />
               <span className="text-xs font-semibold text-slate-500 uppercase tracking-[0.08em]">Klasifikasi Kualitas Udara</span>
             </div>
-            <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setClassExpanded(!classExpanded)}
+                className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-slate-400 hover:text-slate-600 hover:bg-slate-100/50 transition-colors"
+              >
+                {classExpanded ? "Ringkas" : "Detail"}
+                <ChevronDown size={14} className={`transition-transform duration-300 ${classExpanded ? 'rotate-180' : ''}`} />
+              </button>
+              <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            {/* Header: Gauge + Description */}
-            <div className="flex flex-col sm:flex-row gap-4 items-stretch">
+          <div className="space-y-3">
+            {/* Header: Gauge + Description + Info */}
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch">
               {/* Circular Gauge */}
               <div className="shrink-0 flex items-center justify-center">
                 <div className="relative w-36 h-36">
@@ -624,25 +635,49 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
                   </div>
                 </div>
               </div>
-              <div className="flex-1 bg-slate-50 rounded-xl p-4 flex items-center">
-                <p className="text-sm text-slate-600 leading-normal font-normal">
-                  {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.description || "Kualitas udara perlu diperhatikan."}
-                </p>
-              </div>
-            </div>
 
-            {/* Recommendation Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="rounded-lg border p-3" style={{ borderColor: mlClassData.color + '60' }}>
-                <div className="font-semibold text-slate-700 text-sm mb-1.5">Kelompok Sensitif</div>
-                <div className="text-slate-500 text-sm leading-normal">
-                  {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.sensitive || "-"}
+              {/* Info Panel: Description + Legend + Cards */}
+              <div className="flex-1 flex flex-col gap-3">
+                {/* Description (always visible) */}
+                <div className="bg-slate-50 rounded-xl p-4 flex items-center flex-1">
+                  <p className="text-sm text-slate-600 leading-normal font-normal">
+                    {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.description || "Kualitas udara perlu diperhatikan."}
+                  </p>
                 </div>
-              </div>
-              <div className="rounded-lg border p-3" style={{ borderColor: mlClassData.color + '60' }}>
-                <div className="font-semibold text-slate-700 text-sm mb-1.5">Setiap Orang</div>
-                <div className="text-slate-500 text-sm leading-normal">
-                  {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.general || "-"}
+
+                {/* ISPU Scale Legend (always visible) */}
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                  {CATEGORIES.map((cat) => (
+                    <div key={cat.label} className="flex items-center gap-1.5">
+                      <span className="h-3 w-3 rounded-full shrink-0" style={{ backgroundColor: cat.color }} />
+                      <span className="text-xs text-slate-600 font-semibold whitespace-nowrap">
+                        {cat.min}-{cat.max}
+                      </span>
+                      <span className="text-xs text-slate-500 whitespace-nowrap">{cat.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Recommendation Cards (collapsible) */}
+                <div
+                  className={`overflow-hidden transition-all duration-400 ease-in-out ${
+                    classExpanded ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="rounded-lg border p-3" style={{ borderColor: mlClassData.color + '60' }}>
+                      <div className="font-semibold text-slate-700 text-sm mb-1.5">Kelompok Sensitif</div>
+                      <div className="text-slate-500 text-sm leading-normal">
+                        {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.sensitive || "-"}
+                      </div>
+                    </div>
+                    <div className="rounded-lg border p-3" style={{ borderColor: mlClassData.color + '60' }}>
+                      <div className="font-semibold text-slate-700 text-sm mb-1.5">Setiap Orang</div>
+                      <div className="text-slate-500 text-sm leading-normal">
+                        {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.general || "-"}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -728,7 +763,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
           </h3>
 
           <div className="text-center mb-3">
-            <span className="text-xs text-muted-foreground">Rata-rata PM2.5</span>
+            <span className="text-xs text-muted-foreground">Rata-rata PM2.5 · {timePeriod} hari terakhir</span>
             <div className="flex items-baseline justify-center gap-1.5 mt-0.5">
               <span className={cn(
                 "text-3xl font-bold tabular-nums",
@@ -1151,7 +1186,6 @@ function ParameterCard({
           : (parameterKey && isIdeal(parameterKey as any, checkValue) ? "text-emerald-300 group-hover:text-emerald-600" : "text-orange-200 group-hover:text-orange-600")
       )}>
         {parameterKey && (isIdeal(parameterKey as any, checkValue) ? "Aman" : "Berisiko")}
-        {parameterKey && <span className="opacity-60"> · {getLimitString(parameterKey as any)}</span>}
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-muted/30">

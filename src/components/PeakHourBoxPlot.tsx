@@ -42,11 +42,10 @@ export default function PeakHourDistribution({ days = 7, refreshKey = 0 }: { day
     function createHistogramBins(data: any) {
         const bins: HistogramData[] = [
             { range: "0-50", min: 0, max: 50, count: 0, category: "Baik", color: "#10b981" },
-            { range: "51-100", min: 51, max: 100, count: 0, category: "Sedang", color: "#facc15" },
-            { range: "101-150", min: 101, max: 150, count: 0, category: "Sensitif", color: "#f97316" },
-            { range: "151-200", min: 151, max: 200, count: 0, category: "Tidak Sehat", color: "#ef4444" },
-            { range: "201-300", min: 201, max: 300, count: 0, category: "Sangat T.Sehat", color: "#a855f7" },
-            { range: ">300", min: 301, max: 9999, count: 0, category: "Berbahaya", color: "#991b1b" },
+            { range: "51-100", min: 51, max: 100, count: 0, category: "Sedang", color: "#3b82f6" },
+            { range: "101-200", min: 101, max: 200, count: 0, category: "Tidak Sehat", color: "#f59e0b" },
+            { range: "201-300", min: 201, max: 300, count: 0, category: "Sangat Tidak Sehat", color: "#ef4444" },
+            { range: "301-500", min: 301, max: 500, count: 0, category: "Berbahaya", color: "#7c3aed" },
         ];
 
         // Count data points in each bin

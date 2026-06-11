@@ -338,3 +338,1749 @@
 2026-06-11 18:18:09,527 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22forecast_at%22%2C%22category%22%2C%22co_pred%22%2C%22ispu%22%2C%22target_at%22 "HTTP/2 201 Created"
 2026-06-11 18:18:09,530 [INFO]   60 baris diupsert ke tb_prediksi_hourly
 2026-06-11 18:18:09,532 [INFO] Selesai!
+2026-06-11 21:10:44,128 [INFO] ============================================================
+2026-06-11 21:10:44,168 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:10:44,168 [INFO] ============================================================
+2026-06-11 21:10:45,555 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A10%3A44.700251%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:10:45,640 [INFO] Data diambil: 51 baris
+2026-06-11 21:10:51,332 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:10:51,810 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:10:51,821 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:10:51,821 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:10:52,035 [INFO]   PM25: 60 prediksi, range: 16.1 - 19.6
+2026-06-11 21:10:52,036 [INFO]   PM25: 60 prediksi
+2026-06-11 21:10:52,036 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:10:52,361 [INFO]   PM10: 60 prediksi, range: 15.6 - 19.6
+2026-06-11 21:10:52,361 [INFO]   PM10: 60 prediksi
+2026-06-11 21:10:52,362 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:10:52,680 [INFO]   CO: 60 prediksi, range: 1523.4 - 1793.9
+2026-06-11 21:10:52,681 [INFO]   CO: 60 prediksi
+2026-06-11 21:10:52,878 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22ispu%22%2C%22category%22%2C%22co_pred%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 21:10:52,885 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:10:52,893 [INFO] Selesai!
+2026-06-11 21:11:42,860 [INFO] ============================================================
+2026-06-11 21:11:42,860 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:11:42,860 [INFO] ============================================================
+2026-06-11 21:11:43,707 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A11%3A43.266252%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:11:43,760 [INFO] Data diambil: 52 baris
+2026-06-11 21:11:45,835 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:11:46,130 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:11:46,138 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:11:46,138 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:11:46,336 [INFO]   PM25: 60 prediksi, range: 13.4 - 17.0
+2026-06-11 21:11:46,337 [INFO]   PM25: 60 prediksi
+2026-06-11 21:11:46,337 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:11:46,608 [INFO]   PM10: 60 prediksi, range: 17.3 - 21.1
+2026-06-11 21:11:46,608 [INFO]   PM10: 60 prediksi
+2026-06-11 21:11:46,608 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:11:46,879 [INFO]   CO: 60 prediksi, range: 1517.1 - 1897.7
+2026-06-11 21:11:46,879 [INFO]   CO: 60 prediksi
+2026-06-11 21:11:47,012 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22target_at%22%2C%22co_pred%22%2C%22category%22%2C%22pm10_pred%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 21:11:47,018 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:11:47,023 [INFO] Selesai!
+2026-06-11 21:12:41,977 [INFO] ============================================================
+2026-06-11 21:12:41,977 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:12:41,977 [INFO] ============================================================
+2026-06-11 21:12:42,662 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A12%3A42.263134%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:12:42,675 [INFO] Data diambil: 53 baris
+2026-06-11 21:12:45,304 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:12:45,423 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:12:45,426 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:12:45,426 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:12:45,487 [INFO]   PM25: 60 prediksi, range: 15.2 - 17.6
+2026-06-11 21:12:45,487 [INFO]   PM25: 60 prediksi
+2026-06-11 21:12:45,487 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:12:45,561 [INFO]   PM10: 60 prediksi, range: 15.0 - 19.4
+2026-06-11 21:12:45,561 [INFO]   PM10: 60 prediksi
+2026-06-11 21:12:45,561 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:12:45,632 [INFO]   CO: 60 prediksi, range: 1445.2 - 1824.3
+2026-06-11 21:12:45,632 [INFO]   CO: 60 prediksi
+2026-06-11 21:12:45,825 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22target_at%22%2C%22co_pred%22%2C%22category%22%2C%22pm25_pred%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 21:12:45,828 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:12:45,830 [INFO] Selesai!
+2026-06-11 21:13:42,202 [INFO] ============================================================
+2026-06-11 21:13:42,203 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:13:42,203 [INFO] ============================================================
+2026-06-11 21:13:42,986 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A13%3A42.578047%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:13:43,159 [INFO] Data diambil: 54 baris
+2026-06-11 21:13:47,249 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:13:47,515 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:13:47,518 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:13:47,518 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:13:47,612 [INFO]   PM25: 60 prediksi, range: 14.0 - 17.2
+2026-06-11 21:13:47,612 [INFO]   PM25: 60 prediksi
+2026-06-11 21:13:47,612 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:13:47,707 [INFO]   PM10: 60 prediksi, range: 15.2 - 19.4
+2026-06-11 21:13:47,708 [INFO]   PM10: 60 prediksi
+2026-06-11 21:13:47,708 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:13:47,786 [INFO]   CO: 60 prediksi, range: 1357.4 - 1743.7
+2026-06-11 21:13:47,786 [INFO]   CO: 60 prediksi
+2026-06-11 21:13:47,895 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22forecast_at%22%2C%22pm25_pred%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22target_at%22%2C%22category%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:13:47,898 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:13:47,900 [INFO] Selesai!
+2026-06-11 21:14:44,221 [INFO] ============================================================
+2026-06-11 21:14:44,262 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:14:44,262 [INFO] ============================================================
+2026-06-11 21:14:45,301 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A14%3A44.698331%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:14:45,373 [INFO] Data diambil: 55 baris
+2026-06-11 21:14:50,163 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:14:50,401 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:14:50,406 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:14:50,406 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:14:50,518 [INFO]   PM25: 60 prediksi, range: 14.2 - 17.7
+2026-06-11 21:14:50,518 [INFO]   PM25: 60 prediksi
+2026-06-11 21:14:50,518 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:14:50,592 [INFO]   PM10: 60 prediksi, range: 16.2 - 20.5
+2026-06-11 21:14:50,593 [INFO]   PM10: 60 prediksi
+2026-06-11 21:14:50,593 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:14:50,694 [INFO]   CO: 60 prediksi, range: 1446.9 - 1906.0
+2026-06-11 21:14:50,694 [INFO]   CO: 60 prediksi
+2026-06-11 21:14:50,897 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22forecast_at%22%2C%22category%22%2C%22pm10_pred%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 21:14:50,898 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:14:50,901 [INFO] Selesai!
+2026-06-11 21:15:42,873 [INFO] ============================================================
+2026-06-11 21:15:42,913 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:15:42,913 [INFO] ============================================================
+2026-06-11 21:15:43,625 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A15%3A43.248182%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:15:43,651 [INFO] Data diambil: 56 baris
+2026-06-11 21:15:46,829 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:15:47,007 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:15:47,008 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:15:47,008 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:15:47,081 [INFO]   PM25: 60 prediksi, range: 14.9 - 18.3
+2026-06-11 21:15:47,081 [INFO]   PM25: 60 prediksi
+2026-06-11 21:15:47,082 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:15:47,153 [INFO]   PM10: 60 prediksi, range: 15.6 - 20.4
+2026-06-11 21:15:47,153 [INFO]   PM10: 60 prediksi
+2026-06-11 21:15:47,153 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:15:47,226 [INFO]   CO: 60 prediksi, range: 1363.4 - 1769.6
+2026-06-11 21:15:47,227 [INFO]   CO: 60 prediksi
+2026-06-11 21:15:47,300 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22ispu%22%2C%22category%22%2C%22co_pred%22%2C%22pm10_pred%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 21:15:47,305 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:15:47,322 [INFO] Selesai!
+2026-06-11 21:16:43,066 [INFO] ============================================================
+2026-06-11 21:16:43,107 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:16:43,107 [INFO] ============================================================
+2026-06-11 21:16:43,899 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A16%3A43.475024%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:16:43,923 [INFO] Data diambil: 57 baris
+2026-06-11 21:16:47,207 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:16:47,377 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:16:47,381 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:16:47,381 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:16:47,461 [INFO]   PM25: 60 prediksi, range: 14.1 - 17.1
+2026-06-11 21:16:47,461 [INFO]   PM25: 60 prediksi
+2026-06-11 21:16:47,461 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:16:47,534 [INFO]   PM10: 60 prediksi, range: 17.4 - 20.9
+2026-06-11 21:16:47,534 [INFO]   PM10: 60 prediksi
+2026-06-11 21:16:47,534 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:16:47,605 [INFO]   CO: 60 prediksi, range: 1379.9 - 1820.2
+2026-06-11 21:16:47,605 [INFO]   CO: 60 prediksi
+2026-06-11 21:16:47,670 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22pm25_pred%22%2C%22category%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22ispu%22%2C%22is_historical%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:16:47,672 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:16:47,689 [INFO] Selesai!
+2026-06-11 21:17:42,205 [INFO] ============================================================
+2026-06-11 21:17:42,205 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:17:42,205 [INFO] ============================================================
+2026-06-11 21:17:43,025 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A17%3A42.501930%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:17:43,042 [INFO] Data diambil: 58 baris
+2026-06-11 21:17:45,688 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:17:45,798 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:17:45,800 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:17:45,800 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:17:45,859 [INFO]   PM25: 60 prediksi, range: 14.3 - 18.1
+2026-06-11 21:17:45,860 [INFO]   PM25: 60 prediksi
+2026-06-11 21:17:45,860 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:17:45,931 [INFO]   PM10: 60 prediksi, range: 16.6 - 21.6
+2026-06-11 21:17:45,931 [INFO]   PM10: 60 prediksi
+2026-06-11 21:17:45,932 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:17:46,004 [INFO]   CO: 60 prediksi, range: 1266.2 - 1739.1
+2026-06-11 21:17:46,004 [INFO]   CO: 60 prediksi
+2026-06-11 21:17:46,211 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22ispu%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22category%22%2C%22is_historical%22%2C%22target_at%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:17:46,216 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:17:46,220 [INFO] Selesai!
+2026-06-11 21:18:43,542 [INFO] ============================================================
+2026-06-11 21:18:43,542 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:18:43,542 [INFO] ============================================================
+2026-06-11 21:18:44,550 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A18%3A44.070900%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:18:44,605 [INFO] Data diambil: 59 baris
+2026-06-11 21:18:49,229 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:18:49,672 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:18:49,684 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:18:49,684 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:18:50,018 [INFO]   PM25: 60 prediksi, range: 15.1 - 19.1
+2026-06-11 21:18:50,018 [INFO]   PM25: 60 prediksi
+2026-06-11 21:18:50,018 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:18:50,386 [INFO]   PM10: 60 prediksi, range: 16.5 - 21.5
+2026-06-11 21:18:50,430 [INFO]   PM10: 60 prediksi
+2026-06-11 21:18:50,430 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:18:50,749 [INFO]   CO: 60 prediksi, range: 1266.7 - 1686.4
+2026-06-11 21:18:50,749 [INFO]   CO: 60 prediksi
+2026-06-11 21:18:51,020 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22target_at%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22is_historical%22%2C%22ispu%22%2C%22category%22%2C%22pm25_pred%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:18:51,028 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:18:51,037 [INFO] Selesai!
+2026-06-11 21:19:44,250 [INFO] ============================================================
+2026-06-11 21:19:44,291 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:19:44,291 [INFO] ============================================================
+2026-06-11 21:19:45,138 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A19%3A44.686297%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:19:45,178 [INFO] Data diambil: 60 baris
+2026-06-11 21:19:50,632 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:19:51,028 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:19:51,039 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:19:51,039 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:19:51,268 [INFO]   PM25: 60 prediksi, range: 13.8 - 17.7
+2026-06-11 21:19:51,268 [INFO]   PM25: 60 prediksi
+2026-06-11 21:19:51,268 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:19:51,549 [INFO]   PM10: 60 prediksi, range: 15.9 - 20.2
+2026-06-11 21:19:51,550 [INFO]   PM10: 60 prediksi
+2026-06-11 21:19:51,550 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:19:51,828 [INFO]   CO: 60 prediksi, range: 1229.7 - 1643.7
+2026-06-11 21:19:51,828 [INFO]   CO: 60 prediksi
+2026-06-11 21:19:52,036 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22target_at%22%2C%22forecast_at%22%2C%22ispu%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 21:19:52,043 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:19:52,063 [INFO] Selesai!
+2026-06-11 21:20:44,702 [INFO] ============================================================
+2026-06-11 21:20:44,742 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:20:44,742 [INFO] ============================================================
+2026-06-11 21:20:45,556 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A20%3A45.108813%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:20:45,594 [INFO] Data diambil: 61 baris
+2026-06-11 21:20:49,012 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:20:49,462 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:20:49,471 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:20:49,472 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:20:49,783 [INFO]   PM25: 60 prediksi, range: 14.1 - 17.7
+2026-06-11 21:20:49,783 [INFO]   PM25: 60 prediksi
+2026-06-11 21:20:49,783 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:20:50,143 [INFO]   PM10: 60 prediksi, range: 15.8 - 19.7
+2026-06-11 21:20:50,166 [INFO]   PM10: 60 prediksi
+2026-06-11 21:20:50,166 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:20:50,593 [INFO]   CO: 60 prediksi, range: 1217.2 - 1664.0
+2026-06-11 21:20:50,593 [INFO]   CO: 60 prediksi
+2026-06-11 21:20:50,788 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22category%22%2C%22ispu%22%2C%22pm10_pred%22%2C%22target_at%22%2C%22is_historical%22%2C%22forecast_at%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:20:50,795 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:20:50,821 [INFO] Selesai!
+2026-06-11 21:21:43,426 [INFO] ============================================================
+2026-06-11 21:21:43,426 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:21:43,426 [INFO] ============================================================
+2026-06-11 21:21:44,839 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A21%3A43.936380%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:21:44,887 [INFO] Data diambil: 62 baris
+2026-06-11 21:21:49,476 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:21:49,821 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:21:49,833 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:21:49,833 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:21:50,095 [INFO]   PM25: 60 prediksi, range: 14.7 - 18.0
+2026-06-11 21:21:50,096 [INFO]   PM25: 60 prediksi
+2026-06-11 21:21:50,096 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:21:50,389 [INFO]   PM10: 60 prediksi, range: 17.3 - 22.5
+2026-06-11 21:21:50,389 [INFO]   PM10: 60 prediksi
+2026-06-11 21:21:50,390 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:21:50,701 [INFO]   CO: 60 prediksi, range: 1156.3 - 1613.5
+2026-06-11 21:21:50,701 [INFO]   CO: 60 prediksi
+2026-06-11 21:21:50,882 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22forecast_at%22%2C%22pm25_pred%22%2C%22category%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:21:50,885 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:21:50,889 [INFO] Selesai!
+2026-06-11 21:22:42,082 [INFO] ============================================================
+2026-06-11 21:22:42,082 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:22:42,082 [INFO] ============================================================
+2026-06-11 21:22:42,785 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A22%3A42.394665%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:22:42,793 [INFO] Data diambil: 63 baris
+2026-06-11 21:22:45,442 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:22:45,586 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:22:45,590 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:22:45,591 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:22:45,656 [INFO]   PM25: 60 prediksi, range: 14.4 - 18.3
+2026-06-11 21:22:45,657 [INFO]   PM25: 60 prediksi
+2026-06-11 21:22:45,657 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:22:45,738 [INFO]   PM10: 60 prediksi, range: 16.1 - 20.0
+2026-06-11 21:22:45,738 [INFO]   PM10: 60 prediksi
+2026-06-11 21:22:45,738 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:22:45,821 [INFO]   CO: 60 prediksi, range: 991.3 - 1573.9
+2026-06-11 21:22:45,821 [INFO]   CO: 60 prediksi
+2026-06-11 21:22:45,884 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22pm10_pred%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22is_historical%22%2C%22category%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:22:45,886 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:22:45,889 [INFO] Selesai!
+2026-06-11 21:23:43,757 [INFO] ============================================================
+2026-06-11 21:23:43,757 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:23:43,757 [INFO] ============================================================
+2026-06-11 21:23:44,853 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A23%3A44.195845%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:23:44,884 [INFO] Data diambil: 64 baris
+2026-06-11 21:23:48,596 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:23:49,065 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:23:49,075 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:23:49,075 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:23:49,333 [INFO]   PM25: 60 prediksi, range: 14.4 - 17.8
+2026-06-11 21:23:49,333 [INFO]   PM25: 60 prediksi
+2026-06-11 21:23:49,333 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:23:49,625 [INFO]   PM10: 60 prediksi, range: 15.7 - 20.5
+2026-06-11 21:23:49,625 [INFO]   PM10: 60 prediksi
+2026-06-11 21:23:49,625 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:23:49,918 [INFO]   CO: 60 prediksi, range: 1058.1 - 1526.8
+2026-06-11 21:23:49,918 [INFO]   CO: 60 prediksi
+2026-06-11 21:23:50,379 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22pm10_pred%22%2C%22ispu%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22category%22%2C%22is_historical%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:23:50,386 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:23:50,393 [INFO] Selesai!
+2026-06-11 21:24:44,081 [INFO] ============================================================
+2026-06-11 21:24:44,081 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:24:44,082 [INFO] ============================================================
+2026-06-11 21:24:44,911 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A24%3A44.499035%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:24:44,958 [INFO] Data diambil: 65 baris
+2026-06-11 21:24:50,599 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:24:50,998 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:24:51,003 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:24:51,005 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:24:51,323 [INFO]   PM25: 60 prediksi, range: 14.4 - 18.2
+2026-06-11 21:24:51,324 [INFO]   PM25: 60 prediksi
+2026-06-11 21:24:51,324 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:24:51,599 [INFO]   PM10: 60 prediksi, range: 15.4 - 21.3
+2026-06-11 21:24:51,599 [INFO]   PM10: 60 prediksi
+2026-06-11 21:24:51,600 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:24:51,915 [INFO]   CO: 60 prediksi, range: 1148.8 - 1681.5
+2026-06-11 21:24:51,916 [INFO]   CO: 60 prediksi
+2026-06-11 21:24:52,111 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22target_at%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22category%22%2C%22ispu%22%2C%22forecast_at%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:24:52,118 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:24:52,127 [INFO] Selesai!
+2026-06-11 21:25:42,068 [INFO] ============================================================
+2026-06-11 21:25:42,068 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:25:42,068 [INFO] ============================================================
+2026-06-11 21:25:42,809 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A25%3A42.370823%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:25:42,817 [INFO] Data diambil: 66 baris
+2026-06-11 21:25:45,436 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:25:45,542 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:25:45,545 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:25:45,545 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:25:45,604 [INFO]   PM25: 60 prediksi, range: 14.6 - 17.7
+2026-06-11 21:25:45,635 [INFO]   PM25: 60 prediksi
+2026-06-11 21:25:45,636 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:25:45,724 [INFO]   PM10: 60 prediksi, range: 13.4 - 18.0
+2026-06-11 21:25:45,724 [INFO]   PM10: 60 prediksi
+2026-06-11 21:25:45,724 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:25:45,809 [INFO]   CO: 60 prediksi, range: 1022.0 - 1466.6
+2026-06-11 21:25:45,809 [INFO]   CO: 60 prediksi
+2026-06-11 21:25:45,900 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22target_at%22%2C%22forecast_at%22%2C%22ispu%22%2C%22is_historical%22%2C%22category%22%2C%22co_pred%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:25:45,905 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:25:45,909 [INFO] Selesai!
+2026-06-11 21:26:43,000 [INFO] ============================================================
+2026-06-11 21:26:43,001 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:26:43,001 [INFO] ============================================================
+2026-06-11 21:26:43,818 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A26%3A43.356018%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:26:43,847 [INFO] Data diambil: 67 baris
+2026-06-11 21:26:47,254 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:26:47,469 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:26:47,472 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:26:47,472 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:26:47,562 [INFO]   PM25: 60 prediksi, range: 13.6 - 18.7
+2026-06-11 21:26:47,562 [INFO]   PM25: 60 prediksi
+2026-06-11 21:26:47,562 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:26:47,645 [INFO]   PM10: 60 prediksi, range: 15.3 - 19.6
+2026-06-11 21:26:47,645 [INFO]   PM10: 60 prediksi
+2026-06-11 21:26:47,645 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:26:47,730 [INFO]   CO: 60 prediksi, range: 1053.4 - 1537.8
+2026-06-11 21:26:47,730 [INFO]   CO: 60 prediksi
+2026-06-11 21:26:47,832 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22category%22%2C%22pm10_pred%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:26:47,836 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:26:47,842 [INFO] Selesai!
+2026-06-11 21:27:42,827 [INFO] ============================================================
+2026-06-11 21:27:42,866 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:27:42,866 [INFO] ============================================================
+2026-06-11 21:27:43,689 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A27%3A43.230636%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:27:43,722 [INFO] Data diambil: 68 baris
+2026-06-11 21:27:47,057 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:27:47,288 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:27:47,291 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:27:47,291 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:27:47,390 [INFO]   PM25: 60 prediksi, range: 13.9 - 18.1
+2026-06-11 21:27:47,391 [INFO]   PM25: 60 prediksi
+2026-06-11 21:27:47,391 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:27:47,502 [INFO]   PM10: 60 prediksi, range: 17.2 - 20.5
+2026-06-11 21:27:47,502 [INFO]   PM10: 60 prediksi
+2026-06-11 21:27:47,502 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:27:47,589 [INFO]   CO: 60 prediksi, range: 1090.8 - 1657.9
+2026-06-11 21:27:47,589 [INFO]   CO: 60 prediksi
+2026-06-11 21:27:47,660 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22category%22%2C%22target_at%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22ispu%22%2C%22forecast_at%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 21:27:47,662 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:27:47,668 [INFO] Selesai!
+2026-06-11 21:28:44,467 [INFO] ============================================================
+2026-06-11 21:28:44,507 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:28:44,507 [INFO] ============================================================
+2026-06-11 21:28:45,267 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A28%3A44.853211%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:28:45,292 [INFO] Data diambil: 69 baris
+2026-06-11 21:28:48,564 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:28:48,760 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:28:48,761 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:28:48,763 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:28:48,838 [INFO]   PM25: 60 prediksi, range: 14.7 - 17.6
+2026-06-11 21:28:48,838 [INFO]   PM25: 60 prediksi
+2026-06-11 21:28:48,838 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:28:48,918 [INFO]   PM10: 60 prediksi, range: 16.3 - 21.8
+2026-06-11 21:28:48,918 [INFO]   PM10: 60 prediksi
+2026-06-11 21:28:48,918 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:28:48,995 [INFO]   CO: 60 prediksi, range: 1143.7 - 1729.7
+2026-06-11 21:28:48,995 [INFO]   CO: 60 prediksi
+2026-06-11 21:28:49,074 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22category%22%2C%22pm10_pred%22%2C%22is_historical%22%2C%22target_at%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:28:49,079 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:28:49,083 [INFO] Selesai!
+2026-06-11 21:29:44,618 [INFO] ============================================================
+2026-06-11 21:29:44,658 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:29:44,658 [INFO] ============================================================
+2026-06-11 21:29:45,892 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A29%3A45.193737%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:29:45,981 [INFO] Data diambil: 70 baris
+2026-06-11 21:29:51,851 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:29:52,356 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:29:52,365 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:29:52,366 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:29:52,625 [INFO]   PM25: 60 prediksi, range: 14.7 - 18.9
+2026-06-11 21:29:52,626 [INFO]   PM25: 60 prediksi
+2026-06-11 21:29:52,626 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:29:52,929 [INFO]   PM10: 60 prediksi, range: 14.5 - 19.6
+2026-06-11 21:29:52,930 [INFO]   PM10: 60 prediksi
+2026-06-11 21:29:52,930 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:29:53,211 [INFO]   CO: 60 prediksi, range: 1174.0 - 1489.3
+2026-06-11 21:29:53,211 [INFO]   CO: 60 prediksi
+2026-06-11 21:29:53,527 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22pm10_pred%22%2C%22category%22%2C%22co_pred%22%2C%22target_at%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 21:29:53,533 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:29:53,543 [INFO] Selesai!
+2026-06-11 21:30:42,104 [INFO] ============================================================
+2026-06-11 21:30:42,104 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:30:42,104 [INFO] ============================================================
+2026-06-11 21:30:42,853 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A30%3A42.393226%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:30:42,862 [INFO] Data diambil: 71 baris
+2026-06-11 21:30:44,354 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:30:44,495 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:30:44,498 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:30:44,498 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:30:44,573 [INFO]   PM25: 60 prediksi, range: 16.0 - 19.1
+2026-06-11 21:30:44,575 [INFO]   PM25: 60 prediksi
+2026-06-11 21:30:44,575 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:30:44,682 [INFO]   PM10: 60 prediksi, range: 16.3 - 21.0
+2026-06-11 21:30:44,684 [INFO]   PM10: 60 prediksi
+2026-06-11 21:30:44,684 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:30:44,766 [INFO]   CO: 60 prediksi, range: 1193.0 - 1466.5
+2026-06-11 21:30:44,766 [INFO]   CO: 60 prediksi
+2026-06-11 21:30:44,884 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22target_at%22%2C%22is_historical%22%2C%22ispu%22%2C%22forecast_at%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22category%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:30:44,887 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:30:44,890 [INFO] Selesai!
+2026-06-11 21:31:43,251 [INFO] ============================================================
+2026-06-11 21:31:43,251 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:31:43,251 [INFO] ============================================================
+2026-06-11 21:31:44,174 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A31%3A43.662370%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:31:44,188 [INFO] Data diambil: 72 baris
+2026-06-11 21:31:46,673 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:31:47,029 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:31:47,037 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:31:47,037 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:31:47,298 [INFO]   PM25: 60 prediksi, range: 13.4 - 18.5
+2026-06-11 21:31:47,299 [INFO]   PM25: 60 prediksi
+2026-06-11 21:31:47,299 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:31:47,631 [INFO]   PM10: 60 prediksi, range: 18.0 - 23.3
+2026-06-11 21:31:47,631 [INFO]   PM10: 60 prediksi
+2026-06-11 21:31:47,632 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:31:47,968 [INFO]   CO: 60 prediksi, range: 1155.4 - 1589.0
+2026-06-11 21:31:47,968 [INFO]   CO: 60 prediksi
+2026-06-11 21:31:48,066 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22target_at%22%2C%22ispu%22%2C%22co_pred%22%2C%22category%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 21:31:48,073 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:31:48,081 [INFO] Selesai!
+2026-06-11 21:32:45,677 [INFO] ============================================================
+2026-06-11 21:32:45,677 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:32:45,677 [INFO] ============================================================
+2026-06-11 21:32:47,586 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A32%3A46.784246%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:32:47,631 [INFO] Data diambil: 73 baris
+2026-06-11 21:32:53,064 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:32:53,264 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:32:53,267 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:32:53,267 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:32:53,339 [INFO]   PM25: 60 prediksi, range: 13.8 - 17.6
+2026-06-11 21:32:53,339 [INFO]   PM25: 60 prediksi
+2026-06-11 21:32:53,339 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:32:53,420 [INFO]   PM10: 60 prediksi, range: 15.8 - 20.1
+2026-06-11 21:32:53,421 [INFO]   PM10: 60 prediksi
+2026-06-11 21:32:53,421 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:32:53,500 [INFO]   CO: 60 prediksi, range: 1100.3 - 1483.2
+2026-06-11 21:32:53,500 [INFO]   CO: 60 prediksi
+2026-06-11 21:32:53,683 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22category%22%2C%22ispu%22%2C%22target_at%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22co_pred%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:32:53,684 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:32:53,688 [INFO] Selesai!
+2026-06-11 21:33:43,664 [INFO] ============================================================
+2026-06-11 21:33:43,705 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:33:43,705 [INFO] ============================================================
+2026-06-11 21:33:44,760 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A33%3A44.153311%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:33:44,813 [INFO] Data diambil: 74 baris
+2026-06-11 21:33:49,495 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:33:49,944 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:33:49,954 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:33:49,955 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:33:50,217 [INFO]   PM25: 60 prediksi, range: 12.6 - 17.4
+2026-06-11 21:33:50,217 [INFO]   PM25: 60 prediksi
+2026-06-11 21:33:50,217 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:33:50,513 [INFO]   PM10: 60 prediksi, range: 15.8 - 23.2
+2026-06-11 21:33:50,513 [INFO]   PM10: 60 prediksi
+2026-06-11 21:33:50,513 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:33:50,823 [INFO]   CO: 60 prediksi, range: 1126.0 - 1511.8
+2026-06-11 21:33:50,824 [INFO]   CO: 60 prediksi
+2026-06-11 21:33:51,140 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22pm25_pred%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22category%22%2C%22ispu%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:33:51,148 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:33:51,171 [INFO] Selesai!
+2026-06-11 21:34:43,236 [INFO] ============================================================
+2026-06-11 21:34:43,236 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:34:43,236 [INFO] ============================================================
+2026-06-11 21:34:44,069 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A34%3A43.614320%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:34:44,112 [INFO] Data diambil: 75 baris
+2026-06-11 21:34:46,375 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:34:46,799 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:34:46,839 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:34:46,839 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:34:47,128 [INFO]   PM25: 60 prediksi, range: 12.2 - 15.7
+2026-06-11 21:34:47,129 [INFO]   PM25: 60 prediksi
+2026-06-11 21:34:47,129 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:34:47,447 [INFO]   PM10: 60 prediksi, range: 17.0 - 20.7
+2026-06-11 21:34:47,447 [INFO]   PM10: 60 prediksi
+2026-06-11 21:34:47,448 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:34:47,784 [INFO]   CO: 60 prediksi, range: 1123.4 - 1510.1
+2026-06-11 21:34:47,785 [INFO]   CO: 60 prediksi
+2026-06-11 21:34:47,877 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22target_at%22%2C%22pm10_pred%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 21:34:47,882 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:34:47,892 [INFO] Selesai!
+2026-06-11 21:35:43,468 [INFO] ============================================================
+2026-06-11 21:35:43,468 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:35:43,468 [INFO] ============================================================
+2026-06-11 21:35:44,241 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A35%3A43.831204%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:35:44,262 [INFO] Data diambil: 76 baris
+2026-06-11 21:35:46,152 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:35:46,321 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:35:46,324 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:35:46,324 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:35:46,408 [INFO]   PM25: 60 prediksi, range: 13.2 - 16.1
+2026-06-11 21:35:46,408 [INFO]   PM25: 60 prediksi
+2026-06-11 21:35:46,408 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:35:46,487 [INFO]   PM10: 60 prediksi, range: 16.8 - 21.0
+2026-06-11 21:35:46,487 [INFO]   PM10: 60 prediksi
+2026-06-11 21:35:46,487 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:35:46,564 [INFO]   CO: 60 prediksi, range: 1204.9 - 1477.8
+2026-06-11 21:35:46,564 [INFO]   CO: 60 prediksi
+2026-06-11 21:35:46,639 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22is_historical%22%2C%22category%22%2C%22co_pred%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 21:35:46,640 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:35:46,658 [INFO] Selesai!
+2026-06-11 21:36:42,847 [INFO] ============================================================
+2026-06-11 21:36:42,887 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:36:42,887 [INFO] ============================================================
+2026-06-11 21:36:43,630 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A36%3A43.236443%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:36:43,654 [INFO] Data diambil: 77 baris
+2026-06-11 21:36:45,603 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:36:45,783 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:36:45,785 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:36:45,785 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:36:45,858 [INFO]   PM25: 60 prediksi, range: 14.3 - 17.2
+2026-06-11 21:36:45,858 [INFO]   PM25: 60 prediksi
+2026-06-11 21:36:45,898 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:36:45,973 [INFO]   PM10: 60 prediksi, range: 14.6 - 18.6
+2026-06-11 21:36:45,973 [INFO]   PM10: 60 prediksi
+2026-06-11 21:36:45,973 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:36:46,047 [INFO]   CO: 60 prediksi, range: 1181.6 - 1482.6
+2026-06-11 21:36:46,047 [INFO]   CO: 60 prediksi
+2026-06-11 21:36:46,119 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22pm25_pred%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22ispu%22%2C%22category%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:36:46,121 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:36:46,133 [INFO] Selesai!
+2026-06-11 21:37:43,037 [INFO] ============================================================
+2026-06-11 21:37:43,037 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:37:43,038 [INFO] ============================================================
+2026-06-11 21:37:43,863 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A37%3A43.444862%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:37:43,883 [INFO] Data diambil: 78 baris
+2026-06-11 21:37:47,287 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:37:47,463 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:37:47,466 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:37:47,466 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:37:47,536 [INFO]   PM25: 60 prediksi, range: 14.4 - 18.9
+2026-06-11 21:37:47,537 [INFO]   PM25: 60 prediksi
+2026-06-11 21:37:47,537 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:37:47,610 [INFO]   PM10: 60 prediksi, range: 15.4 - 20.3
+2026-06-11 21:37:47,610 [INFO]   PM10: 60 prediksi
+2026-06-11 21:37:47,610 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:37:47,684 [INFO]   CO: 60 prediksi, range: 1157.4 - 1449.5
+2026-06-11 21:37:47,684 [INFO]   CO: 60 prediksi
+2026-06-11 21:37:47,759 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22co_pred%22%2C%22pm25_pred%22%2C%22category%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22target_at%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 21:37:47,764 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:37:47,784 [INFO] Selesai!
+2026-06-11 21:38:43,372 [INFO] ============================================================
+2026-06-11 21:38:43,372 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:38:43,372 [INFO] ============================================================
+2026-06-11 21:38:44,265 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A38%3A43.817691%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:38:44,276 [INFO] Data diambil: 79 baris
+2026-06-11 21:38:48,114 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:38:48,267 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:38:48,271 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:38:48,271 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:38:48,338 [INFO]   PM25: 60 prediksi, range: 15.6 - 19.6
+2026-06-11 21:38:48,338 [INFO]   PM25: 60 prediksi
+2026-06-11 21:38:48,338 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:38:48,428 [INFO]   PM10: 60 prediksi, range: 15.9 - 19.6
+2026-06-11 21:38:48,428 [INFO]   PM10: 60 prediksi
+2026-06-11 21:38:48,428 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:38:48,517 [INFO]   CO: 60 prediksi, range: 1174.3 - 1466.1
+2026-06-11 21:38:48,517 [INFO]   CO: 60 prediksi
+2026-06-11 21:38:48,637 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22category%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22ispu%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:38:48,691 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:38:48,693 [INFO] Selesai!
+2026-06-11 21:41:44,318 [INFO] ============================================================
+2026-06-11 21:41:44,318 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:41:44,318 [INFO] ============================================================
+2026-06-11 21:41:45,264 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A41%3A44.719719%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:41:45,298 [INFO] Data diambil: 82 baris
+2026-06-11 21:41:50,471 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:41:51,039 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:41:51,053 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:41:51,053 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:41:51,394 [INFO]   PM25: 60 prediksi, range: 14.2 - 17.7
+2026-06-11 21:41:51,395 [INFO]   PM25: 60 prediksi
+2026-06-11 21:41:51,395 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:41:51,844 [INFO]   PM10: 60 prediksi, range: 15.0 - 18.7
+2026-06-11 21:41:51,845 [INFO]   PM10: 60 prediksi
+2026-06-11 21:41:51,845 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:41:52,258 [INFO]   CO: 60 prediksi, range: 1096.6 - 1379.5
+2026-06-11 21:41:52,259 [INFO]   CO: 60 prediksi
+2026-06-11 21:41:52,532 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22ispu%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:41:52,536 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:41:52,545 [INFO] Selesai!
+2026-06-11 21:42:42,462 [INFO] ============================================================
+2026-06-11 21:42:42,462 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:42:42,462 [INFO] ============================================================
+2026-06-11 21:42:43,307 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A42%3A42.805597%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:42:43,315 [INFO] Data diambil: 82 baris
+2026-06-11 21:42:46,106 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:42:46,320 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:42:46,323 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:42:46,323 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:42:46,413 [INFO]   PM25: 60 prediksi, range: 14.4 - 17.4
+2026-06-11 21:42:46,413 [INFO]   PM25: 60 prediksi
+2026-06-11 21:42:46,413 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:42:46,514 [INFO]   PM10: 60 prediksi, range: 15.5 - 18.7
+2026-06-11 21:42:46,516 [INFO]   PM10: 60 prediksi
+2026-06-11 21:42:46,516 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:42:46,644 [INFO]   CO: 60 prediksi, range: 1007.0 - 1338.4
+2026-06-11 21:42:46,644 [INFO]   CO: 60 prediksi
+2026-06-11 21:42:46,710 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22target_at%22%2C%22category%22%2C%22ispu%22%2C%22is_historical%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 21:42:46,712 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:42:46,714 [INFO] Selesai!
+2026-06-11 21:43:50,944 [INFO] ============================================================
+2026-06-11 21:43:50,944 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:43:50,944 [INFO] ============================================================
+2026-06-11 21:43:53,534 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A43%3A51.360493%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:43:53,637 [INFO] Data diambil: 84 baris
+2026-06-11 21:44:00,577 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:44:00,779 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:44:00,781 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:44:00,781 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:44:00,858 [INFO]   PM25: 60 prediksi, range: 14.5 - 16.7
+2026-06-11 21:44:00,858 [INFO]   PM25: 60 prediksi
+2026-06-11 21:44:00,858 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:44:00,936 [INFO]   PM10: 60 prediksi, range: 15.8 - 19.4
+2026-06-11 21:44:00,936 [INFO]   PM10: 60 prediksi
+2026-06-11 21:44:00,936 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:44:01,008 [INFO]   CO: 60 prediksi, range: 1217.5 - 1483.6
+2026-06-11 21:44:01,008 [INFO]   CO: 60 prediksi
+2026-06-11 21:44:01,306 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22target_at%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22category%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:44:01,310 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:44:01,398 [INFO] Selesai!
+2026-06-11 21:44:43,431 [INFO] ============================================================
+2026-06-11 21:44:43,431 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:44:43,431 [INFO] ============================================================
+2026-06-11 21:44:44,267 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A44%3A43.781082%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:44:44,279 [INFO] Data diambil: 84 baris
+2026-06-11 21:44:47,459 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:44:47,799 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:44:47,808 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:44:47,808 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:44:48,056 [INFO]   PM25: 60 prediksi, range: 14.6 - 17.2
+2026-06-11 21:44:48,056 [INFO]   PM25: 60 prediksi
+2026-06-11 21:44:48,056 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:44:48,373 [INFO]   PM10: 60 prediksi, range: 16.4 - 19.0
+2026-06-11 21:44:48,373 [INFO]   PM10: 60 prediksi
+2026-06-11 21:44:48,373 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:44:48,793 [INFO]   CO: 60 prediksi, range: 1196.3 - 1477.2
+2026-06-11 21:44:48,795 [INFO]   CO: 60 prediksi
+2026-06-11 21:44:48,898 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22co_pred%22%2C%22ispu%22%2C%22is_historical%22%2C%22category%22%2C%22pm10_pred%22%2C%22forecast_at%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:44:48,904 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:44:48,911 [INFO] Selesai!
+2026-06-11 21:45:43,288 [INFO] ============================================================
+2026-06-11 21:45:43,288 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:45:43,288 [INFO] ============================================================
+2026-06-11 21:45:44,139 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A45%3A43.612356%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:45:44,157 [INFO] Data diambil: 85 baris
+2026-06-11 21:45:46,863 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:45:47,160 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:45:47,169 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:45:47,169 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:45:47,409 [INFO]   PM25: 60 prediksi, range: 16.8 - 20.7
+2026-06-11 21:45:47,410 [INFO]   PM25: 60 prediksi
+2026-06-11 21:45:47,410 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:45:47,705 [INFO]   PM10: 60 prediksi, range: 17.6 - 20.8
+2026-06-11 21:45:47,706 [INFO]   PM10: 60 prediksi
+2026-06-11 21:45:47,706 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:45:48,005 [INFO]   CO: 60 prediksi, range: 1151.5 - 1437.5
+2026-06-11 21:45:48,006 [INFO]   CO: 60 prediksi
+2026-06-11 21:45:48,130 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22is_historical%22%2C%22co_pred%22%2C%22target_at%22%2C%22ispu%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:45:48,137 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:45:48,147 [INFO] Selesai!
+2026-06-11 21:46:43,214 [INFO] ============================================================
+2026-06-11 21:46:43,214 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:46:43,215 [INFO] ============================================================
+2026-06-11 21:46:43,990 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A46%3A43.567386%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:46:44,008 [INFO] Data diambil: 86 baris
+2026-06-11 21:46:46,718 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:46:47,037 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:46:47,046 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:46:47,046 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:46:47,332 [INFO]   PM25: 60 prediksi, range: 13.5 - 16.3
+2026-06-11 21:46:47,333 [INFO]   PM25: 60 prediksi
+2026-06-11 21:46:47,333 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:46:47,702 [INFO]   PM10: 60 prediksi, range: 16.7 - 21.6
+2026-06-11 21:46:47,703 [INFO]   PM10: 60 prediksi
+2026-06-11 21:46:47,703 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:46:47,983 [INFO]   CO: 60 prediksi, range: 1224.1 - 1436.8
+2026-06-11 21:46:47,983 [INFO]   CO: 60 prediksi
+2026-06-11 21:46:48,082 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22is_historical%22%2C%22ispu%22%2C%22category%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:46:48,088 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:46:48,095 [INFO] Selesai!
+2026-06-11 21:47:43,469 [INFO] ============================================================
+2026-06-11 21:47:43,508 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:47:43,508 [INFO] ============================================================
+2026-06-11 21:47:44,315 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A47%3A43.870829%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:47:44,360 [INFO] Data diambil: 87 baris
+2026-06-11 21:47:47,854 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:47:48,198 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:47:48,207 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:47:48,207 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:47:48,493 [INFO]   PM25: 60 prediksi, range: 14.3 - 18.0
+2026-06-11 21:47:48,493 [INFO]   PM25: 60 prediksi
+2026-06-11 21:47:48,493 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:47:48,818 [INFO]   PM10: 60 prediksi, range: 15.4 - 17.8
+2026-06-11 21:47:48,820 [INFO]   PM10: 60 prediksi
+2026-06-11 21:47:48,820 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:47:49,160 [INFO]   CO: 60 prediksi, range: 1128.3 - 1463.9
+2026-06-11 21:47:49,160 [INFO]   CO: 60 prediksi
+2026-06-11 21:47:49,269 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22ispu%22%2C%22co_pred%22%2C%22is_historical%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:47:49,274 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:47:49,282 [INFO] Selesai!
+2026-06-11 21:48:55,978 [INFO] ============================================================
+2026-06-11 21:48:55,979 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:48:55,979 [INFO] ============================================================
+2026-06-11 21:48:59,325 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A48%3A57.690963%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:48:59,430 [INFO] Data diambil: 89 baris
+2026-06-11 21:49:07,127 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:49:07,653 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:49:07,662 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:49:07,662 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:49:07,960 [INFO]   PM25: 60 prediksi, range: 14.0 - 17.0
+2026-06-11 21:49:07,960 [INFO]   PM25: 60 prediksi
+2026-06-11 21:49:07,962 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:49:08,279 [INFO]   PM10: 60 prediksi, range: 16.1 - 18.7
+2026-06-11 21:49:08,279 [INFO]   PM10: 60 prediksi
+2026-06-11 21:49:08,279 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:49:08,610 [INFO]   CO: 60 prediksi, range: 1230.8 - 1414.8
+2026-06-11 21:49:08,611 [INFO]   CO: 60 prediksi
+2026-06-11 21:49:08,810 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22is_historical%22%2C%22forecast_at%22%2C%22ispu%22%2C%22co_pred%22%2C%22category%22%2C%22pm25_pred%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:49:08,817 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:49:08,830 [INFO] Selesai!
+2026-06-11 21:49:42,937 [INFO] ============================================================
+2026-06-11 21:49:42,938 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:49:42,938 [INFO] ============================================================
+2026-06-11 21:49:44,305 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A49%3A43.272829%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:49:44,316 [INFO] Data diambil: 89 baris
+2026-06-11 21:49:47,280 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:49:47,414 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:49:47,452 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:49:47,452 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:49:47,522 [INFO]   PM25: 60 prediksi, range: 14.0 - 17.1
+2026-06-11 21:49:47,522 [INFO]   PM25: 60 prediksi
+2026-06-11 21:49:47,522 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:49:47,614 [INFO]   PM10: 60 prediksi, range: 16.0 - 18.8
+2026-06-11 21:49:47,614 [INFO]   PM10: 60 prediksi
+2026-06-11 21:49:47,614 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:49:47,699 [INFO]   CO: 60 prediksi, range: 1177.5 - 1419.0
+2026-06-11 21:49:47,700 [INFO]   CO: 60 prediksi
+2026-06-11 21:49:47,804 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22ispu%22%2C%22category%22%2C%22pm10_pred%22%2C%22target_at%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:49:47,806 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:49:47,808 [INFO] Selesai!
+2026-06-11 21:50:42,147 [INFO] ============================================================
+2026-06-11 21:50:42,147 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:50:42,147 [INFO] ============================================================
+2026-06-11 21:50:42,828 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A50%3A42.434343%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:50:42,838 [INFO] Data diambil: 90 baris
+2026-06-11 21:50:45,416 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:50:45,523 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:50:45,525 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:50:45,526 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:50:45,586 [INFO]   PM25: 60 prediksi, range: 12.0 - 15.8
+2026-06-11 21:50:45,586 [INFO]   PM25: 60 prediksi
+2026-06-11 21:50:45,586 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:50:45,659 [INFO]   PM10: 60 prediksi, range: 15.8 - 19.0
+2026-06-11 21:50:45,659 [INFO]   PM10: 60 prediksi
+2026-06-11 21:50:45,660 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:50:45,729 [INFO]   CO: 60 prediksi, range: 1180.2 - 1375.3
+2026-06-11 21:50:45,729 [INFO]   CO: 60 prediksi
+2026-06-11 21:50:45,822 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22target_at%22%2C%22category%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 21:50:45,827 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:50:45,830 [INFO] Selesai!
+2026-06-11 21:51:42,222 [INFO] ============================================================
+2026-06-11 21:51:42,223 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:51:42,223 [INFO] ============================================================
+2026-06-11 21:51:42,945 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A51%3A42.504425%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:51:42,955 [INFO] Data diambil: 91 baris
+2026-06-11 21:51:45,556 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:51:45,666 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:51:45,668 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:51:45,668 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:51:45,727 [INFO]   PM25: 60 prediksi, range: 13.2 - 17.7
+2026-06-11 21:51:45,729 [INFO]   PM25: 60 prediksi
+2026-06-11 21:51:45,729 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:51:45,800 [INFO]   PM10: 60 prediksi, range: 15.2 - 17.8
+2026-06-11 21:51:45,801 [INFO]   PM10: 60 prediksi
+2026-06-11 21:51:45,801 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:51:45,874 [INFO]   CO: 60 prediksi, range: 1169.0 - 1377.2
+2026-06-11 21:51:45,874 [INFO]   CO: 60 prediksi
+2026-06-11 21:51:45,995 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22is_historical%22%2C%22co_pred%22%2C%22category%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 21:51:46,048 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:51:46,053 [INFO] Selesai!
+2026-06-11 21:52:42,662 [INFO] ============================================================
+2026-06-11 21:52:42,662 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:52:42,662 [INFO] ============================================================
+2026-06-11 21:52:43,743 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A52%3A43.024996%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:52:43,758 [INFO] Data diambil: 92 baris
+2026-06-11 21:52:47,906 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:52:48,189 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:52:48,198 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:52:48,199 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:52:48,446 [INFO]   PM25: 60 prediksi, range: 11.9 - 15.9
+2026-06-11 21:52:48,446 [INFO]   PM25: 60 prediksi
+2026-06-11 21:52:48,446 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:52:48,719 [INFO]   PM10: 60 prediksi, range: 14.8 - 19.0
+2026-06-11 21:52:48,750 [INFO]   PM10: 60 prediksi
+2026-06-11 21:52:48,750 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:52:49,087 [INFO]   CO: 60 prediksi, range: 1234.5 - 1438.8
+2026-06-11 21:52:49,087 [INFO]   CO: 60 prediksi
+2026-06-11 21:52:49,280 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22ispu%22%2C%22category%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:52:49,288 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:52:49,297 [INFO] Selesai!
+2026-06-11 21:53:44,420 [INFO] ============================================================
+2026-06-11 21:53:44,420 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:53:44,420 [INFO] ============================================================
+2026-06-11 21:53:45,320 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A53%3A44.714493%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:53:45,334 [INFO] Data diambil: 93 baris
+2026-06-11 21:53:47,958 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:53:48,077 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:53:48,080 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:53:48,080 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:53:48,146 [INFO]   PM25: 60 prediksi, range: 12.7 - 17.8
+2026-06-11 21:53:48,146 [INFO]   PM25: 60 prediksi
+2026-06-11 21:53:48,146 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:53:48,218 [INFO]   PM10: 60 prediksi, range: 14.3 - 18.8
+2026-06-11 21:53:48,218 [INFO]   PM10: 60 prediksi
+2026-06-11 21:53:48,218 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:53:48,299 [INFO]   CO: 60 prediksi, range: 1187.0 - 1381.7
+2026-06-11 21:53:48,299 [INFO]   CO: 60 prediksi
+2026-06-11 21:53:48,667 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22category%22%2C%22ispu%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22is_historical%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:53:48,671 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:53:48,674 [INFO] Selesai!
+2026-06-11 21:54:44,633 [INFO] ============================================================
+2026-06-11 21:54:44,673 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:54:44,673 [INFO] ============================================================
+2026-06-11 21:54:46,639 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A54%3A45.483645%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:54:46,706 [INFO] Data diambil: 94 baris
+2026-06-11 21:54:52,550 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:54:53,054 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:54:53,063 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:54:53,063 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:54:53,357 [INFO]   PM25: 60 prediksi, range: 13.0 - 17.8
+2026-06-11 21:54:53,357 [INFO]   PM25: 60 prediksi
+2026-06-11 21:54:53,357 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:54:53,678 [INFO]   PM10: 60 prediksi, range: 15.0 - 17.6
+2026-06-11 21:54:53,678 [INFO]   PM10: 60 prediksi
+2026-06-11 21:54:53,679 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:54:54,005 [INFO]   CO: 60 prediksi, range: 1198.5 - 1380.9
+2026-06-11 21:54:54,005 [INFO]   CO: 60 prediksi
+2026-06-11 21:54:54,237 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22target_at%22%2C%22co_pred%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22category%22%2C%22pm10_pred%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 21:54:54,243 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:54:54,252 [INFO] Selesai!
+2026-06-11 21:55:43,318 [INFO] ============================================================
+2026-06-11 21:55:43,318 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:55:43,318 [INFO] ============================================================
+2026-06-11 21:55:44,171 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A55%3A43.673761%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:55:44,200 [INFO] Data diambil: 95 baris
+2026-06-11 21:55:47,509 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:55:47,693 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:55:47,695 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:55:47,695 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:55:47,777 [INFO]   PM25: 60 prediksi, range: 13.4 - 17.1
+2026-06-11 21:55:47,777 [INFO]   PM25: 60 prediksi
+2026-06-11 21:55:47,777 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:55:47,860 [INFO]   PM10: 60 prediksi, range: 16.9 - 22.6
+2026-06-11 21:55:47,860 [INFO]   PM10: 60 prediksi
+2026-06-11 21:55:47,860 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:55:47,942 [INFO]   CO: 60 prediksi, range: 1189.0 - 1373.5
+2026-06-11 21:55:47,942 [INFO]   CO: 60 prediksi
+2026-06-11 21:55:48,086 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22ispu%22%2C%22pm10_pred%22%2C%22pm25_pred%22%2C%22category%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 21:55:48,089 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:55:48,103 [INFO] Selesai!
+2026-06-11 21:56:42,236 [INFO] ============================================================
+2026-06-11 21:56:42,236 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:56:42,236 [INFO] ============================================================
+2026-06-11 21:56:42,965 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A56%3A42.558402%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:56:42,973 [INFO] Data diambil: 96 baris
+2026-06-11 21:57:42,231 [INFO] ============================================================
+2026-06-11 21:57:42,231 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:57:42,231 [INFO] ============================================================
+2026-06-11 21:57:42,949 [INFO] Lock file stale (PID 32436), melanjutkan...
+2026-06-11 21:57:43,795 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A57%3A43.319947%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:57:43,805 [INFO] Data diambil: 97 baris
+2026-06-11 21:57:47,050 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:57:47,317 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:57:47,321 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:57:47,321 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:57:47,418 [INFO]   PM25: 60 prediksi, range: 13.8 - 17.2
+2026-06-11 21:57:47,420 [INFO]   PM25: 60 prediksi
+2026-06-11 21:57:47,420 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:57:47,518 [INFO]   PM10: 60 prediksi, range: 15.6 - 19.6
+2026-06-11 21:57:47,518 [INFO]   PM10: 60 prediksi
+2026-06-11 21:57:47,519 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:57:47,651 [INFO]   CO: 60 prediksi, range: 1130.2 - 1358.6
+2026-06-11 21:57:47,652 [INFO]   CO: 60 prediksi
+2026-06-11 21:57:47,758 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22forecast_at%22%2C%22pm10_pred%22%2C%22target_at%22%2C%22co_pred%22%2C%22category%22%2C%22pm25_pred%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 21:57:47,762 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:57:47,767 [INFO] Selesai!
+2026-06-11 21:58:44,075 [INFO] ============================================================
+2026-06-11 21:58:44,075 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:58:44,075 [INFO] ============================================================
+2026-06-11 21:58:44,837 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A58%3A44.421306%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:58:44,848 [INFO] Data diambil: 98 baris
+2026-06-11 21:58:47,572 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:58:47,705 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:58:47,709 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:58:47,709 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:58:47,784 [INFO]   PM25: 60 prediksi, range: 12.7 - 15.4
+2026-06-11 21:58:47,784 [INFO]   PM25: 60 prediksi
+2026-06-11 21:58:47,784 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:58:47,877 [INFO]   PM10: 60 prediksi, range: 15.6 - 20.3
+2026-06-11 21:58:47,877 [INFO]   PM10: 60 prediksi
+2026-06-11 21:58:47,877 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:58:47,968 [INFO]   CO: 60 prediksi, range: 1199.8 - 1421.3
+2026-06-11 21:58:47,968 [INFO]   CO: 60 prediksi
+2026-06-11 21:58:48,063 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22target_at%22%2C%22ispu%22%2C%22is_historical%22%2C%22category%22%2C%22pm10_pred%22%2C%22forecast_at%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:58:48,066 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:58:48,069 [INFO] Selesai!
+2026-06-11 21:59:42,956 [INFO] ============================================================
+2026-06-11 21:59:42,956 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 21:59:42,956 [INFO] ============================================================
+2026-06-11 21:59:43,753 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T14%3A59%3A43.301026%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 21:59:43,782 [INFO] Data diambil: 99 baris
+2026-06-11 21:59:47,041 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 21:59:47,263 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 21:59:47,266 [INFO] Loaded xgb_co.pkl
+2026-06-11 21:59:47,266 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 21:59:47,371 [INFO]   PM25: 60 prediksi, range: 12.4 - 16.2
+2026-06-11 21:59:47,371 [INFO]   PM25: 60 prediksi
+2026-06-11 21:59:47,372 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 21:59:47,484 [INFO]   PM10: 60 prediksi, range: 14.8 - 19.4
+2026-06-11 21:59:47,484 [INFO]   PM10: 60 prediksi
+2026-06-11 21:59:47,484 [INFO] --- CO (XGBoost) ---
+2026-06-11 21:59:47,595 [INFO]   CO: 60 prediksi, range: 1224.3 - 1382.9
+2026-06-11 21:59:47,595 [INFO]   CO: 60 prediksi
+2026-06-11 21:59:47,711 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22category%22%2C%22ispu%22%2C%22target_at%22%2C%22forecast_at%22%2C%22pm10_pred%22%2C%22pm25_pred%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 21:59:47,713 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 21:59:47,717 [INFO] Selesai!
+2026-06-11 22:00:42,289 [INFO] ============================================================
+2026-06-11 22:00:42,289 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:00:42,289 [INFO] ============================================================
+2026-06-11 22:00:43,155 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A00%3A42.709594%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:00:43,176 [INFO] Data diambil: 100 baris
+2026-06-11 22:00:45,976 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:00:46,092 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:00:46,094 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:00:46,094 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:00:46,159 [INFO]   PM25: 60 prediksi, range: 12.1 - 16.4
+2026-06-11 22:00:46,160 [INFO]   PM25: 60 prediksi
+2026-06-11 22:00:46,160 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:00:46,239 [INFO]   PM10: 60 prediksi, range: 15.7 - 18.5
+2026-06-11 22:00:46,239 [INFO]   PM10: 60 prediksi
+2026-06-11 22:00:46,239 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:00:46,343 [INFO]   CO: 60 prediksi, range: 1199.1 - 1378.3
+2026-06-11 22:00:46,343 [INFO]   CO: 60 prediksi
+2026-06-11 22:00:46,460 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22co_pred%22%2C%22pm10_pred%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22target_at%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 22:00:46,461 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:00:46,464 [INFO] Selesai!
+2026-06-11 22:01:42,199 [INFO] ============================================================
+2026-06-11 22:01:42,199 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:01:42,199 [INFO] ============================================================
+2026-06-11 22:01:42,916 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A01%3A42.501477%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:01:42,924 [INFO] Data diambil: 101 baris
+2026-06-11 22:01:45,652 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:01:45,769 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:01:45,772 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:01:45,773 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:01:45,837 [INFO]   PM25: 60 prediksi, range: 14.7 - 18.4
+2026-06-11 22:01:45,837 [INFO]   PM25: 60 prediksi
+2026-06-11 22:01:45,837 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:01:45,914 [INFO]   PM10: 60 prediksi, range: 14.7 - 19.1
+2026-06-11 22:01:45,914 [INFO]   PM10: 60 prediksi
+2026-06-11 22:01:45,914 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:01:45,999 [INFO]   CO: 60 prediksi, range: 1193.5 - 1393.4
+2026-06-11 22:01:46,045 [INFO]   CO: 60 prediksi
+2026-06-11 22:01:46,136 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22target_at%22%2C%22ispu%22%2C%22is_historical%22%2C%22co_pred%22%2C%22pm10_pred%22%2C%22pm25_pred%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 22:01:46,137 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:01:46,139 [INFO] Selesai!
+2026-06-11 22:02:42,031 [INFO] ============================================================
+2026-06-11 22:02:42,072 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:02:42,072 [INFO] ============================================================
+2026-06-11 22:02:42,788 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A02%3A42.360378%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:02:42,798 [INFO] Data diambil: 102 baris
+2026-06-11 22:02:44,139 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:02:44,260 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:02:44,264 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:02:44,264 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:02:44,329 [INFO]   PM25: 60 prediksi, range: 13.2 - 17.6
+2026-06-11 22:02:44,330 [INFO]   PM25: 60 prediksi
+2026-06-11 22:02:44,330 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:02:44,440 [INFO]   PM10: 60 prediksi, range: 15.8 - 18.7
+2026-06-11 22:02:44,440 [INFO]   PM10: 60 prediksi
+2026-06-11 22:02:44,440 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:02:44,512 [INFO]   CO: 60 prediksi, range: 1143.4 - 1340.9
+2026-06-11 22:02:44,513 [INFO]   CO: 60 prediksi
+2026-06-11 22:02:44,608 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22pm10_pred%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22target_at%22%2C%22co_pred%22%2C%22is_historical%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 22:02:44,612 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:02:44,614 [INFO] Selesai!
+2026-06-11 22:03:42,237 [INFO] ============================================================
+2026-06-11 22:03:42,237 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:03:42,237 [INFO] ============================================================
+2026-06-11 22:03:43,376 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A03%3A42.531208%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:03:43,387 [INFO] Data diambil: 103 baris
+2026-06-11 22:03:45,970 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:03:46,082 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:03:46,084 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:03:46,085 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:03:46,144 [INFO]   PM25: 60 prediksi, range: 13.0 - 16.3
+2026-06-11 22:03:46,145 [INFO]   PM25: 60 prediksi
+2026-06-11 22:03:46,145 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:03:46,218 [INFO]   PM10: 60 prediksi, range: 14.9 - 17.5
+2026-06-11 22:03:46,218 [INFO]   PM10: 60 prediksi
+2026-06-11 22:03:46,218 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:03:46,289 [INFO]   CO: 60 prediksi, range: 1169.8 - 1374.5
+2026-06-11 22:03:46,289 [INFO]   CO: 60 prediksi
+2026-06-11 22:03:46,383 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22is_historical%22%2C%22ispu%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22category%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:03:46,385 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:03:46,388 [INFO] Selesai!
+2026-06-11 22:04:42,001 [INFO] ============================================================
+2026-06-11 22:04:42,001 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:04:42,001 [INFO] ============================================================
+2026-06-11 22:04:43,403 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A04%3A42.292372%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:04:43,418 [INFO] Data diambil: 104 baris
+2026-06-11 22:04:45,978 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:04:46,097 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:04:46,100 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:04:46,100 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:04:46,161 [INFO]   PM25: 60 prediksi, range: 14.0 - 18.7
+2026-06-11 22:04:46,161 [INFO]   PM25: 60 prediksi
+2026-06-11 22:04:46,161 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:04:46,236 [INFO]   PM10: 60 prediksi, range: 16.8 - 19.8
+2026-06-11 22:04:46,236 [INFO]   PM10: 60 prediksi
+2026-06-11 22:04:46,236 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:04:46,312 [INFO]   CO: 60 prediksi, range: 1208.1 - 1328.5
+2026-06-11 22:04:46,312 [INFO]   CO: 60 prediksi
+2026-06-11 22:04:46,580 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22pm10_pred%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22target_at%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 22:04:46,584 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:04:46,586 [INFO] Selesai!
+2026-06-11 22:05:42,168 [INFO] ============================================================
+2026-06-11 22:05:42,169 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:05:42,169 [INFO] ============================================================
+2026-06-11 22:05:42,995 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A05%3A42.491693%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:05:43,004 [INFO] Data diambil: 105 baris
+2026-06-11 22:05:44,420 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:05:44,784 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:05:44,798 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:05:44,799 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:05:45,083 [INFO]   PM25: 60 prediksi, range: 12.6 - 16.4
+2026-06-11 22:05:45,083 [INFO]   PM25: 60 prediksi
+2026-06-11 22:05:45,083 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:05:45,409 [INFO]   PM10: 60 prediksi, range: 17.4 - 20.0
+2026-06-11 22:05:45,410 [INFO]   PM10: 60 prediksi
+2026-06-11 22:05:45,410 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:05:45,713 [INFO]   CO: 60 prediksi, range: 1163.8 - 1380.5
+2026-06-11 22:05:45,713 [INFO]   CO: 60 prediksi
+2026-06-11 22:05:45,880 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22target_at%22%2C%22pm10_pred%22%2C%22category%22%2C%22ispu%22%2C%22co_pred%22%2C%22is_historical%22%2C%22forecast_at%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:05:45,887 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:05:45,895 [INFO] Selesai!
+2026-06-11 22:06:42,024 [INFO] ============================================================
+2026-06-11 22:06:42,024 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:06:42,024 [INFO] ============================================================
+2026-06-11 22:06:42,749 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A06%3A42.327660%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:06:42,758 [INFO] Data diambil: 106 baris
+2026-06-11 22:06:45,542 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:06:45,720 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:06:45,725 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:06:45,726 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:06:45,807 [INFO]   PM25: 60 prediksi, range: 12.3 - 16.0
+2026-06-11 22:06:45,807 [INFO]   PM25: 60 prediksi
+2026-06-11 22:06:45,807 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:06:45,930 [INFO]   PM10: 60 prediksi, range: 14.1 - 17.8
+2026-06-11 22:06:45,971 [INFO]   PM10: 60 prediksi
+2026-06-11 22:06:45,971 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:06:46,080 [INFO]   CO: 60 prediksi, range: 1148.3 - 1346.6
+2026-06-11 22:06:46,080 [INFO]   CO: 60 prediksi
+2026-06-11 22:06:46,160 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22category%22%2C%22ispu%22%2C%22pm10_pred%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 22:06:46,164 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:06:46,166 [INFO] Selesai!
+2026-06-11 22:07:43,734 [INFO] ============================================================
+2026-06-11 22:07:43,734 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:07:43,734 [INFO] ============================================================
+2026-06-11 22:07:44,503 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A07%3A44.076851%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:07:44,520 [INFO] Data diambil: 107 baris
+2026-06-11 22:07:49,108 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:07:49,484 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:07:49,496 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:07:49,496 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:07:49,764 [INFO]   PM25: 60 prediksi, range: 13.5 - 17.1
+2026-06-11 22:07:49,764 [INFO]   PM25: 60 prediksi
+2026-06-11 22:07:49,765 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:07:50,170 [INFO]   PM10: 60 prediksi, range: 16.9 - 20.9
+2026-06-11 22:07:50,170 [INFO]   PM10: 60 prediksi
+2026-06-11 22:07:50,170 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:07:50,597 [INFO]   CO: 60 prediksi, range: 1161.0 - 1341.2
+2026-06-11 22:07:50,597 [INFO]   CO: 60 prediksi
+2026-06-11 22:07:50,792 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22target_at%22%2C%22forecast_at%22%2C%22ispu%22%2C%22pm10_pred%22%2C%22is_historical%22%2C%22category%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:07:50,799 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:07:50,809 [INFO] Selesai!
+2026-06-11 22:08:43,147 [INFO] ============================================================
+2026-06-11 22:08:43,147 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:08:43,147 [INFO] ============================================================
+2026-06-11 22:08:43,991 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A08%3A43.494544%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:08:44,013 [INFO] Data diambil: 108 baris
+2026-06-11 22:08:46,718 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:08:47,079 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:08:47,092 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:08:47,092 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:08:47,352 [INFO]   PM25: 60 prediksi, range: 12.5 - 16.5
+2026-06-11 22:08:47,352 [INFO]   PM25: 60 prediksi
+2026-06-11 22:08:47,352 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:08:47,678 [INFO]   PM10: 60 prediksi, range: 15.0 - 17.5
+2026-06-11 22:08:47,678 [INFO]   PM10: 60 prediksi
+2026-06-11 22:08:47,678 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:08:48,012 [INFO]   CO: 60 prediksi, range: 1168.2 - 1320.2
+2026-06-11 22:08:48,012 [INFO]   CO: 60 prediksi
+2026-06-11 22:08:48,186 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22pm25_pred%22%2C%22target_at%22%2C%22co_pred%22%2C%22category%22%2C%22pm10_pred%22%2C%22ispu%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 22:08:48,230 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:08:48,240 [INFO] Selesai!
+2026-06-11 22:09:43,468 [INFO] ============================================================
+2026-06-11 22:09:43,469 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:09:43,469 [INFO] ============================================================
+2026-06-11 22:09:44,480 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A09%3A43.863090%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:09:44,508 [INFO] Data diambil: 109 baris
+2026-06-11 22:09:47,876 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:09:48,119 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:09:48,124 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:09:48,124 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:09:48,225 [INFO]   PM25: 60 prediksi, range: 12.7 - 16.0
+2026-06-11 22:09:48,225 [INFO]   PM25: 60 prediksi
+2026-06-11 22:09:48,225 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:09:48,319 [INFO]   PM10: 60 prediksi, range: 17.0 - 20.9
+2026-06-11 22:09:48,319 [INFO]   PM10: 60 prediksi
+2026-06-11 22:09:48,319 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:09:48,456 [INFO]   CO: 60 prediksi, range: 1125.8 - 1311.0
+2026-06-11 22:09:48,456 [INFO]   CO: 60 prediksi
+2026-06-11 22:09:48,715 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22forecast_at%22%2C%22target_at%22%2C%22category%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22pm25_pred%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 22:09:48,717 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:09:48,732 [INFO] Selesai!
+2026-06-11 22:10:43,481 [INFO] ============================================================
+2026-06-11 22:10:43,482 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:10:43,482 [INFO] ============================================================
+2026-06-11 22:10:45,247 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A10%3A43.787307%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:10:45,255 [INFO] Data diambil: 110 baris
+2026-06-11 22:10:47,834 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:10:47,951 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:10:47,954 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:10:47,955 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:10:48,017 [INFO]   PM25: 60 prediksi, range: 12.3 - 15.2
+2026-06-11 22:10:48,017 [INFO]   PM25: 60 prediksi
+2026-06-11 22:10:48,017 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:10:48,091 [INFO]   PM10: 60 prediksi, range: 16.9 - 20.5
+2026-06-11 22:10:48,092 [INFO]   PM10: 60 prediksi
+2026-06-11 22:10:48,092 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:10:48,175 [INFO]   CO: 60 prediksi, range: 1171.0 - 1330.7
+2026-06-11 22:10:48,175 [INFO]   CO: 60 prediksi
+2026-06-11 22:10:48,345 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22is_historical%22%2C%22category%22%2C%22co_pred%22%2C%22target_at%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:10:48,345 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:10:48,349 [INFO] Selesai!
+2026-06-11 22:11:42,195 [INFO] ============================================================
+2026-06-11 22:11:42,195 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:11:42,195 [INFO] ============================================================
+2026-06-11 22:11:42,913 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A11%3A42.477199%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:11:42,980 [INFO] Data diambil: 111 baris
+2026-06-11 22:11:45,711 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:11:45,827 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:11:45,830 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:11:45,830 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:11:45,892 [INFO]   PM25: 60 prediksi, range: 12.8 - 16.1
+2026-06-11 22:11:45,893 [INFO]   PM25: 60 prediksi
+2026-06-11 22:11:45,893 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:11:45,963 [INFO]   PM10: 60 prediksi, range: 18.2 - 21.6
+2026-06-11 22:11:45,963 [INFO]   PM10: 60 prediksi
+2026-06-11 22:11:45,964 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:11:46,034 [INFO]   CO: 60 prediksi, range: 1189.3 - 1295.8
+2026-06-11 22:11:46,063 [INFO]   CO: 60 prediksi
+2026-06-11 22:11:46,314 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22ispu%22%2C%22category%22%2C%22is_historical%22%2C%22forecast_at%22%2C%22target_at%22%2C%22co_pred%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:11:46,319 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:11:46,322 [INFO] Selesai!
+2026-06-11 22:12:42,878 [INFO] ============================================================
+2026-06-11 22:12:42,878 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:12:42,878 [INFO] ============================================================
+2026-06-11 22:12:43,743 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A12%3A43.170152%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:12:43,752 [INFO] Data diambil: 112 baris
+2026-06-11 22:12:46,359 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:12:46,503 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:12:46,506 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:12:46,506 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:12:46,563 [INFO]   PM25: 60 prediksi, range: 15.5 - 19.0
+2026-06-11 22:12:46,563 [INFO]   PM25: 60 prediksi
+2026-06-11 22:12:46,563 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:12:46,634 [INFO]   PM10: 60 prediksi, range: 17.6 - 20.6
+2026-06-11 22:12:46,634 [INFO]   PM10: 60 prediksi
+2026-06-11 22:12:46,634 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:12:46,708 [INFO]   CO: 60 prediksi, range: 1224.0 - 1326.6
+2026-06-11 22:12:46,708 [INFO]   CO: 60 prediksi
+2026-06-11 22:12:46,857 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22ispu%22%2C%22target_at%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 22:12:46,859 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:12:46,861 [INFO] Selesai!
+2026-06-11 22:13:42,011 [INFO] ============================================================
+2026-06-11 22:13:42,011 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:13:42,011 [INFO] ============================================================
+2026-06-11 22:13:42,803 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A13%3A42.301699%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:13:42,819 [INFO] Data diambil: 113 baris
+2026-06-11 22:13:45,404 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:13:45,515 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:13:45,518 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:13:45,518 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:13:45,579 [INFO]   PM25: 60 prediksi, range: 12.1 - 16.4
+2026-06-11 22:13:45,591 [INFO]   PM25: 60 prediksi
+2026-06-11 22:13:45,592 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:13:45,671 [INFO]   PM10: 60 prediksi, range: 16.6 - 20.5
+2026-06-11 22:13:45,672 [INFO]   PM10: 60 prediksi
+2026-06-11 22:13:45,672 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:13:45,747 [INFO]   CO: 60 prediksi, range: 1171.2 - 1263.9
+2026-06-11 22:13:45,747 [INFO]   CO: 60 prediksi
+2026-06-11 22:13:45,876 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22category%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 22:13:45,880 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:13:45,883 [INFO] Selesai!
+2026-06-11 22:14:42,009 [INFO] ============================================================
+2026-06-11 22:14:42,009 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:14:42,009 [INFO] ============================================================
+2026-06-11 22:14:42,716 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A14%3A42.294812%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:14:42,727 [INFO] Data diambil: 114 baris
+2026-06-11 22:14:44,106 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:14:44,217 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:14:44,219 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:14:44,219 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:14:44,280 [INFO]   PM25: 60 prediksi, range: 13.7 - 16.8
+2026-06-11 22:14:44,280 [INFO]   PM25: 60 prediksi
+2026-06-11 22:14:44,280 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:14:44,354 [INFO]   PM10: 60 prediksi, range: 15.1 - 17.7
+2026-06-11 22:14:44,354 [INFO]   PM10: 60 prediksi
+2026-06-11 22:14:44,354 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:14:44,431 [INFO]   CO: 60 prediksi, range: 1212.5 - 1296.5
+2026-06-11 22:14:44,431 [INFO]   CO: 60 prediksi
+2026-06-11 22:14:44,550 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22pm10_pred%22%2C%22target_at%22%2C%22forecast_at%22%2C%22ispu%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 22:14:44,552 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:14:44,554 [INFO] Selesai!
+2026-06-11 22:15:42,018 [INFO] ============================================================
+2026-06-11 22:15:42,018 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:15:42,018 [INFO] ============================================================
+2026-06-11 22:15:42,886 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A15%3A42.305621%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:15:42,900 [INFO] Data diambil: 115 baris
+2026-06-11 22:15:44,311 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:15:44,430 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:15:44,433 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:15:44,433 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:15:44,492 [INFO]   PM25: 60 prediksi, range: 14.5 - 17.0
+2026-06-11 22:15:44,492 [INFO]   PM25: 60 prediksi
+2026-06-11 22:15:44,492 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:15:44,561 [INFO]   PM10: 60 prediksi, range: 14.9 - 18.7
+2026-06-11 22:15:44,561 [INFO]   PM10: 60 prediksi
+2026-06-11 22:15:44,561 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:15:44,634 [INFO]   CO: 60 prediksi, range: 1132.0 - 1265.1
+2026-06-11 22:15:44,634 [INFO]   CO: 60 prediksi
+2026-06-11 22:15:44,853 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22co_pred%22%2C%22is_historical%22%2C%22target_at%22%2C%22ispu%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:15:44,857 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:15:44,862 [INFO] Selesai!
+2026-06-11 22:16:42,439 [INFO] ============================================================
+2026-06-11 22:16:42,439 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:16:42,439 [INFO] ============================================================
+2026-06-11 22:16:43,301 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A16%3A42.732905%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:16:43,339 [INFO] Data diambil: 116 baris
+2026-06-11 22:16:44,787 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:16:44,898 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:16:44,900 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:16:44,900 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:16:44,969 [INFO]   PM25: 60 prediksi, range: 12.6 - 15.7
+2026-06-11 22:16:44,970 [INFO]   PM25: 60 prediksi
+2026-06-11 22:16:44,970 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:16:45,047 [INFO]   PM10: 60 prediksi, range: 15.6 - 18.8
+2026-06-11 22:16:45,049 [INFO]   PM10: 60 prediksi
+2026-06-11 22:16:45,049 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:16:45,136 [INFO]   CO: 60 prediksi, range: 1236.7 - 1328.2
+2026-06-11 22:16:45,136 [INFO]   CO: 60 prediksi
+2026-06-11 22:16:45,237 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22target_at%22%2C%22co_pred%22%2C%22category%22%2C%22ispu%22%2C%22forecast_at%22%2C%22pm10_pred%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:16:45,239 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:16:45,241 [INFO] Selesai!
+2026-06-11 22:17:43,223 [INFO] ============================================================
+2026-06-11 22:17:43,264 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:17:43,264 [INFO] ============================================================
+2026-06-11 22:17:44,097 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A17%3A43.636518%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:17:44,134 [INFO] Data diambil: 117 baris
+2026-06-11 22:17:46,330 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:17:46,504 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:17:46,507 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:17:46,507 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:17:46,580 [INFO]   PM25: 60 prediksi, range: 12.6 - 15.3
+2026-06-11 22:17:46,580 [INFO]   PM25: 60 prediksi
+2026-06-11 22:17:46,580 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:17:46,654 [INFO]   PM10: 60 prediksi, range: 15.4 - 19.3
+2026-06-11 22:17:46,654 [INFO]   PM10: 60 prediksi
+2026-06-11 22:17:46,654 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:17:46,727 [INFO]   CO: 60 prediksi, range: 1133.2 - 1259.5
+2026-06-11 22:17:46,727 [INFO]   CO: 60 prediksi
+2026-06-11 22:17:46,810 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22forecast_at%22%2C%22pm10_pred%22%2C%22is_historical%22%2C%22ispu%22%2C%22co_pred%22%2C%22pm25_pred%22%2C%22category%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 22:17:46,811 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:17:46,827 [INFO] Selesai!
+2026-06-11 22:18:42,014 [INFO] ============================================================
+2026-06-11 22:18:42,014 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:18:42,067 [INFO] ============================================================
+2026-06-11 22:18:42,877 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A18%3A42.360429%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:18:42,889 [INFO] Data diambil: 118 baris
+2026-06-11 22:18:44,237 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:18:44,348 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:18:44,351 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:18:44,352 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:18:44,410 [INFO]   PM25: 60 prediksi, range: 13.7 - 18.0
+2026-06-11 22:18:44,410 [INFO]   PM25: 60 prediksi
+2026-06-11 22:18:44,410 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:18:44,480 [INFO]   PM10: 60 prediksi, range: 16.5 - 19.8
+2026-06-11 22:18:44,480 [INFO]   PM10: 60 prediksi
+2026-06-11 22:18:44,480 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:18:44,551 [INFO]   CO: 60 prediksi, range: 1201.8 - 1294.0
+2026-06-11 22:18:44,551 [INFO]   CO: 60 prediksi
+2026-06-11 22:18:44,686 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22category%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22is_historical%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 22:18:44,703 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:18:44,707 [INFO] Selesai!
+2026-06-11 22:19:41,893 [INFO] ============================================================
+2026-06-11 22:19:41,893 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:19:41,893 [INFO] ============================================================
+2026-06-11 22:19:42,619 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A19%3A42.195974%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:19:42,634 [INFO] Data diambil: 119 baris
+2026-06-11 22:19:44,017 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:19:44,171 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:19:44,174 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:19:44,174 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:19:44,232 [INFO]   PM25: 60 prediksi, range: 13.8 - 16.8
+2026-06-11 22:19:44,233 [INFO]   PM25: 60 prediksi
+2026-06-11 22:19:44,233 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:19:44,305 [INFO]   PM10: 60 prediksi, range: 17.0 - 20.6
+2026-06-11 22:19:44,305 [INFO]   PM10: 60 prediksi
+2026-06-11 22:19:44,305 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:19:44,380 [INFO]   CO: 60 prediksi, range: 1212.4 - 1336.6
+2026-06-11 22:19:44,380 [INFO]   CO: 60 prediksi
+2026-06-11 22:19:44,445 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22target_at%22%2C%22is_historical%22%2C%22category%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22pm25_pred%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 22:19:44,449 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:19:44,453 [INFO] Selesai!
+2026-06-11 22:20:42,076 [INFO] ============================================================
+2026-06-11 22:20:42,076 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:20:42,076 [INFO] ============================================================
+2026-06-11 22:20:42,798 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A20%3A42.368591%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:20:42,814 [INFO] Data diambil: 120 baris
+2026-06-11 22:20:44,142 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:20:44,291 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:20:44,293 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:20:44,293 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:20:44,359 [INFO]   PM25: 60 prediksi, range: 15.5 - 19.6
+2026-06-11 22:20:44,359 [INFO]   PM25: 60 prediksi
+2026-06-11 22:20:44,359 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:20:44,430 [INFO]   PM10: 60 prediksi, range: 19.9 - 25.3
+2026-06-11 22:20:44,430 [INFO]   PM10: 60 prediksi
+2026-06-11 22:20:44,431 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:20:44,503 [INFO]   CO: 60 prediksi, range: 1226.5 - 1316.5
+2026-06-11 22:20:44,503 [INFO]   CO: 60 prediksi
+2026-06-11 22:20:44,581 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22is_historical%22%2C%22ispu%22%2C%22pm10_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22category%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:20:44,585 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:20:44,588 [INFO] Selesai!
+2026-06-11 22:21:42,288 [INFO] ============================================================
+2026-06-11 22:21:42,288 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:21:42,288 [INFO] ============================================================
+2026-06-11 22:21:44,083 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A21%3A42.568119%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:21:44,095 [INFO] Data diambil: 121 baris
+2026-06-11 22:21:45,940 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:21:46,064 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:21:46,068 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:21:46,068 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:21:46,130 [INFO]   PM25: 60 prediksi, range: 14.0 - 16.9
+2026-06-11 22:21:46,130 [INFO]   PM25: 60 prediksi
+2026-06-11 22:21:46,130 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:21:46,214 [INFO]   PM10: 60 prediksi, range: 16.9 - 21.5
+2026-06-11 22:21:46,214 [INFO]   PM10: 60 prediksi
+2026-06-11 22:21:46,214 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:21:46,303 [INFO]   CO: 60 prediksi, range: 990.2 - 1162.0
+2026-06-11 22:21:46,304 [INFO]   CO: 60 prediksi
+2026-06-11 22:21:46,461 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22pm10_pred%22%2C%22ispu%22%2C%22target_at%22%2C%22is_historical%22%2C%22co_pred%22%2C%22category%22%2C%22forecast_at%22 "HTTP/2 201 Created"
+2026-06-11 22:21:46,465 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:21:46,470 [INFO] Selesai!
+2026-06-11 22:22:42,059 [INFO] ============================================================
+2026-06-11 22:22:42,059 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:22:42,059 [INFO] ============================================================
+2026-06-11 22:22:43,239 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A22%3A42.349423%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:22:43,259 [INFO] Data diambil: 122 baris
+2026-06-11 22:22:45,924 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:22:46,059 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:22:46,062 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:22:46,062 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:22:46,140 [INFO]   PM25: 60 prediksi, range: 14.3 - 17.6
+2026-06-11 22:22:46,140 [INFO]   PM25: 60 prediksi
+2026-06-11 22:22:46,140 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:22:46,241 [INFO]   PM10: 60 prediksi, range: 13.8 - 18.9
+2026-06-11 22:22:46,242 [INFO]   PM10: 60 prediksi
+2026-06-11 22:22:46,242 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:22:46,339 [INFO]   CO: 60 prediksi, range: 1142.1 - 1256.3
+2026-06-11 22:22:46,339 [INFO]   CO: 60 prediksi
+2026-06-11 22:22:46,567 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22pm10_pred%22%2C%22category%22%2C%22forecast_at%22%2C%22pm25_pred%22%2C%22target_at%22%2C%22is_historical%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 22:22:46,571 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:22:46,576 [INFO] Selesai!
+2026-06-11 22:23:43,405 [INFO] ============================================================
+2026-06-11 22:23:43,405 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:23:43,405 [INFO] ============================================================
+2026-06-11 22:23:44,351 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A23%3A43.786121%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:23:44,366 [INFO] Data diambil: 123 baris
+2026-06-11 22:23:47,486 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:23:47,700 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:23:47,704 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:23:47,704 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:23:47,830 [INFO]   PM25: 60 prediksi, range: 13.3 - 16.7
+2026-06-11 22:23:47,830 [INFO]   PM25: 60 prediksi
+2026-06-11 22:23:47,830 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:23:47,950 [INFO]   PM10: 60 prediksi, range: 12.2 - 18.3
+2026-06-11 22:23:47,950 [INFO]   PM10: 60 prediksi
+2026-06-11 22:23:47,950 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:23:48,103 [INFO]   CO: 60 prediksi, range: 1131.1 - 1270.3
+2026-06-11 22:23:48,103 [INFO]   CO: 60 prediksi
+2026-06-11 22:23:48,307 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22target_at%22%2C%22forecast_at%22%2C%22category%22%2C%22co_pred%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22ispu%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:23:48,337 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:23:48,341 [INFO] Selesai!
+2026-06-11 22:24:43,558 [INFO] ============================================================
+2026-06-11 22:24:43,558 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:24:43,558 [INFO] ============================================================
+2026-06-11 22:24:44,566 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A24%3A43.890473%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:24:44,582 [INFO] Data diambil: 124 baris
+2026-06-11 22:24:47,856 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:24:48,253 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:24:48,265 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:24:48,267 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:24:48,556 [INFO]   PM25: 60 prediksi, range: 11.6 - 15.7
+2026-06-11 22:24:48,557 [INFO]   PM25: 60 prediksi
+2026-06-11 22:24:48,557 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:24:48,882 [INFO]   PM10: 60 prediksi, range: 13.8 - 19.9
+2026-06-11 22:24:48,883 [INFO]   PM10: 60 prediksi
+2026-06-11 22:24:48,883 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:24:49,215 [INFO]   CO: 60 prediksi, range: 1113.4 - 1259.7
+2026-06-11 22:24:49,215 [INFO]   CO: 60 prediksi
+2026-06-11 22:24:49,603 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22target_at%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22pm25_pred%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 22:24:49,610 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:24:49,617 [INFO] Selesai!
+2026-06-11 22:25:44,917 [INFO] ============================================================
+2026-06-11 22:25:44,919 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:25:44,919 [INFO] ============================================================
+2026-06-11 22:25:47,357 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A25%3A46.141044%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:25:47,419 [INFO] Data diambil: 125 baris
+2026-06-11 22:25:52,362 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:25:52,865 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:25:52,878 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:25:52,879 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:25:53,195 [INFO]   PM25: 60 prediksi, range: 11.3 - 15.7
+2026-06-11 22:25:53,195 [INFO]   PM25: 60 prediksi
+2026-06-11 22:25:53,195 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:25:53,518 [INFO]   PM10: 60 prediksi, range: 12.2 - 19.2
+2026-06-11 22:25:53,518 [INFO]   PM10: 60 prediksi
+2026-06-11 22:25:53,518 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:25:53,904 [INFO]   CO: 60 prediksi, range: 1146.8 - 1308.1
+2026-06-11 22:25:53,905 [INFO]   CO: 60 prediksi
+2026-06-11 22:25:54,143 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22co_pred%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22target_at%22%2C%22category%22%2C%22pm10_pred%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 22:25:54,172 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:25:54,182 [INFO] Selesai!
+2026-06-11 22:26:43,823 [INFO] ============================================================
+2026-06-11 22:26:43,823 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:26:43,823 [INFO] ============================================================
+2026-06-11 22:26:44,875 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A26%3A44.268734%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:26:44,899 [INFO] Data diambil: 126 baris
+2026-06-11 22:26:49,760 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:26:50,159 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:26:50,169 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:26:50,169 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:26:50,450 [INFO]   PM25: 60 prediksi, range: 12.8 - 15.3
+2026-06-11 22:26:50,450 [INFO]   PM25: 60 prediksi
+2026-06-11 22:26:50,451 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:26:50,788 [INFO]   PM10: 60 prediksi, range: 18.6 - 24.0
+2026-06-11 22:26:50,789 [INFO]   PM10: 60 prediksi
+2026-06-11 22:26:50,789 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:26:51,287 [INFO]   CO: 60 prediksi, range: 1079.5 - 1284.4
+2026-06-11 22:26:51,288 [INFO]   CO: 60 prediksi
+2026-06-11 22:26:51,493 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22ispu%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 22:26:51,501 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:26:51,511 [INFO] Selesai!
+2026-06-11 22:27:44,163 [INFO] ============================================================
+2026-06-11 22:27:44,164 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:27:44,164 [INFO] ============================================================
+2026-06-11 22:27:45,124 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A27%3A44.550298%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:27:45,154 [INFO] Data diambil: 127 baris
+2026-06-11 22:27:48,935 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:27:49,310 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:27:49,319 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:27:49,320 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:27:49,587 [INFO]   PM25: 60 prediksi, range: 14.0 - 16.6
+2026-06-11 22:27:49,588 [INFO]   PM25: 60 prediksi
+2026-06-11 22:27:49,588 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:27:49,895 [INFO]   PM10: 60 prediksi, range: 14.2 - 19.6
+2026-06-11 22:27:49,895 [INFO]   PM10: 60 prediksi
+2026-06-11 22:27:49,895 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:27:50,180 [INFO]   CO: 60 prediksi, range: 1192.9 - 1338.3
+2026-06-11 22:27:50,180 [INFO]   CO: 60 prediksi
+2026-06-11 22:27:50,757 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22co_pred%22%2C%22forecast_at%22%2C%22ispu%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22category%22%2C%22is_historical%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 22:27:50,762 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:27:50,769 [INFO] Selesai!
+2026-06-11 22:28:43,741 [INFO] ============================================================
+2026-06-11 22:28:43,782 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:28:43,782 [INFO] ============================================================
+2026-06-11 22:28:44,929 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A28%3A44.267332%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:28:44,950 [INFO] Data diambil: 128 baris
+2026-06-11 22:28:48,959 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:28:49,317 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:28:49,325 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:28:49,325 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:28:49,606 [INFO]   PM25: 60 prediksi, range: 13.5 - 17.5
+2026-06-11 22:28:49,607 [INFO]   PM25: 60 prediksi
+2026-06-11 22:28:49,607 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:28:49,929 [INFO]   PM10: 60 prediksi, range: 14.4 - 19.0
+2026-06-11 22:28:49,930 [INFO]   PM10: 60 prediksi
+2026-06-11 22:28:49,930 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:28:50,259 [INFO]   CO: 60 prediksi, range: 1158.4 - 1280.7
+2026-06-11 22:28:50,260 [INFO]   CO: 60 prediksi
+2026-06-11 22:28:50,749 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22ispu%22%2C%22forecast_at%22%2C%22is_historical%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22pm10_pred%22%2C%22co_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:28:50,753 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:28:50,762 [INFO] Selesai!
+2026-06-11 22:29:43,880 [INFO] ============================================================
+2026-06-11 22:29:43,880 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:29:43,881 [INFO] ============================================================
+2026-06-11 22:29:45,108 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A29%3A44.279460%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:29:45,164 [INFO] Data diambil: 129 baris
+2026-06-11 22:29:49,425 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:29:49,886 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:29:49,894 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:29:49,894 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:29:50,163 [INFO]   PM25: 60 prediksi, range: 13.5 - 17.0
+2026-06-11 22:29:50,164 [INFO]   PM25: 60 prediksi
+2026-06-11 22:29:50,164 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:29:50,433 [INFO]   PM10: 60 prediksi, range: 14.8 - 20.5
+2026-06-11 22:29:50,434 [INFO]   PM10: 60 prediksi
+2026-06-11 22:29:50,434 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:29:50,740 [INFO]   CO: 60 prediksi, range: 1157.2 - 1305.3
+2026-06-11 22:29:50,740 [INFO]   CO: 60 prediksi
+2026-06-11 22:29:51,298 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22target_at%22%2C%22is_historical%22%2C%22pm25_pred%22%2C%22category%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22pm10_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:29:51,304 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:29:51,314 [INFO] Selesai!
+2026-06-11 22:30:42,940 [INFO] ============================================================
+2026-06-11 22:30:42,941 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:30:42,941 [INFO] ============================================================
+2026-06-11 22:30:43,610 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A30%3A43.226226%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:30:43,621 [INFO] Data diambil: 130 baris
+2026-06-11 22:30:46,257 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:30:46,572 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:30:46,593 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:30:46,593 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:30:46,825 [INFO]   PM25: 60 prediksi, range: 13.4 - 16.6
+2026-06-11 22:30:46,825 [INFO]   PM25: 60 prediksi
+2026-06-11 22:30:46,825 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:30:47,101 [INFO]   PM10: 60 prediksi, range: 14.5 - 19.8
+2026-06-11 22:30:47,101 [INFO]   PM10: 60 prediksi
+2026-06-11 22:30:47,102 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:30:47,376 [INFO]   CO: 60 prediksi, range: 1155.6 - 1308.5
+2026-06-11 22:30:47,377 [INFO]   CO: 60 prediksi
+2026-06-11 22:30:47,463 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22pm10_pred%22%2C%22category%22%2C%22co_pred%22%2C%22target_at%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 22:30:47,467 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:30:47,475 [INFO] Selesai!
+2026-06-11 22:31:43,298 [INFO] ============================================================
+2026-06-11 22:31:43,298 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:31:43,299 [INFO] ============================================================
+2026-06-11 22:31:44,293 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A31%3A43.586744%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:31:44,306 [INFO] Data diambil: 131 baris
+2026-06-11 22:31:46,897 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:31:47,222 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:31:47,233 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:31:47,234 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:31:47,480 [INFO]   PM25: 60 prediksi, range: 13.3 - 17.0
+2026-06-11 22:31:47,481 [INFO]   PM25: 60 prediksi
+2026-06-11 22:31:47,481 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:31:47,790 [INFO]   PM10: 60 prediksi, range: 16.3 - 22.1
+2026-06-11 22:31:47,790 [INFO]   PM10: 60 prediksi
+2026-06-11 22:31:47,791 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:31:48,108 [INFO]   CO: 60 prediksi, range: 1151.5 - 1330.9
+2026-06-11 22:31:48,108 [INFO]   CO: 60 prediksi
+2026-06-11 22:31:48,302 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22target_at%22%2C%22pm25_pred%22%2C%22is_historical%22%2C%22ispu%22%2C%22pm10_pred%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 22:31:48,307 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:31:48,312 [INFO] Selesai!
+2026-06-11 22:32:44,495 [INFO] ============================================================
+2026-06-11 22:32:44,495 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:32:44,495 [INFO] ============================================================
+2026-06-11 22:32:47,079 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A32%3A44.817527%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:32:47,287 [INFO] Data diambil: 132 baris
+2026-06-11 22:32:52,033 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:32:52,388 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:32:52,399 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:32:52,399 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:32:52,659 [INFO]   PM25: 60 prediksi, range: 13.6 - 16.9
+2026-06-11 22:32:52,659 [INFO]   PM25: 60 prediksi
+2026-06-11 22:32:52,659 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:32:52,918 [INFO]   PM10: 60 prediksi, range: 14.5 - 20.3
+2026-06-11 22:32:52,918 [INFO]   PM10: 60 prediksi
+2026-06-11 22:32:52,918 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:32:53,198 [INFO]   CO: 60 prediksi, range: 1124.6 - 1269.6
+2026-06-11 22:32:53,198 [INFO]   CO: 60 prediksi
+2026-06-11 22:32:53,392 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22target_at%22%2C%22ispu%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22co_pred%22%2C%22is_historical%22%2C%22category%22 "HTTP/2 201 Created"
+2026-06-11 22:32:53,394 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:32:53,396 [INFO] Selesai!
+2026-06-11 22:33:44,405 [INFO] ============================================================
+2026-06-11 22:33:44,405 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:33:44,405 [INFO] ============================================================
+2026-06-11 22:33:45,789 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A33%3A44.776745%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:33:45,810 [INFO] Data diambil: 133 baris
+2026-06-11 22:33:49,765 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:33:50,084 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:33:50,095 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:33:50,095 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:33:50,347 [INFO]   PM25: 60 prediksi, range: 11.1 - 15.2
+2026-06-11 22:33:50,347 [INFO]   PM25: 60 prediksi
+2026-06-11 22:33:50,348 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:33:50,619 [INFO]   PM10: 60 prediksi, range: 11.2 - 17.8
+2026-06-11 22:33:50,619 [INFO]   PM10: 60 prediksi
+2026-06-11 22:33:50,619 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:33:50,940 [INFO]   CO: 60 prediksi, range: 1184.5 - 1323.5
+2026-06-11 22:33:50,941 [INFO]   CO: 60 prediksi
+2026-06-11 22:33:51,340 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22category%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22is_historical%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 22:33:51,348 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:33:51,355 [INFO] Selesai!
+2026-06-11 22:34:43,443 [INFO] ============================================================
+2026-06-11 22:34:43,443 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:34:43,443 [INFO] ============================================================
+2026-06-11 22:34:44,349 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A34%3A43.769790%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:34:44,365 [INFO] Data diambil: 134 baris
+2026-06-11 22:34:47,144 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:34:47,455 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:34:47,465 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:34:47,465 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:34:47,696 [INFO]   PM25: 60 prediksi, range: 12.6 - 16.3
+2026-06-11 22:34:47,697 [INFO]   PM25: 60 prediksi
+2026-06-11 22:34:47,697 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:34:48,017 [INFO]   PM10: 60 prediksi, range: 11.2 - 17.8
+2026-06-11 22:34:48,017 [INFO]   PM10: 60 prediksi
+2026-06-11 22:34:48,017 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:34:48,314 [INFO]   CO: 60 prediksi, range: 1099.7 - 1313.6
+2026-06-11 22:34:48,314 [INFO]   CO: 60 prediksi
+2026-06-11 22:34:48,478 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm25_pred%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22category%22%2C%22forecast_at%22%2C%22target_at%22%2C%22ispu%22 "HTTP/2 201 Created"
+2026-06-11 22:34:48,480 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:34:48,482 [INFO] Selesai!
+2026-06-11 22:35:43,072 [INFO] ============================================================
+2026-06-11 22:35:43,072 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:35:43,074 [INFO] ============================================================
+2026-06-11 22:35:44,677 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A35%3A43.388850%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:35:44,687 [INFO] Data diambil: 135 baris
+2026-06-11 22:35:48,836 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:35:49,167 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:35:49,177 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:35:49,177 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:35:49,436 [INFO]   PM25: 60 prediksi, range: 13.5 - 17.1
+2026-06-11 22:35:49,436 [INFO]   PM25: 60 prediksi
+2026-06-11 22:35:49,437 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:35:49,728 [INFO]   PM10: 60 prediksi, range: 12.7 - 18.8
+2026-06-11 22:35:49,728 [INFO]   PM10: 60 prediksi
+2026-06-11 22:35:49,729 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:35:50,038 [INFO]   CO: 60 prediksi, range: 1176.6 - 1335.4
+2026-06-11 22:35:50,038 [INFO]   CO: 60 prediksi
+2026-06-11 22:35:50,674 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22category%22%2C%22ispu%22%2C%22co_pred%22%2C%22is_historical%22%2C%22pm10_pred%22%2C%22target_at%22%2C%22forecast_at%22%2C%22pm25_pred%22 "HTTP/2 201 Created"
+2026-06-11 22:35:50,682 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:35:50,690 [INFO] Selesai!
+2026-06-11 22:36:43,108 [INFO] ============================================================
+2026-06-11 22:36:43,108 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:36:43,108 [INFO] ============================================================
+2026-06-11 22:36:43,874 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A36%3A43.391076%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:36:43,887 [INFO] Data diambil: 136 baris
+2026-06-11 22:36:46,506 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:36:46,818 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:36:46,828 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:36:46,828 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:36:47,060 [INFO]   PM25: 60 prediksi, range: 14.5 - 18.2
+2026-06-11 22:36:47,060 [INFO]   PM25: 60 prediksi
+2026-06-11 22:36:47,061 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:36:47,355 [INFO]   PM10: 60 prediksi, range: 14.2 - 21.0
+2026-06-11 22:36:47,355 [INFO]   PM10: 60 prediksi
+2026-06-11 22:36:47,356 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:36:47,683 [INFO]   CO: 60 prediksi, range: 1159.2 - 1297.2
+2026-06-11 22:36:47,684 [INFO]   CO: 60 prediksi
+2026-06-11 22:36:47,795 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22forecast_at%22%2C%22pm10_pred%22%2C%22pm25_pred%22%2C%22co_pred%22%2C%22target_at%22%2C%22category%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 22:36:47,800 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:36:47,806 [INFO] Selesai!
+2026-06-11 22:37:43,593 [INFO] ============================================================
+2026-06-11 22:37:43,593 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:37:43,593 [INFO] ============================================================
+2026-06-11 22:37:44,337 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A37%3A43.865445%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:37:44,352 [INFO] Data diambil: 137 baris
+2026-06-11 22:37:47,088 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:37:47,418 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:37:47,426 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:37:47,428 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:37:47,656 [INFO]   PM25: 60 prediksi, range: 12.6 - 16.7
+2026-06-11 22:37:47,657 [INFO]   PM25: 60 prediksi
+2026-06-11 22:37:47,657 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:37:47,973 [INFO]   PM10: 60 prediksi, range: 11.6 - 17.7
+2026-06-11 22:37:47,974 [INFO]   PM10: 60 prediksi
+2026-06-11 22:37:47,974 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:37:48,298 [INFO]   CO: 60 prediksi, range: 1181.2 - 1335.6
+2026-06-11 22:37:48,298 [INFO]   CO: 60 prediksi
+2026-06-11 22:37:48,386 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22pm10_pred%22%2C%22pm25_pred%22%2C%22forecast_at%22%2C%22category%22%2C%22co_pred%22%2C%22target_at%22%2C%22ispu%22%2C%22is_historical%22 "HTTP/2 201 Created"
+2026-06-11 22:37:48,397 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:37:48,402 [INFO] Selesai!
+2026-06-11 22:38:43,254 [INFO] ============================================================
+2026-06-11 22:38:43,254 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:38:43,254 [INFO] ============================================================
+2026-06-11 22:38:44,204 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A38%3A43.529715%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:38:44,218 [INFO] Data diambil: 138 baris
+2026-06-11 22:38:46,861 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:38:47,189 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:38:47,201 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:38:47,201 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:38:47,447 [INFO]   PM25: 60 prediksi, range: 12.1 - 15.3
+2026-06-11 22:38:47,449 [INFO]   PM25: 60 prediksi
+2026-06-11 22:38:47,449 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:38:47,752 [INFO]   PM10: 60 prediksi, range: 11.8 - 17.2
+2026-06-11 22:38:47,753 [INFO]   PM10: 60 prediksi
+2026-06-11 22:38:47,753 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:38:48,080 [INFO]   CO: 60 prediksi, range: 1170.4 - 1338.9
+2026-06-11 22:38:48,081 [INFO]   CO: 60 prediksi
+2026-06-11 22:38:48,229 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22is_historical%22%2C%22co_pred%22%2C%22pm10_pred%22%2C%22forecast_at%22%2C%22category%22%2C%22pm25_pred%22%2C%22ispu%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 22:38:48,237 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:38:48,244 [INFO] Selesai!
+2026-06-11 22:39:44,461 [INFO] ============================================================
+2026-06-11 22:39:44,461 [INFO] Hourly Multi-Parameter Forecast — PM2.5, PM10, CO (60 min)
+2026-06-11 22:39:44,461 [INFO] ============================================================
+2026-06-11 22:39:45,920 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=pm25_ugm3%2Cpm10_corrected_ugm3%2Cco_ugm3%2Cno2_ugm3%2Co3_ugm3%2Ctemperature%2Chumidity%2Ccreated_at&created_at=gte.2026-06-10T15%3A39%3A44.775909%2B00%3A00&order=created_at.asc&offset=0&limit=1000 "HTTP/2 200 OK"
+2026-06-11 22:39:45,936 [INFO] Data diambil: 138 baris
+2026-06-11 22:39:49,898 [INFO] Loaded xgb_pm25.pkl
+2026-06-11 22:39:50,222 [INFO] Loaded xgb_pm10.pkl
+2026-06-11 22:39:50,232 [INFO] Loaded xgb_co.pkl
+2026-06-11 22:39:50,232 [INFO] --- PM25 (XGBoost) ---
+2026-06-11 22:39:50,452 [INFO]   PM25: 60 prediksi, range: 12.2 - 15.2
+2026-06-11 22:39:50,453 [INFO]   PM25: 60 prediksi
+2026-06-11 22:39:50,453 [INFO] --- PM10 (XGBoost) ---
+2026-06-11 22:39:50,775 [INFO]   PM10: 60 prediksi, range: 11.7 - 18.4
+2026-06-11 22:39:50,775 [INFO]   PM10: 60 prediksi
+2026-06-11 22:39:50,776 [INFO] --- CO (XGBoost) ---
+2026-06-11 22:39:51,063 [INFO]   CO: 60 prediksi, range: 1163.7 - 1341.2
+2026-06-11 22:39:51,064 [INFO]   CO: 60 prediksi
+2026-06-11 22:39:51,260 [INFO] HTTP Request: POST https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_prediksi_hourly?on_conflict=target_at&columns=%22ispu%22%2C%22is_historical%22%2C%22category%22%2C%22pm10_pred%22%2C%22co_pred%22%2C%22forecast_at%22%2C%22pm25_pred%22%2C%22target_at%22 "HTTP/2 201 Created"
+2026-06-11 22:39:51,265 [INFO]   60 baris diupsert ke tb_prediksi_hourly
+2026-06-11 22:39:51,270 [INFO] Selesai!

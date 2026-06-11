@@ -106,7 +106,6 @@ export default function TentangPage() {
                 { name: "NO₂", desc: "Nitrogen Dioksida" },
                 { name: "CO", desc: "Karbon Monoksida" },
                 { name: "O₃", desc: "Ozon permukaan tanah" },
-                { name: "SO₂", desc: "Sulfur Dioksida" },
               ].map((param) => (
                 <div key={param.name} className="rounded-lg border border-border bg-muted/40 p-3">
                   <p className="text-sm font-semibold text-foreground">{param.name}</p>

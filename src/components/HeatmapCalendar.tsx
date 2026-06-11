@@ -107,21 +107,19 @@ export default function HeatmapCalendar() {
     }, [currentYear, currentMonth, data]);
 
     const getColorClass = (val: number | null) => {
-        if (val === null) return "bg-slate-100 hover:bg-slate-200"; // No data
-        if (val <= 50) return "bg-emerald-500 hover:bg-emerald-600"; // Baik
-        if (val <= 100) return "bg-yellow-400 hover:bg-yellow-500"; // Sedang
-        if (val <= 150) return "bg-orange-500 hover:bg-orange-600"; // Tidak sehat kelompok sensitif
-        if (val <= 200) return "bg-red-500 hover:bg-red-600"; // Tidak sehat
-        if (val <= 300) return "bg-purple-500 hover:bg-purple-600"; // Sangat Tidak sehat
-        return "bg-rose-800 hover:bg-rose-900"; // Berbahaya
+        if (val === null) return "bg-slate-100 hover:bg-slate-200";
+        if (val <= 50) return "bg-emerald-500 hover:bg-emerald-600";
+        if (val <= 100) return "bg-blue-500 hover:bg-blue-600";
+        if (val <= 200) return "bg-amber-500 hover:bg-amber-600";
+        if (val <= 300) return "bg-red-500 hover:bg-red-600";
+        return "bg-purple-600 hover:bg-purple-700";
     };
 
     const getStatusText = (val: number) => {
         if (val <= 50) return "Baik";
         if (val <= 100) return "Sedang";
-        if (val <= 150) return "Sensitif";
         if (val <= 200) return "Tidak Sehat";
-        if (val <= 300) return "Sangat T.Sehat";
+        if (val <= 300) return "Sangat Tidak Sehat";
         return "Berbahaya";
     };
 
@@ -211,11 +209,10 @@ export default function HeatmapCalendar() {
                 <div className="text-muted-foreground font-medium">ISPU:</div>
                 {[
                     { label: "Baik", col: "bg-emerald-500" },
-                    { label: "Sedang", col: "bg-yellow-400" },
-                    { label: "Sensitif", col: "bg-orange-500" },
-                    { label: "T.Sehat", col: "bg-red-500" },
-                    { label: "Sangat T.Sehat", col: "bg-purple-500" },
-                    { label: "Berbahaya", col: "bg-rose-800" },
+                    { label: "Sedang", col: "bg-blue-500" },
+                    { label: "T.Sehat", col: "bg-amber-500" },
+                    { label: "Sangat T.Sehat", col: "bg-red-500" },
+                    { label: "Berbahaya", col: "bg-purple-600" },
                 ].map(leg => (
                     <div key={leg.label} className="flex items-center gap-1.5">
                         <span className={`w-3 h-3 rounded-sm ${leg.col} opacity-90`} />
