@@ -35,6 +35,13 @@ export default function Home() {
         const dataGas = gasResponse.data;
         const dataPred = predResponse.data;
 
+        const isStale = (timestamp: string) => {
+          return Date.now() - new Date(timestamp).getTime() > 30 * 60 * 1000;
+        };
+        const gasTime = dataGas?.created_at;
+        const predTime = dataPred?.created_at;
+        const sensorOffline = Boolean(gasTime && isStale(gasTime));
+
         if (dataPred) {
           setRealtimeData({
             pm25: dataPred.pm2_5_ispu || 0,
@@ -44,6 +51,7 @@ export default function Home() {
             o3: dataPred.o3_ispu || 0,
             temperature: dataGas?.temperature || 0,
             humidity: dataGas?.humidity || 0,
+            sensorOffline,
           });
         }
       } catch (err) {
@@ -69,13 +77,14 @@ export default function Home() {
 
           setRealtimeData((prev) => ({
             ...prev,
-            pm25: newData.pm2_5_ispu || prev?.pm25 || 0,
-            pm10: newData.pm10_ispu || prev?.pm10 || 0,
-            no2: newData.no2_ispu || prev?.no2 || 0,
-            co: newData.co_ispu || prev?.co || 0,
-            o3: newData.o3_ispu || prev?.o3 || 0,
+            pm25: newData.pm2_5_ispu ?? prev?.pm25 ?? 0,
+            pm10: newData.pm10_ispu ?? prev?.pm10 ?? 0,
+            no2: newData.no2_ispu ?? prev?.no2 ?? 0,
+            co: newData.co_ispu ?? prev?.co ?? 0,
+            o3: newData.o3_ispu ?? prev?.o3 ?? 0,
             temperature: prev?.temperature || 0,
             humidity: prev?.humidity || 0,
+            sensorOffline: false,
           }));
         }
       )

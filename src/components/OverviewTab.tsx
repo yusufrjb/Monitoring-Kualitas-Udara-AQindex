@@ -306,7 +306,7 @@ interface OverviewTabProps {
 }
 
 export default function OverviewTab({ realtimeData, historicalData: _historicalData }: OverviewTabProps) {
-  const [timePeriod, setTimePeriod] = useState<1 | 7 | 14 | 30 | 90>(1);
+  const [timePeriod, setTimePeriod] = useState<1 | 7 | 14 | 30 | 90>(7);
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const [chartData, setChartData] = useState<ChartPoint[]>([]);
   const [chartLoading, setChartLoading] = useState(false);
@@ -352,14 +352,13 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
 
       const rows = data || [];
 
-      // Conversion functions from µg/m³ to ISPU
+      // Conversion functions from µg/m³ to ISPU (Permen LHK 14/2020)
       const pm25ToISPU = (ugm3: number) => {
-        if (ugm3 <= 15) return (ugm3 / 15) * 50;
-        if (ugm3 <= 35) return 50 + ((ugm3 - 15) / 20) * 50;
-        if (ugm3 <= 55) return 100 + ((ugm3 - 35) / 20) * 100;
-        if (ugm3 <= 150) return 200 + ((ugm3 - 55) / 95) * 100;
-        if (ugm3 <= 250) return 300 + ((ugm3 - 150) / 100) * 100;
-        return 400 + ((ugm3 - 250) / 100) * 100;
+        if (ugm3 <= 15.5) return (ugm3 / 15.5) * 50;
+        if (ugm3 <= 55.4) return 50 + ((ugm3 - 15.5) / 39.9) * 50;
+        if (ugm3 <= 150.4) return 100 + ((ugm3 - 55.4) / 95) * 100;
+        if (ugm3 <= 250.4) return 200 + ((ugm3 - 150.4) / 100) * 100;
+        return 300 + ((ugm3 - 250.4) / 249.6) * 200;
       };
 
       const pm10ToISPU = (ugm3: number) => {
@@ -367,26 +366,23 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
         if (ugm3 <= 150) return 50 + ((ugm3 - 50) / 100) * 50;
         if (ugm3 <= 350) return 100 + ((ugm3 - 150) / 200) * 100;
         if (ugm3 <= 420) return 200 + ((ugm3 - 350) / 70) * 100;
-        if (ugm3 <= 500) return 300 + ((ugm3 - 420) / 80) * 100;
-        return 400 + ((ugm3 - 500) / 100) * 100;
+        return 300 + ((ugm3 - 420) / 80) * 200;
       };
 
       const no2ToISPU = (ugm3: number) => {
-        if (ugm3 <= 40) return (ugm3 / 40) * 50;
-        if (ugm3 <= 80) return 50 + ((ugm3 - 40) / 40) * 50;
-        if (ugm3 <= 180) return 100 + ((ugm3 - 80) / 100) * 100;
-        if (ugm3 <= 280) return 200 + ((ugm3 - 180) / 100) * 100;
-        if (ugm3 <= 565) return 300 + ((ugm3 - 280) / 285) * 100;
-        return 400 + ((ugm3 - 565) / 100) * 100;
+        if (ugm3 <= 80) return (ugm3 / 80) * 50;
+        if (ugm3 <= 200) return 50 + ((ugm3 - 80) / 120) * 50;
+        if (ugm3 <= 1130) return 100 + ((ugm3 - 200) / 930) * 100;
+        if (ugm3 <= 2260) return 200 + ((ugm3 - 1130) / 1130) * 100;
+        return 300 + ((ugm3 - 2260) / 740) * 200;
       };
 
       const coToISPU = (ugm3: number) => {
-        if (ugm3 <= 5000) return (ugm3 / 5000) * 50;
-        if (ugm3 <= 10000) return 50 + ((ugm3 - 5000) / 5000) * 50;
-        if (ugm3 <= 17000) return 100 + ((ugm3 - 10000) / 7000) * 100;
-        if (ugm3 <= 34000) return 200 + ((ugm3 - 17000) / 17000) * 100;
-        if (ugm3 <= 46000) return 300 + ((ugm3 - 34000) / 12000) * 100;
-        return 400 + ((ugm3 - 46000) / 10000) * 100;
+        if (ugm3 <= 4000) return (ugm3 / 4000) * 50;
+        if (ugm3 <= 8000) return 50 + ((ugm3 - 4000) / 4000) * 50;
+        if (ugm3 <= 15000) return 100 + ((ugm3 - 8000) / 7000) * 100;
+        if (ugm3 <= 30000) return 200 + ((ugm3 - 15000) / 15000) * 100;
+        return 300 + ((ugm3 - 30000) / 15000) * 200;
       };
 
       setChartData(
@@ -411,7 +407,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
   const fetchHourlyPattern = useCallback(async () => {
     setHourlyLoading(true);
     try {
-      const res = await fetch("/api/aggregates/hourly-pattern?days=60");
+      const res = await fetch("/api/aggregates/hourly-pattern?days=7");
       if (!res.ok) throw new Error("Gagal mengambil pola harian");
       const response = await res.json();
       
@@ -516,6 +512,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
     );
   }
 
+  const sensorOffline = realtimeData.sensorOffline ?? false;
   const pm25 = realtimeData.pm25 ?? 0;
   const pm10 = realtimeData.pm10 ?? 0;
   const no2 = realtimeData.no2 ?? 0;
@@ -556,15 +553,48 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
         </div>
       )}
 
+      {/* ── Sensor Offline Banner ───────────────────────────────────────────── */}
+      {sensorOffline && (
+        <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-100 px-4 py-3 text-sm text-slate-600">
+          <AlertTriangle size={16} className="shrink-0 text-slate-400" />
+          <span className="flex-1">
+            Alat pemantau tidak aktif — data terakhir &gt; 30 menit yang lalu. Nilai yang ditampilkan mungkin tidak akurat.
+          </span>
+        </div>
+      )}
+
       {/* ── Air Quality Classification ──────────────────────────────────────── */}
-      {mlClassData ? (
-        <div className="rounded-xl border border-slate-200 p-4" style={{ backgroundColor: mlClassData.color + '10' }}>
-          <div className="flex items-center justify-between mb-2">
+      {sensorOffline ? (
+        <div className="rounded-xl border border-slate-200 p-4 bg-slate-50/50">
+          <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Shield size={16} className="text-slate-500" />
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Klasifikasi Kualitas Udara</span>
+              <Shield size={14} className="text-slate-400" />
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-[0.08em]">Klasifikasi Kualitas Udara</span>
             </div>
-            <span className="text-[10px] text-slate-400 font-medium">Random Forest</span>
+            <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            <div className="relative w-36 h-36 flex items-center justify-center">
+              <div className="text-center">
+                <span className="text-2xl font-bold text-slate-400">—</span>
+                <span className="block text-xs text-slate-400 mt-1">Alat Tidak Aktif</span>
+              </div>
+            </div>
+            <div className="flex-1 bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-sm text-slate-500 leading-normal font-normal">
+                Sensor pemantau kualitas udara sedang tidak aktif. Data tidak tersedia untuk ditampilkan. Silakan periksa kembali nanti atau hubungi operator alat.
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : mlClassData ? (
+        <div className="rounded-xl border border-slate-200 p-4" style={{ backgroundColor: mlClassData.color + '10' }}>
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <Shield size={14} className="text-slate-400" />
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-[0.08em]">Klasifikasi Kualitas Udara</span>
+            </div>
+            <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
           </div>
 
           <div className="space-y-4">
@@ -589,29 +619,29 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
                     />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-2xl font-black text-slate-800">{mlClassData.category}</span>
-                    <span className="text-xs font-medium text-slate-500">ISPU | {mlClassData.dominant ? mlClassData.dominant.toUpperCase() : '-'}</span>
+                    <span className="text-[28px] font-bold text-slate-900 tracking-tight">{mlClassData.category}</span>
+                    <span className="text-xs font-medium text-slate-400 tracking-wide">ISPU | {mlClassData.dominant ? mlClassData.dominant.toUpperCase() : '-'}</span>
                   </div>
                 </div>
               </div>
               <div className="flex-1 bg-slate-50 rounded-xl p-4 flex items-center">
-                <p className="text-base text-slate-700 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 leading-normal font-normal">
                   {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.description || "Kualitas udara perlu diperhatikan."}
                 </p>
               </div>
             </div>
 
             {/* Recommendation Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <div className="rounded border p-3 text-center" style={{ borderColor: mlClassData.color + '60' }}>
-                <div className="font-semibold text-slate-700 text-xs mb-1">Kelompok Sensitif</div>
-                <div className="text-slate-500 text-xs leading-relaxed text-justify">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-lg border p-3" style={{ borderColor: mlClassData.color + '60' }}>
+                <div className="font-semibold text-slate-700 text-sm mb-1.5">Kelompok Sensitif</div>
+                <div className="text-slate-500 text-sm leading-normal">
                   {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.sensitive || "-"}
                 </div>
               </div>
-              <div className="rounded border p-3 text-center" style={{ borderColor: mlClassData.color + '60' }}>
-                <div className="font-semibold text-slate-700 text-xs mb-1">Setiap Orang</div>
-                <div className="text-slate-500 text-xs leading-relaxed text-justify">
+              <div className="rounded-lg border p-3" style={{ borderColor: mlClassData.color + '60' }}>
+                <div className="font-semibold text-slate-700 text-sm mb-1.5">Setiap Orang</div>
+                <div className="text-slate-500 text-sm leading-normal">
                   {ISPU_RECOMMENDATIONS[mlClassData.category as keyof typeof ISPU_RECOMMENDATIONS]?.general || "-"}
                 </div>
               </div>
@@ -622,10 +652,10 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
         <div className="rounded-xl border border-slate-200 bg-gradient-to-r from-slate-50 to-white p-4">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Shield size={16} className="text-slate-500" />
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Klasifikasi Kualitas Udara</span>
+              <Shield size={14} className="text-slate-400" />
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-[0.08em]">Klasifikasi Kualitas Udara</span>
             </div>
-            <span className="text-[10px] text-slate-400 font-medium">Random Forest</span>
+            <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
           </div>
           <div className="flex items-center justify-center rounded-xl px-6 py-3 bg-slate-100">
             <Spinner className="h-5 w-5" />
@@ -639,9 +669,9 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
           parameterKey="pm25"
           title="PM2.5"
           icon={Cloud}
-          value={pm25.toFixed(2)}
+          value={sensorOffline ? "—" : pm25.toFixed(2)}
           unit="ISPU"
-          status={pm25Status}
+          status={sensorOffline ? { label: "Offline", level: "good", percent: 0 } : pm25Status}
           isActive={activeCard === "pm25"}
           onClick={() => setActiveCard(activeCard === "pm25" ? null : "pm25")}
         />
@@ -649,9 +679,9 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
           parameterKey="pm10"
           title="PM10"
           icon={Cloud}
-          value={pm10.toFixed(2)}
+          value={sensorOffline ? "—" : pm10.toFixed(2)}
           unit="ISPU"
-          status={pm10Status}
+          status={sensorOffline ? { label: "Offline", level: "good", percent: 0 } : pm10Status}
           isActive={activeCard === "pm10"}
           onClick={() => setActiveCard(activeCard === "pm10" ? null : "pm10")}
         />
@@ -659,9 +689,9 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
           parameterKey="no2"
           title="NO₂"
           icon={FlaskConical}
-          value={no2.toFixed(2)}
+          value={sensorOffline ? "—" : no2.toFixed(2)}
           unit="ISPU"
-          status={no2Status}
+          status={sensorOffline ? { label: "Offline", level: "good", percent: 0 } : no2Status}
           isActive={activeCard === "no2"}
           onClick={() => setActiveCard(activeCard === "no2" ? null : "no2")}
         />
@@ -669,9 +699,9 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
           parameterKey="co"
           title="CO"
           icon={Flame}
-          value={co.toFixed(2)}
+          value={sensorOffline ? "—" : co.toFixed(2)}
           unit="ISPU"
-          status={coStatus}
+          status={sensorOffline ? { label: "Offline", level: "good", percent: 0 } : coStatus}
           isActive={activeCard === "co"}
           onClick={() => setActiveCard(activeCard === "co" ? null : "co")}
         />
@@ -679,9 +709,9 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
           parameterKey="o3"
           title="O₃"
           icon={Cloud}
-          value={o3.toFixed(2)}
+          value={sensorOffline ? "—" : o3.toFixed(2)}
           unit="ISPU"
-          status={o3Status}
+          status={sensorOffline ? { label: "Offline", level: "good", percent: 0 } : o3Status}
           isActive={activeCard === "o3"}
           onClick={() => setActiveCard(activeCard === "o3" ? null : "o3")}
         />

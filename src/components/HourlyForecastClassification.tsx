@@ -6,9 +6,9 @@ import { Wind, Clock, TrendingUp, Loader2, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 
-const BP_PM25 = [[0,15,0,50],[15,35,50,100],[35,55,100,200],[55,150,200,300],[150,250,300,400],[250,350,400,500]];
-const BP_PM10 = [[0,50,0,50],[50,150,50,100],[150,350,100,200],[350,420,200,300],[420,500,300,400],[500,600,400,500]];
-const BP_CO = [[0,5000,0,50],[5000,10000,50,100],[10000,17000,100,200],[17000,34000,200,300],[34000,46000,300,400],[46000,56000,400,500]];
+const BP_PM25 = [[0,15.5,0,50],[15.5,55.4,50,100],[55.4,150.4,100,200],[150.4,250.4,200,300],[250.4,500,300,500]];
+const BP_PM10 = [[0,50,0,50],[50,150,50,100],[150,350,100,200],[350,420,200,300],[420,500,300,500]];
+const BP_CO = [[0,4000,0,50],[4000,8000,50,100],[8000,15000,100,200],[15000,30000,200,300],[30000,45000,300,500]];
 
 function concToISPI(val: number, bp: number[][]): number {
     if (val <= 0) return 0;
@@ -16,6 +16,15 @@ function concToISPI(val: number, bp: number[][]): number {
         if (val <= ch) return il + (val - cl) / (ch - cl) * (ih - il);
     }
     return bp[bp.length - 1][3];
+}
+
+function calcDominant(pm25: number, pm10: number, co: number): string {
+    const ispis: Record<string, number> = {
+        "PM2.5": concToISPI(pm25, BP_PM25),
+        "PM10": concToISPI(pm10, BP_PM10),
+        "CO": concToISPI(co, BP_CO),
+    };
+    return Object.entries(ispis).reduce((a, b) => b[1] > a[1] ? b : a)[0];
 }
 
 interface ForecastRow {
@@ -32,7 +41,6 @@ interface ForecastRow {
 interface HourlyData {
     forecast_at: string;
     forecast: ForecastRow[];
-    classification: ForecastRow[];
     metadata: {
         latestISPU: number;
         latestCategory: string;
@@ -57,15 +65,71 @@ export default function HourlyForecastClassification() {
 
     useEffect(() => {
         let isMounted = true;
-        const fetchData = () => {
-            fetch('/api/forecast/hourly-classify')
-                .then(res => res.json())
-                .then(d => { if (isMounted) { setData(d); setLoading(false); } })
-                .catch(() => { if (isMounted) setLoading(false); });
+        const queryDB = async () => {
+            const { data: latestForecast } = await supabase
+                .from('tb_prediksi_hourly')
+                .select('forecast_at')
+                .order('forecast_at', { ascending: false })
+                .limit(1);
+
+            if (!latestForecast || latestForecast.length === 0) return [];
+
+            const { data: rows } = await supabase
+                .from('tb_prediksi_hourly')
+                .select('*')
+                .eq('forecast_at', latestForecast[0].forecast_at)
+                .order('target_at', { ascending: true });
+
+            return rows || [];
         };
 
-        fetchData();
-        const interval = setInterval(fetchData, 5 * 60 * 1000);
+        const buildData = (rows: Record<string, unknown>[]) => {
+            const forecast: ForecastRow[] = rows.map(r => {
+                const pm25 = Number(r.pm25_pred) || 0;
+                const pm10 = Number(r.pm10_pred) || 0;
+                const co = Number(r.co_pred) || 0;
+                const category = r.category || "Sedang";
+                return {
+                    target_at: r.target_at,
+                    pm25, pm10, co,
+                    ispu: Number(r.ispu) || 0,
+                    category,
+                    dominant: calcDominant(pm25, pm10, co),
+                    color: CAT_COLORS[category] || "#3b82f6",
+                };
+            });
+
+            if (forecast.length === 0) return;
+
+            const latest = forecast[forecast.length - 1];
+            setData({
+                forecast_at: forecast[0].target_at,
+                forecast,
+                metadata: {
+                    latestISPU: latest.ispu,
+                    latestCategory: latest.category,
+                    latestDominant: latest.dominant,
+                    latestColor: latest.color,
+                    method: "ISPU Breakpoint (tb_prediksi_hourly)",
+                },
+            });
+        };
+
+        const loadInitial = async () => {
+            const rows = await queryDB();
+            if (isMounted) {
+                buildData(rows);
+                setLoading(false);
+            }
+        };
+
+        const fetchDataFromDB = async () => {
+            const rows = await queryDB();
+            if (isMounted) buildData(rows);
+        };
+
+        loadInitial();
+        const interval = setInterval(fetchDataFromDB, 60 * 1000);
 
         let timeoutId: NodeJS.Timeout;
         const channel = supabase
@@ -80,8 +144,8 @@ export default function HourlyForecastClassification() {
                 () => {
                     clearTimeout(timeoutId);
                     timeoutId = setTimeout(() => {
-                        console.log('🔄 Data prediksi klasifikasi baru terdeteksi, memperbarui grafik...');
-                        fetchData();
+                        console.log('🔄 Data prediksi baru terdeteksi, memperbarui grafik...');
+                        fetchDataFromDB();
                     }, 2000);
                 }
             )
@@ -168,28 +232,28 @@ export default function HourlyForecastClassification() {
             {/* Current Status Card - shows 60min ahead prediction */}
             <div className="flex items-center gap-4 mb-4 p-3 bg-slate-50 rounded-lg">
                 <div className="flex flex-col items-center justify-center rounded-lg px-4 py-2 text-white"
-                    style={{ backgroundColor: data.forecast[59]?.color || data.metadata.latestColor }}
+                    style={{ backgroundColor: data.forecast[data.forecast.length - 1]?.color || data.metadata.latestColor }}
                 >
-                    <span className="text-lg font-bold">{data.forecast[59]?.category || data.metadata.latestCategory}</span>
-                    <span className="text-xs opacity-70">ISPU {data.forecast[59]?.ispu?.toFixed(1) || data.metadata.latestISPU}</span>
+                    <span className="text-lg font-bold">{data.forecast[data.forecast.length - 1]?.category || data.metadata.latestCategory}</span>
+                    <span className="text-xs opacity-70">ISPU {data.forecast[data.forecast.length - 1]?.ispu?.toFixed(1) || data.metadata.latestISPU}</span>
                 </div>
                 <div className="flex-1">
                     <div className="grid grid-cols-3 gap-2 text-xs">
                         <div>
                             <span className="text-slate-400 block">ISPU PM2.5</span>
-                            <span className="font-semibold">{(concToISPI(data.forecast[59]?.pm25 || 0, BP_PM25)).toFixed(1)}</span>
+                            <span className="font-semibold">{(concToISPI(data.forecast[data.forecast.length - 1]?.pm25 || 0, BP_PM25)).toFixed(1)}</span>
                         </div>
                         <div>
                             <span className="text-slate-400 block">ISPU PM10</span>
-                            <span className="font-semibold">{(concToISPI(data.forecast[59]?.pm10 || 0, BP_PM10)).toFixed(1)}</span>
+                            <span className="font-semibold">{(concToISPI(data.forecast[data.forecast.length - 1]?.pm10 || 0, BP_PM10)).toFixed(1)}</span>
                         </div>
                         <div>
                             <span className="text-slate-400 block">ISPU CO</span>
-                            <span className="font-semibold">{(concToISPI(data.forecast[59]?.co || 0, BP_CO)).toFixed(1)}</span>
+                            <span className="font-semibold">{(concToISPI(data.forecast[data.forecast.length - 1]?.co || 0, BP_CO)).toFixed(1)}</span>
                         </div>
                     </div>
                     <div className="mt-1 text-[10px] text-slate-400">
-                        Dominan: <span className="font-semibold">{data.forecast[59]?.dominant || data.metadata.latestDominant}</span> | 
+                        Dominan: <span className="font-semibold">{data.forecast[data.forecast.length - 1]?.dominant || data.metadata.latestDominant}</span> | 
                         Method: <span className="font-semibold">{data.metadata.method}</span>
                     </div>
                 </div>

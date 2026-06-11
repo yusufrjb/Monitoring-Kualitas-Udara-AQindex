@@ -24,7 +24,7 @@ export async function GET() {
         const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
         const { data: histData } = await supabase
             .from('tb_konsentrasi_gas')
-            .select('pm25_ugm3, pm10_corrected_ugm3, co_ugm3, created_at')
+            .select('pm25_ugm3, pm10_ugm3, co_ugm3, created_at')
             .gte('created_at', oneHourAgo)
             .order('created_at', { ascending: true })
             .limit(200);
@@ -45,16 +45,21 @@ export async function GET() {
             return '';
         };
 
-        // Helper for predictions - no conversion
+        // Helper for predictions - convert UTC to WIB (+7)
         const extractTimePrediction = (isoString: string) => {
             const match = isoString.match(/T(\d{2}):(\d{2})/);
-            return match ? `${match[1]}.${match[2]}` : '';
+            if (match) {
+                let hour = parseInt(match[1]) + 7;
+                if (hour >= 24) hour -= 24;
+                return `${hour.toString().padStart(2, '0')}.${match[2]}`;
+            }
+            return '';
         };
 
         const histPoints = sortedHist.map(d => ({
             time: extractTimeHistorical(d.created_at),
             pm25: Number(d.pm25_ugm3?.toFixed(2) || 0),
-            pm10: Number(d.pm10_corrected_ugm3?.toFixed(2) || 0),
+            pm10: Number(d.pm10_ugm3?.toFixed(2) || 0),
             co: Number(d.co_ugm3?.toFixed(2) || 0),
             isHistorical: true,
             timestamp: new Date(d.created_at).getTime(),
@@ -88,7 +93,7 @@ export async function GET() {
         const trendDirection = avgEnd - avgStart > 1 ? 'naik' : avgEnd - avgStart < -1 ? 'turun' : 'stabil';
 
         const method = predData && predData.length > 0 
-            ? 'XGBoost dengan Pola Harian'
+            ? 'XGBoost Forecasting'
             : 'Fallback';
 
         return NextResponse.json({

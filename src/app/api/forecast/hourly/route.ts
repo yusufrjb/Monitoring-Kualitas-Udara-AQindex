@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { execSync } from 'child_process';
 import path from 'path';
 
-const SCRIPT_PATH = path.resolve(process.cwd(), 'ml_model', 'predict_hourly_multi.py');
+const SCRIPT_PATH = path.resolve(process.cwd(), 'ml_model', 'predict_time_series.py');
 
 const CAT_COLORS: Record<string, string> = {
     "Baik": "#10b981",
@@ -22,9 +22,9 @@ function concToISPI(val: number, bp: number[][]): number {
 }
 
 function getISPI(pm25: number, pm10: number, co: number): { ispu: number; label: string; dominant: string } {
-    const BP_PM25: number[][] = [[0,15,0,50],[15,35,50,100],[35,55,100,200],[55,150,200,300],[150,250,300,400],[250,350,400,500]];
-    const BP_PM10: number[][] = [[0,50,0,50],[50,150,50,100],[150,350,100,200],[350,420,200,300],[420,500,300,400],[500,600,400,500]];
-    const BP_CO: number[][]   = [[0,5000,0,50],[5000,10000,50,100],[10000,17000,100,200],[17000,34000,200,300],[34000,46000,300,400],[46000,56000,400,500]];
+    const BP_PM25: number[][] = [[0,15.5,0,50],[15.5,55.4,50,100],[55.4,150.4,100,200],[150.4,250.4,200,300],[250.4,500,300,500]];
+    const BP_PM10: number[][] = [[0,50,0,50],[50,150,50,100],[150,350,100,200],[350,420,200,300],[420,500,300,500]];
+    const BP_CO: number[][]   = [[0,4000,0,50],[4000,8000,50,100],[8000,15000,100,200],[15000,30000,200,300],[30000,45000,300,500]];
 
     // Hanya PM2.5, PM10, CO yang diprediksi - dominant hanya dari ketiganya
     const ispis: Record<string, number> = {
@@ -62,7 +62,7 @@ export async function GET() {
         const since = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
         const { data: histData, error: histErr } = await supabase
             .from('tb_konsentrasi_gas')
-            .select('pm25_ugm3, pm10_corrected_ugm3, co_corrected_ugm3, no2_ugm3, o3_ugm3, created_at')
+            .select('pm25_ugm3, pm10_ugm3, co_ugm3, no2_ugm3, o3_ugm3, created_at')
             .gte('created_at', since)
             .order('created_at', { ascending: false })
             .limit(60);
@@ -79,8 +79,8 @@ export async function GET() {
         const historical = rows.map((r, i) => {
             const t = new Date(r.created_at);
             const pm25 = Number(r.pm25_ugm3) || 0;
-            const pm10 = Number(r.pm10_corrected_ugm3) || 0;
-            const co = Number(r.co_corrected_ugm3) || 0;
+            const pm10 = Number(r.pm10_ugm3) || 0;
+            const co = Number(r.co_ugm3) || 0;
             const no2 = Number(r.no2_ugm3) || 0;
             const o3 = Number(r.o3_ugm3) || 0;
             const { ispu, label, dominant } = getISPI(pm25, pm10, co);
@@ -97,26 +97,28 @@ export async function GET() {
             };
         });
 
-        let forecast_result: { forecast: any[]; classification: any[] } | null = null;
+        let forecast_result: { forecast: any[] } | null = null;
+        let forecast_method = "";
 
         try {
-            const output = execSync(`python "${SCRIPT_PATH}"`, {
-                timeout: 30000,
+            const output = execSync(`python "${SCRIPT_PATH}" --json`, {
+                timeout: 60000,
                 encoding: 'utf-8',
                 stdio: ['pipe', 'pipe', 'pipe'],
                 cwd: path.resolve(process.cwd()),
             });
             const parsed = JSON.parse(output.trim());
-            if (parsed.forecast && parsed.classification) {
+            if (parsed.forecast && parsed.forecast.length > 0) {
                 forecast_result = parsed;
+                forecast_method = parsed.method || "XGBoost + Pola Harian";
             }
         } catch {
             // fallback to Holt-Winters below
         }
 
         const pm25Series = rows.map(r => Number(r.pm25_ugm3) || 0);
-        const pm10Series = rows.map(r => Number(r.pm10_corrected_ugm3) || 0);
-        const coSeries = rows.map(r => Number(r.co_corrected_ugm3) || 0);
+        const pm10Series = rows.map(r => Number(r.pm10_ugm3) || 0);
+        const coSeries = rows.map(r => Number(r.co_ugm3) || 0);
         const no2Latest = Number(lastRow.no2_ugm3) || 50;
         const o3Latest = Number(lastRow.o3_ugm3) || 40;
 
@@ -130,8 +132,6 @@ export async function GET() {
         const forecast_co = forecast_result?.forecast
             ? forecast_result.forecast.map(f => f.co)
             : holtWintersForecast(coSeries, N_STEPS);
-        const forecastClassifications = forecast_result?.classification ?? [];
-
         const forecast = [];
         for (let i = 0; i < N_STEPS; i++) {
             const targetAt = new Date(now.getTime() + (i + 1) * 60000);
@@ -139,21 +139,8 @@ export async function GET() {
             const pm10Val = Math.round((forecast_pm10[i] || 0) * 100) / 100;
             const coVal = Math.round((forecast_co[i] || 0) * 100) / 100;
 
-            let ispu: number, label: string, dominant: string, color: string;
-
-            if (forecast_result && forecast_result.classification && forecast_result.classification[i]) {
-                const cls = forecast_result.classification[i];
-                ispu = cls.ispu;
-                label = cls.category;
-                dominant = cls.dominant;
-                color = cls.color;
-            } else {
-                const { ispu: ispu2, label: label2, dominant: dom2 } = getISPI(pm25Val, pm10Val, coVal);
-                ispu = ispu2;
-                label = label2;
-                dominant = dom2;
-                color = ispiToColor(label);
-            }
+            const { ispu, label, dominant } = getISPI(pm25Val, pm10Val, coVal);
+            const color = ispiToColor(label);
 
             forecast.push({
                 target_at: targetAt.toISOString(),
@@ -185,7 +172,7 @@ export async function GET() {
                 latestDominant: historical[historical.length - 1]?.dominant ?? "pm25",
                 totalHistorical: historical.length,
                 totalForecast: forecast.length,
-                method: forecast_result ? "XGBoost dengan Pola Harian" : "Holt-Winters (fallback)",
+                method: forecast_result ? forecast_method || "XGBoost + Pola Harian" : "Holt-Winters (fallback)",
             },
         });
     } catch (err) {

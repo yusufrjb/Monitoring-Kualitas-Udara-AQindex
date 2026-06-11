@@ -48,3 +48,6 @@ data_raw/
 .env
 .env.local
 .env.production
+
+# archived legacy files
+/archive/

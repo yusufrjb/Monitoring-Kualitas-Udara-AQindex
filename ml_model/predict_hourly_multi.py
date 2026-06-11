@@ -16,7 +16,7 @@ import sys
 import json
 import logging
 import warnings
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -31,8 +31,12 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler(Path(__file__).parent / "forecast_hourly_log.txt", encoding="utf-8", mode="a"),
-    ]
+        logging.FileHandler(
+            Path(__file__).parent / "forecast_hourly_log.txt",
+            encoding="utf-8",
+            mode="a",
+        ),
+    ],
 )
 log = logging.getLogger(__name__)
 
@@ -48,14 +52,51 @@ MODEL_FILES = {
     "co": MODEL_DIR / "xgb_co.pkl",
 }
 
-BP_PM25 = [(0,15,0,50),(15,35,50,100),(35,55,100,200),(55,150,200,300),(150,250,300,400),(250,350,400,500)]
-BP_PM10 = [(0,50,0,50),(50,150,50,100),(150,350,100,200),(350,420,200,300),(420,500,300,400),(500,600,400,500)]
-BP_CO   = [(0,5000,0,50),(5000,10000,50,100),(10000,17000,100,200),(17000,34000,200,300),(34000,46000,300,400),(46000,56000,400,500)]
-BP_NO2  = [(0,40,0,50),(40,80,50,100),(80,180,100,200),(180,280,200,300),(280,565,300,400),(565,665,400,500)]
-BP_O3   = [(0,60,0,50),(60,120,50,100),(120,180,100,200),(180,240,200,300),(240,400,300,500)]
-O3_CONV = 1.963
+BP_PM25 = [
+    (0, 15.5, 0, 50),
+    (15.5, 55.4, 50, 100),
+    (55.4, 150.4, 100, 200),
+    (150.4, 250.4, 200, 300),
+    (250.4, 500, 300, 500),
+]
+BP_PM10 = [
+    (0, 50, 0, 50),
+    (50, 150, 50, 100),
+    (150, 350, 100, 200),
+    (350, 420, 200, 300),
+    (420, 500, 300, 500),
+]
+BP_CO = [
+    (0, 4000, 0, 50),
+    (4000, 8000, 50, 100),
+    (8000, 15000, 100, 200),
+    (15000, 30000, 200, 300),
+    (30000, 45000, 300, 500),
+]
+BP_NO2 = [
+    (0, 80, 0, 50),
+    (80, 200, 50, 100),
+    (200, 1130, 100, 200),
+    (1130, 2260, 200, 300),
+    (2260, 3000, 300, 500),
+]
+BP_O3 = [
+    (0, 120, 0, 50),
+    (120, 235, 50, 100),
+    (235, 400, 100, 200),
+    (400, 800, 200, 300),
+    (800, 1000, 300, 500),
+]
 
-RAW_COLS_DB = ["pm25_ugm3", "pm10_corrected_ugm3", "co_ugm3", "no2_ugm3", "o3_ugm3", "temperature", "humidity"]
+RAW_COLS_DB = [
+    "pm25_ugm3",
+    "pm10_corrected_ugm3",
+    "co_ugm3",
+    "no2_ugm3",
+    "o3_ugm3",
+    "temperature",
+    "humidity",
+]
 
 CAT_COLORS = {
     "Baik": "#10b981",
@@ -83,28 +124,33 @@ def load_env():
 
 
 def conc_to_ispi(val, bp):
-    if val <= 0: return 0
+    if val <= 0:
+        return 0
     for cl, ch, il, ih in bp:
-        if val <= ch: return il + (val - cl) / (ch - cl) * (ih - il)
+        if val <= ch:
+            return il + (val - cl) / (ch - cl) * (ih - il)
     return bp[-1][3]
 
 
 def ispi_to_label_cat(ispu):
-    if ispu <= 50: return "Baik"
-    if ispu <= 100: return "Sedang"
-    if ispu <= 200: return "Tidak Sehat"
-    if ispu <= 300: return "Sangat Tidak Sehat"
+    if ispu <= 50:
+        return "Baik"
+    if ispu <= 100:
+        return "Sedang"
+    if ispu <= 200:
+        return "Tidak Sehat"
+    if ispu <= 300:
+        return "Sangat Tidak Sehat"
     return "Berbahaya"
 
 
 def get_ispi(pm25, pm10, co, no2, o3_ugm3):
-    o3_ppb = o3_ugm3 / O3_CONV
     ispis = {
         "PM2.5": conc_to_ispi(pm25, BP_PM25),
         "PM10": conc_to_ispi(pm10, BP_PM10),
         "CO": conc_to_ispi(co, BP_CO),
         "NO2": conc_to_ispi(no2, BP_NO2),
-        "O3": conc_to_ispi(o3_ppb, BP_O3),
+        "O3": conc_to_ispi(o3_ugm3, BP_O3),
     }
     max_ispu = max(ispis.values())
     dominant = max(ispis, key=ispis.get)
@@ -112,7 +158,7 @@ def get_ispi(pm25, pm10, co, no2, o3_ugm3):
 
 
 def fetch_recent_data(supabase: Client, minutes: int = DATA_WINDOW_MIN) -> pd.DataFrame:
-    since = (datetime.utcnow() - timedelta(minutes=minutes)).isoformat()
+    since = (datetime.now(timezone.utc) - timedelta(minutes=minutes)).isoformat()
     all_rows, offset = [], 0
     while True:
         resp = (
@@ -141,11 +187,17 @@ def fetch_recent_data(supabase: Client, minutes: int = DATA_WINDOW_MIN) -> pd.Da
     df = df.dropna(subset=["pm25_ugm3", "pm10_corrected_ugm3", "co_ugm3"])
     df = df.set_index("created_at").sort_index()
     df = df[~df.index.duplicated(keep="first")]
-    df = df.rename(columns={
-        "pm25_ugm3": "pm25", "pm10_corrected_ugm3": "pm10",
-        "co_ugm3": "co", "no2_ugm3": "no2",
-        "o3_ugm3": "o3", "temperature": "temp", "humidity": "humid"
-    })
+    df = df.rename(
+        columns={
+            "pm25_ugm3": "pm25",
+            "pm10_corrected_ugm3": "pm10",
+            "co_ugm3": "co",
+            "no2_ugm3": "no2",
+            "o3_ugm3": "o3",
+            "temperature": "temp",
+            "humidity": "humid",
+        }
+    )
     log.info(f"Data diambil: {len(df)} baris")
     return df
 
@@ -158,8 +210,6 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
         feat[f"{col}_rm_5"] = feat[col].rolling(5).mean()
         feat[f"{col}_rm_15"] = feat[col].rolling(15).mean()
         feat[f"{col}_rm_30"] = feat[col].rolling(30).mean()
-    feat["temp_l1"] = feat["temp"].shift(1)
-    feat["humid_l1"] = feat["humid"].shift(1)
     feat["temp_roll_mean_15"] = feat["temp"].rolling(15).mean()
     feat["humid_roll_mean_15"] = feat["humid"].rolling(15).mean()
     feat["hour"] = feat.index.hour
@@ -178,7 +228,9 @@ def build_hourly_pattern(df: pd.DataFrame, col: str) -> dict:
     return df2.groupby("hour")[col].mean().to_dict()
 
 
-def fallback_holt_winters(df: pd.DataFrame, col: str, max_val: float, n_steps: int = FORECAST_MINUTES) -> list[dict]:
+def fallback_holt_winters(
+    df: pd.DataFrame, col: str, max_val: float, n_steps: int = FORECAST_MINUTES
+) -> list[dict]:
     series = df[col].iloc[-60:].values
     if len(series) < 2:
         series = np.full(60, series[0]) if len(series) > 0 else np.zeros(60)
@@ -189,12 +241,19 @@ def fallback_holt_winters(df: pd.DataFrame, col: str, max_val: float, n_steps: i
         trend = beta * (new_level - level) + (1 - beta) * trend
         level = new_level
     fc = []
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     params = ["pm25", "pm10", "co"]
     param_names = {"pm25": "pm25", "pm10": "pm10", "co": "co"}
     for i in range(1, n_steps + 1):
         noise = (np.random.random() - 0.5) * level * 0.05
-        fc.append({"target_at": now + timedelta(minutes=i), param_names[col]: round(max(0, min(max_val, level + i * trend + noise)), 2)})
+        fc.append(
+            {
+                "target_at": now + timedelta(minutes=i),
+                param_names[col]: round(
+                    max(0, min(max_val, level + i * trend + noise)), 2
+                ),
+            }
+        )
     return fc
 
 
@@ -205,133 +264,290 @@ def forecast_one_param(
     max_val: float,
     n_steps: int = FORECAST_MINUTES,
 ) -> list[dict]:
+    series = df[raw_col].dropna()
+    if len(series) < 30:
+        return []
+
+    model = model_data["model"] if isinstance(model_data, dict) else model_data
+    recent = series.tail(60)
+    mean_val = recent.mean()
+    now = datetime.now(timezone.utc)
+
     feat = build_features(df)
     if feat.empty:
         return []
+    feature_cols = [c for c in feat.columns if c != raw_col]
 
-    scaler = model_data.get("scaler")
-    feature_cols = model_data.get("features", []) or list(feat.columns)
-    cols_missing = [c for c in feature_cols if c not in feat.columns]
-    if cols_missing:
-        log.warning(f"Fitur hilang ({raw_col}): {cols_missing[:5]}")
-        feature_cols = [c for c in feature_cols if c in feat.columns]
+    lag_steps = [1, 3, 5, 10, 15, 30]
+    raw_lag_values = {
+        col: list(df[col].dropna().tail(30).values) for col in ["pm25", "pm10", "co"]
+    }
+    raw_series = {
+        col: list(df[col].dropna().tail(60).values) for col in ["pm25", "pm10", "co"]
+    }
+    temp_series = (
+        list(df["temp"].dropna().tail(30).values) if "temp" in df.columns else [25] * 30
+    )
+    humid_series = (
+        list(df["humid"].dropna().tail(30).values)
+        if "humid" in df.columns
+        else [60] * 30
+    )
 
-    model = model_data["model"] if isinstance(model_data, dict) else model_data
-    last_row = feat.iloc[[-1]]
-    current_val = float(last_row[raw_col].values[0])
-    now = datetime.utcnow()
+    rolling_windows = {}
+    for col in ["pm25", "pm10", "co"]:
+        vals = raw_series[col]
+        rolling_windows[col] = {
+            w: vals[-w:] if len(vals) >= w else vals[:] for w in [5, 15, 30]
+        }
 
-    feat_ordered = feat[feature_cols]
-    X = feat_ordered.values
-    model_name = type(model).__name__
-    if scaler is not None and model_name in ("Ridge", "LinearRegression", "Lasso"):
-        X = scaler.transform(X)
-    try:
-        model_pred = float(model.predict(X)[0])
-    except Exception:
-        model_pred = current_val
-    model_delta = model_pred - current_val
+    # Short-term trend (last 15 min)
+    recent_vals = series.tail(15).values
+    x = np.arange(len(recent_vals))
+    short_trend, _ = np.polyfit(x, recent_vals, 1)
 
-    recent_vals = df[raw_col].iloc[-60:].values
-    slope = np.polyfit(np.arange(len(recent_vals)), recent_vals, 1)[0] if len(recent_vals) >= 2 else 0
-    recent_std = np.std(recent_vals[-30:]) if len(recent_vals) >= 30 else np.std(recent_vals)
-
+    # Hourly & minute pattern
     hourly_pattern = build_hourly_pattern(df, raw_col)
+    overall_mean = series.mean()
+    series_2 = pd.DataFrame({raw_col: series})
+    series_2["minute"] = series_2.index.minute
+    minute_pattern = series_2.groupby("minute")[raw_col].mean().to_dict()
 
-    # Build minute-of-hour pattern for better minute-to-minute variation
-    df_with_minute = df.copy()
-    df_with_minute["minute"] = df_with_minute.index.minute
-    minute_pattern = df_with_minute.groupby("minute")[raw_col].mean().to_dict()
+    # Patterns for all params (cross-param feature update)
+    all_hourly_patterns = {
+        col: build_hourly_pattern(df, col) for col in ["pm25", "pm10", "co"]
+    }
+    all_minute_patterns = {}
+    for col in ["pm25", "pm10", "co"]:
+        s2 = pd.DataFrame({col: df[col]})
+        s2["minute"] = s2.index.minute
+        all_minute_patterns[col] = s2.groupby("minute")[col].mean().to_dict()
+    all_means = {col: df[col].mean() for col in ["pm25", "pm10", "co"]}
+
+    # Recent std for noise scaling
+    recent_std = series.tail(30).std() if len(series) >= 30 else series.std()
 
     results = []
-    prev_pred = current_val
+    prev_pred = float(raw_series[raw_col][-1]) if raw_series[raw_col] else 0
+
     for step in range(1, n_steps + 1):
+        feature_vec = {}
         target_time = now + timedelta(minutes=step)
-        target_hour = target_time.hour
-        target_minute = target_time.minute
-        target_hourly_avg = hourly_pattern.get(target_hour, current_val)
-        target_minute_avg = minute_pattern.get(target_minute, current_val)
+        # --- Lag features ---
+        for col in ["pm25", "pm10", "co"]:
+            vals = raw_lag_values[col]
+            for lag in lag_steps:
+                feature_vec[f"{col}_lag_{lag}"] = (
+                    vals[-lag] if lag <= len(vals) else mean_val
+                )
+        # --- Rolling means ---
+        for col in ["pm25", "pm10", "co"]:
+            wins = rolling_windows[col]
+            for w in [5, 15, 30]:
+                arr = wins[w]
+                feature_vec[f"{col}_rm_{w}"] = (
+                    float(np.mean(arr)) if len(arr) > 0 else mean_val
+                )
+        # --- Diff1 ---
+        for col in ["pm25", "pm10", "co"]:
+            vals = raw_series[col]
+            feature_vec[f"{col}_diff1"] = (
+                float(vals[-1] - vals[-2]) if len(vals) >= 2 else 0
+            )
+        # --- Temp / humid ---
+        feature_vec["temp_roll_mean_15"] = (
+            float(np.mean(temp_series[-15:]))
+            if len(temp_series) >= 15
+            else (temp_series[-1] if temp_series else 25)
+        )
+        feature_vec["humid_roll_mean_15"] = (
+            float(np.mean(humid_series[-15:]))
+            if len(humid_series) >= 15
+            else (humid_series[-1] if humid_series else 60)
+        )
+        # --- Time features ---
+        feature_vec["hour"] = target_time.hour
+        feature_vec["hour_sin"] = np.sin(2 * np.pi * target_time.hour / 24)
+        feature_vec["hour_cos"] = np.cos(2 * np.pi * target_time.hour / 24)
 
-        if step <= 5:
-            damping = 0.7 ** step
-            short_term = current_val + (model_delta * 0.5 + slope * step * 1.5) * damping
-            alpha = step / 5
-            blended = short_term * (1 - alpha) + target_hourly_avg * alpha
+        # Build X
+        available_cols = [c for c in feature_cols if c in feature_vec]
+        if not available_cols:
+            available_cols = list(feature_vec.keys())
+        X_pred = pd.DataFrame(
+            [{k: feature_vec.get(k, mean_val) for k in available_cols}]
+        )
+
+        try:
+            xgb_pred = float(model.predict(X_pred)[0])
+        except Exception:
+            xgb_pred = prev_pred
+
+        # Weighted blending: XGBoost + hourly/minute pattern + persistence
+        hour = target_time.hour
+        minute = target_time.minute
+        hour_dev = hourly_pattern.get(hour, overall_mean) - overall_mean
+        minute_dev = minute_pattern.get(minute, overall_mean) - overall_mean
+
+        horizon_weight = min(step / 30, 1.0)
+        xgb_weight = 0.6 - (horizon_weight * 0.3)
+        pattern_weight = 0.2 + (horizon_weight * 0.3)
+        persist_weight = max(0, 1 - xgb_weight - pattern_weight)
+
+        xgb_with_trend = xgb_pred + short_trend * step * 0.3
+        pattern_adj = hour_dev * 0.7 + minute_dev * 0.3
+
+        blended = (
+            xgb_with_trend * xgb_weight
+            + (overall_mean + pattern_adj) * pattern_weight
+            + prev_pred * persist_weight
+        )
+
+        if step <= 30:
+            noise_scale = recent_std * 0.6
         else:
-            # Blend hourly pattern with minute pattern and trend continuation
-            minute_weight = 0.4
-            hourly_weight = 0.3
-            trend_weight = 0.3
-            trend_contribution = slope * step * 0.5 if abs(slope) > 0.01 else 0
-            blended = (target_hourly_avg * hourly_weight + 
-                      target_minute_avg * minute_weight + 
-                      (prev_pred + slope * 0.5) * trend_weight +
-                      trend_contribution)
+            noise_scale = recent_std * 0.3 * (1 - horizon_weight * 0.2)
+        pred = blended + np.random.normal(0, noise_scale)
+        pred = max(0.0, min(max_val, pred))
 
-        transition = min(1.0, step / 10)  # Slower transition over 10 steps
-        final = current_val * (1 - transition) + blended * transition
+        results.append({"target_at": target_time, raw_col: round(pred, 2)})
 
-        # Enhanced noise that scales with horizon and adds more variation
-        noise_scale = recent_std * 0.3 * (0.5 + step / 60)
-        noise = np.random.normal(0, noise_scale)
-        final = max(0.0, min(max_val, final + noise))
+        # Update state with prediction
+        for col in ["pm25", "pm10", "co"]:
+            vals = raw_series[col]
+            if col == raw_col:
+                vals.append(pred)
+            else:
+                other_hour_dev = (
+                    all_hourly_patterns[col].get(hour, all_means[col]) - all_means[col]
+                )
+                other_min_dev = (
+                    all_minute_patterns[col].get(minute, all_means[col])
+                    - all_means[col]
+                )
+                base_val = df[col].dropna().iloc[-1] if len(df[col].dropna()) > 0 else 0
+                other_adj = other_hour_dev * 0.7 + other_min_dev * 0.3
+                vals.append(max(0.0, base_val + other_adj * pattern_weight))
+            if len(vals) > 60:
+                vals.pop(0)
+            lvals = raw_lag_values[col]
+            lvals.append(vals[-1])
+            if len(lvals) > 30:
+                lvals.pop(0)
+            for w in [5, 15, 30]:
+                arr = rolling_windows[col][w]
+                arr.append(vals[-1])
+                if len(arr) > w:
+                    arr.pop(0)
 
-        results.append({
-            "target_at": target_time,
-            raw_col: round(final, 2),
-        })
-        
-        prev_pred = final
+        if temp_series:
+            temp_series.append(temp_series[-1])
+        if len(temp_series) > 30:
+            temp_series.pop(0)
+        if humid_series:
+            humid_series.append(humid_series[-1])
+        if len(humid_series) > 30:
+            humid_series.pop(0)
 
-    log.info(f"  {raw_col.upper()}: cur={current_val:.1f}, model1s={model_pred:.1f}, trend={slope:+.3f}/min")
+        prev_pred = xgb_pred
+
+    log.info(
+        f"  {raw_col.upper()}: {len(results)} prediksi, range: {min(r[raw_col] for r in results):.1f} - {max(r[raw_col] for r in results):.1f}"
+    )
     return results
 
 
-def classify_forecast(forecast_rows: list, no2_latest: float, o3_latest: float) -> list[dict]:
+def classify_forecast(
+    forecast_rows: list, no2_latest: float, o3_latest: float
+) -> list[dict]:
     result = []
     for row in forecast_rows:
         pm25 = row.get("pm25", 0)
         pm10 = row.get("pm10", 0)
         co = row.get("co", 0)
         ispu, label, dominant = get_ispi(pm25, pm10, co, no2_latest, o3_latest)
-        result.append({
-            "target_at": row["target_at"],
-            "ispu": ispu,
-            "category": label,
-            "dominant": dominant,
-            "color": CAT_COLORS.get(label, "#94a3b8"),
-        })
+        result.append(
+            {
+                "target_at": row["target_at"],
+                "ispu": ispu,
+                "category": label,
+                "dominant": dominant,
+                "color": CAT_COLORS.get(label, "#94a3b8"),
+            }
+        )
     return result
 
 
-def save_hourly_predictions(supabase: Client, forecast_rows: list, forecast_at: datetime, classifications: list):
+def save_hourly_predictions(
+    supabase: Client, forecast_rows: list, forecast_at: datetime, classifications: list
+):
     rows = []
     for f_row, cls in zip(forecast_rows, classifications):
-        rows.append({
-            "forecast_at": forecast_at.isoformat(),
-            "target_at": f_row["target_at"].isoformat(),
-            "pm25_pred": round(f_row.get("pm25", 0), 2),
-            "pm10_pred": round(f_row.get("pm10", 0), 2),
-            "co_pred": round(f_row.get("co", 0), 2),
-            "ispu": cls["ispu"],
-            "category": cls["category"],
-            "is_historical": False,
-        })
+        rows.append(
+            {
+                "forecast_at": forecast_at.isoformat(),
+                "target_at": f_row["target_at"].isoformat(),
+                "pm25_pred": round(f_row.get("pm25", 0), 2),
+                "pm10_pred": round(f_row.get("pm10", 0), 2),
+                "co_pred": round(f_row.get("co", 0), 2),
+                "ispu": cls["ispu"],
+                "category": cls["category"],
+                "is_historical": False,
+            }
+        )
     if rows:
-        # Upsert instead of insert to avoid duplicates
-        for row in rows:
-            try:
-                supabase.table(TABLE_HOURLY).upsert(
-                    row,
-                    on_conflict='target_at'
-                ).execute()
-            except Exception as e:
-                log.warning(f"  Gagal upsert baris: {e}")
-        log.info(f"  {len(rows)} baris diupsert ke {TABLE_HOURLY}")
+        try:
+            supabase.table(TABLE_HOURLY).upsert(rows, on_conflict="target_at").execute()
+            log.info(f"  {len(rows)} baris diupsert ke {TABLE_HOURLY}")
+        except Exception as e:
+            log.warning(f"  Gagal batch upsert: {e}")
     return rows
 
 
 def get_results() -> dict:
+    LOCK_FILE = MODEL_DIR / ".predict_hourly.lock"
+    pid = os.getpid()
+
+    # PID lock to prevent concurrent runs
+    if LOCK_FILE.exists():
+        try:
+            old_pid = int(LOCK_FILE.read_text().strip())
+            if old_pid != pid:
+                # Check if old process is still alive (cross-platform)
+                alive = False
+                try:
+                    if os.name == "nt":
+                        import subprocess
+
+                        r = subprocess.run(
+                            ["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
+                            capture_output=True,
+                            text=True,
+                            timeout=5,
+                        )
+                        alive = str(old_pid) in r.stdout
+                    else:
+                        os.kill(old_pid, 0)
+                        alive = True
+                except Exception:
+                    alive = False
+
+                if alive:
+                    log.warning(f"Instance lain berjalan (PID {old_pid}), skip")
+                    return {}
+
+                log.info(f"Lock file stale (PID {old_pid}), melanjutkan...")
+        except Exception:
+            pass
+    LOCK_FILE.write_text(str(pid))
+
+    try:
+        return _do_get_results()
+    finally:
+        LOCK_FILE.unlink(missing_ok=True)
+
+
+def _do_get_results() -> dict:
     load_env()
 
     sb_url = os.environ.get("SUPABASE_URL", "")
@@ -344,9 +560,11 @@ def get_results() -> dict:
     supabase: Client = create_client(sb_url, sb_key)
 
     df = fetch_recent_data(supabase)
-    forecast_at = datetime.utcnow()
+    forecast_at = datetime.now(timezone.utc)
 
-    no2_latest = float(df["no2"].iloc[-1]) if "no2" in df.columns and len(df) > 0 else 50
+    no2_latest = (
+        float(df["no2"].iloc[-1]) if "no2" in df.columns and len(df) > 0 else 50
+    )
     o3_latest = float(df["o3"].iloc[-1]) if "o3" in df.columns and len(df) > 0 else 40
 
     all_forecasts = {}
@@ -366,7 +584,11 @@ def get_results() -> dict:
         else:
             log.warning(f"PKL tidak ditemukan: {pkl_path.name}")
 
-    for param, col, max_val in [("pm25", "pm25", 300), ("pm10", "pm10", 600), ("co", "co", 50000)]:
+    for param, col, max_val in [
+        ("pm25", "pm25", 300),
+        ("pm10", "pm10", 600),
+        ("co", "co", 50000),
+    ]:
         model_data = models_loaded.get(param)
         if model_data:
             log.info("--- %s (XGBoost) ---" % param.upper())
@@ -404,6 +626,7 @@ def get_results() -> dict:
         log.warning(f"  Gagal simpan ke Supabase: {e}")
 
     return {
+        "method": "XGBoost Forecasting",
         "forecast_at": forecast_at.isoformat(),
         "forecast": [
             {

@@ -15,9 +15,9 @@ import path from 'path';
 
 interface DataRow {
     pm25_ugm3: number;
-    pm10_corrected_ugm3: number;
+    pm10_ugm3: number;
     no2_ugm3: number;
-    co_corrected_ugm3: number;
+    co_ugm3: number;
     temperature: number;
     humidity: number;
     created_at: string;
@@ -135,7 +135,7 @@ export async function GET() {
         const since = new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString();
         const { data: rawData, error } = await supabase
             .from('tb_konsentrasi_gas')
-            .select('pm25_ugm3,pm10_corrected_ugm3,no2_ugm3,co_corrected_ugm3,temperature,humidity,created_at')
+            .select('pm25_ugm3,pm10_ugm3,no2_ugm3,co_ugm3,temperature,humidity,created_at')
             .gte('created_at', since)
             .order('created_at', { ascending: true })
             .limit(1000);
@@ -147,9 +147,9 @@ export async function GET() {
         const rows: DataRow[] = rawData
             .map((r: any) => ({
                 pm25_ugm3: parseFloat(r.pm25_ugm3),
-                pm10_corrected_ugm3: parseFloat(r.pm10_corrected_ugm3),
+                pm10_ugm3: parseFloat(r.pm10_ugm3),
                 no2_ugm3: parseFloat(r.no2_ugm3),
-                co_corrected_ugm3: parseFloat(r.co_corrected_ugm3),
+                co_ugm3: parseFloat(r.co_ugm3),
                 temperature: parseFloat(r.temperature),
                 humidity: parseFloat(r.humidity),
                 created_at: r.created_at,
@@ -164,7 +164,7 @@ export async function GET() {
         }
 
         const featureNames = ['Suhu', 'Kelembapan', 'PM10', 'NO₂', 'CO'];
-        const X = rows.map(r => [r.temperature, r.humidity, r.pm10_corrected_ugm3, r.no2_ugm3, r.co_corrected_ugm3]);
+        const X = rows.map(r => [r.temperature, r.humidity, r.pm10_ugm3, r.no2_ugm3, r.co_ugm3]);
         const y = rows.map(r => r.pm25_ugm3);
 
         const indices = rows.map((_, i) => i);

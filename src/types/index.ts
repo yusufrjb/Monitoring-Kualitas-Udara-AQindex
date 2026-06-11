@@ -6,4 +6,5 @@ export interface RealtimeData {
     o3: number;
     temperature: number;
     humidity: number;
+    sensorOffline?: boolean;
 }

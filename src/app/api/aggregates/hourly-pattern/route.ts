@@ -2,12 +2,11 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
 function pm25ToISPU(ugm3: number): number {
-    if (ugm3 <= 15) return Math.round((ugm3 / 15) * 50);
-    if (ugm3 <= 35) return Math.round(50 + ((ugm3 - 15) / 20) * 50);
-    if (ugm3 <= 55) return Math.round(100 + ((ugm3 - 35) / 20) * 100);
-    if (ugm3 <= 150) return Math.round(200 + ((ugm3 - 55) / 95) * 100);
-    if (ugm3 <= 250) return Math.round(300 + ((ugm3 - 150) / 100) * 100);
-    return Math.round(400 + ((ugm3 - 250) / 100) * 100);
+    if (ugm3 <= 15.5) return Math.round((ugm3 / 15.5) * 50);
+    if (ugm3 <= 55.4) return Math.round(50 + ((ugm3 - 15.5) / 39.9) * 50);
+    if (ugm3 <= 150.4) return Math.round(100 + ((ugm3 - 55.4) / 95) * 100);
+    if (ugm3 <= 250.4) return Math.round(200 + ((ugm3 - 150.4) / 100) * 100);
+    return Math.round(300 + ((ugm3 - 250.4) / 249.6) * 200);
 }
 
 export async function GET(request: Request) {
