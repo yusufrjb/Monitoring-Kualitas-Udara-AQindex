@@ -46,10 +46,11 @@ FORECAST_MINUTES = 60
 DATA_WINDOW_MIN = 1440
 
 MODEL_DIR = Path(__file__).parent
+# Prefer best models when available; fallback to legacy xgb files
 MODEL_FILES = {
-    "pm25": MODEL_DIR / "xgb_pm25.pkl",
-    "pm10": MODEL_DIR / "xgb_pm10.pkl",
-    "co": MODEL_DIR / "xgb_co.pkl",
+    "pm25": MODEL_DIR / "best_pm25_forecast_1hour.pkl",
+    "pm10": MODEL_DIR / "best_pm10_forecast_1hour.pkl",
+    "co": MODEL_DIR / "best_co_forecast_1hour.pkl",
 }
 
 BP_PM25 = [
@@ -379,35 +380,11 @@ def forecast_one_param(
         )
 
         try:
-            xgb_pred = float(model.predict(X_pred)[0])
+            pred = float(model.predict(X_pred)[0])
         except Exception:
-            xgb_pred = prev_pred
-
-        # Weighted blending: XGBoost + hourly/minute pattern + persistence
-        hour = target_time.hour
-        minute = target_time.minute
-        hour_dev = hourly_pattern.get(hour, overall_mean) - overall_mean
-        minute_dev = minute_pattern.get(minute, overall_mean) - overall_mean
-
-        horizon_weight = min(step / 30, 1.0)
-        xgb_weight = 0.6 - (horizon_weight * 0.3)
-        pattern_weight = 0.2 + (horizon_weight * 0.3)
-        persist_weight = max(0, 1 - xgb_weight - pattern_weight)
-
-        xgb_with_trend = xgb_pred + short_trend * step * 0.3
-        pattern_adj = hour_dev * 0.7 + minute_dev * 0.3
-
-        blended = (
-            xgb_with_trend * xgb_weight
-            + (overall_mean + pattern_adj) * pattern_weight
-            + prev_pred * persist_weight
-        )
-
-        if step <= 30:
-            noise_scale = recent_std * 0.6
-        else:
-            noise_scale = recent_std * 0.3 * (1 - horizon_weight * 0.2)
-        pred = blended + np.random.normal(0, noise_scale)
+            # fallback to previous prediction if model fails
+            pred = prev_pred
+        # Clip to valid range
         pred = max(0.0, min(max_val, pred))
 
         results.append({"target_at": target_time, raw_col: round(pred, 2)})

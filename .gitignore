@@ -49,5 +49,8 @@ data_raw/
 .env.local
 .env.production
 
+# spatial data
+/data_spasial/
+
 # archived legacy files
 /archive/
