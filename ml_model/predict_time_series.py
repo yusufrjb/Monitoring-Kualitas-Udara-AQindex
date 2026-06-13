@@ -312,10 +312,28 @@ def hybrid_predict(
         hourly_s = hourly_std.get(target_hour, std_val)
         minute_avg = minute_pattern.get(target_minute, mean_val)
 
-        # Use model output directly (no blending). If model prediction fails earlier,
-        # xgb_pred already set to mean_val fallback.
-        pred = xgb_pred
-        # Ensure non-negative
+        # Blend: XGBoost + hourly pattern + trend + realistic noise
+        horizon_weight = min(step / 30, 1.0)
+        xgb_weight = 0.6 - (horizon_weight * 0.2)  # 0.6 -> 0.4
+        pattern_weight = 0.3 + (horizon_weight * 0.3)  # 0.3 -> 0.6
+
+        xgb_with_trend = xgb_pred + short_trend * step * 0.3
+        pattern_adj = (hourly_avg - mean_val) * 0.7 + (minute_avg - mean_val) * 0.3
+
+        blended = (
+            xgb_with_trend * xgb_weight
+            + (mean_val + pattern_adj) * pattern_weight
+            + lag_values[-1] * (1 - xgb_weight - pattern_weight)
+        )
+
+        # Add stronger noise for more variation (especially first 30 min)
+        if step <= 30:
+            noise_scale = std_val * 0.8  # Higher noise for first 30 min
+        else:
+            noise_scale = std_val * 0.5 * (1 - horizon_weight * 0.2)
+        noise = np.random.normal(0, noise_scale)
+
+        pred = blended + noise
         pred = max(0, pred)
 
         # Update rolling values

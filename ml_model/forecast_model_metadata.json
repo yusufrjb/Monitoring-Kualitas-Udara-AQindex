@@ -1,52 +1,52 @@
 {
   "forecast_horizon": "59 steps (~60 minutes)",
   "sampling_interval_minutes": 1.0103927666666666,
-  "n_records": 19809,
+  "n_records": 19869,
   "n_features": 20,
   "feature_selection": "LightGBM top 20",
   "best_models": {
     "PM2.5": {
       "model": "LightGBM",
-      "rmse": 2.3794,
-      "mae": 1.5783,
-      "mape": 9.66,
-      "r2": 0.4645
+      "rmse": 2.4455,
+      "mae": 1.6176,
+      "mape": 9.91,
+      "r2": 0.4335
     },
     "PM10": {
       "model": "LightGBM",
-      "rmse": 2.8972,
-      "mae": 2.0625,
-      "mape": 11.55,
-      "r2": 0.4842
+      "rmse": 2.9783,
+      "mae": 2.1063,
+      "mape": 11.85,
+      "r2": 0.4543
     },
     "CO": {
       "model": "LightGBM",
-      "rmse": 415.6869,
-      "mae": 281.6643,
-      "mape": 11.31,
-      "r2": 0.4051
+      "rmse": 411.0324,
+      "mae": 281.2218,
+      "mape": 11.13,
+      "r2": 0.4169
     }
   },
   "features_selected": [
-    "pm25_roll_std_60",
+    "co_roll_mean_15",
     "pm25_roll_mean_60",
+    "pm25_roll_std_60",
     "temperature",
-    "co_roll_mean_60",
-    "co_roll_std_60",
     "hour",
-    "co_roll_min_30",
-    "co_roll_max_30",
-    "day_of_week",
     "pm25_roll_std_15",
-    "co_roll_std_15",
-    "co_roll_mean_30",
-    "pm10_roll_mean_15",
-    "co_lag_120",
-    "co_roll_std_30",
+    "day_of_week",
     "pm25_roll_mean_15",
-    "pm25_lag_15",
     "pm10_lag_60",
     "pm25_diff_1",
-    "co_roll_mean_15"
+    "pm10_roll_mean_15",
+    "pm10_diff_1",
+    "co_lag_15",
+    "co_ugm3",
+    "day_sin",
+    "pm25_roll_mean_5",
+    "pm25_diff_5",
+    "pm25_lag_15",
+    "hour_cos",
+    "temperature_change_5"
   ]
 }

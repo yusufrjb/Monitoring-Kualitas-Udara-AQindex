@@ -1,0 +1,31 @@
+{
+  "project_name": "Air Quality Monitoring & Forecasting System (AQMS) Real-Time",
+  "forecast_horizon": "60 minutes",
+  "frequency_sampling": "1 minute",
+  "evaluation_metrics_summary": {
+    "PM2.5": {
+      "best_model_architecture": "XGBoost",
+      "rmse": 2.428469094086461,
+      "mae": 1.6574508743330532,
+      "mape": 0.10319589819116805,
+      "r2": 0.47125622344891627,
+      "features_used_count": 31
+    },
+    "PM10": {
+      "best_model_architecture": "LightGBM",
+      "rmse": 2.248259256001545,
+      "mae": 1.60918758488422,
+      "mape": 0.09349178444947291,
+      "r2": 0.7327216010269546,
+      "features_used_count": 32
+    },
+    "CO": {
+      "best_model_architecture": "XGBoost",
+      "rmse": 321.9231806968475,
+      "mae": 242.48244503417226,
+      "mape": 0.08235271500831988,
+      "r2": 0.4724128971058529,
+      "features_used_count": 32
+    }
+  }
+}

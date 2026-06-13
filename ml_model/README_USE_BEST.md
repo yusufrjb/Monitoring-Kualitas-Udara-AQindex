@@ -1,15 +1,15 @@
-Usage notes for switching to best models
+Usage note - using best models for PM2.5/PM10
 
-- Feature flag: set environment variable `USE_BEST_MODEL=true` (default true) to prefer
-  artifacts named `best_{param}_forecast_1hour.pkl`.
-- If best artifacts missing, the code falls back to legacy `xgb_*` filenames when available.
-- The change removed blending/ensemble logic: model outputs are used directly.
+This file documents a minimal change: the forecasting script was updated to
+load the "best_*_forecast_1hour.pkl" models located at repository root for
+PM2.5 and PM10 while keeping the CO model unchanged.
 
-Testing
-- Run `python predict_time_series.py --json` to produce JSON-only output for quick checks.
-- Run `python predict_hourly_multi.py` to execute the hourly multi-parameter forecast.
+Important:
+- The "best" models at the repository root were trained with a different
+  feature pipeline than the internal `ml_model` models. They appear to be
+  XGBoost/LightGBM models saved at project root and include `feature_names`.
+- We intentionally chose the root-level `best_*` files per user instruction
+  and left CO as-is.
 
-Notes
-- Keep backup of previous blending logic in version control. If you want to preserve
-  the blending behavior for analysis, run both versions on a historical dataset and
-  compare distributions before full rollout.
+If predictions look off, revert MODEL_FILES in `predict_hourly_multi.py` to
+the original xgb_* files inside ml_model/.
