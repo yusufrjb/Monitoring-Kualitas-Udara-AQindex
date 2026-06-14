@@ -6856,3 +6856,1148 @@
 2026-06-13 06:01:09,230 [INFO]      [Hourly] 2026-06-13 06:01:08,863 [INFO] Selesai!
 2026-06-13 06:01:09,230 [INFO] Pipeline peramalan berhasil.
 2026-06-13 06:01:09,230 [INFO] Selesai dalam 6.03 detik. Tidur selama 0.90 menit...
+2026-06-13 08:41:28,679 [INFO] Watcher lock stale (PID 3464), melanjutkan...
+2026-06-13 08:41:28,680 [INFO] ==================================================
+2026-06-13 08:41:28,681 [INFO] LIVE FORECAST WATCHER (Interval: 1 Menit)
+2026-06-13 08:41:28,681 [INFO] ==================================================
+2026-06-13 08:41:31,224 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:41:33,005 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:41:33,009 [WARNING] Data sensor terakhir: 2026-06-12T23:07:37.340128+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 08:41:33,010 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 08:41:33,010 [INFO] Selesai dalam 4.33 detik. Tidur selama 0.93 menit...
+2026-06-13 08:42:32,475 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:42:32,750 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:42:32,751 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:42:32,752 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:42:48,099 [INFO]      [Hourly] 2026-06-13 08:42:46,895 [INFO] Selesai!
+2026-06-13 08:42:48,099 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:42:48,099 [INFO] Selesai dalam 19.42 detik. Tidur selama 0.68 menit...
+2026-06-13 08:43:30,224 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:43:30,372 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:43:30,373 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:43:30,373 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:43:57,100 [INFO]      [Hourly] 2026-06-13 08:43:55,869 [INFO] Selesai!
+2026-06-13 08:43:57,101 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:43:57,101 [INFO] Selesai dalam 28.42 detik. Tidur selama 0.53 menit...
+2026-06-13 08:44:30,817 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:44:30,979 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:44:30,981 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:44:30,981 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:44:42,372 [INFO]      [Hourly] 2026-06-13 08:44:41,218 [INFO] Selesai!
+2026-06-13 08:44:42,372 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:44:42,372 [INFO] Selesai dalam 13.69 detik. Tidur selama 0.77 menit...
+2026-06-13 08:45:31,275 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:45:31,458 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:45:31,459 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:45:31,460 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:45:45,685 [INFO]      [Hourly] 2026-06-13 08:45:44,686 [INFO] Selesai!
+2026-06-13 08:45:45,685 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:45:45,685 [INFO] Selesai dalam 17.00 detik. Tidur selama 0.72 menit...
+2026-06-13 08:46:32,569 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:46:33,052 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:46:33,054 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:46:33,054 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:46:40,754 [INFO]      [Hourly] 2026-06-13 08:46:40,050 [INFO] Selesai!
+2026-06-13 08:46:40,754 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:46:40,755 [INFO] Selesai dalam 12.07 detik. Tidur selama 0.80 menit...
+2026-06-13 08:47:29,522 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:47:29,667 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:47:29,669 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:47:29,669 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:47:39,344 [INFO]      [Hourly] 2026-06-13 08:47:38,709 [INFO] Selesai!
+2026-06-13 08:47:39,344 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:47:39,344 [INFO] Selesai dalam 10.65 detik. Tidur selama 0.82 menit...
+2026-06-13 08:48:30,160 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:48:30,367 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:48:30,371 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:48:30,371 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:48:40,528 [INFO]      [Hourly] 2026-06-13 08:48:39,449 [INFO] Selesai!
+2026-06-13 08:48:40,529 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:48:40,530 [INFO] Selesai dalam 11.83 detik. Tidur selama 0.80 menit...
+2026-06-13 08:49:30,860 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:49:31,134 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:49:31,136 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:49:31,136 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:49:46,566 [INFO]      [Hourly] 2026-06-13 08:49:45,888 [INFO] Selesai!
+2026-06-13 08:49:46,567 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:49:46,567 [INFO] Selesai dalam 17.86 detik. Tidur selama 0.70 menit...
+2026-06-13 08:50:30,496 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:50:30,734 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:50:30,738 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:50:30,738 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:50:40,131 [INFO]      [Hourly] 2026-06-13 08:50:39,471 [INFO] Selesai!
+2026-06-13 08:50:40,131 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:50:40,132 [INFO] Selesai dalam 11.42 detik. Tidur selama 0.81 menit...
+2026-06-13 08:51:30,301 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:51:30,452 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:51:30,453 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:51:30,453 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:51:42,211 [INFO]      [Hourly] 2026-06-13 08:51:41,438 [INFO] Selesai!
+2026-06-13 08:51:42,211 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:51:42,215 [INFO] Selesai dalam 13.51 detik. Tidur selama 0.77 menit...
+2026-06-13 08:52:30,138 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:52:30,358 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:52:30,360 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:52:30,360 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:52:42,463 [INFO]      [Hourly] 2026-06-13 08:52:41,843 [INFO] Selesai!
+2026-06-13 08:52:42,463 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:52:42,463 [INFO] Selesai dalam 13.75 detik. Tidur selama 0.77 menit...
+2026-06-13 08:53:30,114 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:53:30,291 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:53:30,294 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:53:30,295 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:53:38,996 [INFO]      [Hourly] 2026-06-13 08:53:38,276 [INFO] Selesai!
+2026-06-13 08:53:38,996 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:53:38,997 [INFO] Selesai dalam 10.28 detik. Tidur selama 0.83 menit...
+2026-06-13 08:54:30,164 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:54:30,313 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:54:30,321 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:54:30,322 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:54:42,053 [INFO]      [Hourly] 2026-06-13 08:54:41,365 [INFO] Selesai!
+2026-06-13 08:54:42,054 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:54:42,055 [INFO] Selesai dalam 13.34 detik. Tidur selama 0.78 menit...
+2026-06-13 08:55:30,070 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:55:30,221 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:55:30,223 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:55:30,223 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:55:41,019 [INFO]      [Hourly] 2026-06-13 08:55:40,180 [INFO] Selesai!
+2026-06-13 08:55:41,019 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:55:41,019 [INFO] Selesai dalam 12.30 detik. Tidur selama 0.79 menit...
+2026-06-13 08:56:30,145 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:56:30,390 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:56:30,391 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:56:30,391 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:56:39,777 [INFO]      [Hourly] 2026-06-13 08:56:38,481 [INFO] Selesai!
+2026-06-13 08:56:39,778 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:56:39,778 [INFO] Selesai dalam 11.06 detik. Tidur selama 0.82 menit...
+2026-06-13 08:57:30,181 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:57:32,477 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:57:32,479 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:57:32,479 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:57:47,961 [INFO]      [Hourly] 2026-06-13 08:57:47,216 [INFO] Selesai!
+2026-06-13 08:57:47,961 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:57:47,962 [INFO] Selesai dalam 19.24 detik. Tidur selama 0.68 menit...
+2026-06-13 08:58:31,719 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:58:31,877 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:58:31,880 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:58:31,880 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:58:48,538 [INFO]      [Hourly] 2026-06-13 08:58:47,393 [INFO] Selesai!
+2026-06-13 08:58:48,539 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:58:48,539 [INFO] Selesai dalam 19.82 detik. Tidur selama 0.67 menit...
+2026-06-13 08:59:30,189 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 08:59:30,331 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 08:59:30,335 [INFO] Memulai pipeline peramalan...
+2026-06-13 08:59:30,335 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 08:59:43,357 [INFO]      [Hourly] 2026-06-13 08:59:42,148 [INFO] Selesai!
+2026-06-13 08:59:43,358 [INFO] Pipeline peramalan berhasil.
+2026-06-13 08:59:43,358 [INFO] Selesai dalam 14.62 detik. Tidur selama 0.76 menit...
+2026-06-13 09:00:30,331 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:00:30,494 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:00:30,497 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:00:30,497 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:00:46,785 [INFO]      [Hourly] 2026-06-13 09:00:46,005 [INFO] Selesai!
+2026-06-13 09:00:46,786 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:00:46,786 [INFO] Selesai dalam 18.05 detik. Tidur selama 0.70 menit...
+2026-06-13 09:01:30,345 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:01:30,503 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:01:30,506 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:01:30,506 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:01:50,945 [INFO]      [Hourly] 2026-06-13 09:01:50,060 [INFO] Selesai!
+2026-06-13 09:01:50,946 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:01:50,946 [INFO] Selesai dalam 22.21 detik. Tidur selama 0.63 menit...
+2026-06-13 09:02:30,315 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:02:30,463 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:02:30,464 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:02:30,464 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:02:48,562 [INFO]      [Hourly] 2026-06-13 09:02:47,798 [INFO] Selesai!
+2026-06-13 09:02:48,563 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:02:48,563 [INFO] Selesai dalam 19.83 detik. Tidur selama 0.67 menit...
+2026-06-13 09:03:30,519 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:03:30,755 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:03:30,758 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:03:30,759 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:03:43,818 [INFO]      [Hourly] 2026-06-13 09:03:43,175 [INFO] Selesai!
+2026-06-13 09:03:43,818 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:03:43,818 [INFO] Selesai dalam 15.08 detik. Tidur selama 0.75 menit...
+2026-06-13 09:04:30,143 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:04:30,318 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:04:30,321 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:04:30,322 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:04:43,536 [INFO]      [Hourly] 2026-06-13 09:04:42,863 [INFO] Selesai!
+2026-06-13 09:04:43,536 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:04:43,537 [INFO] Selesai dalam 14.80 detik. Tidur selama 0.75 menit...
+2026-06-13 09:05:30,172 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:05:30,361 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:05:30,379 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:05:30,379 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:05:41,275 [INFO]      [Hourly] 2026-06-13 09:05:40,612 [INFO] Selesai!
+2026-06-13 09:05:41,276 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:05:41,276 [INFO] Selesai dalam 12.53 detik. Tidur selama 0.79 menit...
+2026-06-13 09:06:30,200 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:06:30,387 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:06:30,389 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:06:30,389 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:06:42,382 [INFO]      [Hourly] 2026-06-13 09:06:41,749 [INFO] Selesai!
+2026-06-13 09:06:42,382 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:06:42,383 [INFO] Selesai dalam 13.63 detik. Tidur selama 0.77 menit...
+2026-06-13 09:07:30,195 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:07:30,365 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:07:30,367 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:07:30,367 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:07:44,084 [INFO]      [Hourly] 2026-06-13 09:07:43,006 [INFO] Selesai!
+2026-06-13 09:07:44,084 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:07:44,085 [INFO] Selesai dalam 15.33 detik. Tidur selama 0.74 menit...
+2026-06-13 09:08:30,402 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:08:30,855 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:08:30,856 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:08:30,856 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:08:44,062 [INFO]      [Hourly] 2026-06-13 09:08:43,315 [INFO] Selesai!
+2026-06-13 09:08:44,063 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:08:44,063 [INFO] Selesai dalam 15.31 detik. Tidur selama 0.74 menit...
+2026-06-13 09:09:30,248 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:09:30,622 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:09:30,624 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:09:30,624 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:09:42,980 [INFO]      [Hourly] 2026-06-13 09:09:42,157 [INFO] Selesai!
+2026-06-13 09:09:42,980 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:09:42,980 [INFO] Selesai dalam 14.23 detik. Tidur selama 0.76 menit...
+2026-06-13 09:10:30,741 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:10:31,862 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:10:31,882 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:10:31,883 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:10:47,521 [INFO]      [Hourly] 2026-06-13 09:10:46,638 [INFO] Selesai!
+2026-06-13 09:10:47,522 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:10:47,522 [INFO] Selesai dalam 18.77 detik. Tidur selama 0.69 menit...
+2026-06-13 09:11:30,194 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:11:30,436 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:11:30,437 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:11:30,437 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:11:42,730 [INFO]      [Hourly] 2026-06-13 09:11:42,153 [INFO] Selesai!
+2026-06-13 09:11:42,730 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:11:42,730 [INFO] Selesai dalam 13.97 detik. Tidur selama 0.77 menit...
+2026-06-13 09:12:30,239 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:12:30,457 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:12:30,481 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:12:30,482 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:12:40,135 [INFO]      [Hourly] 2026-06-13 09:12:39,492 [INFO] Selesai!
+2026-06-13 09:12:40,135 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:12:40,135 [INFO] Selesai dalam 11.38 detik. Tidur selama 0.81 menit...
+2026-06-13 09:13:30,215 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:13:30,415 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:13:30,416 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:13:30,417 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:13:38,649 [INFO]      [Hourly] 2026-06-13 09:13:37,843 [INFO] Selesai!
+2026-06-13 09:13:38,649 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:13:38,649 [INFO] Selesai dalam 9.89 detik. Tidur selama 0.84 menit...
+2026-06-13 09:14:30,275 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:14:30,437 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:14:30,437 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:14:30,438 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:14:44,821 [INFO]      [Hourly] 2026-06-13 09:14:43,975 [INFO] Selesai!
+2026-06-13 09:14:44,821 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:14:44,821 [INFO] Selesai dalam 16.06 detik. Tidur selama 0.73 menit...
+2026-06-13 09:15:31,265 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:15:31,904 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:15:31,905 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:15:31,905 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:15:46,706 [INFO]      [Hourly] 2026-06-13 09:15:45,926 [INFO] Selesai!
+2026-06-13 09:15:46,707 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:15:46,707 [INFO] Selesai dalam 17.95 detik. Tidur selama 0.70 menit...
+2026-06-13 09:16:30,162 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:16:30,341 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:16:30,343 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:16:30,344 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:16:41,246 [INFO]      [Hourly] 2026-06-13 09:16:40,513 [INFO] Selesai!
+2026-06-13 09:16:41,246 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:16:41,247 [INFO] Selesai dalam 12.48 detik. Tidur selama 0.79 menit...
+2026-06-13 09:17:30,259 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:17:30,503 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:17:30,504 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:17:30,504 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:17:39,253 [INFO]      [Hourly] 2026-06-13 09:17:38,292 [INFO] Selesai!
+2026-06-13 09:17:39,253 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:17:39,253 [INFO] Selesai dalam 10.49 detik. Tidur selama 0.83 menit...
+2026-06-13 09:18:30,282 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:18:30,438 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:18:30,438 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:18:30,438 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:18:40,536 [INFO]      [Hourly] 2026-06-13 09:18:39,658 [INFO] Selesai!
+2026-06-13 09:18:40,536 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:18:40,537 [INFO] Selesai dalam 11.77 detik. Tidur selama 0.80 menit...
+2026-06-13 09:19:30,396 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:19:31,026 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:19:31,044 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:19:31,044 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:19:45,274 [INFO]      [Hourly] 2026-06-13 09:19:44,592 [INFO] Selesai!
+2026-06-13 09:19:45,274 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:19:45,274 [INFO] Selesai dalam 16.50 detik. Tidur selama 0.72 menit...
+2026-06-13 09:20:30,386 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:20:30,561 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:20:30,565 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:20:30,565 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:20:43,621 [INFO]      [Hourly] 2026-06-13 09:20:42,778 [INFO] Selesai!
+2026-06-13 09:20:43,622 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:20:43,663 [INFO] Selesai dalam 14.89 detik. Tidur selama 0.75 menit...
+2026-06-13 09:21:30,459 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:21:30,650 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:21:30,654 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:21:30,654 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:21:53,466 [INFO]      [Hourly] 2026-06-13 09:21:52,483 [INFO] Selesai!
+2026-06-13 09:21:53,466 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:21:53,466 [INFO] Selesai dalam 24.69 detik. Tidur selama 0.59 menit...
+2026-06-13 09:22:30,784 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:22:30,941 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:22:30,944 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:22:30,944 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:22:44,256 [INFO]      [Hourly] 2026-06-13 09:22:43,604 [INFO] Selesai!
+2026-06-13 09:22:44,256 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:22:44,256 [INFO] Selesai dalam 15.48 detik. Tidur selama 0.74 menit...
+2026-06-13 09:23:30,202 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:23:30,365 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:23:30,367 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:23:30,367 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:23:44,653 [INFO]      [Hourly] 2026-06-13 09:23:43,904 [INFO] Selesai!
+2026-06-13 09:23:44,654 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:23:44,654 [INFO] Selesai dalam 15.88 detik. Tidur selama 0.74 menit...
+2026-06-13 09:24:30,142 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:24:31,242 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:24:31,244 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:24:31,244 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:24:44,406 [INFO]      [Hourly] 2026-06-13 09:24:43,663 [INFO] Selesai!
+2026-06-13 09:24:44,406 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:24:44,406 [INFO] Selesai dalam 15.63 detik. Tidur selama 0.74 menit...
+2026-06-13 09:25:30,097 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:25:30,332 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:25:30,333 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:25:30,333 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:25:44,855 [INFO]      [Hourly] 2026-06-13 09:25:44,131 [INFO] Selesai!
+2026-06-13 09:25:44,855 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:25:44,855 [INFO] Selesai dalam 16.08 detik. Tidur selama 0.73 menit...
+2026-06-13 09:26:30,325 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:26:30,489 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:26:30,491 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:26:30,491 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:26:45,411 [INFO]      [Hourly] 2026-06-13 09:26:44,390 [INFO] Selesai!
+2026-06-13 09:26:45,411 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:26:45,411 [INFO] Selesai dalam 16.63 detik. Tidur selama 0.72 menit...
+2026-06-13 09:27:30,180 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:27:30,365 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:27:30,366 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:27:30,366 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:27:42,473 [INFO]      [Hourly] 2026-06-13 09:27:41,133 [INFO] Selesai!
+2026-06-13 09:27:42,473 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:27:42,473 [INFO] Selesai dalam 13.69 detik. Tidur selama 0.77 menit...
+2026-06-13 09:28:30,320 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:28:30,611 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:28:30,639 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:28:30,639 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:28:45,314 [INFO]      [Hourly] 2026-06-13 09:28:44,448 [INFO] Selesai!
+2026-06-13 09:28:45,315 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:28:45,315 [INFO] Selesai dalam 16.53 detik. Tidur selama 0.72 menit...
+2026-06-13 09:29:30,316 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:29:30,676 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:29:30,686 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:29:30,686 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:29:45,641 [INFO]      [Hourly] 2026-06-13 09:29:44,838 [INFO] Selesai!
+2026-06-13 09:29:45,643 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:29:45,644 [INFO] Selesai dalam 16.86 detik. Tidur selama 0.72 menit...
+2026-06-13 09:30:30,217 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:30:30,466 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:30:30,468 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:30:30,468 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:30:46,227 [INFO]      [Hourly] 2026-06-13 09:30:45,527 [INFO] Selesai!
+2026-06-13 09:30:46,227 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:30:46,228 [INFO] Selesai dalam 17.44 detik. Tidur selama 0.71 menit...
+2026-06-13 09:31:33,051 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:31:34,610 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:31:34,625 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:31:34,656 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:31:50,066 [INFO]      [Hourly] 2026-06-13 09:31:49,211 [INFO] Selesai!
+2026-06-13 09:31:50,067 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:31:50,067 [INFO] Selesai dalam 21.28 detik. Tidur selama 0.65 menit...
+2026-06-13 09:32:29,992 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:32:30,206 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:32:30,210 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:32:30,210 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:32:44,827 [INFO]      [Hourly] 2026-06-13 09:32:44,102 [INFO] Selesai!
+2026-06-13 09:32:44,828 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:32:44,828 [INFO] Selesai dalam 16.04 detik. Tidur selama 0.73 menit...
+2026-06-13 09:33:30,251 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:33:31,215 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:33:31,217 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:33:31,217 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:33:47,431 [INFO]      [Hourly] 2026-06-13 09:33:46,664 [INFO] Selesai!
+2026-06-13 09:33:47,431 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:33:47,431 [INFO] Selesai dalam 18.64 detik. Tidur selama 0.69 menit...
+2026-06-13 09:34:30,470 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:34:30,700 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:34:30,726 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:34:30,728 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:34:46,875 [INFO]      [Hourly] 2026-06-13 09:34:46,168 [INFO] Selesai!
+2026-06-13 09:34:46,876 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:34:46,876 [INFO] Selesai dalam 18.08 detik. Tidur selama 0.70 menit...
+2026-06-13 09:35:30,408 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:35:30,841 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:35:30,859 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:35:30,860 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:35:45,701 [INFO]      [Hourly] 2026-06-13 09:35:44,874 [INFO] Selesai!
+2026-06-13 09:35:45,704 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:35:45,708 [INFO] Selesai dalam 16.91 detik. Tidur selama 0.72 menit...
+2026-06-13 09:36:30,227 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:36:30,523 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:36:30,524 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:36:30,524 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:36:46,322 [INFO]      [Hourly] 2026-06-13 09:36:45,585 [INFO] Selesai!
+2026-06-13 09:36:46,323 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:36:46,323 [INFO] Selesai dalam 17.52 detik. Tidur selama 0.71 menit...
+2026-06-13 09:37:30,427 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:37:30,682 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:37:30,707 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:37:30,709 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:37:46,369 [INFO]      [Hourly] 2026-06-13 09:37:45,630 [INFO] Selesai!
+2026-06-13 09:37:46,370 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:37:46,371 [INFO] Selesai dalam 17.57 detik. Tidur selama 0.71 menit...
+2026-06-13 09:38:30,176 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:38:30,410 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:38:30,411 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:38:30,413 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:38:52,203 [INFO]      [Hourly] 2026-06-13 09:38:51,504 [INFO] Selesai!
+2026-06-13 09:38:52,204 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:38:52,204 [INFO] Selesai dalam 23.40 detik. Tidur selama 0.61 menit...
+2026-06-13 09:39:30,231 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:39:30,445 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:39:30,448 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:39:30,449 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:39:39,354 [INFO]      [Hourly] 2026-06-13 09:39:38,944 [INFO] Selesai!
+2026-06-13 09:39:39,354 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:39:39,354 [INFO] Selesai dalam 10.55 detik. Tidur selama 0.82 menit...
+2026-06-13 09:40:29,573 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:40:30,388 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:40:30,401 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:40:30,401 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:40:39,532 [INFO]      [Hourly] 2026-06-13 09:40:39,023 [INFO] Selesai!
+2026-06-13 09:40:39,534 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:40:39,534 [INFO] Selesai dalam 10.72 detik. Tidur selama 0.82 menit...
+2026-06-13 09:41:29,569 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:41:29,804 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:41:29,814 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:41:29,815 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:41:50,744 [INFO]      [Hourly] 2026-06-13 09:41:50,114 [INFO] Selesai!
+2026-06-13 09:41:50,744 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:41:50,745 [INFO] Selesai dalam 21.93 detik. Tidur selama 0.63 menit...
+2026-06-13 09:42:29,804 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:42:30,098 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:42:30,110 [INFO] Memulai pipeline peramalan...
+2026-06-13 09:42:30,111 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 09:42:40,404 [INFO]      [Hourly] 2026-06-13 09:42:39,864 [INFO] Selesai!
+2026-06-13 09:42:40,404 [INFO] Pipeline peramalan berhasil.
+2026-06-13 09:42:40,405 [INFO] Selesai dalam 11.59 detik. Tidur selama 0.81 menit...
+2026-06-13 09:43:29,458 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:43:29,714 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:43:29,724 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:43:29,725 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:43:29,727 [INFO] Selesai dalam 0.91 detik. Tidur selama 0.98 menit...
+2026-06-13 09:44:29,433 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:44:29,627 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:44:29,628 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:44:29,630 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:44:29,630 [INFO] Selesai dalam 0.82 detik. Tidur selama 0.99 menit...
+2026-06-13 09:45:29,449 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:45:29,590 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:45:29,591 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:45:29,591 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:45:29,591 [INFO] Selesai dalam 0.78 detik. Tidur selama 0.99 menit...
+2026-06-13 09:46:29,393 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:46:29,604 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:46:29,605 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:46:29,605 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:46:29,606 [INFO] Selesai dalam 0.79 detik. Tidur selama 0.99 menit...
+2026-06-13 09:47:29,412 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:47:29,601 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:47:29,601 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:47:29,602 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:47:29,602 [INFO] Selesai dalam 0.78 detik. Tidur selama 0.99 menit...
+2026-06-13 09:48:29,387 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:48:29,536 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:48:29,538 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:48:29,538 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:48:29,538 [INFO] Selesai dalam 0.72 detik. Tidur selama 0.99 menit...
+2026-06-13 09:49:29,306 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:49:29,462 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:49:29,463 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:49:29,463 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:49:29,463 [INFO] Selesai dalam 0.64 detik. Tidur selama 0.99 menit...
+2026-06-13 09:50:29,436 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:50:29,634 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:50:29,636 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:50:29,636 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:50:29,636 [INFO] Selesai dalam 0.82 detik. Tidur selama 0.99 menit...
+2026-06-13 09:51:29,375 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:51:29,529 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:51:29,539 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:51:29,539 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:51:29,539 [INFO] Selesai dalam 0.72 detik. Tidur selama 0.99 menit...
+2026-06-13 09:52:29,362 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:52:29,531 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:52:29,533 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:52:29,533 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:52:29,533 [INFO] Selesai dalam 0.71 detik. Tidur selama 0.99 menit...
+2026-06-13 09:53:29,387 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:53:30,428 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:53:30,429 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:53:30,429 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:53:30,429 [INFO] Selesai dalam 1.61 detik. Tidur selama 0.97 menit...
+2026-06-13 09:54:29,703 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:54:29,883 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:54:29,883 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:54:29,883 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:54:29,883 [INFO] Selesai dalam 1.06 detik. Tidur selama 0.98 menit...
+2026-06-13 09:55:29,528 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:55:29,917 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:55:29,946 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:55:29,946 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:55:29,946 [INFO] Selesai dalam 1.12 detik. Tidur selama 0.98 menit...
+2026-06-13 09:56:29,443 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:56:30,004 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:56:30,004 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:56:30,004 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:56:30,004 [INFO] Selesai dalam 1.18 detik. Tidur selama 0.98 menit...
+2026-06-13 09:57:29,437 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:57:29,680 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:57:29,681 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:57:29,681 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:57:29,682 [INFO] Selesai dalam 0.85 detik. Tidur selama 0.99 menit...
+2026-06-13 09:58:29,409 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:58:29,614 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:58:29,616 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:58:29,616 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:58:29,616 [INFO] Selesai dalam 0.79 detik. Tidur selama 0.99 menit...
+2026-06-13 09:59:29,466 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 09:59:30,072 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 09:59:30,073 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 09:59:30,074 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 09:59:30,074 [INFO] Selesai dalam 1.24 detik. Tidur selama 0.98 menit...
+2026-06-13 10:00:29,444 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:00:29,695 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:00:29,697 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:00:29,697 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:00:29,697 [INFO] Selesai dalam 0.86 detik. Tidur selama 0.99 menit...
+2026-06-13 10:01:29,473 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:01:29,688 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:01:29,690 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:01:29,690 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:01:29,690 [INFO] Selesai dalam 0.85 detik. Tidur selama 0.99 menit...
+2026-06-13 10:02:29,571 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:02:30,534 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:02:30,535 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:02:30,535 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:02:30,535 [INFO] Selesai dalam 1.70 detik. Tidur selama 0.97 menit...
+2026-06-13 10:03:31,067 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:03:31,292 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:03:31,328 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:03:31,335 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:03:31,335 [INFO] Selesai dalam 2.48 detik. Tidur selama 0.96 menit...
+2026-06-13 10:04:31,199 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:04:31,500 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:04:31,543 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:04:31,546 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:04:31,548 [INFO] Selesai dalam 2.69 detik. Tidur selama 0.96 menit...
+2026-06-13 10:05:30,536 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:05:31,098 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:05:31,143 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:05:31,143 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:05:31,143 [INFO] Selesai dalam 2.26 detik. Tidur selama 0.96 menit...
+2026-06-13 10:06:30,449 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:06:30,700 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:06:30,705 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:06:30,705 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:06:30,705 [INFO] Selesai dalam 1.82 detik. Tidur selama 0.97 menit...
+2026-06-13 10:07:30,828 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:07:31,187 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:07:31,224 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:07:31,225 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:07:31,226 [INFO] Selesai dalam 2.33 detik. Tidur selama 0.96 menit...
+2026-06-13 10:08:30,304 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:08:30,520 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:08:30,521 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:08:30,521 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:08:30,521 [INFO] Selesai dalam 1.63 detik. Tidur selama 0.97 menit...
+2026-06-13 10:09:30,275 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:09:30,448 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:09:30,450 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:09:30,450 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:09:30,450 [INFO] Selesai dalam 1.55 detik. Tidur selama 0.97 menit...
+2026-06-13 10:10:30,100 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:10:30,276 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:10:30,279 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:10:30,279 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:10:30,279 [INFO] Selesai dalam 1.38 detik. Tidur selama 0.98 menit...
+2026-06-13 10:11:30,022 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:11:30,421 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:11:30,423 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:11:30,424 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:11:30,424 [INFO] Selesai dalam 1.53 detik. Tidur selama 0.97 menit...
+2026-06-13 10:12:30,414 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:12:30,623 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:12:30,624 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:12:30,625 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:12:30,625 [INFO] Selesai dalam 1.72 detik. Tidur selama 0.97 menit...
+2026-06-13 10:13:30,374 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:13:30,809 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:13:30,812 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:13:30,813 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:13:30,813 [INFO] Selesai dalam 1.91 detik. Tidur selama 0.97 menit...
+2026-06-13 10:14:32,507 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:14:33,586 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:14:33,587 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:14:33,588 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:14:33,588 [INFO] Selesai dalam 4.68 detik. Tidur selama 0.92 menit...
+2026-06-13 10:15:30,658 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:15:31,026 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:15:31,029 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:15:31,029 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:15:31,029 [INFO] Selesai dalam 2.12 detik. Tidur selama 0.96 menit...
+2026-06-13 10:16:30,378 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:16:30,596 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:16:30,599 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:16:30,600 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:16:30,600 [INFO] Selesai dalam 1.69 detik. Tidur selama 0.97 menit...
+2026-06-13 10:17:30,394 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:17:30,678 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:17:30,679 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:17:30,679 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:17:30,679 [INFO] Selesai dalam 1.77 detik. Tidur selama 0.97 menit...
+2026-06-13 10:18:31,100 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:18:32,404 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:18:32,418 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:18:32,419 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:18:32,419 [INFO] Selesai dalam 3.51 detik. Tidur selama 0.94 menit...
+2026-06-13 10:19:41,357 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:19:54,045 [ERROR] Gagal cek data sensor: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-13 10:19:54,045 [INFO] Memulai pipeline peramalan...
+2026-06-13 10:19:54,045 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 10:20:36,293 [INFO]      [Hourly] 2026-06-13 10:20:35,408 [INFO] Selesai!
+2026-06-13 10:20:36,293 [INFO] Pipeline peramalan berhasil.
+2026-06-13 10:20:36,294 [INFO] Selesai dalam 67.38 detik. Tidur selama 0.00 menit...
+2026-06-13 10:20:46,450 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:20:51,003 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:20:51,018 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:20:51,019 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:20:51,019 [INFO] Selesai dalam 14.72 detik. Tidur selama 0.75 menit...
+2026-06-13 10:21:38,211 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:21:38,435 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:21:38,464 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:21:38,464 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:21:38,466 [INFO] Selesai dalam 2.16 detik. Tidur selama 0.96 menit...
+2026-06-13 10:22:37,165 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:22:37,434 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:22:37,450 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:22:37,450 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:22:37,451 [INFO] Selesai dalam 1.14 detik. Tidur selama 0.98 menit...
+2026-06-13 10:23:39,718 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:23:40,011 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:23:40,077 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:23:40,078 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:23:40,079 [INFO] Selesai dalam 3.76 detik. Tidur selama 0.94 menit...
+2026-06-13 10:24:38,305 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:24:38,595 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:24:38,630 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:24:38,631 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:24:38,631 [INFO] Selesai dalam 2.30 detik. Tidur selama 0.96 menit...
+2026-06-13 10:25:41,477 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:25:44,539 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:25:47,710 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:25:49,173 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:25:49,244 [INFO] Selesai dalam 12.83 detik. Tidur selama 0.79 menit...
+2026-06-13 10:26:37,947 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:26:38,298 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:26:38,301 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:26:38,301 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:26:38,301 [INFO] Selesai dalam 1.89 detik. Tidur selama 0.97 menit...
+2026-06-13 10:27:39,067 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:27:39,316 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:27:39,333 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:27:39,333 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:27:39,333 [INFO] Selesai dalam 2.92 detik. Tidur selama 0.95 menit...
+2026-06-13 10:28:41,594 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:30:43,456 [ERROR] Gagal cek data sensor: _ssl.c:989: The handshake operation timed out
+2026-06-13 10:30:43,486 [INFO] Memulai pipeline peramalan...
+2026-06-13 10:30:43,486 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-13 10:31:16,209 [INFO]      [Hourly] 2026-06-13 10:31:15,375 [INFO] Selesai!
+2026-06-13 10:31:16,222 [INFO] Pipeline peramalan berhasil.
+2026-06-13 10:31:16,227 [INFO] Selesai dalam 159.81 detik. Tidur selama 0.00 menit...
+2026-06-13 10:31:19,784 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:31:21,247 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:31:21,263 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:31:21,268 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:31:21,269 [INFO] Selesai dalam 5.03 detik. Tidur selama 0.92 menit...
+2026-06-13 10:32:17,590 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:32:19,261 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:32:19,262 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:32:19,262 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:32:19,263 [INFO] Selesai dalam 3.03 detik. Tidur selama 0.95 menit...
+2026-06-13 10:33:17,846 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:33:18,296 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:33:18,299 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:33:18,299 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:33:18,299 [INFO] Selesai dalam 2.06 detik. Tidur selama 0.97 menit...
+2026-06-13 10:34:18,307 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:34:18,533 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:34:18,534 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:34:18,534 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:34:18,534 [INFO] Selesai dalam 2.30 detik. Tidur selama 0.96 menit...
+2026-06-13 10:35:17,872 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:35:18,078 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:35:18,079 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:35:18,080 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:35:18,080 [INFO] Selesai dalam 1.84 detik. Tidur selama 0.97 menit...
+2026-06-13 10:36:17,726 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:36:17,922 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:36:17,924 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:36:17,924 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:36:17,924 [INFO] Selesai dalam 1.68 detik. Tidur selama 0.97 menit...
+2026-06-13 10:37:17,784 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:37:18,204 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:37:18,205 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:37:18,205 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:37:18,206 [INFO] Selesai dalam 1.96 detik. Tidur selama 0.97 menit...
+2026-06-13 10:38:17,624 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:38:18,083 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:38:18,085 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:38:18,085 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:38:18,086 [INFO] Selesai dalam 1.84 detik. Tidur selama 0.97 menit...
+2026-06-13 10:39:18,221 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:39:18,618 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:39:18,625 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:39:18,625 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:39:18,626 [INFO] Selesai dalam 2.38 detik. Tidur selama 0.96 menit...
+2026-06-13 10:40:17,631 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:40:17,771 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:40:17,772 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:40:17,772 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:40:17,773 [INFO] Selesai dalam 1.53 detik. Tidur selama 0.97 menit...
+2026-06-13 10:41:21,186 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:41:22,915 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:41:22,952 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:41:22,954 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:41:22,955 [INFO] Selesai dalam 6.71 detik. Tidur selama 0.89 menit...
+2026-06-13 10:42:17,849 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:42:18,040 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:42:18,042 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:42:18,042 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:42:18,042 [INFO] Selesai dalam 1.79 detik. Tidur selama 0.97 menit...
+2026-06-13 10:43:17,939 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:43:19,535 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:43:19,537 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:43:19,537 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:43:19,537 [INFO] Selesai dalam 3.29 detik. Tidur selama 0.95 menit...
+2026-06-13 10:44:17,865 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:44:18,291 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:44:18,292 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:44:18,293 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:44:18,293 [INFO] Selesai dalam 2.04 detik. Tidur selama 0.97 menit...
+2026-06-13 10:45:19,148 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:45:19,943 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:45:19,990 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:45:19,991 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:45:19,993 [INFO] Selesai dalam 3.73 detik. Tidur selama 0.94 menit...
+2026-06-13 10:46:18,583 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:46:18,891 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:46:18,892 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:46:18,892 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:46:18,894 [INFO] Selesai dalam 2.63 detik. Tidur selama 0.96 menit...
+2026-06-13 10:47:17,995 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:47:23,534 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:47:23,538 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:47:23,538 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:47:23,539 [INFO] Selesai dalam 7.28 detik. Tidur selama 0.88 menit...
+2026-06-13 10:48:17,993 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:48:18,308 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:48:18,345 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:48:18,345 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:48:18,348 [INFO] Selesai dalam 2.08 detik. Tidur selama 0.97 menit...
+2026-06-13 10:49:16,812 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:49:17,126 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:49:17,127 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:49:17,127 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:49:17,127 [INFO] Selesai dalam 0.86 detik. Tidur selama 0.99 menit...
+2026-06-13 10:50:21,926 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:50:22,143 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:50:22,146 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:50:22,146 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:50:22,146 [INFO] Selesai dalam 5.88 detik. Tidur selama 0.90 menit...
+2026-06-13 10:51:24,955 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:51:32,603 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:51:32,609 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:51:32,611 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:51:32,611 [INFO] Selesai dalam 16.34 detik. Tidur selama 0.73 menit...
+2026-06-13 10:52:17,687 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:52:18,010 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:52:18,013 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:52:18,013 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:52:18,013 [INFO] Selesai dalam 1.74 detik. Tidur selama 0.97 menit...
+2026-06-13 10:53:17,419 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:53:17,904 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:53:17,905 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:53:17,905 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:53:17,905 [INFO] Selesai dalam 1.63 detik. Tidur selama 0.97 menit...
+2026-06-13 10:54:16,873 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:54:17,098 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:54:17,099 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:54:17,099 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:54:17,100 [INFO] Selesai dalam 0.82 detik. Tidur selama 0.99 menit...
+2026-06-13 10:55:17,951 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:55:19,625 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:55:19,640 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:55:19,642 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:55:19,643 [INFO] Selesai dalam 3.36 detik. Tidur selama 0.94 menit...
+2026-06-13 10:56:18,208 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:56:19,667 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:56:19,667 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:56:19,668 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:56:19,668 [INFO] Selesai dalam 3.39 detik. Tidur selama 0.94 menit...
+2026-06-13 10:57:19,300 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:57:24,343 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:57:24,346 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:57:24,346 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:57:24,346 [INFO] Selesai dalam 8.06 detik. Tidur selama 0.87 menit...
+2026-06-13 10:58:18,946 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:58:21,970 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:58:21,970 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:58:21,970 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:58:21,970 [INFO] Selesai dalam 5.68 detik. Tidur selama 0.91 menit...
+2026-06-13 10:59:17,628 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 10:59:17,913 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 10:59:17,914 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 10:59:17,915 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 10:59:17,915 [INFO] Selesai dalam 1.63 detik. Tidur selama 0.97 menit...
+2026-06-13 11:00:17,582 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:00:24,971 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:00:24,974 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:00:24,974 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:00:24,975 [INFO] Selesai dalam 8.68 detik. Tidur selama 0.86 menit...
+2026-06-13 11:01:17,965 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:01:18,552 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:01:18,554 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:01:18,554 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:01:18,554 [INFO] Selesai dalam 2.26 detik. Tidur selama 0.96 menit...
+2026-06-13 11:02:19,918 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:02:21,254 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:02:21,257 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:02:21,257 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:02:21,258 [INFO] Selesai dalam 4.96 detik. Tidur selama 0.92 menit...
+2026-06-13 11:03:25,451 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:03:27,395 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:03:27,424 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:03:27,426 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:03:27,426 [INFO] Selesai dalam 11.01 detik. Tidur selama 0.82 menit...
+2026-06-13 11:04:19,080 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:04:20,434 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:04:20,434 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:04:20,436 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:04:20,436 [INFO] Selesai dalam 4.02 detik. Tidur selama 0.93 menit...
+2026-06-13 11:05:18,080 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:05:19,398 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:05:19,400 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:05:19,401 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:05:19,401 [INFO] Selesai dalam 2.98 detik. Tidur selama 0.95 menit...
+2026-06-13 11:06:17,960 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:06:18,223 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:06:18,225 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:06:18,226 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:06:18,226 [INFO] Selesai dalam 1.81 detik. Tidur selama 0.97 menit...
+2026-06-13 11:07:18,757 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:07:23,444 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:07:23,500 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:07:23,506 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:07:23,508 [INFO] Selesai dalam 7.08 detik. Tidur selama 0.88 menit...
+2026-06-13 11:08:17,850 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:08:18,562 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:08:18,565 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:08:18,565 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:08:18,565 [INFO] Selesai dalam 2.13 detik. Tidur selama 0.96 menit...
+2026-06-13 11:09:19,562 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:09:19,811 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:09:19,875 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:09:19,875 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:09:19,875 [INFO] Selesai dalam 3.44 detik. Tidur selama 0.94 menit...
+2026-06-13 11:10:17,812 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:10:18,022 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:10:18,023 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:10:18,023 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:10:18,023 [INFO] Selesai dalam 1.59 detik. Tidur selama 0.97 menit...
+2026-06-13 11:11:17,924 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:11:19,224 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:11:19,225 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:11:19,225 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:11:19,225 [INFO] Selesai dalam 2.79 detik. Tidur selama 0.95 menit...
+2026-06-13 11:12:18,085 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:12:19,317 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:12:19,383 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:12:19,384 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:12:19,384 [INFO] Selesai dalam 2.95 detik. Tidur selama 0.95 menit...
+2026-06-13 11:13:17,822 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:13:18,457 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:13:18,535 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:13:18,535 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:13:18,535 [INFO] Selesai dalam 2.10 detik. Tidur selama 0.97 menit...
+2026-06-13 11:14:17,986 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:14:18,277 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:14:18,364 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:14:18,366 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:14:18,367 [INFO] Selesai dalam 1.92 detik. Tidur selama 0.97 menit...
+2026-06-13 11:15:17,994 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:15:18,367 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:15:18,368 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:15:18,368 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:15:18,369 [INFO] Selesai dalam 1.92 detik. Tidur selama 0.97 menit...
+2026-06-13 11:16:17,810 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:16:18,045 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:16:18,047 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:16:18,047 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:16:18,048 [INFO] Selesai dalam 1.60 detik. Tidur selama 0.97 menit...
+2026-06-13 11:17:18,074 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:17:18,661 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:17:18,670 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:17:18,671 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:17:18,672 [INFO] Selesai dalam 2.22 detik. Tidur selama 0.96 menit...
+2026-06-13 11:18:18,648 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:18:18,948 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:18:18,950 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:18:18,951 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:18:18,951 [INFO] Selesai dalam 2.50 detik. Tidur selama 0.96 menit...
+2026-06-13 11:19:17,954 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:19:18,706 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:19:18,722 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:19:18,722 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:19:18,723 [INFO] Selesai dalam 2.26 detik. Tidur selama 0.96 menit...
+2026-06-13 11:20:17,788 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-13 11:20:18,084 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-13 11:20:18,153 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-13 11:20:18,154 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-13 11:20:18,154 [INFO] Selesai dalam 1.69 detik. Tidur selama 0.97 menit...
+2026-06-13 11:20:49,333 [INFO] Watcher dimatikan oleh pengguna.
+2026-06-14 16:47:37,321 [INFO] ==================================================
+2026-06-14 16:47:37,321 [INFO] LIVE FORECAST WATCHER (Interval: 1 Menit)
+2026-06-14 16:47:37,321 [INFO] ==================================================
+2026-06-14 16:47:38,840 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:47:40,122 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:47:40,126 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-14 16:47:40,126 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-14 16:47:40,126 [INFO] Selesai dalam 2.81 detik. Tidur selama 0.95 menit...
+2026-06-14 16:48:38,726 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:48:39,008 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:48:39,009 [WARNING] Data sensor terakhir: 2026-06-13T02:12:36.016918+00:00 — lebih dari 30 menit. Sensor offline.
+2026-06-14 16:48:39,009 [INFO] Sensor offline — lewati siklus prediksi.
+2026-06-14 16:48:39,010 [INFO] Selesai dalam 1.69 detik. Tidur selama 0.97 menit...
+2026-06-14 16:49:39,043 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:49:39,257 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:49:39,258 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:49:39,258 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:49:51,976 [INFO]      [Hourly] 2026-06-14 16:49:50,819 [INFO] Selesai!
+2026-06-14 16:49:51,976 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:49:51,976 [INFO] Selesai dalam 14.65 detik. Tidur selama 0.76 menit...
+2026-06-14 16:50:39,648 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:50:39,888 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:50:39,890 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:50:39,890 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:50:45,317 [INFO]      [Hourly] 2026-06-14 16:50:44,267 [INFO] Selesai!
+2026-06-14 16:50:45,317 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:50:45,317 [INFO] Selesai dalam 7.99 detik. Tidur selama 0.87 menit...
+2026-06-14 16:51:38,737 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:51:40,064 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:51:40,064 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:51:40,065 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:51:47,413 [INFO]      [Hourly] 2026-06-14 16:51:46,559 [INFO] Selesai!
+2026-06-14 16:51:47,413 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:51:47,413 [INFO] Selesai dalam 10.09 detik. Tidur selama 0.83 menit...
+2026-06-14 16:52:37,866 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:52:39,343 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:52:39,344 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:52:39,344 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:52:44,822 [INFO]      [Hourly] 2026-06-14 16:52:43,945 [INFO] Selesai!
+2026-06-14 16:52:44,822 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:52:44,822 [INFO] Selesai dalam 7.50 detik. Tidur selama 0.88 menit...
+2026-06-14 16:53:37,828 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:53:38,049 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:53:38,050 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:53:38,050 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:53:43,720 [INFO]      [Hourly] 2026-06-14 16:53:43,206 [INFO] Selesai!
+2026-06-14 16:53:43,721 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:53:43,721 [INFO] Selesai dalam 6.39 detik. Tidur selama 0.89 menit...
+2026-06-14 16:54:37,811 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:54:37,942 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:54:37,943 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:54:37,943 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:54:44,061 [INFO]      [Hourly] 2026-06-14 16:54:43,188 [INFO] Selesai!
+2026-06-14 16:54:44,061 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:54:44,061 [INFO] Selesai dalam 6.73 detik. Tidur selama 0.89 menit...
+2026-06-14 16:55:37,887 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:55:38,035 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:55:38,035 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:55:38,035 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:55:43,851 [INFO]      [Hourly] 2026-06-14 16:55:43,032 [INFO] Selesai!
+2026-06-14 16:55:43,851 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:55:43,851 [INFO] Selesai dalam 6.52 detik. Tidur selama 0.89 menit...
+2026-06-14 16:56:37,977 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:56:38,131 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:56:38,131 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:56:38,131 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:56:45,069 [INFO]      [Hourly] 2026-06-14 16:56:44,154 [INFO] Selesai!
+2026-06-14 16:56:45,069 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:56:45,069 [INFO] Selesai dalam 7.74 detik. Tidur selama 0.87 menit...
+2026-06-14 16:57:37,809 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:57:37,988 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:57:37,989 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:57:37,989 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:57:46,676 [INFO]      [Hourly] 2026-06-14 16:57:45,587 [INFO] Selesai!
+2026-06-14 16:57:46,676 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:57:46,676 [INFO] Selesai dalam 9.34 detik. Tidur selama 0.84 menit...
+2026-06-14 16:58:38,644 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:58:39,875 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:58:39,877 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:58:39,877 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:58:48,538 [INFO]      [Hourly] 2026-06-14 16:58:47,403 [INFO] Selesai!
+2026-06-14 16:58:48,539 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:58:48,539 [INFO] Selesai dalam 11.21 detik. Tidur selama 0.81 menit...
+2026-06-14 16:59:38,583 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 16:59:38,898 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 16:59:38,900 [INFO] Memulai pipeline peramalan...
+2026-06-14 16:59:38,900 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 16:59:47,013 [INFO]      [Hourly] 2026-06-14 16:59:45,926 [INFO] Selesai!
+2026-06-14 16:59:47,015 [INFO] Pipeline peramalan berhasil.
+2026-06-14 16:59:47,015 [INFO] Selesai dalam 9.68 detik. Tidur selama 0.84 menit...
+2026-06-14 17:00:38,785 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:00:39,254 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:00:39,256 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:00:39,257 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:00:47,120 [INFO]      [Hourly] 2026-06-14 17:00:46,078 [INFO] Selesai!
+2026-06-14 17:00:47,121 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:00:47,121 [INFO] Selesai dalam 9.79 detik. Tidur selama 0.84 menit...
+2026-06-14 17:01:38,595 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:01:38,760 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:01:38,762 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:01:38,762 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:01:46,526 [INFO]      [Hourly] 2026-06-14 17:01:45,477 [INFO] Selesai!
+2026-06-14 17:01:46,526 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:01:46,526 [INFO] Selesai dalam 9.19 detik. Tidur selama 0.85 menit...
+2026-06-14 17:02:38,578 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:02:38,737 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:02:38,738 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:02:38,738 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:02:46,367 [INFO]      [Hourly] 2026-06-14 17:02:45,345 [INFO] Selesai!
+2026-06-14 17:02:46,367 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:02:46,367 [INFO] Selesai dalam 9.03 detik. Tidur selama 0.85 menit...
+2026-06-14 17:03:38,583 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:03:38,734 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:03:38,735 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:03:38,736 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:03:47,638 [INFO]      [Hourly] 2026-06-14 17:03:46,578 [INFO] Selesai!
+2026-06-14 17:03:47,638 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:03:47,638 [INFO] Selesai dalam 10.30 detik. Tidur selama 0.83 menit...
+2026-06-14 17:04:38,671 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:04:39,023 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:04:39,024 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:04:39,024 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:04:46,127 [INFO]      [Hourly] 2026-06-14 17:04:45,709 [INFO] Selesai!
+2026-06-14 17:04:46,128 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:04:46,128 [INFO] Selesai dalam 8.79 detik. Tidur selama 0.85 menit...
+2026-06-14 17:05:38,680 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:05:38,873 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:05:38,874 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:05:38,874 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:05:50,834 [INFO]      [Hourly] 2026-06-14 17:05:49,663 [INFO] Selesai!
+2026-06-14 17:05:50,835 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:05:50,835 [INFO] Selesai dalam 13.49 detik. Tidur selama 0.78 menit...
+2026-06-14 17:06:37,852 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:06:38,026 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:06:38,027 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:06:38,027 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:06:44,857 [INFO]      [Hourly] 2026-06-14 17:06:44,014 [INFO] Selesai!
+2026-06-14 17:06:44,857 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:06:44,858 [INFO] Selesai dalam 7.52 detik. Tidur selama 0.87 menit...
+2026-06-14 17:07:38,699 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:07:39,001 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:07:39,003 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:07:39,004 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:07:46,656 [INFO]      [Hourly] 2026-06-14 17:07:45,605 [INFO] Selesai!
+2026-06-14 17:07:46,657 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:07:46,657 [INFO] Selesai dalam 9.31 detik. Tidur selama 0.84 menit...
+2026-06-14 17:08:38,754 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:08:39,739 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:08:39,741 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:08:39,742 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:08:47,530 [INFO]      [Hourly] 2026-06-14 17:08:46,488 [INFO] Selesai!
+2026-06-14 17:08:47,531 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:08:47,531 [INFO] Selesai dalam 10.19 detik. Tidur selama 0.83 menit...
+2026-06-14 17:09:38,642 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:09:38,847 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:09:38,849 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:09:38,849 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:09:46,626 [INFO]      [Hourly] 2026-06-14 17:09:45,589 [INFO] Selesai!
+2026-06-14 17:09:46,626 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:09:46,626 [INFO] Selesai dalam 9.28 detik. Tidur selama 0.85 menit...
+2026-06-14 17:10:38,685 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:10:38,835 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:10:38,837 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:10:38,837 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:10:46,440 [INFO]      [Hourly] 2026-06-14 17:10:45,408 [INFO] Selesai!
+2026-06-14 17:10:46,440 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:10:46,440 [INFO] Selesai dalam 9.05 detik. Tidur selama 0.85 menit...
+2026-06-14 17:11:38,674 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:11:38,845 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:11:38,846 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:11:38,846 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:11:46,518 [INFO]      [Hourly] 2026-06-14 17:11:45,505 [INFO] Selesai!
+2026-06-14 17:11:46,518 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:11:46,518 [INFO] Selesai dalam 9.13 detik. Tidur selama 0.85 menit...
+2026-06-14 17:12:38,881 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:12:40,625 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:12:40,626 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:12:40,626 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:12:48,464 [INFO]      [Hourly] 2026-06-14 17:12:47,441 [INFO] Selesai!
+2026-06-14 17:12:48,464 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:12:48,464 [INFO] Selesai dalam 11.08 detik. Tidur selama 0.82 menit...
+2026-06-14 17:13:38,675 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:13:38,871 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:13:38,873 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:13:38,873 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:13:48,196 [INFO]      [Hourly] 2026-06-14 17:13:47,164 [INFO] Selesai!
+2026-06-14 17:13:48,196 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:13:48,196 [INFO] Selesai dalam 10.81 detik. Tidur selama 0.82 menit...
+2026-06-14 17:14:38,798 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:14:39,010 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:14:39,012 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:14:39,012 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:14:46,832 [INFO]      [Hourly] 2026-06-14 17:14:45,782 [INFO] Selesai!
+2026-06-14 17:14:46,832 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:14:46,832 [INFO] Selesai dalam 9.44 detik. Tidur selama 0.84 menit...
+2026-06-14 17:15:38,669 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:15:38,878 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:15:38,880 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:15:38,880 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:15:46,871 [INFO]      [Hourly] 2026-06-14 17:15:45,821 [INFO] Selesai!
+2026-06-14 17:15:46,872 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:15:46,872 [INFO] Selesai dalam 9.48 detik. Tidur selama 0.84 menit...
+2026-06-14 17:16:38,865 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:16:39,059 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:16:39,060 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:16:39,061 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:16:47,415 [INFO]      [Hourly] 2026-06-14 17:16:46,369 [INFO] Selesai!
+2026-06-14 17:16:47,415 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:16:47,415 [INFO] Selesai dalam 10.02 detik. Tidur selama 0.83 menit...
+2026-06-14 17:17:40,164 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:17:40,324 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:17:40,325 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:17:40,325 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:17:49,772 [INFO]      [Hourly] 2026-06-14 17:17:48,711 [INFO] Selesai!
+2026-06-14 17:17:49,772 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:17:49,773 [INFO] Selesai dalam 12.38 detik. Tidur selama 0.79 menit...
+2026-06-14 17:18:38,101 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-14 17:18:38,287 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-14 17:18:38,288 [INFO] Memulai pipeline peramalan...
+2026-06-14 17:18:38,288 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-14 17:18:44,519 [INFO]      [Hourly] 2026-06-14 17:18:43,674 [INFO] Selesai!
+2026-06-14 17:18:44,519 [INFO] Pipeline peramalan berhasil.
+2026-06-14 17:18:44,519 [INFO] Selesai dalam 7.12 detik. Tidur selama 0.88 menit...
+2026-06-14 17:18:46,137 [INFO] Watcher dimatikan oleh pengguna.

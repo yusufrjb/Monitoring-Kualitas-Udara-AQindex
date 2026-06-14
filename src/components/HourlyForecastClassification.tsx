@@ -18,13 +18,8 @@ function concToISPI(val: number, bp: number[][]): number {
     return bp[bp.length - 1][3];
 }
 
-function calcDominant(pm25: number, pm10: number, co: number): string {
-    const ispis: Record<string, number> = {
-        "PM2.5": concToISPI(pm25, BP_PM25),
-        "PM10": concToISPI(pm10, BP_PM10),
-        "CO": concToISPI(co, BP_CO),
-    };
-    return Object.entries(ispis).reduce((a, b) => b[1] > a[1] ? b : a)[0];
+function calcDominant(_pm25: number, _pm10: number, _co: number): string {
+    return "";
 }
 
 interface ForecastRow {
@@ -110,7 +105,7 @@ export default function HourlyForecastClassification() {
                     latestCategory: latest.category,
                     latestDominant: latest.dominant,
                     latestColor: latest.color,
-                    method: "ISPU Breakpoint (tb_prediksi_hourly)",
+                    method: "Random Forest (tb_prediksi_hourly)",
                 },
             });
         };
@@ -253,7 +248,6 @@ export default function HourlyForecastClassification() {
                         </div>
                     </div>
                     <div className="mt-1 text-[10px] text-slate-400">
-                        Dominan: <span className="font-semibold">{data.forecast[data.forecast.length - 1]?.dominant || data.metadata.latestDominant}</span> | 
                         Method: <span className="font-semibold">{data.metadata.method}</span>
                     </div>
                 </div>

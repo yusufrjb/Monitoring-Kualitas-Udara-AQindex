@@ -2,8 +2,9 @@
 predict_hourly_multi.py
 -----------------------
 Multi-parameter forecasting: PM2.5, PM10, CO — 60 menit ke depan.
-- Load model .pkl (PM2.5, PM10, CO)
-- Enhanced forecast: XGBoost ML (1-5 min) + pola harian (6-60 min) + adaptive noise
+- Load 3 XGBoost v2 models (PM2.5, PM10, CO)
+- Multivariate step-by-step recursive forecast: tiap step predict PM25 → PM10 → CO
+  dengan shared state agar cross-param dynamics terjaga
 - ISPU classification untuk setiap step
 - Simpan ke tb_prediksi_hourly di Supabase
 - Return dict forecast + classification
@@ -43,55 +44,19 @@ log = logging.getLogger(__name__)
 TABLE_DATA = "tb_konsentrasi_gas"
 TABLE_HOURLY = "tb_prediksi_hourly"
 FORECAST_MINUTES = 60
-DATA_WINDOW_MIN = 1440
+DATA_WINDOW_MIN = 4320
 
 MODEL_DIR = Path(__file__).parent
 MODEL_FILES = {
-    # Use "best" models for PM2.5 and PM10 (root-level files), keep CO unchanged
-    "pm25": MODEL_DIR.parent / "best_pm25_forecast_1hour.pkl",
-    "pm10": MODEL_DIR.parent / "best_pm10_forecast_1hour.pkl",
-    "co": MODEL_DIR / "xgb_co.pkl",
+    "pm25": MODEL_DIR / "xgb_pm25_v2.pkl",
+    "pm10": MODEL_DIR / "xgb_pm10_v2.pkl",
+    "co": MODEL_DIR / "xgb_co_v2.pkl",
 }
-
-BP_PM25 = [
-    (0, 15.5, 0, 50),
-    (15.5, 55.4, 50, 100),
-    (55.4, 150.4, 100, 200),
-    (150.4, 250.4, 200, 300),
-    (250.4, 500, 300, 500),
-]
-BP_PM10 = [
-    (0, 50, 0, 50),
-    (50, 150, 50, 100),
-    (150, 350, 100, 200),
-    (350, 420, 200, 300),
-    (420, 500, 300, 500),
-]
-BP_CO = [
-    (0, 4000, 0, 50),
-    (4000, 8000, 50, 100),
-    (8000, 15000, 100, 200),
-    (15000, 30000, 200, 300),
-    (30000, 45000, 300, 500),
-]
-BP_NO2 = [
-    (0, 80, 0, 50),
-    (80, 200, 50, 100),
-    (200, 1130, 100, 200),
-    (1130, 2260, 200, 300),
-    (2260, 3000, 300, 500),
-]
-BP_O3 = [
-    (0, 120, 0, 50),
-    (120, 235, 50, 100),
-    (235, 400, 100, 200),
-    (400, 800, 200, 300),
-    (800, 1000, 300, 500),
-]
+RF_MODEL_PATH = MODEL_DIR / "random_forest_air_quality.pkl"
 
 RAW_COLS_DB = [
     "pm25_ugm3",
-    "pm10_corrected_ugm3",
+    "pm10_ugm3",
     "co_ugm3",
     "no2_ugm3",
     "o3_ugm3",
@@ -124,38 +89,32 @@ def load_env():
                         os.environ[k] = v.strip().strip('"')
 
 
-def conc_to_ispi(val, bp):
-    if val <= 0:
-        return 0
-    for cl, ch, il, ih in bp:
-        if val <= ch:
-            return il + (val - cl) / (ch - cl) * (ih - il)
-    return bp[-1][3]
+ISPU_MIDPOINT = {
+    "Baik": 25,
+    "Sedang": 75,
+    "Tidak Sehat": 150,
+    "Sangat Tidak Sehat": 250,
+    "Berbahaya": 400,
+}
+RF_FEATURES = ["PM2.5", "PM10", "CO", "NO2", "O3"]
 
 
-def ispi_to_label_cat(ispu):
-    if ispu <= 50:
-        return "Baik"
-    if ispu <= 100:
-        return "Sedang"
-    if ispu <= 200:
-        return "Tidak Sehat"
-    if ispu <= 300:
-        return "Sangat Tidak Sehat"
-    return "Berbahaya"
-
-
-def get_ispi(pm25, pm10, co, no2, o3_ugm3):
-    ispis = {
-        "PM2.5": conc_to_ispi(pm25, BP_PM25),
-        "PM10": conc_to_ispi(pm10, BP_PM10),
-        "CO": conc_to_ispi(co, BP_CO),
-        "NO2": conc_to_ispi(no2, BP_NO2),
-        "O3": conc_to_ispi(o3_ugm3, BP_O3),
-    }
-    max_ispu = max(ispis.values())
-    dominant = max(ispis, key=ispis.get)
-    return round(max_ispu, 1), ispi_to_label_cat(max_ispu), dominant
+def classify_rf(rf_model, pm25, pm10, co, no2, o3_ugm3):
+    X = pd.DataFrame(
+        [
+            {
+                "PM2.5": pm25,
+                "PM10": pm10,
+                "CO": co,
+                "NO2": no2,
+                "O3": o3_ugm3,
+            }
+        ],
+        columns=RF_FEATURES,
+    )
+    label = rf_model.predict(X)[0]
+    ispu = ISPU_MIDPOINT.get(label, 0)
+    return ispu, label
 
 
 def fetch_recent_data(supabase: Client, minutes: int = DATA_WINDOW_MIN) -> pd.DataFrame:
@@ -185,48 +144,42 @@ def fetch_recent_data(supabase: Client, minutes: int = DATA_WINDOW_MIN) -> pd.Da
     for col in RAW_COLS_DB:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df["created_at"] = pd.to_datetime(df["created_at"]).dt.tz_localize(None)
-    df = df.dropna(subset=["pm25_ugm3", "pm10_corrected_ugm3", "co_ugm3"])
+    df = df.dropna(subset=["pm25_ugm3", "pm10_ugm3", "co_ugm3"])
     df = df.set_index("created_at").sort_index()
     df = df[~df.index.duplicated(keep="first")]
     df = df.rename(
         columns={
             "pm25_ugm3": "pm25",
-            "pm10_corrected_ugm3": "pm10",
+            "pm10_ugm3": "pm10",
             "co_ugm3": "co",
             "no2_ugm3": "no2",
             "o3_ugm3": "o3",
-            "temperature": "temp",
-            "humidity": "humid",
         }
     )
     log.info(f"Data diambil: {len(df)} baris")
     return df
 
 
+RAW_COLS_FEAT = ["pm25", "pm10", "co", "no2", "temperature", "humidity"]
+
+
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
     feat = df.copy()
-    for col in ["pm25", "pm10", "co"]:
-        for lag in [1, 3, 5, 10, 15, 30]:
-            feat[f"{col}_lag_{lag}"] = feat[col].shift(lag)
-        feat[f"{col}_rm_5"] = feat[col].rolling(5).mean()
-        feat[f"{col}_rm_15"] = feat[col].rolling(15).mean()
-        feat[f"{col}_rm_30"] = feat[col].rolling(30).mean()
-    feat["temp_roll_mean_15"] = feat["temp"].rolling(15).mean()
-    feat["humid_roll_mean_15"] = feat["humid"].rolling(15).mean()
+    for col in RAW_COLS_FEAT:
+        if col not in feat.columns:
+            continue
+        feat[f"{col}_lag_1min"] = feat[col].shift(1)
+        feat[f"{col}_lag_5min"] = feat[col].shift(5)
+        feat[f"{col}_lag_15min"] = feat[col].shift(15)
+        feat[f"{col}_lag_60min"] = feat[col].shift(60)
+        feat[f"{col}_rolling_mean_5min"] = feat[col].rolling(window=5).mean()
+        feat[f"{col}_rolling_std_5min"] = feat[col].rolling(window=5).std()
+        feat[f"{col}_rolling_mean_15min"] = feat[col].rolling(window=15).mean()
+    feat["minute"] = feat.index.minute
     feat["hour"] = feat.index.hour
-    feat["hour_sin"] = np.sin(2 * np.pi * feat["hour"] / 24)
-    feat["hour_cos"] = np.cos(2 * np.pi * feat["hour"] / 24)
-    feat["pm25_diff1"] = feat["pm25"].diff(1)
-    feat["pm10_diff1"] = feat["pm10"].diff(1)
-    feat["co_diff1"] = feat["co"].diff(1)
+    feat["dayofweek"] = feat.index.dayofweek
     feat = feat.dropna()
     return feat
-
-
-def build_hourly_pattern(df: pd.DataFrame, col: str) -> dict:
-    df2 = df.copy()
-    df2["hour"] = df2.index.hour
-    return df2.groupby("hour")[col].mean().to_dict()
 
 
 def fallback_holt_winters(
@@ -258,221 +211,137 @@ def fallback_holt_winters(
     return fc
 
 
-def forecast_one_param(
-    df: pd.DataFrame,
-    model_data: dict,
-    raw_col: str,
-    max_val: float,
-    n_steps: int = FORECAST_MINUTES,
-) -> list[dict]:
-    series = df[raw_col].dropna()
-    if len(series) < 30:
-        return []
+FORECAST_PARAMS = ["pm25", "pm10", "co"]
 
-    model = model_data["model"] if isinstance(model_data, dict) else model_data
-    recent = series.tail(60)
-    mean_val = recent.mean()
+
+def forecast_all_params(
+    df: pd.DataFrame,
+    models: dict,
+    max_vals: dict,
+    n_steps: int = FORECAST_MINUTES,
+) -> dict:
+    for p in FORECAST_PARAMS:
+        if df[p].dropna().empty or len(df[p].dropna()) < 60:
+            return {}
+
     now = datetime.now(timezone.utc)
+
+    # Unwrap dict-wrapped models
+    models_clean = {
+        k: (m.get("model", m) if isinstance(m, dict) else m) for k, m in models.items()
+    }
 
     feat = build_features(df)
     if feat.empty:
-        return []
-    feature_cols = [c for c in feat.columns if c != raw_col]
+        return {}
+    model_features = [
+        c for c in feat.columns if c not in ["pm25", "pm10", "co", "no2", "o3"]
+    ]
 
-    lag_steps = [1, 3, 5, 10, 15, 30]
-    raw_lag_values = {
-        col: list(df[col].dropna().tail(30).values) for col in ["pm25", "pm10", "co"]
-    }
-    raw_series = {
-        col: list(df[col].dropna().tail(60).values) for col in ["pm25", "pm10", "co"]
-    }
-    temp_series = (
-        list(df["temp"].dropna().tail(30).values) if "temp" in df.columns else [25] * 30
-    )
-    humid_series = (
-        list(df["humid"].dropna().tail(30).values)
-        if "humid" in df.columns
-        else [60] * 30
-    )
+    # Shared rolling state for all 6 RAW_COLS_FEAT
+    raw_series = {col: list(df[col].dropna().tail(60).values) for col in RAW_COLS_FEAT}
 
-    rolling_windows = {}
-    for col in ["pm25", "pm10", "co"]:
-        vals = raw_series[col]
-        rolling_windows[col] = {
-            w: vals[-w:] if len(vals) >= w else vals[:] for w in [5, 15, 30]
-        }
+    results = {p: [] for p in FORECAST_PARAMS}
 
-    # Short-term trend (last 15 min)
-    recent_vals = series.tail(15).values
-    x = np.arange(len(recent_vals))
-    short_trend, _ = np.polyfit(x, recent_vals, 1)
-
-    # Hourly & minute pattern
-    hourly_pattern = build_hourly_pattern(df, raw_col)
-    overall_mean = series.mean()
-    series_2 = pd.DataFrame({raw_col: series})
-    series_2["minute"] = series_2.index.minute
-    minute_pattern = series_2.groupby("minute")[raw_col].mean().to_dict()
-
-    # Patterns for all params (cross-param feature update)
-    all_hourly_patterns = {
-        col: build_hourly_pattern(df, col) for col in ["pm25", "pm10", "co"]
-    }
-    all_minute_patterns = {}
-    for col in ["pm25", "pm10", "co"]:
-        s2 = pd.DataFrame({col: df[col]})
-        s2["minute"] = s2.index.minute
-        all_minute_patterns[col] = s2.groupby("minute")[col].mean().to_dict()
-    all_means = {col: df[col].mean() for col in ["pm25", "pm10", "co"]}
-
-    # Recent std for noise scaling
-    recent_std = series.tail(30).std() if len(series) >= 30 else series.std()
-
-    results = []
-    prev_pred = float(raw_series[raw_col][-1]) if raw_series[raw_col] else 0
+    def _build_fv(ts):
+        fv = {}
+        for col in RAW_COLS_FEAT:
+            vals = raw_series.get(col, [])
+            fv[f"{col}_lag_1min"] = vals[-1] if len(vals) >= 1 else 0
+            fv[f"{col}_lag_5min"] = (
+                vals[-5] if len(vals) >= 5 else (vals[-1] if vals else 0)
+            )
+            fv[f"{col}_lag_15min"] = (
+                vals[-15] if len(vals) >= 15 else (vals[-1] if vals else 0)
+            )
+            fv[f"{col}_lag_60min"] = (
+                vals[-60] if len(vals) >= 60 else (vals[-1] if vals else 0)
+            )
+            win5 = vals[-5:] if len(vals) >= 5 else vals
+            win15 = vals[-15:] if len(vals) >= 15 else vals
+            fv[f"{col}_rolling_mean_5min"] = float(np.mean(win5)) if win5 else 0
+            fv[f"{col}_rolling_std_5min"] = float(np.std(win5)) if len(win5) > 1 else 0
+            fv[f"{col}_rolling_mean_15min"] = float(np.mean(win15)) if win15 else 0
+        fv["temperature"] = (
+            raw_series["temperature"][-1] if raw_series["temperature"] else 0
+        )
+        fv["humidity"] = raw_series["humidity"][-1] if raw_series["humidity"] else 0
+        fv["minute"] = ts.minute
+        fv["hour"] = ts.hour
+        fv["dayofweek"] = ts.weekday()
+        return fv
 
     for step in range(1, n_steps + 1):
-        feature_vec = {}
         target_time = now + timedelta(minutes=step)
-        # --- Lag features ---
-        for col in ["pm25", "pm10", "co"]:
-            vals = raw_lag_values[col]
-            for lag in lag_steps:
-                feature_vec[f"{col}_lag_{lag}"] = (
-                    vals[-lag] if lag <= len(vals) else mean_val
-                )
-        # --- Rolling means ---
-        for col in ["pm25", "pm10", "co"]:
-            wins = rolling_windows[col]
-            for w in [5, 15, 30]:
-                arr = wins[w]
-                feature_vec[f"{col}_rm_{w}"] = (
-                    float(np.mean(arr)) if len(arr) > 0 else mean_val
-                )
-        # --- Diff1 ---
-        for col in ["pm25", "pm10", "co"]:
-            vals = raw_series[col]
-            feature_vec[f"{col}_diff1"] = (
-                float(vals[-1] - vals[-2]) if len(vals) >= 2 else 0
-            )
-        # --- Temp / humid ---
-        feature_vec["temp_roll_mean_15"] = (
-            float(np.mean(temp_series[-15:]))
-            if len(temp_series) >= 15
-            else (temp_series[-1] if temp_series else 25)
-        )
-        feature_vec["humid_roll_mean_15"] = (
-            float(np.mean(humid_series[-15:]))
-            if len(humid_series) >= 15
-            else (humid_series[-1] if humid_series else 60)
-        )
-        # --- Time features ---
-        feature_vec["hour"] = target_time.hour
-        feature_vec["hour_sin"] = np.sin(2 * np.pi * target_time.hour / 24)
-        feature_vec["hour_cos"] = np.cos(2 * np.pi * target_time.hour / 24)
 
-        # Build X
-        available_cols = [c for c in feature_cols if c in feature_vec]
-        if not available_cols:
-            available_cols = list(feature_vec.keys())
-        X_pred = pd.DataFrame(
-            [{k: feature_vec.get(k, mean_val) for k in available_cols}]
-        )
-
+        # --- PM2.5 ---
+        fv = _build_fv(target_time)
+        X_pred = pd.DataFrame([{k: fv.get(k, 0) for k in model_features}])
         try:
-            xgb_pred = float(model.predict(X_pred)[0])
+            pred_pm25 = float(models_clean["pm25"].predict(X_pred)[0])
         except Exception:
-            xgb_pred = prev_pred
+            pred_pm25 = float(raw_series["pm25"][-1]) if raw_series["pm25"] else 0
+        pred_pm25 = max(0.0, min(max_vals["pm25"], pred_pm25))
+        results["pm25"].append({"target_at": target_time, "pm25": round(pred_pm25, 2)})
+        raw_series["pm25"].append(pred_pm25)
+        if len(raw_series["pm25"]) > 60:
+            raw_series["pm25"].pop(0)
 
-        # Weighted blending: XGBoost + hourly/minute pattern + persistence
-        hour = target_time.hour
-        minute = target_time.minute
-        hour_dev = hourly_pattern.get(hour, overall_mean) - overall_mean
-        minute_dev = minute_pattern.get(minute, overall_mean) - overall_mean
+        # --- PM10 (sees updated pm25 state) ---
+        fv = _build_fv(target_time)
+        X_pred = pd.DataFrame([{k: fv.get(k, 0) for k in model_features}])
+        try:
+            pred_pm10 = float(models_clean["pm10"].predict(X_pred)[0])
+        except Exception:
+            pred_pm10 = float(raw_series["pm10"][-1]) if raw_series["pm10"] else 0
+        pred_pm10 = max(0.0, min(max_vals["pm10"], pred_pm10))
+        results["pm10"].append({"target_at": target_time, "pm10": round(pred_pm10, 2)})
+        raw_series["pm10"].append(pred_pm10)
+        if len(raw_series["pm10"]) > 60:
+            raw_series["pm10"].pop(0)
 
-        horizon_weight = min(step / 30, 1.0)
-        xgb_weight = 0.6 - (horizon_weight * 0.3)
-        pattern_weight = 0.2 + (horizon_weight * 0.3)
-        persist_weight = max(0, 1 - xgb_weight - pattern_weight)
+        # --- CO (sees updated pm25 + pm10 state) ---
+        fv = _build_fv(target_time)
+        X_pred = pd.DataFrame([{k: fv.get(k, 0) for k in model_features}])
+        try:
+            pred_co = float(models_clean["co"].predict(X_pred)[0])
+        except Exception:
+            pred_co = float(raw_series["co"][-1]) if raw_series["co"] else 0
+        pred_co = max(0.0, min(max_vals["co"], pred_co))
+        results["co"].append({"target_at": target_time, "co": round(pred_co, 2)})
+        raw_series["co"].append(pred_co)
+        if len(raw_series["co"]) > 60:
+            raw_series["co"].pop(0)
 
-        xgb_with_trend = xgb_pred + short_trend * step * 0.3
-        pattern_adj = hour_dev * 0.7 + minute_dev * 0.3
+        # Freeze non-target cols (no2, temperature, humidity) — copy last value
+        for col in ["no2", "temperature", "humidity"]:
+            raw_series[col].append(raw_series[col][-1] if raw_series[col] else 0)
+            if len(raw_series[col]) > 60:
+                raw_series[col].pop(0)
 
-        blended = (
-            xgb_with_trend * xgb_weight
-            + (overall_mean + pattern_adj) * pattern_weight
-            + prev_pred * persist_weight
+    for p in FORECAST_PARAMS:
+        vals = [r[p] for r in results[p]]
+        log.info(
+            f"  {p.upper()}: {len(results[p])} prediksi, range: {min(vals):.1f} - {max(vals):.1f}"
         )
-
-        if step <= 30:
-            noise_scale = recent_std * 0.6
-        else:
-            noise_scale = recent_std * 0.3 * (1 - horizon_weight * 0.2)
-        pred = blended + np.random.normal(0, noise_scale)
-        pred = max(0.0, min(max_val, pred))
-
-        results.append({"target_at": target_time, raw_col: round(pred, 2)})
-
-        # Update state with prediction
-        for col in ["pm25", "pm10", "co"]:
-            vals = raw_series[col]
-            if col == raw_col:
-                vals.append(pred)
-            else:
-                other_hour_dev = (
-                    all_hourly_patterns[col].get(hour, all_means[col]) - all_means[col]
-                )
-                other_min_dev = (
-                    all_minute_patterns[col].get(minute, all_means[col])
-                    - all_means[col]
-                )
-                base_val = df[col].dropna().iloc[-1] if len(df[col].dropna()) > 0 else 0
-                other_adj = other_hour_dev * 0.7 + other_min_dev * 0.3
-                vals.append(max(0.0, base_val + other_adj * pattern_weight))
-            if len(vals) > 60:
-                vals.pop(0)
-            lvals = raw_lag_values[col]
-            lvals.append(vals[-1])
-            if len(lvals) > 30:
-                lvals.pop(0)
-            for w in [5, 15, 30]:
-                arr = rolling_windows[col][w]
-                arr.append(vals[-1])
-                if len(arr) > w:
-                    arr.pop(0)
-
-        if temp_series:
-            temp_series.append(temp_series[-1])
-        if len(temp_series) > 30:
-            temp_series.pop(0)
-        if humid_series:
-            humid_series.append(humid_series[-1])
-        if len(humid_series) > 30:
-            humid_series.pop(0)
-
-        prev_pred = xgb_pred
-
-    log.info(
-        f"  {raw_col.upper()}: {len(results)} prediksi, range: {min(r[raw_col] for r in results):.1f} - {max(r[raw_col] for r in results):.1f}"
-    )
     return results
 
 
 def classify_forecast(
-    forecast_rows: list, no2_latest: float, o3_latest: float
+    forecast_rows: list, no2_latest: float, o3_latest: float, rf_model
 ) -> list[dict]:
     result = []
     for row in forecast_rows:
         pm25 = row.get("pm25", 0)
         pm10 = row.get("pm10", 0)
         co = row.get("co", 0)
-        ispu, label, dominant = get_ispi(pm25, pm10, co, no2_latest, o3_latest)
+        ispu, label = classify_rf(rf_model, pm25, pm10, co, no2_latest, o3_latest)
         result.append(
             {
                 "target_at": row["target_at"],
                 "ispu": ispu,
                 "category": label,
-                "dominant": dominant,
+                "dominant": "",
                 "color": CAT_COLORS.get(label, "#94a3b8"),
             }
         )
@@ -575,32 +444,35 @@ def _do_get_results() -> dict:
         if pkl_path.exists():
             try:
                 m = joblib.load(pkl_path)
-                if isinstance(m, dict):
-                    models_loaded[param] = m
-                else:
-                    models_loaded[param] = {"model": m, "features": []}
+                models_loaded[param] = (
+                    m if not isinstance(m, dict) else m.get("model", m)
+                )
                 log.info(f"Loaded {pkl_path.name}")
             except Exception as e:
                 log.warning(f"Gagal load {pkl_path.name}: {e}")
         else:
             log.warning(f"PKL tidak ditemukan: {pkl_path.name}")
 
-    for param, col, max_val in [
-        ("pm25", "pm25", 300),
-        ("pm10", "pm10", 600),
-        ("co", "co", 50000),
-    ]:
-        model_data = models_loaded.get(param)
-        if model_data:
-            log.info("--- %s (XGBoost) ---" % param.upper())
-            fc = forecast_one_param(df, model_data, col, max_val)
-            if fc:
-                all_forecasts[param] = fc
-                log.info(f"  {param.upper()}: {len(fc)} prediksi")
-            else:
-                log.warning(f"Gagal forecast {param}, gunakan fallback")
-                all_forecasts[param] = fallback_holt_winters(df, col, max_val)
-        else:
+    rf_model = None
+    if RF_MODEL_PATH.exists():
+        try:
+            rf_model = joblib.load(RF_MODEL_PATH)
+            log.info(f"Loaded RF classifier: {RF_MODEL_PATH.name}")
+        except Exception as e:
+            log.warning(f"Gagal load RF model: {e}")
+
+    max_vals = {"pm25": 300, "pm10": 600, "co": 50000}
+    if all(p in models_loaded for p in FORECAST_PARAMS):
+        log.info("--- Multivariate XGBoost v2 (60-step) ---")
+        all_forecasts = forecast_all_params(df, models_loaded, max_vals)
+
+    if not all_forecasts:
+        log.warning("Multivariate forecast gagal, fallback Holt-Winters per-param")
+        for param, col, max_val in [
+            ("pm25", "pm25", 300),
+            ("pm10", "pm10", 600),
+            ("co", "co", 50000),
+        ]:
             log.info("--- %s (Holt-Winters fallback) ---" % param.upper())
             all_forecasts[param] = fallback_holt_winters(df, col, max_val)
             log.info(f"  {param.upper()}: {len(all_forecasts[param])} prediksi")
@@ -619,7 +491,7 @@ def _do_get_results() -> dict:
                 row[param] = forecasts[i].get(param, 0)
         forecast_rows.append(row)
 
-    classifications = classify_forecast(forecast_rows, no2_latest, o3_latest)
+    classifications = classify_forecast(forecast_rows, no2_latest, o3_latest, rf_model)
 
     try:
         save_hourly_predictions(supabase, forecast_rows, forecast_at, classifications)
