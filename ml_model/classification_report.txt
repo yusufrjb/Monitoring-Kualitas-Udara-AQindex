@@ -1,0 +1,60 @@
+FINAL MODEL — Arsitektur Baru
+================================
+Pipeline: ug/m3 -> noise(ug/m3) -> ISPU conversion -> feature engineering -> ML
+ML sebagai robustness layer, BUKAN pengganti ISPU.
+
+Arsitektur final:
+  Sensor ug/m3
+    |-> noise simulation (training only)
+  ISPU conversion (deterministik, rule-based - WAJIB)
+    |-> feature engineering (9 fitur)
+  Ensemble ML -> pilih terbaik via drift test
+    |-> Output: class + probability + risk_score
+
+9 Features (dari ISPU index 0-500):
+  1. max_ratio      - dominance of dominant pollutant
+  2. gap_12         - how much dominant exceeds 2nd
+  3. pm10_over_pm25 - dust vs combustion proxy
+  4. max_over_mean   - instability indicator
+  5. pm25_times_no2 - traffic combustion proxy
+  6. weighted_hazard - weighted sum (PM2.5*1 + PM10*0.6 + O3*0.4 + NO2*0.3 + CO*0.1)
+  7. entropy        - diversity of pollution sources
+  8. skew           - distribution asymmetry
+  9. std            - raw spread
+
+Dataset: 30d (12 May - 11 Jun 2026), 31,487 baris
+Train: 23,615 real + 38,327 synthetic = 61,942
+Test:  7,872 (100% REAL)
+
+HASIL UTAMA (noise 10%):
+                    Acc      F1_macro
+  Random Forest     82.46%   88.26%
+  XGBoost           81.72%   83.01%
+  LightGBM          81.14%   87.37%
+  Breakpoint        79.85%   86.47%
+
+DRIFT TEST:
+Noise   BP      RF      XGB     LGBM    Best
+ 5%    88.2%   87.9%   87.0%   85.8%   BP (-0.3pp)
+10%    79.4%   81.6%   81.4%   80.7%   RF (+2.2pp)
+15%    73.4%   76.7%   76.8%   76.5%   XGB (+3.4pp)
+20%    68.0%   72.5%   72.2%   71.7%   RF (+4.5pp)
+25%    64.1%   68.2%   68.3%   68.7%   LGBM (+4.6pp)
+
+BOUNDARY TEST:
+  LightGBM: 14/18 (77.8%) - beat BP!
+  RF/XGB:   10/18 (55.6%)
+  BP:       13/18 (72.2%)
+
+SANITY CHECK (Model: RF):
+  6 OK, 2 minor (boundary), 0 WASPADA, 0 KRITIS
+
+KLHK VALIDATION:
+  Max-rule vs Actual: 95.48% (n=4,090)
+  ML menggunakan fitur ISPU index, konsisten dengan metodologi KLHK
+
+DATASET NOTE:
+  30-day data (May-Jun 2026): musim kemarau, udara bersih
+  Tidak Sehat:         17 real (13 train, 4 test)
+  Sangat Tidak Sehat:   0
+  Berbahaya:            0

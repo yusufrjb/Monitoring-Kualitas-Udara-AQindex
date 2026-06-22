@@ -1,0 +1,51 @@
+{
+  "model": "RF + Noise10%",
+  "arsitektur": "ug/m3 langsung (tanpa feature engineering)",
+  "noise_std": 0.1,
+  "n_estimators": 500,
+  "dataset": "30d (12 May - 11 Jun 2026)",
+  "test_accuracy": 82.27,
+  "test_f1_macro": 68.14,
+  "breakpoint_accuracy": 80.51,
+  "breakpoint_f1_macro": 82.13,
+  "drift_test": {
+    "5%": 88.4,
+    "10%": 83.0,
+    "15%": 77.0,
+    "20%": 72.3,
+    "25%": 69.3
+  },
+  "model_comparison_drift": {
+    "RF": {
+      "5%": 88.4,
+      "10%": 83.0,
+      "15%": 77.0,
+      "20%": 72.3,
+      "25%": 69.3
+    },
+    "XGBoost": {
+      "5%": 87.7,
+      "10%": 82.3,
+      "15%": 76.5,
+      "20%": 72.3,
+      "25%": 68.4
+    },
+    "LightGBM": {
+      "5%": 86.8,
+      "10%": 81.9,
+      "15%": 76.0,
+      "20%": 72.7,
+      "25%": 68.4
+    },
+    "BP": {
+      "5%": 89.2,
+      "10%": 80.2,
+      "15%": 73.7,
+      "20%": 68.8,
+      "25%": 64.6
+    }
+  },
+  "klhk_ml_accuracy": 71.43,
+  "klhk_bp_accuracy": 98.9,
+  "klhk_n": 364
+}

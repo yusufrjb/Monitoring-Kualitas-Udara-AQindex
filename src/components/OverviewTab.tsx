@@ -17,6 +17,7 @@ import {
 } from "recharts";
 import { supabase } from "@/lib/supabase";
 import HeatmapCalendar from "./HeatmapCalendar";
+import RiskScoreInfo from "./RiskScoreInfo";
 import PeakHourBoxPlot from "./PeakHourBoxPlot";
 import DensityPlotCO from "./DensityPlotCO";
 import { isIdeal, getLimitString } from "@/lib/limits";
@@ -573,7 +574,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
               <Shield size={14} className="text-slate-400" />
               <span className="text-xs font-semibold text-slate-500 uppercase tracking-[0.08em]">Klasifikasi Kualitas Udara</span>
             </div>
-            <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
+            <span className="text-[11px] text-slate-400 font-medium">ISPU Breakpoint</span>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 items-center">
             <div className="relative w-36 h-36 flex items-center justify-center">
@@ -604,7 +605,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
                 {classExpanded ? "Ringkas" : "Detail"}
                 <ChevronDown size={14} className={`transition-transform duration-300 ${classExpanded ? 'rotate-180' : ''}`} />
               </button>
-              <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
+              <span className="text-[11px] text-slate-400 font-medium">ISPU Breakpoint</span>
             </div>
           </div>
 
@@ -681,6 +682,36 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
                 </div>
               </div>
             </div>
+
+              {/* ── Robustness: Random Forest confidence + risk score ── */}
+              {mlClassData.ml_confidence !== undefined && (
+                <div className="pt-3 border-t border-slate-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[11px] text-slate-400 font-medium">Robustness Layer · Random Forest</span>
+                    <span className="flex items-center gap-1">
+                      <span className="text-[11px] font-medium" style={{
+                        color: mlClassData.risk_score > 0.6 ? '#ef4444' : mlClassData.risk_score > 0.3 ? '#f59e0b' : '#10b981'
+                      }}>
+                        Risk Score: {(mlClassData.risk_score * 100).toFixed(0)}%
+                      </span>
+                      <RiskScoreInfo />
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[11px] text-slate-500 font-medium w-20">Confidence</span>
+                    <div className="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${Math.min(100, Math.max(0, mlClassData.ml_confidence * 100))}%`,
+                          backgroundColor: mlClassData.ml_confidence > 0.8 ? '#10b981' : mlClassData.ml_confidence > 0.5 ? '#f59e0b' : '#ef4444'
+                        }}
+                      />
+                    </div>
+                    <span className="text-[11px] text-slate-500 font-mono w-12 text-right">{(mlClassData.ml_confidence * 100).toFixed(0)}%</span>
+                  </div>
+                </div>
+              )}
           </div>
         </div>
       ) : (
@@ -690,7 +721,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
               <Shield size={14} className="text-slate-400" />
               <span className="text-xs font-semibold text-slate-500 uppercase tracking-[0.08em]">Klasifikasi Kualitas Udara</span>
             </div>
-            <span className="text-[11px] text-slate-400 font-medium">Random Forest</span>
+            <span className="text-[11px] text-slate-400 font-medium">ISPU Breakpoint</span>
           </div>
           <div className="flex items-center justify-center rounded-xl px-6 py-3 bg-slate-100">
             <Spinner className="h-5 w-5" />

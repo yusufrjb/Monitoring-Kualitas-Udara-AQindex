@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Wind, Clock, TrendingUp, Loader2, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import RiskScoreInfo from '@/components/RiskScoreInfo';
 import { supabase } from '@/lib/supabase';
 
 const BP_PM25 = [[0,15.5,0,50],[15.5,55.4,50,100],[55.4,150.4,100,200],[150.4,250.4,200,300],[250.4,500,300,500]];
@@ -16,6 +17,14 @@ function concToISPI(val: number, bp: number[][]): number {
         if (val <= ch) return il + (val - cl) / (ch - cl) * (ih - il);
     }
     return bp[bp.length - 1][3];
+}
+
+function ispiToLabel(ispu: number): string {
+    if (ispu <= 50) return "Baik";
+    if (ispu <= 100) return "Sedang";
+    if (ispu <= 200) return "Tidak Sehat";
+    if (ispu <= 300) return "Sangat Tidak Sehat";
+    return "Berbahaya";
 }
 
 function calcDominant(_pm25: number, _pm10: number, _co: number): string {
@@ -57,6 +66,7 @@ export default function HourlyForecastClassification() {
     const [data, setData] = useState<HourlyData | null>(null);
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState<'chart' | 'table'>('chart');
+    const [robustness, setRobustness] = useState<{ ml_confidence: number; risk_score: number } | null>(null);
 
     useEffect(() => {
         let isMounted = true;
@@ -83,14 +93,19 @@ export default function HourlyForecastClassification() {
                 const pm25 = Number(r.pm25_pred) || 0;
                 const pm10 = Number(r.pm10_pred) || 0;
                 const co = Number(r.co_pred) || 0;
-                const category = r.category || "Sedang";
+                // ISPU Breakpoint classification
+                const pm25ISPU = concToISPI(pm25, BP_PM25);
+                const pm10ISPU = concToISPI(pm10, BP_PM10);
+                const coISPU = concToISPI(co, BP_CO);
+                const bpISPU = Math.round(Math.max(pm25ISPU, pm10ISPU, coISPU) * 100) / 100;
+                const bpCategory = ispiToLabel(bpISPU);
                 return {
                     target_at: r.target_at,
                     pm25, pm10, co,
-                    ispu: Number(r.ispu) || 0,
-                    category,
+                    ispu: bpISPU,
+                    category: bpCategory,
                     dominant: calcDominant(pm25, pm10, co),
-                    color: CAT_COLORS[category] || "#3b82f6",
+                    color: CAT_COLORS[bpCategory] || "#3b82f6",
                 };
             });
 
@@ -105,7 +120,7 @@ export default function HourlyForecastClassification() {
                     latestCategory: latest.category,
                     latestDominant: latest.dominant,
                     latestColor: latest.color,
-                    method: "Random Forest (tb_prediksi_hourly)",
+                    method: "ISPU Breakpoint",
                 },
             });
         };
@@ -123,8 +138,25 @@ export default function HourlyForecastClassification() {
             if (isMounted) buildData(rows);
         };
 
+        const fetchRobustness = async () => {
+            try {
+                const res = await fetch('/api/classify');
+                if (!res.ok) return;
+                const json = await res.json();
+                if (!json.error && isMounted) {
+                    setRobustness({
+                        ml_confidence: json.ml_confidence || 0,
+                        risk_score: json.risk_score || 0,
+                    });
+                }
+            } catch { /* skip */ }
+        };
+
+        const refreshAll = () => { fetchDataFromDB(); fetchRobustness(); };
+
         loadInitial();
-        const interval = setInterval(fetchDataFromDB, 60 * 1000);
+        fetchRobustness();
+        const interval = setInterval(refreshAll, 60 * 1000);
 
         let timeoutId: NodeJS.Timeout;
         const channel = supabase
@@ -140,7 +172,7 @@ export default function HourlyForecastClassification() {
                     clearTimeout(timeoutId);
                     timeoutId = setTimeout(() => {
                         console.log('🔄 Data prediksi baru terdeteksi, memperbarui grafik...');
-                        fetchDataFromDB();
+                        refreshAll();
                     }, 2000);
                 }
             )
@@ -197,7 +229,7 @@ export default function HourlyForecastClassification() {
                     <Wind className="w-5 h-5 text-indigo-500" />
                     <div>
                         <h3 className="text-base font-bold text-slate-900">Prediksi 1 Jam (ISPU)</h3>
-                        <p className="text-xs text-slate-400">PM2.5, PM10, CO dengan Random Forest</p>
+                        <p className="text-xs text-slate-400">Klasifikasi ISPU Breakpoint</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -250,6 +282,25 @@ export default function HourlyForecastClassification() {
                     <div className="mt-1 text-[10px] text-slate-400">
                         Method: <span className="font-semibold">{data.metadata.method}</span>
                     </div>
+                    {robustness && (
+                        <div className="mt-1.5 flex items-center gap-3 text-[10px] text-slate-400">
+                            <span>Robustness · Random Forest</span>
+                            <span className="flex items-center gap-1">
+                                Confidence:
+                                <span className="font-semibold font-mono">{(robustness.ml_confidence * 100).toFixed(0)}%</span>
+                            </span>
+                            <span className="flex items-center gap-1">
+                                Risk:
+                                <span className={cn(
+                                    "font-semibold font-mono",
+                                    robustness.risk_score > 0.6 ? "text-red-500" : robustness.risk_score > 0.3 ? "text-amber-500" : "text-emerald-500"
+                                )}>
+                                    {(robustness.risk_score * 100).toFixed(0)}%
+                                </span>
+                                <RiskScoreInfo />
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
 

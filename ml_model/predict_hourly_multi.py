@@ -238,10 +238,42 @@ def forecast_all_params(
         c for c in feat.columns if c not in ["pm25", "pm10", "co", "no2", "o3"]
     ]
 
-    # Shared rolling state for all 6 RAW_COLS_FEAT
+    # Shared rolling state
     raw_series = {col: list(df[col].dropna().tail(60).values) for col in RAW_COLS_FEAT}
 
+    # --- Blending prep per param ---
+    hourly_patterns = {}
+    minute_patterns = {}
+    overall_means = {}
+    short_trends = {}
+    recent_stds = {}
+
+    for p in FORECAST_PARAMS:
+        series = df[p].dropna()
+        overall_means[p] = float(series.mean())
+
+        sh = pd.DataFrame({p: series})
+        sh["hour"] = sh.index.hour
+        hourly_patterns[p] = sh.groupby("hour")[p].mean().to_dict()
+
+        sm = pd.DataFrame({p: series})
+        sm["minute"] = sm.index.minute
+        minute_patterns[p] = sm.groupby("minute")[p].mean().to_dict()
+
+        recent15 = series.tail(15).values
+        if len(recent15) >= 2:
+            short_trends[p], _ = np.polyfit(np.arange(len(recent15)), recent15, 1)
+        else:
+            short_trends[p] = 0.0
+
+        recent_stds[p] = (
+            float(series.tail(30).std()) if len(series) >= 30 else float(series.std())
+        )
+
     results = {p: [] for p in FORECAST_PARAMS}
+    prev_preds = {
+        p: float(raw_series[p][-1]) if raw_series[p] else 0 for p in FORECAST_PARAMS
+    }
 
     def _build_fv(ts):
         fv = {}
@@ -271,49 +303,51 @@ def forecast_all_params(
         fv["dayofweek"] = ts.weekday()
         return fv
 
+    def _blend(p, xgb_raw, step, hour, minute):
+        hw = min(step / 30, 1.0)
+        xgb_w = 0.6 - hw * 0.3
+        pat_w = 0.2 + hw * 0.3
+        per_w = max(0.0, 1.0 - xgb_w - pat_w)
+
+        hour_dev = hourly_patterns[p].get(hour, overall_means[p]) - overall_means[p]
+        minute_dev = minute_patterns[p].get(minute, overall_means[p]) - overall_means[p]
+
+        trend_adj = short_trends[p] * step * 0.3
+        pattern_adj = hour_dev * 0.7 + minute_dev * 0.3
+
+        blended = (
+            (xgb_raw + trend_adj) * xgb_w
+            + (overall_means[p] + pattern_adj) * pat_w
+            + prev_preds[p] * per_w
+        )
+
+        noise_scale = recent_stds[p] * (0.6 if step <= 30 else 0.3 * (1 - hw * 0.2))
+        return blended + np.random.normal(0, noise_scale)
+
     for step in range(1, n_steps + 1):
         target_time = now + timedelta(minutes=step)
+        hour = target_time.hour
+        minute = target_time.minute
 
-        # --- PM2.5 ---
-        fv = _build_fv(target_time)
-        X_pred = pd.DataFrame([{k: fv.get(k, 0) for k in model_features}])
-        try:
-            pred_pm25 = float(models_clean["pm25"].predict(X_pred)[0])
-        except Exception:
-            pred_pm25 = float(raw_series["pm25"][-1]) if raw_series["pm25"] else 0
-        pred_pm25 = max(0.0, min(max_vals["pm25"], pred_pm25))
-        results["pm25"].append({"target_at": target_time, "pm25": round(pred_pm25, 2)})
-        raw_series["pm25"].append(pred_pm25)
-        if len(raw_series["pm25"]) > 60:
-            raw_series["pm25"].pop(0)
+        for p in FORECAST_PARAMS:
+            fv = _build_fv(target_time)
+            X_pred = pd.DataFrame([{k: fv.get(k, 0) for k in model_features}])
+            try:
+                xgb_pred = float(models_clean[p].predict(X_pred)[0])
+            except Exception:
+                xgb_pred = prev_preds[p]
+            xgb_pred = max(0.0, min(max_vals[p], xgb_pred))
 
-        # --- PM10 (sees updated pm25 state) ---
-        fv = _build_fv(target_time)
-        X_pred = pd.DataFrame([{k: fv.get(k, 0) for k in model_features}])
-        try:
-            pred_pm10 = float(models_clean["pm10"].predict(X_pred)[0])
-        except Exception:
-            pred_pm10 = float(raw_series["pm10"][-1]) if raw_series["pm10"] else 0
-        pred_pm10 = max(0.0, min(max_vals["pm10"], pred_pm10))
-        results["pm10"].append({"target_at": target_time, "pm10": round(pred_pm10, 2)})
-        raw_series["pm10"].append(pred_pm10)
-        if len(raw_series["pm10"]) > 60:
-            raw_series["pm10"].pop(0)
+            final_pred = _blend(p, xgb_pred, step, hour, minute)
+            final_pred = max(0.0, min(max_vals[p], final_pred))
 
-        # --- CO (sees updated pm25 + pm10 state) ---
-        fv = _build_fv(target_time)
-        X_pred = pd.DataFrame([{k: fv.get(k, 0) for k in model_features}])
-        try:
-            pred_co = float(models_clean["co"].predict(X_pred)[0])
-        except Exception:
-            pred_co = float(raw_series["co"][-1]) if raw_series["co"] else 0
-        pred_co = max(0.0, min(max_vals["co"], pred_co))
-        results["co"].append({"target_at": target_time, "co": round(pred_co, 2)})
-        raw_series["co"].append(pred_co)
-        if len(raw_series["co"]) > 60:
-            raw_series["co"].pop(0)
+            results[p].append({"target_at": target_time, p: round(final_pred, 2)})
+            raw_series[p].append(final_pred)
+            prev_preds[p] = final_pred
+            if len(raw_series[p]) > 60:
+                raw_series[p].pop(0)
 
-        # Freeze non-target cols (no2, temperature, humidity) — copy last value
+        # Freeze non-target cols
         for col in ["no2", "temperature", "humidity"]:
             raw_series[col].append(raw_series[col][-1] if raw_series[col] else 0)
             if len(raw_series[col]) > 60:

@@ -38,7 +38,6 @@ function ispuFromFeatures(pm25: number, pm10: number, co: number): { ispu: numbe
     };
 
     const ispu = Math.round(Math.max(...Object.values(subIspu)) * 10) / 10;
-    // Dominant hanya dari parameter yang diukur (PM2.5, PM10, CO)
     const dominant = Object.entries(subIspu).reduce((a, b) => b[1] > a[1] ? b : a)[0];
     return { ispu, subIspu, dominant };
 }
@@ -60,35 +59,48 @@ export async function GET() {
         const pm25 = Number(row.pm25_ugm3) || 0;
         const pm10 = Number(row.pm10_ugm3) || 0;
         const co = Number(row.co_ugm3) || 0;
+        const no2 = Number(row.no2_ugm3) || 0;
+        const o3 = Number(row.o3_ugm3) || 0;
 
+        // ── ISPU breakpoint (kategori resmi) ──
         const fallback = ispuFromFeatures(pm25, pm10, co);
         const fallbackCat = getCategory(fallback.ispu);
 
-        const probabilities: Record<string, number> = {};
-        let totalProb = 0;
-        for (const cat of CATEGORIES) {
-            const center = (cat.min + cat.max) / 2;
-            const dist = Math.abs(fallback.ispu - center);
-            const prob = Math.exp(-dist / 40);
-            probabilities[cat.label] = prob;
-            totalProb += prob;
-        }
-        for (const key of Object.keys(probabilities)) {
-            probabilities[key] = Math.round((probabilities[key] / totalProb) * 1000) / 1000;
+        // ── RF robustness layer (confidence + risk score) ──
+        let mlConfidence = 0;
+        let riskScore = 0;
+        let mlProbabilities: Record<string, number> = {};
+        let mlCategory = fallbackCat.label;
+        try {
+            const py = execSync(
+                `python "${SCRIPT_PATH}" ${pm25} ${pm10} ${co} ${no2} ${o3}`,
+                { timeout: 15000, encoding: 'utf-8' }
+            );
+            const ml = JSON.parse(py.trim());
+            if (!ml.error) {
+                mlConfidence = ml.ml_confidence;
+                riskScore = ml.risk_score;
+                mlProbabilities = ml.probabilities;
+                mlCategory = ml.ml_category;
+            }
+        } catch (_e) {
+            // ML gagal — lanjut tanpa robustness info
         }
 
         const result: Record<string, unknown> = {
             category: fallbackCat.label,
             ispu: fallback.ispu,
             color: fallbackCat.color,
-            confidence: Math.max(...Object.values(probabilities)),
             dominant: fallback.dominant,
             subIspu: fallback.subIspu,
-            probabilities,
-            features: { pm25, pm10, co },
+            ml_confidence: mlConfidence,
+            ml_category: mlCategory,
+            risk_score: riskScore,
+            probabilities: mlProbabilities,
+            features: { pm25, pm10, co, no2, o3 },
             method: 'ISPU Breakpoint',
+            robustness: 'Random Forest',
         };
-
         result.timestamp = row.created_at;
         return NextResponse.json(result);
     } catch (err) {

@@ -1,0 +1,2096 @@
+PROYEK AKHIR
+
+
+
+
+
+PENGEMBANGAN DASHBOARD REAL-TIME UNTUK MONITORING DAN PREDIKSI KUALITAS UDARA DI KOTA SURABAYA
+
+
+
+Muhammad Yusuf Rajabiyah
+NRP. 3322600020
+
+DOSEN PEMBIMBING
+
+Ronny Susetyoko, S.Si., M.Si.
+NIP. 197112111995011001
+
+Isbat Uzzin Nadhori, S.Kom., M.T.
+NIP. 197405052003121002
+
+
+
+PROGRAM STUDI SARJANA TERAPAN
+SAINS DATA TERAPAN
+DEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER
+
+POLITEKNIK ELEKTRONIKA NEGERI SURABAYA
+2026
+
+ 
+PROYEK AKHIR 
+
+
+
+PENGEMBANGAN DASHBOARD REAL-TIME UNTUK MONITORING DAN PREDIKSI KUALITAS UDARA DI KOTA SURABAYA
+
+
+
+Muhammad Yusuf Rajabiyah
+NRP. 3322600020
+
+DOSEN PEMBIMBING:
+
+Ronny Susetyoko, S.Si., M.Si.
+NIP. 197112111995011001
+
+Isbat Uzzin Nadhori, S.Kom., M.T.
+NIP. 197405052003121002
+
+
+
+
+PROGRAM STUDI SARJANA TERAPAN 
+SAINS DATA TERAPAN
+DEPARTEMEN TEKNIK INFORMATIKA DAN KOMPUTER
+
+POLITEKNIK ELEKTRONIKA NEGERI SURABAYA
+2026
+
+
+HALAMAN PENGESAHAN
+
+
+PENGEMBANGAN DASHBOARD REAL-TIME UNTUK MONITORING DAN PREDIKSI KUALITAS UDARA DI KOTA SURABAYA
+
+Oleh:
+Muhammad Yusuf Rajabiyah
+NRP. 3322600020
+
+Proyek Akhir ini digunakan sebagai salah satu syarat untuk 
+memperoleh Gelar Sarjana Terapan Sains Data Terapan (S.Tr.S.D.T.) 
+di Politeknik Elektronika Negeri Surabaya
+2026
+
+Disetujui oleh:
+
+Pembimbing 1: Ronny Susetyoko, S.Si., M.Si.()
+  NIP. 197112111995011001
+Pembimbing 2: Isbat Uzzin Nadhori, S.Kom., M.T. (         )
+  NIP. 197405052003121002
+
+Penguji 1: Dr. Edi Satriyanto, S.Si., M.Si.  (     )
+  NIP. 197009281995011001
+Penguji 2: Yesta Medya Mahardhika S.Tr.Kom., M.T(  )
+  NIP. 199008182022032005
+
+Mengetahui,
+Ketua Program Studi Sarjana Terapan Sains Data Terapan
+Politeknik Elektronika Negeri Surabaya
+
+
+
+
+Isbat Uzzin Nadhori, S.Kom., M.T.
+NIP.  197405052003121002
+
+
+PERNYATAAN ORISINALITAS
+
+Dengan ini saya menyatakan bahwa bagian atau keseluruhan proyek akhir ini:
+Adalah hasil karya sendiri dan tidak mengandung unsur plagiat dari pihak lain,
+Tidak pernah diajukan untuk mendapatkan gelar akademis pada suatu Perguruan Tinggi,
+Tidak pernah dipublikasikan atau ditulis oleh pihak lain
+Mencantumkan rujukan dan kutipan dengan jujur dan benar terhadap sumber referensi lain yang menunjang pembahasan pada proyek akhir ini.
+Apabila ditemukan bukti bahwa pernyataan saya di atas tidak benar, maka saya bersedia menerima sanksi sesuai dengan ketentuan yang berlaku di Politeknik Elektronika Negeri Surabaya.
+
+
+Surabaya, 7 Juni 2026
+
+
+
+Muhammad Yusuf RajabiyahNRP. 3322600020
+
+
+
+PERNYATAAN PENGALIHAN HAK CIPTA
+
+Dengan ini, saya yang bertanda tangan di bawah ini:
+Nama: Muhammad Yusuf Rajabiyah
+NRP: 3322600020
+Judul Proyek Akhir: “Pengembangan Dashboard Real-Time untuk Monitoring dan Prediksi Kualitas Udara Di Kota Surabaya”
+Tanggal: 7 Juni 2026
+
+menyatakan bahwa saya selaku penulis (dan/atau mewakili seluruh penulis) secara sadar dan sukarela mengalihkan hak cipta (copyright) atas proyek akhir tersebut kepada Politeknik Elektronika Negeri Surabaya.
+Demikian pernyataan ini saya buat dengan sebenar-benarnya dan tanpa paksaan dari pihak mana pun.
+
+Hormat saya,
+
+[Materai]
+
+
+Muhammad Yusuf Rajabiyah
+
+
+
+
+ABSTRAK
+
+Peningkatan pesat urbanisasi, pertumbuhan sektor perindustrian, dan kepadatan transportasi di Kota Surabaya secara langsung berkontribusi signifikan pada degradasi kualitas udara ekstrem, khususnya melalui paparan partikulat debu halus dan polusi emisi gas buang yang membahayakan kesehatan masyarakat. Untuk mengatasi permasalahan tersebut dan menjawab keterbatasan sistem pemantauan konvensional yang umumnya bersifat statis serta murni menyajikan data historis, proyek akhir ini mengembangkan sebuah sistem cerdas berupa Dashboard Real-Time Terpadu untuk Monitoring dan Prediksi Kualitas Udara. Arsitektur sistem ini mengintegrasikan perangkat keras akuisisi data berfrekuensi tinggi (perekaman per menit) menggunakan perangkat Internet of Things (IoT) berbasis mikrokontroler ESP32 dengan sensor lingkungan low-cost, yang disandingkan bersama data meteorologi sekunder resmi dari BMKG. Alur pemrosesan data (data pipeline) diperkuat oleh implementasi teknologi Edge Functions berbasis cron job pada infrastruktur database cloud Supabase untuk melakukan agregasi ter-materialisasi secara otomatis, sehingga stabilitas beban komputasi dan responsivitas visualisasi antarmuka web tetap terjaga dengan sangat baik.
+Pembaruan utama (novelty) dari sistem ini terletak pada penerapan kerangka kerja pemodelan analitik ganda (dual-analytics) yang beroperasi secara kontinu. Pada modul klasifikasi kategori Indeks Standar Pencemar Udara (ISPU), penerapan algoritma Random Forest terbukti sangat andal dengan pencapaian tingkat akurasi komprehensif sebesar 99,70% dan F1-Score Makro 99,46%. Model ini mampu mengeksekusi pelabelan data 39 kali lebih cepat dengan waktu inferensi hanya 0,317 detik dibandingkan algoritma sejenis, menjadikannya sangat ideal untuk menangani operasi aliran data aktual (data streaming) tanpa jeda. Pada modul peramalan kualitas udara jangka pendek (horizon 60 menit ke depan), algoritma Extreme Gradient Boosting (XGBoost) membuktikan keunggulan komputasi mutlak dalam mempelajari pola sekuensial dan meredam efek pencilan ekstrem pada kondisi lingkungan.
+Dalam pengujian proyeksi temporal, XGBoost secara konsisten mampu menekan akumulasi kesalahan prediksi yang diukur menggunakan metrik Mean Absolute Percentage Error (MAPE) di bawah ambang batas sangat akurat untuk seluruh parameter polutan target, yaitu PM2.5 sebesar 7,50%, PM10 sebesar 9,00%, dan karbon monoksida (CO) sebesar 6,36%. Capaian analitik ini secara empiris mengungguli performa pemodelan komparatif LightGBM dan metode dekomposisi statistik konvensional Prophet yang justru mengalami kegagalan adaptasi (severe underfitting) terhadap riak fluktuasi per-menit, dengan tingkat kesalahan melonjak hingga 59,39% pada gas CO. Keseluruhan hasil pengujian secara menyeluruh memvalidasi bahwa ekosistem cerdas ini sangat layak, efisien, dan responsif untuk diimplementasikan sebagai alat pendukung keputusan mitigasi lingkungan kota secara proaktif.
+
+Kata Kunci: Kualitas Udara, Peramalan Real-Time, XGBoost, Klasifikasi ISPU, Internet of Things
+
+
+
+
+ABSTRACT
+
+The rapid increase in urbanization, industrial sector growth, and transportation density in Surabaya City significantly contributes to extreme air quality degradation, particularly through exposure to fine particulate matter and vehicle exhaust emissions that endanger public health. To address this issue and overcome the limitations of conventional monitoring systems, which are generally static and purely present historical data, this final project develops an intelligent system in the form of an Integrated Real-Time Air Quality Monitoring and Prediction Dashboard. The system architecture integrates high-frequency data acquisition hardware (per-minute recording) utilizing an ESP32 microcontroller-based Internet of Things (IoT) device with low-cost environmental sensors, coupled with official secondary meteorological data from BMKG. The data pipeline is reinforced by the implementation of cron job-based Edge Functions technology on the Supabase cloud database infrastructure to perform automatic materialized aggregation, ensuring the stability of computational loads and the visual responsiveness of the web interface.
+The primary novelty of this system lies in the application of a continuous dual-analytics modeling framework. In the Air Pollution Standard Index (ISPU) category classification module, the application of the Random Forest algorithm proved highly reliable, achieving a comprehensive accuracy rate of 99.70% and a Macro F1-Score of 99.46%. This model is capable of executing data labeling 39 times faster, with an inference time of only 0.317 seconds compared to similar algorithms, making it highly ideal for handling actual data streaming operations without latency. In the short-term air quality forecasting module (a 60-minute future horizon), the Extreme Gradient Boosting (XGBoost) algorithm demonstrated absolute computational superiority in learning sequential patterns and mitigating the effects of extreme environmental outliers.
+In temporal projection testing, XGBoost consistently suppressed the accumulation of predictive errors, measured using the Mean Absolute Percentage Error (MAPE) metric, below the highly accurate threshold for all target pollutant parameters: 7.50% for PM2.5, 9.00% for PM10, and 6.36% for carbon monoxide (CO). This analytical achievement empirically outperformed the comparative modeling of LightGBM and the conventional statistical decomposition method Prophet, which conversely experienced severe underfitting towards per-minute fluctuation ripples, with its error rate surging to 59.39% for CO gas. The overall comprehensive test results validate that this intelligent ecosystem is highly feasible, efficient, and responsive to be implemented as a proactive decision-support tool for urban environmental mitigation.
+
+Keywords: Air Quality, Real-Time Forecasting, XGBoost, ISPU Classification, Internet of Things
+
+
+
+
+
+
+KATA PENGANTAR
+
+Puji syukur penulis panjatkan kehadirat Allah SWT yang telah melimpahkan rahmat, hidayah, serta karunia-Nya, sehingga penulis dapat menyelesaikan Buku Proyek Akhir yang berjudul “Pengembangan Dashboard Real-Time untuk Monitoring dan Prediksi Kualitas Udara di Kota Surabaya” dengan baik. Proyek Akhir ini disusun sebagai salah satu syarat akademis wajib guna memperoleh gelar Sarjana Terapan Sains Data Terapan (S.Tr.S.D.T.) pada Program Studi Sarjana Terapan Sains Data Terapan, Departemen Teknik Informatika dan Komputer, Politeknik Elektronika Negeri Surabaya.
+
+Dalam proses pelaksanaan penelitian, akuisisi data sensor, hingga penyusunan laporan ini, penulis telah banyak menerima bantuan, bimbingan, fasilitas, serta dukungan moral maupun material dari berbagai pihak. Oleh karena itu, pada kesempatan ini penulis ingin menyampaikan apresiasi dan ucapan terima kasih yang sebesar-besarnya kepada:
+
+Tuhan Yang Maha Esa yang telah melimpahkan kemudahan kepada penulis sejak dalam pelaksanaan proyek akhir ini sampai dengan penyusunan laporan proyek akhir.
+Bapak Ronny Susetyoko, S.Si., M.Si., selaku Dosen Pembimbing 1 yang senantiasa memberikan arahan ilmiah, koreksi mendalam, dan masukan konstruktif demi kesempurnaan penelitian ini.
+Bapak Isbat Uzzin Nadhori, S.Kom., M.T., selaku Ketua Program Studi Sarjana Terapan Sains Data Terapan sekaligus Dosen Pembimbing 2 yang telah memberikan arahan, ilmu, waktu, dan bimbingan yang sangat berharga bagi penulis selama penyusunan Proyek Akhir ini. 
+Bapak Prof. M. Udin Harun Al Rasyid, S.Kom., Ph.D, selaku Kepala Departemen Teknik Informatika dan Komputer yang telah memberikan dukungan dan fasilitas selama masa perkuliahan.
+Pemilik Warung Kopi Sedulur Tunggal Kopi Ngagel dan UPN, yang telah memberikan izin tempat, bantuan fasilitas, serta keramahan yang luar biasa selama penulis melakukan proses penempatan perangkat IoT dan pengambilan sampel data spasial kualitas udara di titik pemantauan Ngagel dan sekitar kampus UPN.
+Pemilik Warung Kopi Cak Betik, yang telah memberikan dukungan fasilitas dan izin lokasi yang memadai, sehingga penulis dapat melaksanakan proses akuisisi data parameter polutan lingkungan di lapangan secara lancar dan kondusif.
+Pihak Pengelola Transportasi Publik Wira Wiri Suroboyo, atas penyediaan sarana transportasi dan aksesibilitas pergerakan yang mendukung mobilitas penulis dalam melakukan survei lokasi dan analisis spasial karakteristik kualitas udara lalu lintas urban di Kota Surabaya.
+Rekan-rekan mahasiswa D4 Sains Data Terapan PENS Angkatan 2022.
+Semua pihak yang tidak dapat disebutkan satu per satu atas dukungan bantuan, dan doanya selama penyusunan Proyek Akhir ini.
+
+Penulis menyadari bahwa laporan Proyek Akhir ini masih jauh dari kesempurnaan. Oleh karena itu, kritik dan saran yang membangun sangat penulis harapkan demi perbaikan di masa mendatang. Akhir kata, semoga laporan ini dapat memberikan manfaat nyata bagi perkembangan ilmu pengetahuan, khususnya di bidang Sains Data, serta berkontribusi positif bagi pengelolaan lingkungan Kota Surabaya
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAFTAR ISI
+
+ABSTRAKvi
+ABSTRACTviii
+DAFTAR ISIxii
+DAFTAR GAMBARxvi
+DAFTAR TABELxvii
+BAB 11
+PENDAHULUAN1
+1.1 Latar Belakang1
+1.2 Permasalahan3
+1.3 Tujuan3
+1.4 Batasan Masalah3
+1.5 Manfaat4
+1.6 Sistematika Penelitian5
+BAB 27
+KAJIAN PUSTAKA7
+2.1 Deskripsi Permasalahan7
+2.2 Teori Penunjang8
+2.2.1 Kualitas Udara dan Indikatornya8
+2.2.2 Internet of Things (IoT) untuk Pemantauan Lingkungan9
+2.2.3 Algoritma Machine Learning untuk Prediksi Kualitas Udara10
+2.2.4 XGBoost (eXtreme Gradient Boosting)10
+2.2.5 LightGBM (Light Gradient Boosting Machine)13
+2.2.6 Prophet15
+2.2.7 Random Forest17
+2.2.8 Integrasi Data dan Pengembangan Dashboard Analitik18
+2.2.9 Analisis Varians (ANOVA) dan Uji Asumsi19
+2.3 Penelitian Terkait19
+2.3.1 Penelitian Prediksi Kualitas Udara dengan Machine Learning20
+2.3.1.1 Air Quality Forecasting Using Machine learning : Comparative Analysis and Ensemble Strategies for Enhanced Prediction20
+2.3.1.2 Performance of machine learning models to forecast PM10 levels20
+2.3.1.3 XGBoost: A scalable tree boosting system21
+2.3.2 Pencemaran Udara Akibat Emisi Gas Buang Kendaraan Bermotor22
+2.3.3 Pemantauan Kualitas Udara22
+2.3.4 Implementasi Internet of Things (IoT) Dalam Monitoring Kualitas Udara Pada Ruang Terbuka22
+2.3.5 Pemantauan Kualitas Udara Berbasis Internet of Things22
+BAB 325
+DESKRIPSI SISTEM25
+3.1 Deskripsi Solusi25
+3.2 Perancangan Sistem26
+3.2.1 Perangkat Keras dan Sumber Data26
+3.2.2 Proses Pengambilan Data (Data Acquisition)27
+3.2.3 Proses Penyimpanan Backend (Supabase Backend)27
+3.2.4 Proses Pengolahan dan Peramalan Data (Data Processing & Forecasting)27
+3.2.5 Tahapan Pembuatan Model28
+3.2.5.1 Identifikasi Fitur dan Target28
+3.2.5.2 Pembersihan dan Transformasi Data29
+3.2.5.3 Pembagian Data: Pelatihan dan Pengujian30
+3.2.5.4 Pelatihan Model30
+3.2.5.5 Penggunaan Model Klasifikasi31
+3.2.5.6 Penggunaan Model Peramalan32
+3.2.5.7 Evaluasi Kinerja Model33
+3.2.5.8 Horizon Peramalan 60 Menit34
+3.2.6 Implementasi Backend dan Logika Pemrosesan Data35
+3.2.6.1 Otomasi Pemrosesan Data Terjadwal36
+3.2.7 Proses Pembuatan Dashboard37
+3.2.8 Perencanaan Pengambilan Sampel dan Analisis Spasial Kualitas Udara38
+3.2.8.1 Pengambilan Sampel Data Spasial38
+3.2.8.2 Analisis Data Spasial39
+3.2.8.3 Interpretasi Hasil Analisis40
+3.3 Desain Mockup40
+3.3.1 Dashboard Overview40
+3.3.2 Data Cuaca BMKG dan Tren Polutan42
+3.3.3 Prediksi Kualitas Udara dengan Model Machine Learning43
+BAB 445
+HASIL PENELITIAN45
+4.1 Parameter Eksperimen45
+4.2 Karakteristik Data46
+4.3 Lokasi Uji Coba47
+4.4 Waktu Uji Coba48
+4.5 Spesifikasi Peralatan Uji Coba48
+4.6 Implementasi Arsitektur Sistem untuk Agregasi Data48
+4.6.1 Implementasi Ingestion Data dan Perangkat IoT49
+4.6.2 Spesifikasi dan Karakteristik Data50
+4.6.2.1 Mekanisme Pengiriman Data ke Backend50
+4.6.2.2 Payload Data Konsentrasi Gas dan Lingkungan50
+4.7 Hasil Eksperimen51
+4.7.1 Pengambilan Data dari Database51
+4.7.2 Preprocessing Data52
+4.7.3 Analisis Eksplorasi Data (EDA)52
+4.7.3.1 Karakteristik dan Ringkasan Statistik52
+4.7.3.2 Analisis Tren Temporal dan Distribusi Polutan53
+4.7.3.3 Analisis Pola Diurnal (Harian) Polutan54
+4.7.4 Analisis Hubungan Antar Variabel (Korelasi)55
+4.7.4.1 Matriks Korelasi Pearson55
+4.7.4.2 Analisis Korelasi Silang (Cross-Correlation Function - CCF)56
+4.7.5 Uji Stasioneritas dan Analisis Autokorelasi56
+4.7.5.1 Uji Stasioneritas (Augmented Dickey-Fuller)56
+4.7.5.2 Analisis ACF dan PACF Multi-Polutan57
+4.7.6 Hasil Implementasi Model Peramalan58
+4.7.6.1 Implementasi Model XGBoost59
+4.7.6.2 Implementasi Model LightGBM61
+4.7.6.3 Implementasi Model Prophet62
+4.7.6.4 Perbandingan Performa Ketiga Model62
+4.7.7 Implementasi Model Klasifikasi ISPU63
+4.7.7.1 Implementasi Model Random Forest63
+4.7.7.2 Implementasi Model Pembanding65
+4.7.7.3 Alasan Pemilihan Random Forest66
+4.7.7.4 Perhitungan ISPU dan Penetapan Polutan Dominan66
+4.7.8 Hasil Aplikasi Dashboard Web67
+4.7.8.1 Tampilan Overview67
+4.7.8.2 Tampilan Hasil Prediksi71
+4.7.9 Hasil Pengambilan Sampel dan Analisis Klasifikasi Kualitas Udara74
+4.7.9.1 Pengambilan Sampel Data Spasial74
+4.7.9.2 Perbandingan Distribusi Label Antar Wilayah77
+4.7.9.3 Statistik Deskriptif Hasil Pengukuran Kualitas Udara77
+4.7.9.4 Studi Kasus Analisis Spasial menggunakan Uji ANOVA79
+BAB 583
+PENUTUP83
+5.1 Kesimpulan83
+5.2 Saran84
+DAFTAR PUSTAKA85
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAFTAR GAMBAR
+
+Gambar 2.1 Contoh Tampilan Dashboard berbasis Web19
+Gambar 3.1 Desain Sistem26
+Gambar 3.2 Blok Diagram Sistem27
+Gambar 3.3 Struktur Tabel Data mentah35
+Gambar 3.4 Struktur Tabel Data agregasi36
+Gambar 3.5 Alur Agregasi Otomatis36
+Gambar 3.6 Riwayat eksekusi agregasi Cron Job37
+Gambar 3.7 Mock-up Metrics Card41
+Gambar 3.8 Mock-up Integrasi Data BMKG43
+Gambar 3.9 Mock-up Hasil Prediksi44
+Gambar 4.1 Alur Data Ingestion49
+Gambar 4.2 Detail Logs Pengambilan Data52
+Gambar 4.3 Hasil Preprocessing52
+Gambar 4.4 Visualisasi time series54
+Gambar 4.5 Visualisasi rolling mean54
+Gambar 4.6 Histogram Sebaran Polutan55
+Gambar 4.7 Boxplot Pola Harian55
+Gambar 4.8 Korelasi Pearson56
+Gambar 4.9 Visualisasi Cross Correlation Function56
+Gambar 4.10 Visualisasi ACF dan PACF58
+Gambar 4.11 Tampilan Halaman Overview68
+Gambar 4.12 Tampilan Klasifikasi Kualitas Udara68
+Gambar 4.13 Tampilan Metric Card68
+Gambar 4.14 Panel Infomasi Tambahan69
+Gambar 4.15 Pola Harian data teragregasi69
+Gambar 4.16 Distribusi PM2.5 pada jam sibuk70
+Gambar 4.17 Trend data agregasi70
+Gambar 4.18 Heatmap Kalender Kontribusi PM2.571
+Gambar 4.19 Sebaran data CO ISPU71
+Gambar 4.20 Halaman Forecast72
+Gambar 4.21 Prediksi Kualitas Udara73
+Gambar 4.22 Peramalan PM 2.5 dalam 1 jam73
+Gambar 4.23 Peramalan PM10 dalam 1 jam74
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAFTAR TABEL
+ 
+
+Tabel 2.1 Kategori Indeks Pencemaran Udara9
+Tabel 2.2 Penelitian Terkait23
+Tabel 3.1 Fitur dan Target untuk Model29
+Tabel 3.2 Titik Koordinat Lokasi Pengambilan Sampel Spasial38
+Tabel 4.1 Hyperparameter Model XGBoost46
+Tabel 4.2 Hyperparameter Model LightGBM46
+Tabel 4.3 Parameter Model Prophet47
+Tabel 4.4 Karakteristik Dataset47
+Tabel 4.5 Spesifikasi Peralatan Uji Coba49
+Tabel 4.6 Ringkasan statistik data53
+Tabel 4.7 Hasil Uji ADF57
+Tabel 4.8 Parameter terbaik model XGBoost60
+Tabel 4.9 Metrik Evaluasi Model XGBoost60
+Tabel 4.10 Parameter terbaik model LightGBM61
+Tabel 4.11 Metrik Evaluasi Model LightGBM61
+Tabel 4.12 Metrik Evaluasi Model Prophet62
+Tabel 4.13 Perbandingan Metrik evaluasi ketiga model63
+Tabel 4.14 Spesifikasi Model64
+Tabel 4.15 Classification Report Random Forest64
+Tabel 4.16 Perbandingan Kinerja Model Klasifikasi66
+Tabel 4.17 Distribusi Label tiap wilayah77
+Tabel 4.18 Statistik Deskriptif PM2.578
+Tabel 4.19 Statistik Deskriptif PM1079
+Tabel 4.20 Statistik Deskriptif CO79
+Tabel 4.21 Ringkasan Hasil Uji One-Way ANOVA80
+Tabel 4.22 Ringkasan Uji Post-hoc Tukey HSD81
+
+BAB 1
+PENDAHULUAN
+
+1.1 Latar Belakang
+Peningkatan pesat urbanisasi dan industrialisasi telah menyebabkan degradasi kualitas udara parah, menjadi ancaman serius bagi kesehatan manusia dan ekosistem, serta mempercepat perubahan iklim global. Polusi udara ini, jika tidak ditangani, dapat menghambat kemajuan pencapaian Tujuan Pembangunan Berkelanjutan (SDGs). Kota Surabaya, sebagai pusat ekonomi dan industri terbesar kedua, menghadapi krisis masalah ini. Pertumbuhan pesat sektor otomotif dan industri secara signifikan meningkatkan konsentrasi emisi polutan, di mana emisi transportasi terbukti menjadi penyumbang pencemaran udara tertinggi di perkotaan, mencapai sekitar 80%[1]. Peningkatan kadar partikel debu halus (PM2.5), nitrogen dioksida (NO₂), dan sulfur dioksida (SO₂) diketahui menyebabkan gangguan pernapasan, penurunan kualitas hidup, dan memperparah tekanan terhadap ekosistem perkotaan.
+Selain dipicu oleh tingginya volume emisi transportasi dan industri, tingkat konsentrasi polutan di udara perkotaan juga sangat dipengaruhi oleh faktor meteorologis lokal. Parameter fisik seperti suhu dan kelembapan udara memainkan peran penting dalam perilaku dispersi serta akumulasi polutan. Sebagai contoh, suhu yang tinggi dapat mempercepat laju reaksi kimia pembentuk polutan sekunder seperti ozon, sementara tingkat kelembapan memengaruhi visibilitas dan sedimentasi massa partikulat seperti PM2.5 dan PM10. Oleh karena itu, informasi cuaca resmi dari BMKG diintegrasikan ke dalam antarmuka sistem murni sebagai data pendukung pada dashboard monitoring. Integrasi data meteorologi ini bertujuan untuk memberikan konteks kondisi lingkungan sekitar secara komprehensif bagi pengguna dalam mengamati tren kualitas udara[2]. Sebagai bentuk validasi dan studi kasus tambahan atas sistem yang dibangun, penelitian ini juga melakukan analisis komparatif spasial secara purposive di area dengan tata guna lahan yang berbeda, seperti area lalu lintas perkotaan, titik pemantauan industri manufaktur, dan pusat logistik. Pendekatan tambahan ini bertujuan untuk melihat kapabilitas model analitik dalam merespons pola fluktuasi emisi polutan yang bervariasi di luar titik pemantauan utama.
+Untuk menjawab permasalahan tersebut dan mengatasi keterbatasan sistem pemantauan konvensional yang umumnya bersifat historis serta tidak prediktif, proyek akhir ini mengusulkan pengembangan Dashboard Pemantauan dan Prediksi Kualitas Udara Berbasis Web Real-time yang dirancang khusus untuk Kota Surabaya. Sistem ini akan mengintegrasikan data dari sensor IoT lokal dan data sekunder resmi dari BMKG untuk menyediakan informasi kualitas udara secara dinamis. Selain itu, dashboard ini akan dilengkapi dengan kemampuan klasifikasi otomatis menggunakan algoritma machine learning serta model prediksi untuk memperkirakan kondisi kualitas udara di masa mendatang. Pendekatan ini sangat dibutuhkan mengingat kualitas udara di Indonesia, khususnya di kota-kota besar, seringkali berada pada tingkat tidak sehat; laporan IQAir (2024) menunjukkan bahwa rata-rata konsentrasi PM2.5 di banyak wilayah perkotaan Indonesia melebihi ambang batas aman WHO, menempatkan Indonesia sebagai salah satu negara dengan tingkat polusi udara tinggi di Asia Tenggara[3]. Keefektifan pendekatan ini juga telah dibuktikan oleh studi lain seperti Bekkar et al. (2024) yang berhasil mengembangkan platform AIoT real-time untuk monitoring dan prediksi kualitas udara menggunakan sensor low-cost dan machine learning [4] serta penelitian yang menunjukkan bahwa kombinasi IoT dengan machine learning secara signifikan meningkatkan akurasi dan efisiensi sistem pemantauan kualitas udara dibanding metode tradisional [5]. 
+Dalam aspek analitik, pendekatan machine learning digunakan untuk melakukan pemodelan dan prediksi kualitas udara berdasarkan parameter polutan dan variabel pendukung lainnya. Model utama yang diterapkan dalam penelitian ini adalah Extreme Gradient Boosting (XGBoost). Algoritma XGBoost dipilih sebagai model utama karena keunggulannya yang sangat baik dalam menangani hubungan non-linear yang kompleks antara variabel polutan dan faktor meteorologi, memiliki fungsi regularisasi eksplisit yang efektif untuk mencegah overfitting, serta terbukti menghasilkan akurasi tinggi pada berbagai studi prediksi kualitas udara. Untuk keperluan evaluasi dan perbandingan kinerja, model Light Gradient Boosting Machine (LightGBM) yang unggul dalam efisiensi komputasi serta metode statistik Prophet digunakan sebagai model pembanding.
+Pemodelan prediksi dilakukan untuk memperkirakan nilai parameter kualitas udara secara simultan, khususnya pada variabel PM2.5, PM10, dan CO serta Indeks Standar Pencemar Udara (ISPU) pada horizon waktu 60 menit ke depan berdasarkan data historis. Pendekatan berbasis machine learning, khususnya XGBoost dan LightGBM, dinilai lebih adaptif dan konsisten dibandingkan metode konvensional yang murni berbasis statistik karena mampu menangkap hubungan kompleks antar variabel lingkungan. Sementara itu, Prophet digunakan sebagai baseline prediksi deret waktu yang berfokus pada komponen tren dan musiman. Dengan memanfaatkan XGBoost sebagai pilar utama arsitektur analitik, sistem dapat menghasilkan peramalan yang lebih andal dan presisi, sehingga informasi kualitas udara dapat disajikan secara informatif untuk mendukung pemantauan berbasis data berbasis real-time.
+Pengembangan sistem ini juga melibatkan kolaborasi dengan mahasiswa Teknik Elektronika dalam pemanfaatan dan pengelolaan modul sensor IoT yang telah tersedia. Diharapkan, hasil proyek akhir ini dapat menjadi dasar pengambilan kebijakan berbasis data dalam upaya mitigasi dampak pencemaran udara dan perubahan iklim secara lebih efektif.
+
+1.2 Permasalahan
+  Berdasarkan latar belakang yang diuraikan dan fokus proyek, permasalahan utama yang ingin diatasi dalam proyek ini adalah sebagai berikut:
+Minimnya sistem monitoring kualitas udara yang mampu mengakuisisi, mengintegrasikan, dan menyajikan data kualitas udara secara real-time dari lingkungan lokal Kota Surabaya.
+Belum optimalnya pemanfaatan algoritma machine learning untuk klasifikasi serta prediksi kualitas udara berbasis data lokal Surabaya.
+Belum tersedianya sistem pendukung keputusan yang mampu menginterpretasikan hasil monitoring dan prediksi kualitas udara menjadi informasi yang mudah dipahami untuk mendukung perencanaan dan kebijakan lingkungan.
+1.3 Tujuan
+Adapun tujuan yang ingin dicapai melalui proyek akhir ini adalah sebagai berikut:
+Mengembangkan antarmuka web yang interaktif untuk eksplorasi dan visualisasi data kualitas udara real-time.
+Mengimplementasikan algoritma XGBoost untuk PM2.5, PM10, dan CO dengan horizon waktu 60 menit ke depan serta implementasi algoritma Random Forest untuk klasifikasi kualitas udara berdasarkan standar ISPU.
+Mengembangkan fitur analisis dan sistem pendukung keputusan yang memanfaatkan hasil monitoring, klasifikasi, dan prediksi kualitas udara untuk membantu pengambilan kebijakan lingkungan dan mitigasi risiko pencemaran udara.
+
+1.4 Batasan Masalah
+Agar pembahasan dan pengembangan sistem dalam Proyek Akhir ini lebih terarah dan tidak menyimpang dari tujuan awal, maka ditetapkan batasan-batasan masalah sebagai berikut:
+Penelitian ini berfokus pada analisis data kualitas udara dan pemodelan prediktif (peramalan dan klasifikasi). Penelitian tidak membahas atau melakukan analisis diagnostik secara mendalam terhadap performa arsitektur perangkat keras (hardware).
+Pengumpulan data dilakukan menggunakan perangkat mikrokontroler ESP32 dengan sensor kategori low-cost (seperti sensor GP2Y1010AU0F). Perangkat ini difungsikan murni sebagai alat akuisisi data indikatif, bukan ditujukan sebagai kalibrator standar atau pengganti stasiun pemantau kualitas udara referensi milik pemerintah.
+Implementasi sistem pemantauan secara real-time dan pengiriman data kontinu ke database cloud (Supabase) difokuskan pada satu titik pemantauan statis. Adapun pengambilan sampel data spasial di tiga lokasi lain (Ngagel, Rungkut, dan Margomulyo) hanya bersifat temporal sebagai studi kasus tambahan untuk keperluan uji komparatif ANOVA, dan tidak diintegrasikan sebagai node sensor real-time permanen.
+Pemodelan analitik dibatasi pada dua metodologi utama: (1) pemodelan forecasting untuk memprediksi nilai konsentrasi polutan (PM2.5, PM10, dan CO) hingga 60 menit ke depan menggunakan algoritma XGBoost atau LightGBM, serta (2) klasifikasi kategori Indeks Standar Pencemar Udara (ISPU) menggunakan algoritma Random Forest.
+Hasil akhir dari sistem berupa dashboard pemantauan berbasis web yang berfungsi untuk menampilkan visualisasi data hasil monitoring, metrik statistik, serta hasil prediksi dari model machine learning yang telah dikembangkan.
+1.5 Manfaat
+Proyek akhir ini diharapkan dapat memberikan beberapa manfaat signifikan bagi berbagai pihak, antara lain:
+1.5.1 Bagi Masyarakat Umum:
+Meningkatkan akses informasi kualitas udara yang teragregasi secara real-time dan prediktif, sehingga individu dapat mengambil keputusan yang lebih baik terkait aktivitas harian dan kesehatan, seperti membatasi aktivitas di luar ruangan saat kualitas udara buruk.
+
+1.5.2 Bagi Pemerintah dan Pemangku Kepentingan :
+Menyediakan data terintegrasi dan hasil klasifikasi otomatis bagi pemangku kebijakan seperti Dinas Lingkungan Hidup Kota Surabaya untuk mendukung perumusan kebijakan lingkungan yang lebih tepat sasaran, seperti regulasi emisi dan perencanaan tata kota. 
+Mendukung pengambilan keputusan yang lebih cepat dan responsif oleh pemerintah daerah serta Kementerian Lingkungan Hidup dan Kehutanan dalam penanganan isu kualitas udara, termasuk penyampaian peringatan dini kepada masyarakat.
+
+1.5.3 Bagi Komunitas dan Akademisi (Mahasiswa, Kampus, Peneliti):
+Menjadi sumber data teragregasi, model klasifikasi dan prediksi yang valid dan terbuka untuk penelitian lebih lanjut di bidang kualitas udara, machine learning, deep learning, dan Internet of Things.
+Mendorong transparansi data melalui dashboard analitik yang mudah diakses, memfasilitasi partisipasi aktif komunitas dalam upaya pemantauan dan peningkatan kualitas lingkungan.
+Berfungsi sebagai studi kasus dan platform pembelajaran bagi mahasiswa di bidang Teknik Informatika dan Teknik Elektronika.
+
+1.5.4 Bagi Sektor Industri dan Transportasi:
+Menyediakan data objektif mengenai kontribusi dan dampak operasional mereka terhadap kualitas udara, sehingga dapat mendorong praktik operasional yang lebih ramah lingkungan dan bertanggung jawab.
+
+1.6 Sistematika Penelitian
+Penulisan laporan proyek akhir ini disusun secara sistematis dalam beberapa bab, yaitu:
+BAB 1 PENDAHULUAN
+Bab ini menjelaskan latar belakang masalah, perumusan masalah, tujuan yang ingin dicapai, manfaat yang diharapkan, serta ruang lingkup dan batasan masalah dari proyek akhir ini.
+
+BAB 2 KAJIAN PUSTAKA
+Bab ini menyajikan landasan teori dan kajian pustaka yang relevan, mencakup teori tentang kualitas udara dan parameter pencemar, teknologi Internet of Things (IoT), metode klasifikasi dengan Random Forest serta metode peramalan menggunakan XGBoost, LightGBM, dan model deret waktu seperti Prophet. Juga dibahas penelitian-penelitian terdahulu sebagai pembanding dan penguat kontribusi proyek ini.
+
+BAB 3 DESKRIPSI SISTEM
+Bab ini menguraikan secara rinci solusi yang ditawarkan, desain sistem secara keseluruhan, perancangan perangkat keras, komunikasi data antar perangkat IoT dan server cloud, proses pengolahan data, analisis, dan visualisasi. Selain itu, dijelaskan pula tahapan pembuatan model klasifikasi dan prediksi, serta evaluasi kinerjanya menggunakan metrik statistik.
+
+BAB 4 HASIL PENELITIAN
+Bab ini menyajikan hasil eksperimen dan pembahasan terhadap sistem monitoring dan prediksi kualitas udara yang telah dikembangkan. Pembahasan mencakup hasil akuisisi data kualitas udara secara real-time dari sensor PM2.5, PM10, CO, suhu, dan kelembapan, serta analisis pola data yang diperoleh. Selain itu, dilakukan evaluasi kinerja model klasifikasi dan peramalan menggunakan beberapa metode yang telah diimplementasikan, dengan penilaian berbasis metrik statistik untuk mengukur akurasi dan keandalan model. Hasil peramalan dan klasifikasi kemudian divisualisasikan melalui Dashboard Web, sehingga memungkinkan pemantauan kondisi kualitas udara secara informatif dan mudah dipahami oleh pengguna.
+
+BAB 5 PENUTUP
+Bab ini berisi kesimpulan dari seluruh proses perancangan, implementasi, dan pengujian sistem monitoring dan prediksi kualitas udara berbasis Dashboard Web, serta rencana pengembangan di masa mendatang. Pengembangan selanjutnya diarahkan pada penambahan data temporal dan parameter pencemar tambahan, peningkatan kualitas klasifikasi menggunakan model machine learning yang lebih teruji, serta pengembangan sistem alert dan rekomendasi berbasis prediksi yang ditujukan untuk mendukung pengambilan keputusan, khususnya bagi pemangku kebijakan dalam pengelolaan kualitas udara.
+
+
+
+
+
+
+
+BAB 2
+KAJIAN PUSTAKA
+
+2.1 Deskripsi Permasalahan
+Kualitas udara merupakan isu lingkungan global yang semakin mendesak, terutama di area perkotaan yang padat akibat pesatnya urbanisasi dan industrialisasi. Kota-kota besar seperti Surabaya menghadapi masalah serius terkait peningkatan konsentrasi polutan udara, yang berasal dari berbagai sumber seperti emisi kendaraan bermotor dan aktivitas industri. Tingginya kadar polutan ini tidak hanya berdampak negatif pada kesehatan masyarakat, memicu berbagai penyakit pernapasan dan kardiovaskular, tetapi juga berkontribusi pada degradasi lingkungan dan perubahan iklim lokal.
+Permasalahan pada sistem pemantauan kualitas udara saat ini adalah keterbatasannya dalam menyediakan informasi yang bersifat prediktif dan real-time secara terpadu. Data kualitas udara umumnya hanya ditampilkan dalam bentuk data historis dari titik pemantauan tertentu, tanpa adanya mekanisme untuk memperkirakan kondisi kualitas udara pada waktu mendatang. Akibatnya, informasi yang tersedia belum sepenuhnya mendukung kebutuhan pemantauan yang bersifat antisipatif, baik bagi masyarakat maupun pihak terkait, sehingga potensi peningkatan risiko kesehatan akibat paparan polutan tidak dapat direspon secara lebih dini.
+Keterbatasan tersebut menjadi semakin signifikan jika dikaitkan dengan kondisi faktual di Indonesia, di mana pertumbuhan sektor transportasi dan industri berlangsung sangat pesat. Peningkatan aktivitas ini berkontribusi langsung terhadap tingginya emisi polutan udara. Ismiyati et al. (2014) dalam penelitiannya mengatakan bahwa sekitar 80% udara yang tercemar berasal dari emisi transportasi [1]. Hal ini mengindikasikan bahwa tanpa pemantauan dan intervensi yang efektif, masalah polusi udara akan terus memburuk.
+Selain itu, pemanfaatan teknologi canggih seperti machine learning (ML) dan deep learning (DL) untuk analisis mendalam, klasifikasi status kualitas udara secara otomatis, dan prediksi di masa depan, masih belum optimal terintegrasi dalam sistem pemantauan lokal. Keterbatasan ini menghambat upaya mitigasi dan adaptasi yang efektif terhadap dampak polusi udara dan korelasinya dengan indikator perubahan iklim. Kondisi ini menuntut pengembangan solusi inovatif yang mampu memberikan informasi kualitas udara secara real-time, prediktif, dan mendukung pengambilan keputusan yang lebih baik.
+2.2 Teori Penunjang
+Penelitian ini menggunakan berbagai teori dan metode terkait sebagai dasar pengembangan sistem dalam mengatasi permasalahan yang diidentifikasi.:
+2.2.1 Kualitas Udara dan Indikatornya
+Penelitian ini mendefinisikan kualitas udara sebagai kondisi udara yang diukur berdasarkan parameter fisik, kimia, dan biologis. Menurut Ismiyati et al. (2014)  [1], kualitas udara yang baik merupakan kondisi udara dengan konsentrasi partikel dan polutan yang rendah sehingga tidak menimbulkan risiko kesehatan. Parameter polutan udara utama yang relevan dalam konteks perkotaan meliputi Particulate Matter (PM2.5, PM10), Karbon Monoksida (CO), Nitrogen Dioksida (NO2), dan Ozon (O3).
+Di Indonesia, Kementerian Lingkungan Hidup dan Kehutanan menggunakan Indeks Standar Pencemar Udara (ISPU) untuk menggambarkan mutu udara ambien. KLHK memanfaatkan ISPU sebagai indikator berbasis dampak kesehatan, estetika, dan ekosistem. KLHK juga menggunakan ISPU sebagai sistem peringatan dini (early warning system) untuk masyarakat di daerah rawan terdampak pencemaran udara [6]. KLHK menyusun ISPU untuk memberikan kemudahan dan keseragaman informasi mutu udara ambien kepada publik, serta menjadi bahan pertimbangan bagi pemerintah pusat dan daerah dalam upaya pengendalian pencemaran udara.
+KLHK telah menerbitkan Peraturan Menteri Lingkungan Hidup dan Kehutanan Nomor 14 Tahun 2020 tentang Indeks Standar Pencemar Udara, yang menggantikan peraturan sebelumnya. Peraturan ini menetapkan perhitungan ISPU dilakukan berdasarkan tujuh parameter utama: PM10, PM2.5, NO2, SO2, CO, O3, dan Hidrokarbon (HC), dengan penambahan parameter HC dan PM2.5 karena risiko kesehatan yang besar. Selain itu, KLHK meningkatkan frekuensi penyampaian informasi ISPU kepada publik, di mana hasil perhitungan ISPU parameter PM2.5 disampaikan tiap jam selama 24 jam, sedangkan parameter lainnya disampaikan paling sedikit dua kali sehari pada pukul 09.00 dan 15.00 [7]. 
+
+
+ Tabel 2.1 Kategori Indeks Pencemaran Udara
+Rentang
+Kategori
+Penjelasan
+1-50
+Baik
+Tingkat mutu udara yang sangat baik, tidak memberikan efek negatif terhadap manusia, hewan, dan tumbuhan.
+51-100
+Sedang
+Tingkat mutu udara masih dapat diterima pada kesehatan manusia, hewan, dan tumbuhan.
+101-200
+Tidak Sehat
+Tingkat mutu udara yang bersifat merugikan pada manusia, hewan dan tumbuhan.
+201-300
+Sangat Tidak Sehat
+Tingkat mutu udara yang dapat meningkatkan resiko kesehatan pada sejumlah segmen populasi yang terpapar
+301+
+Berbahaya
+Tingkat mutu udara yang dapat merugikan kesehatan serius pada populasi dan perlu penanganan cepat.
+
+Perhitungan ISPU dilakukan berdasarkan nilai batas atas dan batas bawah ISPU serta konsentrasi ambien hasil pengukuran. Persamaan matematis perhitungan ISPU adalah sebagai berikut [6]:
+
+(2.1)
+Keterangan: 
+I = ISPU terhitung
+Ia​ = ISPU batas atas
+Ib​ = ISPU batas bawah
+Xa​ = Konsentrasi ambien batas atas (μg/m3)
+Xb​ = Konsentrasi ambien batas bawah (μg/m3)
+Xx​ = Konsentrasi ambien nyata hasil pengukuran (μg/m3)
+
+2.2.2 Internet of Things (IoT) untuk Pemantauan Lingkungan
+Internet of Things (IoT) menghubungkan objek fisik dengan sensor, perangkat lunak, dan jaringan komunikasi untuk mengumpulkan serta bertukar data secara otomatis. Dalam pemantauan lingkungan, IoT memungkinkan pengumpulan data dari sensor yang tersebar secara real-time dan otomatis, mengatasi batasan geografis dan biaya pemantauan tradisional [8], [9]. Komponen utama sistem IoT meliputi sensor untuk akuisisi data, mikrokontroler untuk pemrosesan lokal, modul komunikasi nirkabel, dan platform cloud untuk penyimpanan serta visualisasi data.
+
+2.2.3 Algoritma Machine Learning untuk Prediksi Kualitas Udara
+Prediksi kualitas udara telah menjadi area penelitian yang aktif dengan penerapan berbagai algoritma machine learning. Chen et al. (2025) dan Tırınk (2025) menunjukkan bahwa model berbasis gradient boosting dan time series forecasting memberikan hasil yang baik dalam menangkap pola kompleks konsentrasi polutan udara.
+
+2.2.4 XGBoost (eXtreme Gradient Boosting)
+XGBoost adalah algoritma gradient boosting yang dikembangkan oleh Chen dan Guestrin pada tahun 2016, dioptimalkan untuk kecepatan dan performa tinggi. Model ini menjadi salah satu algoritma paling populer dalam kompetisi machine learning dan aplikasi praktis karena kemampuannya menghasilkan prediksi yang sangat akurat [10]. XGBoost membangun ensemble dari decision tree secara sekuensial. Model melatih setiap tree baru untuk memperbaiki kesalahan dari model sebelumnya dengan menggunakan prinsip gradient descent guna meminimalkan fungsi loss. Proses optimasi tersebut dinyatakan dalam persamaan berikut:
+(2.2)
+Keterangan:
+: total loss yang diminimalkan (gabungan kesalahan dan kompleksitas model) 
+: fungsi loss untuk mengukur selisih prediksi dan nilai aktual 
+: fungsi regularisasi untuk mengontrol kompleksitas model 
+: decision tree ke-k dalam ensemble 
+: nilai prediksi untuk sampel ke-i 
+: nilai aktual untuk sampel ke-i 
+
+Persamaan tersebut menunjukkan bahwa XGBoost tidak hanya meminimalkan kesalahan prediksi, tetapi juga mengontrol kompleksitas model melalui regularisasi.
+
+Selanjutnya, XGBoost mendefinisikan fungsi regularisasi untuk menghindari overfitting sebagai berikut:
+(2.3)
+Keterangan:
+: fungsi penalti untuk kompleksitas model 
+: parameter pengontrol jumlah leaves 
+: jumlah leaves dalam tree 
+: parameter regularisasi L2 
+: bobot pada leaf ke-j 
+
+Persamaan ini menunjukkan bahwa model memberikan penalti terhadap struktur tree yang terlalu kompleks untuk menghasilkan model yang lebih sederhana dan stabil.
+XGBoost juga menggunakan Taylor expansion orde kedua untuk memperoleh aproksimasi fungsi loss yang lebih akurat. Pendekatan ini dinyatakan dalam persamaan berikut:
+
+(2.4)
+Keterangan:
+: nilai loss pada iterasi ke-t 
+: loss dari prediksi sebelumnya 
+: turunan pertama (gradient) 
+: turunan kedua (Hessian) 
+: tree baru pada iterasi ke-t 
+: regularisasi untuk tree baru 
+
+Pendekatan ini memungkinkan model mempercepat proses konvergensi dan meningkatkan akurasi prediksi.
+
+Dalam proses pembentukan tree, XGBoost melakukan pruning untuk mengontrol kompleksitas model. Model menghitung nilai gain untuk setiap kemungkinan split menggunakan persamaan berikut:
+
+(2.5)
+Keterangan:
+Gain: peningkatan kualitas model setelah split 
+: jumlah gradient pada node kiri dan kanan 
+: jumlah Hessian pada node kiri dan kanan 
+: parameter regularisasi L2 
+: batas minimum gain untuk melakukan split
+
+Persamaan tersebut menunjukkan bahwa model hanya melakukan split jika menghasilkan peningkatan performa yang signifikan.
+XGBoost menerapkan dua jenis regularisasi untuk mencegah overfitting. Model menggunakan regularisasi L1 (Lasso) untuk mendorong sparsity pada bobot sehingga membantu feature selection. Selain itu, model menggunakan regularisasi L2 (Ridge) untuk membatasi nilai bobot agar tidak terlalu besar sehingga menghasilkan model yang lebih stabil.
+Özüpak et al. (2025) dalam penelitiannya mencapai hasil kinerja yang baik dengan XGBoost, memperoleh koefisien determinasi sebesar 0.9994, mean absolute error sebesar 0.0120, dan mean squared error sebesar 0.0005 untuk prediksi kualitas udara. Hasil ini menunjukkan kemampuan yang baik XGBoost dalam menangkap dinamika spasial dan temporal polusi udara dengan akurasi yang sangat tinggi, hampir mendekati perfect prediction [11]. Oblitas & Escobedo (2024) dalam studi kasusnya di Lima, Peru, menunjukkan bahwa XGBoost mencapai akurasi tinggi tanpa perbedaan statistik signifikan dibanding LightGBM, dengan kemampuan robust menangani variasi meteorologi dan polutan. Paired t-test mengkonfirmasi bahwa performa kedua model comparable untuk prediksi PM2.5 dan PM10 pada kondisi optimal [12].
+XGBoost mengimplementasikan dua jenis regularization untuk mencegah overfitting. Regularisasi L1 atau Lasso dengan parameter alpha mendorong sparsity pada weights, sedangkan regularisasi L2 atau Ridge dengan parameter lambda mencegah weights yang terlalu besar.
+Dalam penelitian ini, XGBoost digunakan sebagai model utama untuk peramalan kualitas udara karena kemampuannya menangani hubungan non-linear yang kompleks antara variabel polutan dan faktor meteorologi, regularisasi eksplisit yang efektif mencegah overfitting, serta performa yang sangat tinggi pada berbagai studi prediksi kualitas udara.
+
+2.2.5 LightGBM (Light Gradient Boosting Machine)
+LightGBM adalah framework gradient boosting yang dikembangkan oleh Microsoft pada tahun 2017, dirancang khusus untuk efisiensi dan performa tinggi pada dataset berskala besar. Model ini dikembangkan oleh Ke et al. (2017) [4].  Dan menggunakan pendekatan berbasis decision tree dengan strategi pertumbuhan leaf-wise yang unik, berbeda dari algoritma boosting tradisional yang menggunakan pendekatan level-wise. Keunggulan utama LightGBM terletak pada kemampuannya memproses data dalam jumlah besar dengan kecepatan tinggi sambil tetap mempertahankan akurasi prediksi yang akurat, LightGBM memiliki beberapa karakteristik unggulan yang membuatnya efektif untuk prediksi kualitas udara. Pertama, teknik histogram-based splitting digunakan untuk membagi data kontinu menjadi bins diskrit, yang secara signifikan mengurangi waktu komputasi dan penggunaan memori, sebagaimana dijelaskan oleh Özüpak et al. (2025) [11]. Proses ini memungkinkan algoritma untuk menangani dataset berukuran besar tanpa memerlukan resource komputasi yang berlebihan.
+Kedua, LightGBM mengimplementasikan strategi pertumbuhan leaf-wise, di mana algoritma memilih leaf dengan loss maksimum untuk diperluas. Pendekatan ini berbeda dengan algoritma lain yang menggunakan level-wise growth, dan menghasilkan model yang lebih akurat dengan jumlah iterasi yang sama. Liu et al. (2023) menjelaskan bahwa strategi ini memungkinkan model untuk fokus pada area yang paling memerlukan perbaikan, menghasilkan efisiensi yang lebih tinggi dalam proses pelatihan [13].
+Ketiga, teknik Gradient-based One-Side Sampling (GOSS) diterapkan untuk meningkatkan efisiensi tanpa mengorbankan akurasi. GOSS mempertahankan semua instances dengan gradien besar sambil melakukan random sampling pada instances dengan gradien kecil, sebagaimana dijelaskan oleh Hajihosseinlou et al. (2023) [14]. Teknik ini memungkinkan model untuk fokus pada data yang paling informatif sambil mengurangi beban komputasi.
+Keempat, Exclusive Feature Bundling (EFB) digunakan untuk menggabungkan fitur-fitur yang saling eksklusif, mengurangi dimensi data dan mempercepat proses pelatihan menurut Zhang et al. (2023) [15]. Teknik ini sangat berguna ketika berhadapan dengan dataset yang memiliki banyak fitur, seperti data meteorologi dan polutan dalam prediksi kualitas udara. Fungsi objektif LightGBM dihitung menggunakan formula sebagai berikut:
+
+(2.1)
+(2.6)
+Keterangan:
+: nilai fungsi objektif. 
+: jumlah sampel data pelatihan. 
+: fungsi loss. 
+: nilai aktual sampel ke-. 
+: nilai prediksi sampel ke-. 
+: fungsi regularisasi.
+
+Model additive yang digunakan dalam LightGBM dapat diformulasikan sebagai:
+
+ (2.2)
+(2.7)
+Keterangan:
+: prediksi pada iterasi ke-. 
+: prediksi pada iterasi sebelumnya. 
+: learning rate. 
+: weak learner pada iterasi ke-. 
+: vektor fitur sampel ke-.
+
+Penelitian oleh Liu et al. (2023) menunjukkan bahwa LightGBM mampu memprediksi konsentrasi PM2.5 dengan akurasi tinggi, mendemonstrasikan strong learning capability, high degree of fit, serta peningkatan signifikan dalam akurasi dan stabilitas[13]. Model ini terbukti sangat efektif dalam menangani hubungan nonlinear kompleks antara variabel meteorologi dan konsentrasi polutan. Kemampuan ini sangat penting karena interaksi antara faktor-faktor seperti suhu, kelembapan, kecepatan angin, dan emisi polutan seringkali bersifat nonlinear dan sulit dimodelkan dengan pendekatan statistik tradisional. Mampitiya et al. (2023) melaporkan bahwa LightGBM mencapai akurasi tinggi untuk prediksi PM10 di Sri Lanka, menunjukkan adaptabilitas model terhadap kondisi geografis yang berbeda [16]. 
+LightGBM memiliki beberapa karakteristik unggulan yang membuatnya efektif untuk prediksi kualitas udara. Pertama, teknik histogram-based splitting digunakan untuk membagi data kontinu menjadi bins diskrit, yang secara signifikan mengurangi waktu komputasi dan penggunaan memori. Kedua, LightGBM mengimplementasikan strategi pertumbuhan leaf-wise, di mana algoritma memilih leaf dengan loss maksimum untuk diperluas. Ketiga, teknik Gradient-based One-Side Sampling (GOSS) diterapkan untuk meningkatkan efisiensi tanpa mengorbankan akurasi.
+Dalam penelitian ini, LightGBM digunakan sebagai model pembanding untuk mengevaluasi performa model utama XGBoost dalam melakukan peramalan konsentrasi polutan udara. Meskipun LightGBM memiliki keunggulan dalam kecepatan komputasi, hasil penelitian menunjukkan bahwa XGBoost memberikan performa yang lebih tinggi untuk data kualitas udara dengan fluktuasi tinggi.
+
+2.2.6 Prophet
+Prophet adalah tool forecasting time series yang dikembangkan oleh Facebook, sekarang Meta, pada tahun 2017 oleh Taylor dan Letham, dirancang khusus untuk menangani data dengan seasonality kuat dan efek holiday. Model ini menggunakan pendekatan decomposable additive model yang intuitif dan mudah diinterpretasi, membuatnya accessible tidak hanya untuk data scientists tetapi juga untuk domain experts tanpa latar belakang statistik yang mendalam. Prophet mengimplementasikan model additive dengan formula:
+
+
+(2.8)
+Keterangan:
+: nilai prediksi pada waktu . 
+: komponen tren. 
+: komponen musiman (seasonality). 
+: komponen hari libur atau peristiwa khusus. 
+: kesalahan residual.
+
+Trend component dalam Prophet dapat dimodelkan dengan dua pendekatan. Untuk pertumbuhan yang saturating atau memiliki carrying capacity, digunakan logistic growth model dengan formula:
+
+(2.9)
+Keterangan:
+: carrying capacity. 
+: laju pertumbuhan. 
+: variabel waktu. 
+: parameter offset.
+.
+Untuk pertumbuhan linear, digunakan piecewise linear model:
+
+(2.10)
+Keterangan:
+: baseline growth rate. 
+: vektor indikator changepoint. 
+: vektor perubahan laju pertumbuhan. 
+: baseline offset. 
+: vektor penyesuaian offset.
+
+Seasonality component dimodelkan menggunakan Fourier series untuk menangkap periodic patterns:
+(2.11)
+Keterangan:
+: jumlah komponen Fourier. 
+: periode seasonality. 
+: koefisien sinus. 
+: koefisien cosinus. 
+: variabel waktu.
+
+
+Holiday component menangkap efek dari special events:
+
+(2.12)
+Keterangan:
+: jumlah hari libur yang digunakan. 
+: pengaruh hari libur ke-. 
+: himpunan tanggal hari libur ke-. 
+: fungsi indikator.
+
+Chen et al. (2025) menggunakan Prophet untuk prediksi PM2.5 di Nanning, China, dan menemukan bahwa model ini memiliki keunggulan dalam menangani seasonality dan trend data konsentrasi polutan dengan interpretability yang tinggi [17]. Meskipun Prophet menunjukkan performa baik dalam menangkap pola seasonal reguler dengan koefisien determinasi berkisar 0.78 hingga 0.89, model ini memiliki keterbatasan dalam menangani kompleksitas perubahan konsentrasi pada periode Mei-Juli di mana terjadi perubahan meteorologi yang rapid dan unpredictable. Penelitian menunjukkan Prophet efektif untuk beberapa aplikasi spesifik. Pertama, prediksi jangka panjang dengan seasonal pattern yang jelas seperti variasi tahunan konsentrasi PM2.5 yang dipengaruhi oleh perbedaan musim. Kedua, menangani missing data dan outliers secara robust melalui built-in mechanisms tanpa preprocessing ekstensif. Ketiga, memberikan uncertainty intervals yang informatif melalui Bayesian approach yang membantu decision making. Keempat, analisis pengaruh events khusus seperti holiday atau masa liburan terhadap kualitas udara yang relevan untuk urban planning.
+
+2.2.7 Random Forest
+Random Forest adalah algoritma ensemble learning yang dikembangkan oleh Leo Breiman pada tahun 2001, yang membangun banyak decision trees secara paralel dan menggabungkan hasil voting untuk menghasilkan prediksi final. Algoritma ini dikenal karena kemampuannya dalam menangani data dengan dimensi tinggi, ketahanan terhadap overfitting, dan kemampuan feature importance yang membantu memahami kontribusi masing-masing variabel terhadap hasil prediksi. Mampitiya et al. (2024) menyatakan bahwa stabilitas klasifikasi Random Forest pada data multivariat menjadikannya pilihan optimal untuk sistem pemantauan lingkungan yang membutuhkan respons cepat [16].
+
+Keunggulan utama Random Forest dalam klasifikasi kualitas udara meliputi:
+Ketahanan terhadap overfitting: Karena merupakan ensemble dari banyak tree, Random Forest lebih stabil dan tidak mudah overfitting dibanding single decision tree.
+Feature importance: Memberikan informasi jelas tentang variabel mana yang paling berpengaruh dalam klasifikasi.
+Kecepatan pelatihan tinggi: Tidak memerlukan tuning hyperparameter yang kompleks seperti gradient boosting.
+Kemampuan menangani data tidak seimbang: Dapat dikonfigurasi dengan class weight untuk menangani distribusi kelas yang tidak merata.
+
+Dalam sistem pemantauan kualitas udara, algoritma Random Forest sangat ideal diaplikasikan untuk mengklasifikasikan status mutu udara ke dalam kategori Indeks Standar Pencemar Udara (ISPU) seperti Baik, Sedang, Tidak Sehat, Sangat Tidak Sehat, dan Berbahaya berdasarkan indikator multivariat konsentrasi polutan. Secara konseptual, Random Forest memiliki keunggulan efisiensi komputasi dengan waktu inferensi pelabelan yang sangat singkat, menjadikannya pilihan teoretis yang optimal untuk diimplementasikan pada sistem klasifikasi data aliran aktual (real-time streaming).
+
+2.2.8 Integrasi Data dan Pengembangan Dashboard Analitik
+Integrasi data melibatkan penggabungan informasi dari berbagai sumber ke dalam satu platform yang kohesif. Tantangannya meliputi penanganan format data yang heterogen, frekuensi data yang berbeda, dan validasi data untuk memastikan akurasi. Sebuah dashboard analitik berbasis web akan menjadi antarmuka utama untuk menyajikan data yang terintegrasi secara real-time, hasil klasifikasi, dan proyeksi prediksi. Desain dashboard ini harus mengedepankan visualisasi data yang intuitif dan interaktif untuk memudahkan pemangku kepentingan dalam eksplorasi data, pemahaman tren, dan pengambilan keputusan yang berbasis data. Contoh Tampilan Dashboard berbasis Web ditunjukkan pada gambar berikut ini.
+
+
+Gambar 2.1 Contoh Tampilan Dashboard berbasis Web
+2.2.9 Analisis Varians (ANOVA) dan Uji Asumsi
+Analysis of Variance (ANOVA) satu arah (One-Way ANOVA) adalah metode statistik inferensial parametrik yang digunakan untuk menguji probabilitas perbedaan nilai rata-rata yang signifikan di antara tiga atau lebih kelompok eksperimen independen. Menurut Walpole et al. (2016) [18] , uji ANOVA membandingkan variansi di dalam kelompok sampel terhadap variansi antar kelompok dengan memanfaatkan distribusi statistik. Keandalan metode ini sangat bergantung pada pemenuhan dua asumsi dasar parametrik, yaitu asumsi normalitas residual yang dievaluasi menggunakan uji Shapiro-Wilk, serta asumsi homogenitas varians populasi yang diukur melalui Levene's Test. Apabila nilai probabilitas (p-value) dari pengujian bernilai lebih kecil dibandingkan tingkat signifikansi yang ditetapkan, maka hipotesis nol ditolak, yang membuktikan bahwa setidaknya terdapat satu kelompok dengan nilai rata-rata yang berbeda secara nyata.
+Meskipun menuntut pemenuhan asumsi, ANOVA tergolong tangguh (robust) terhadap penyimpangan normalitas ringan berkat Teorema Limit Pusat (Walpole et al., 2016) [18]. Apabila ANOVA terbukti signifikan, analisis wajib dilanjutkan dengan uji komparasi Post-hoc Tukey HSD untuk memetakan secara spesifik pasangan lokasi mana yang memiliki perbedaan secara nyata.
+
+2.3 Penelitian Terkait
+Bagian ini memuat ulasan mengenai penelitian-penelitian terdahulu yang memiliki permasalahan serupa dengan proyek ini, namun menggunakan pendekatan atau fokus yang berbeda, sehingga menegaskan orisinalitas dan kontribusi proyek yang diusulkan.
+
+
+2.3.1 Penelitian Prediksi Kualitas Udara dengan Machine Learning
+Berbagai penelitian telah dilakukan untuk mengembangkan model prediksi kualitas udara menggunakan algoritma machine learning. Penelitian-penelitian ini menunjukkan evolusi dan peningkatan akurasi dalam prediksi konsentrasi polutan udara.
+
+2.3.1.1 Air Quality Forecasting Using Machine learning : Comparative Analysis and Ensemble Strategies for Enhanced Prediction
+Özüpak et al. (2025) melakukan penelitian komprehensif tentang prediksi kualitas udara di wilayah urban yang terpolusi menggunakan data dari sensor metal oxide dan analyzer tersertifikasi periode Maret 2004 hingga Februari 2005. Penelitian ini membandingkan 10 model regresi machine learning termasuk XGBoost, LightGBM, Random Forest, Gradient Boosting, CatBoost, SVR dengan Bayesian Optimization, Decision Tree, KNN, Elastic Net, dan Bayesian Ridge. Hasil penelitian menunjukkan bahwa model SVR yang dioptimasi dengan Bayesian Optimization mencapai performa tertinggi dengan R² sebesar 99.94%, MAE 0.0120, dan MSE 0.0005. Penelitian ini membuktikan bahwa hyperparameter optimization dan strategi ensemble secara signifikan meningkatkan akurasi dalam menangkap dinamika spasial dan temporal polusi udara [11]. Tırınk (2025) melakukan studi prediksi AQI harian di Iğdır, Turki menggunakan data jangka panjang dari tahun 2016 hingga 2024. Penelitian ini membandingkan tiga model machine learning: XGBoost, dan LightGBM dengan data polutan (PM2.5, PM10,  NO2, O3) dan variabel meteorologi. Dengan menggunakan Bayesian Optimization dan Randomized Cross-Validation untuk hyperparameter tuning, XGBoost mencapai akurasi prediksi tertinggi dengan R² sebesar 0.999, RMSE 0.234, dan MAE 0.158 [14]. Hasil ini mendemonstrasikan bahwa model ensemble berbasis XGBoost sangat efektif dalam memodelkan fluktuasi AQI menggunakan prediktor lingkungan, memberikan insights berharga untuk sistem peringatan dini dan manajemen polusi udara regional. 
+
+2.3.1.2 Performance of machine learning models to forecast PM10 levels
+Penelitan yang dilakukan oleh Liu et al. pada tahun 2023 menggunakan model LightGBM untuk memprediksi konsentrasi atmosfer PM2.5 dengan mengoptimalkan parameter model. Setelah menganalisis data monitoring dari berbagai waktu dan wilayah, kurva prediksi konsentrasi kabut menunjukkan bahwa model memiliki strong learning capability, high degree of fit, dan peningkatan signifikan dalam akurasi serta stabilitas. Penelitian ini membuktikan bahwa optimisasi dengan algoritma LightGBM secara signifikan meningkatkan presisi dan sangat applicable dalam praktik untuk forecasting konsentrasi PM2.5 [19]. Mampitiya et al. (2023) melaporkan bahwa LightGBM mencapai akurasi tinggi untuk prediksi PM10 di Sri Lanka, menunjukkan adaptabilitas model terhadap kondisi geografis yang berbeda. Penelitian ini mengonfirmasi bahwa LightGBM tidak hanya efektif di satu lokasi tetapi dapat digeneralisasi ke berbagai konteks geografis dan klimatologis [16].
+
+2.3.1.3 XGBoost: A scalable tree boosting system
+Chen et al. (2025) melakukan studi komprehensif tentang prediksi konsentrasi PM2.5 di wilayah urban Nanning, China menggunakan data raster resolusi tinggi CHAP periode 2012-2023 [17]. Penelitian ini melakukan perbandingan sistematis tiga model: SARIMA (statistical time series), Prophet (seasonal & holiday effects), dan LightGBM (machine learning) dengan evaluasi menggunakan MSE, MAE, dan R² pada dimensi spasial dan temporal.
+Hasil penelitian menunjukkan bahwa LightGBM memiliki kemampuan kuat dalam mining hubungan nonlinear kompleks dengan R² bulanan berkisar 0.54-0.99, namun stabilitasnya bervariasi. Prophet unggul dalam menangani seasonality dan trend time series dengan R² annual 0.78-0.88, tetapi kurang adaptif terhadap perubahan kompleks terutama pada periode Mei-Juli. SARIMA berbasis teori prediksi time series menunjukkan performa baik pada beberapa skenario dengan deviasi overall yang relatif kecil, namun terbatas dalam menangani data non-stationary dan heterogenitas spasial. Penelitian ini menyediakan referensi multi-dimensional untuk prediksi PM2.5 dan membantu pemilihan model sesuai skenario spesifik.
+Oblitas & Escobedo (2024) melakukan studi kasus di distrik San Borja, Lima, Peru untuk memprediksi konsentrasi PM2.5 dan PM10 periode Januari-April 2024 menggunakan data SENAMHI. Penelitian ini membandingkan XGBoost dan LightGBM dengan dua skenario: Skenario 1 menggunakan semua variabel meteorologi dan polutan, sedangkan Skenario 2 mengeksklusi PM10 untuk prediksi PM2.5 dan sebaliknya. Evaluasi dilakukan menggunakan R², RMSE, MAE, dan MAPE dengan uji statistik paired t-test.
+Hasil menunjukkan bahwa kedua model mencapai akurasi tinggi dengan R² lebih dari 0.75 pada Skenario 1, tanpa perbedaan statistik signifikan antara XGBoost dan LightGBM. Namun, eksklusi variabel kunci pada Skenario 2 menghasilkan penurunan akurasi signifikan dengan R² turun hingga 0.54-0.69. Temuan ini menunjukkan pentingnya feature selection yang tepat untuk strategi manajemen lingkungan yang efektif dan mengonfirmasi bahwa kedua algoritma memiliki performa comparable pada dataset yang sama [12].
+
+
+
+2.3.2 Pencemaran Udara Akibat Emisi Gas Buang Kendaraan Bermotor
+Penelitian ini menggarisbawahi bahwa emisi transportasi menjadi penyumbang pencemaran udara tertinggi di perkotaan Indonesia, mencapai sekitar 80% [1]. Studi ini berfokus pada analisis dampak dan implikasi kebijakan melalui metode kepustakaan. Namun, lingkup penelitian ini lebih bersifat makro dan teoritis, tanpa melibatkan implementasi sistem monitoring real-time berbasis IoT atau penggunaan metode klasifikasi dan prediksi machine learning
+
+2.3.3 Pemantauan Kualitas Udara
+Buku ajar ini menyediakan pemahaman fundamental tentang kualitas udara, komponennya, dampaknya, serta berbagai metode pemantauan [20]. Karya ini menjelaskan prinsip-prinsip pemantauan berkelanjutan dan jenis-jenis sistem yang ada, seperti metode pasif, stasiun tetap, dan drone. Sebagai sumber teoritis, buku ini tidak mencakup pengembangan atau implementasi sistem real-time yang terintegrasi dengan data BMKG atau kemampuan prediksi ML/DL.
+
+2.3.4 Implementasi Internet of Things (IoT) Dalam Monitoring Kualitas Udara Pada Ruang Terbuka
+Studi ini berhasil membangun sistem monitoring kualitas udara di ruang terbuka menggunakan teknologi IoT yang terintegrasi dengan Google Sheet [8]. Implementasi ini menunjukkan bahwa sistem yang dikembangkan mampu melakukan pemantauan real-time dan efisien dalam mendeteksi variasi parameter kualitas udara. Meskipun relevan dalam aspek IoT dan real-time, penelitian ini tidak mencakup integrasi data sekunder dari BMKG, tidak menerapkan algoritma klasifikasi kompleks seperti Random Forest atau XGBoost, dan belum mengembangkan model prediksi kualitas udara secara komprehensif.
+
+2.3.5 Pemantauan Kualitas Udara Berbasis Internet of Things
+Penelitian ini mengembangkan alat monitoring kualitas udara berbasis IoT yang menampilkan data real-time melalui aplikasi web dan smartphone [9]. Proyek ini berfokus pada deteksi polutan gas CO dan debu, serta penyajian data melalui platform seperti Blynk dan ThingSpeak. Kendati sukses dalam menampilkan data real-time dari sensor IoT, studi ini belum mengintegrasikan data sekunder dari BMKG, tidak menggunakan algoritma klasifikasi seperti Random Forest atau XGBoost, dan belum mengembangkan model prediksi kualitas udara.
+
+
+Tabel 2.2 Penelitian Terkait
+No.
+Judul Penelitian
+Objek Penelitian
+Metode yang Digunakan
+Hasil & Kesimpulan Utama
+1
+Implementasi Internet Of Things (Iot) dalam Monitoring Kualitas Udara pada Ruang Terbuka
+Kualitas udara (CO2, CO, suhu, kelembapan) di ruang terbuka.
+Implementasi sistem IoT (ESP32, sensor) terintegrasi dengan Google Sheet.
+Sistem IoT dapat melakukan pemantauan real-time dan efisien dalam mendeteksi variasi parameter kualitas udara.
+2
+Pemantauan Kualitas Udara Berbasis Internet Of Things
+Kualitas udara (gas CO, debu, suhu, kelembapan) di lingkungan sekolah (SMP PGRI 1 Ciputat).
+Research and Development (R&D), implementasi perangkat keras (WeMos D1 R2s, sensor) dan aplikasi web (ThingSpeak, Blynk).
+Sistem monitoring dapat memberikan peringatan dini kualitas udara; data sensor ditampilkan secara real-time melalui web dan smartphone.
+3
+Optimization of Interval Fuzzy Time Series with Particle Swarm Optimization for Prediction Air Quality on Pekanbaru
+Kualitas udara (PM10, SO2, CO, O3, NO2) di Kota Pekanbaru (data historis).
+Metode komputasi (Fuzzy Time Series dioptimasi dengan Particle Swarm Optimization - FTS-PSO).
+FTS-PSO cukup akurat (MAPE 18,3583%) untuk prediksi kualitas udara harian.
+4
+A systematic survey of air quality prediction based on deep learning
+Metode prediksi kualitas udara berbasis deep learning.
+Studi literatur sistematis (systematic survey).
+Deep learning unggul dalam mengidentifikasi pola kompleks dan non-linear pada data kualitas udara; berbagai arsitektur DL efektif untuk prediksi.
+5
+Real-time AIoT platform for monitoring and prediction of air quality in Southwestern Morocco
+Kualitas udara (PM2.5) di Maroko (menggunakan sensor low-cost).
+Implementasi sistem AIoT, feature selection (mRMR, LightGBM-RFE), optimasi hyperparameter (Bayesian optimization), evaluasi model prediksi (LightGBM).
+LightGBM menunjukkan kinerja unggul dalam prediksi PM2.5 setelah optimasi fitur dan hyperparameter, menyediakan solusi real-time dan hemat biaya.
+6
+Air Quality Forecasting Using Machine learning: Comparative Analysis and Ensemble Strategies for Enhanced Prediction
+Kualitas udara (PM2.5, NOx, CO, benzene) di wilayah urban yang terpolusi menggunakan data dari sensor metal oxide dan analyzer tersertifikasi (Maret 2004–Februari 2005).
+Perbandingan 10 model regresi ML: XGBoost, LightGBM, Random Forest, Gradient Boosting, CatBoost, SVR dengan Bayesian Optimization, Decision Tree, KNN, Elastic Net, dan Bayesian Ridge; stacking ensemble method.
+
+
+Model SVR yang dioptimasi dengan Bayesian Optimization mencapai performa tertinggi (R² = 99.94%, MAE = 0.0120, MSE = 0.0005). Hyperparameter optimization dan strategi ensemble secara signifikan meningkatkan akurasi dalam menangkap dinamika spasial dan temporal polusi udara.
+7
+Machine learning-based forecasting of air quality index under long-term environmental patterns: A comparative approach with XGBoost, LightGBM, and SVM
+Prediksi AQI harian di Iğdır, Turki (2016–2024) menggunakan data polutan (PM10, SO2, NO2, O3) dan variabel meteorologi.
+Perbandingan tiga model ML: XGBoost, LightGBM, dan SVM; hyperparameter optimization dengan Bayesian Optimization dan Randomized CV; evaluasi dengan R², RMSE, dan MAE.
+XGBoost mencapai akurasi prediksi tertinggi (R² = 0.999, RMSE = 0.234, MAE = 0.158). Model ensemble berbasis XGBoost efektif memodelkan fluktuasi AQI menggunakan prediktor lingkungan, memberikan insights berharga untuk sistem peringatan dini dan manajemen polusi udara regional.
+8
+Decoding PM2.5 Prediction in Nanning Urban Area, China: Unraveling Model Superiorities and Drawbacks Through SARIMA, Prophet, and LightGBM
+Prediksi konsentrasi PM2.5 di wilayah urban Nanning, China (2012–2023) menggunakan data raster resolusi tinggi CHAP dengan resolusi temporal ganda (tahunan dan bulanan).
+Perbandingan sistematis tiga model: SARIMA (statistical time series), Prophet (seasonal & holiday effects), dan LightGBM (machine learning); evaluasi menggunakan MSE, MAE, dan R² pada dimensi spasial dan temporal.
+LightGBM memiliki kemampuan kuat mining hubungan nonlinear kompleks namun stabilitasnya rendah. Prophet unggul dalam menangani seasonality dan trend time series tetapi kurang adaptif terhadap perubahan kompleks. SARIMA berbasis teori prediksi time series, performa baik pada beberapa skenario namun terbatas dalam menangani data non-stationary dan heterogenitas spasial. Penelitian menyediakan referensi multi-dimensional untuk prediksi PM2.5 dan membantu pemilihan model sesuai skenario spesifik.
+9
+Prediction of PM2.5 and PM10 Concentrations Using XGBoost and LightGBM Algorithms: A Case Study in Lima, Peru
+Prediksi konsentrasi PM2.5 dan PM10 di distrik San Borja, Lima, Peru (Januari–April 2024) menggunakan data SENAMHI (polutan dan meteorologi).
+Perbandingan XGBoost dan LightGBM dengan dua skenario: S1 (semua variabel meteorologi dan polutan), S2 (eksklusi PM10 untuk prediksi PM2.5 dan sebaliknya); evaluasi dengan R², RMSE, MAE, dan MAPE; uji statistik paired t-test.
+Kedua model mencapai akurasi tinggi dengan R² > 0.75 pada S1. Tidak ada perbedaan statistik signifikan antara XGBoost dan LightGBM dalam performa prediksi. Eksklusi variabel kunci (S2) menghasilkan penurunan akurasi signifikan (R² turun hingga 0.54-0.69), menunjukkan pentingnya feature selection yang tepat untuk strategi manajemen lingkungan yang efektif.
+
+BAB 3
+DESKRIPSI SISTEM
+
+
+3.1 Deskripsi Solusi
+Solusi yang ditawarkan dalam proyek akhir ini adalah sistem Dashboard Pemantauan dan Prediksi Kualitas Udara Berbasis Web Real-Time, yang secara khusus dirancang untuk menyajikan informasi kualitas udara terkini, data historis, serta hasil prediksi melalui visualisasi yang mudah dipahami dan diakses. Informasi yang ditampilkan dapat dimanfaatkan sebagai sarana pemantauan dan referensi dalam memahami dinamika kualitas udara di wilayah perkotaan.
+Dashboard ini dirancang sebagai sistem informatif dan prediktif yang menyajikan pemantauan kualitas udara secara real-time melalui beberapa fitur utama sebagai berikut:
+Sistem mengintegrasikan data dari sensor kualitas udara berbasis IoT yang ditempatkan di beberapa lokasi di Kota Surabaya dengan data cuaca dan lingkungan dari Badan Meteorologi, Klimatologi, dan Geofisika (BMKG). Proses integrasi dilakukan secara real-time untuk menghasilkan data yang mutakhir dan terpusat.
+Dashboard menyajikan visualisasi parameter kualitas udara, seperti PM2.5, PM10, NO2, CO dan O3, dalam bentuk grafik dan peta interaktif. Visualisasi ini bertujuan untuk memudahkan pengguna dalam memantau kondisi kualitas udara serta memahami pola dan tren temporal yang terjadi.
+Sistem dilengkapi dengan fitur prediksi parameter kualitas udara menggunakan pendekatan machine learning berbasis algoritma XGBoost sebagai model utama. Model utama ini memanfaatkan fitur data historis (lag features), statistik bergerak (rolling statistics), serta variabel meteorologi lokal untuk menghasilkan estimasi konsentrasi polutan yang akurat pada horizon waktu 60 menit ke depan. Sebagai pembanding, model regresi berbasis tree lainnya yaitu LightGBM serta metode statistik Prophet digunakan untuk mengevaluasi kinerja, kestabilan, dan konsistensi hasil prediksi jangka pendek yang ditampilkan pada sistem dashboard.
+
+Dengan menggabungkan fitur-fitur tersebut, dashboard ini menjadi solusi teknologi yang dapat membantu pemerintah daerah dan masyarakat umum dalam memantau, mengantisipasi, dan mengambil keputusan berbasis data terkait kualitas udara
+
+3.2 Perancangan Sistem
+Arsitektur sistem pemantauan dan prediksi kualitas udara pada Gambar 3.1 dirancang dengan pendekatan modular yang terdiri atas empat proses utama, yaitu proses pengambilan data (data acquisition), penyimpanan backend, pengolahan dan prediksi data, serta visualisasi informasi. Setiap proses memiliki peran yang saling terintegrasi untuk memastikan aliran data berjalan secara efisien dari tahap pengukuran hingga penyajian informasi kepada pengguna. 
+
+
+ 
+Gambar 3.1 Desain Sistem
+
+3.2.1 Perangkat Keras dan Sumber Data
+Perancangan perangkat keras mencakup penyusunan dan perakitan sensor kualitas udara seperti PM2.5, PM10, NO₂, SO₂, dan O₃, yang dihubungkan dengan mikrokontroler ESP32. Data dari sensor akan dikirim melalui jaringan Wi-Fi menggunakan protokol MQTT ke server cloud. Prototipe perangkat keras dirancang untuk tahan terhadap kondisi lingkungan luar ruang, serta mudah dipasang di berbagai titik strategis di Kota Surabaya. Blok diagram sistem dapat dilihat pada gambar teknis (lihat Gambar 3.2).
+
+
+Gambar 3.2 Blok Diagram Sistem
+
+3.2.2 Proses Pengambilan Data (Data Acquisition)
+Proses pengambilan data dilakukan menggunakan sensor kualitas udara berbasis IoT yang berfungsi mengukur parameter polutan dan kondisi lingkungan secara periodik. Data hasil pengukuran dikirimkan ke sistem melalui protokol HTTP dalam format JSON dan diterima oleh Data Acquisition API. API ini bertindak sebagai gerbang awal yang menangani penerimaan data sensor sebelum diteruskan ke sistem penyimpanan backend.
+
+3.2.3 Proses Penyimpanan Backend (Supabase Backend)
+Data sensor yang diterima selanjutnya dikirimkan ke backend Supabase melalui Supabase REST API. Backend ini menggunakan basis data PostgreSQL sebagai media penyimpanan terpusat. Data mentah hasil pengukuran disimpan pada tabel sensor_data sebagai data historis yang dapat digunakan untuk analisis lebih lanjut. Selain itu, hasil peramalan polutan udara disimpan pada tabel forecast, sehingga data aktual dan data peramalan dapat dikelola secara terpisah namun tetap terintegrasi.
+
+3.2.4 Proses Pengolahan dan Peramalan Data (Data Processing & Forecasting)
+Pada tahap Pengolahan dan Peramalan data, sistem menjalankan data processing pipeline berbasis Python yang secara periodik mengambil data sensor dari Supabase. Proses pengolahan meliputi pembersihan data, transformasi, serta pembentukan fitur yang dibutuhkan untuk pemodelan. Data yang telah diproses kemudian digunakan oleh modul peramalan berbasis model XGBoost untuk menghasilkan estimasi nilai polutan udara pada periode waktu tertentu. Hasil peramalan yang dihasilkan selanjutnya disimpan kembali ke basis data Supabase pada tabel forecast.
+
+ 3.2.5 Tahapan Pembuatan Model
+Pembuatan model machine learning untuk pemantauan dan prediksi kualitas udara dilakukan melalui tahapan yang sistematis dan terstruktur guna menghasilkan model yang akurat, stabil, dan dapat diandalkan. Tahapan ini mencakup identifikasi fitur dan target, pembersihan serta transformasi data, pembagian data pelatihan dan pengujian, pelatihan model, hingga evaluasi kinerja model. Model yang digunakan dalam penelitian ini meliputi:
+XGBoost untuk keperluan peramalan konsentrasi polutan PM2.5, PM10, dan CO   secara terpisah dengan horizon waktu 60 menit ke depan
+ Random Forest untuk klasifikasi kualitas udara berdasarkan standar ISPU
+ LightGBM dan Prophet sebagai model pembanding untuk evaluasi performa
+
+3.2.5.1 Identifikasi Fitur dan Target
+Tahap awal dalam pembuatan model adalah menentukan variabel fitur dan variabel target yang relevan. Untuk model klasifikasi kualitas udara, fitur yang digunakan meliputi konsentrasi polutan seperti PM2.5, PM10, CO, NO₂, dan O₃, serta parameter meteorologis seperti suhu dan kelembapan udara. Target dari model klasifikasi adalah kategori kualitas udara berdasarkan standar Indeks Standar Pencemar Udara (ISPU), yaitu Baik, Sedang, Tidak Sehat, Sangat Tidak Sehat, dan Berbahaya.
+Untuk model prediksi, target dari model prediksi adalah nilai dari tiga parameter polutan utama, yaitu PM2.5, PM10, dan CO secara terpisah dengan horizon waktu 60 menit ke depan. Fitur prediksi mencakup nilai historis (lag features), serta fitur berbasis waktu seperti jam, hari, dan indikator tren. Penentuan fitur dan target yang tepat menjadi faktor penting dalam meningkatkan performa model prediksi.
+
+   Tabel 3.1 Fitur dan Target untuk Model
+No
+Nama Fitur
+Tipe
+Deskripsi
+1
+PM2.5
+Numerik
+Konsentrasi partikel halus udara
+2
+PM10
+Numerik
+Konsentrasi partikel kasar udara
+3
+NO₂
+Numerik
+Konsentrasi nitrogen dioksida udara
+4
+CO
+Numerik
+Konsentrasi karbon monoksida udara
+5
+O₃
+Numerik
+Konsentrasi ozon permukaan udara
+6
+Suhu
+Numerik
+Suhu udara lingkungan
+7
+Kelembapan
+Numerik
+Persentase kelembapan udara
+8
+Waktu (menit)
+Kategorikal
+Waktu pengambilan data
+9
+Target ISPU
+Kategorikal
+Kategori kualitas udara
+
+3.2.5.2 Pembersihan dan Transformasi Data
+Data yang diperoleh dari sensor IoT berpotensi mengandung noise, nilai kosong (missing values), dan pencilan. Oleh karena itu, dilakukan tahap pembersihan data untuk memastikan kualitas dataset. Nilai kosong ditangani menggunakan metode interpolasi atau pengisian berbasis nilai statistik, sedangkan pencilan diidentifikasi dan ditangani menggunakan metode Interquartile Range (IQR).
+Pada tahap transformasi, dilakukan pembentukan fitur waktu dan lag data untuk mendukung pemodelan deret waktu. Normalisasi data tidak diwajibkan untuk model berbasis pohon keputusan seperti XGBoost, dan LightGBM, karena model tersebut tidak sensitif terhadap skala fitur. Namun, normalisasi tetap dapat diterapkan untuk keperluan eksplorasi dan konsistensi data.
+
+
+
+3.2.5.3 Pembagian Data: Pelatihan dan Pengujian
+Dataset dibagi menjadi data pelatihan dan data pengujian dengan rasio 80% untuk pelatihan dan 20% untuk pengujian. Untuk model klasifikasi Random Forest, pembagian data dapat dilakukan secara acak (shuffle), karena setiap observasi dianggap independen dan tidak ada ketergantungan temporal yang signifikan antar kelas.
+
+Untuk model prediksi deret waktu seperti XGBoost dan Prophet, pembagian data dilakukan berdasarkan urutan waktu tanpa pengacakan untuk menjaga struktur temporal. Strategi ini penting karena:
+Menghindari kebocoran informasi dari masa depan ke masa lalu
+Mensimulasikan kondisi nyata di mana model harus memprediksi data yang belum terlihat
+Memastikan validitas evaluasi yang representatif
+
+Selain itu, validasi berbasis time series cross-validation atau rolling window digunakan untuk mengevaluasi kemampuan model dalam melakukan generalisasi pada data masa depan. Rolling window validation sangat penting untuk data berkualitas udara yang bersifat dinamis dan berubah sepanjang waktu.
+
+3.2.5.4 Pelatihan Model
+Pelatihan model dilakukan menggunakan beberapa algoritma yang telah dievaluasi melalui eksperimen komprehensif sebagai berikut:
+
+Untuk Peramalan (Forecasting):
+XGBoost (eXtreme Gradient Boosting): Model utama untuk peramalan kualitas udara. XGBoost dipilih karena kemampuannya menangani hubungan non-linear yang kompleks antara variabel polutan dan faktor meteorologi, serta adanya regularisasi eksplisit (L1 dan L2) untuk mencegah overfitting. Secara konseptual, model ini ditempatkan sebagai pilar utama karena arsitektur gradient boosting sekuensialnya dirancang untuk meminimalkan kesalahan secara bertahap pada setiap iterasi pohon keputusan, sehingga mampu menghasilkan estimasi peramalan yang paling presisi dan stabil dalam menangkap variabilitas data di lapangan.
+LightGBM (Light Gradient Boosting Machine): Model pembanding yang dikenal karena kecepatan komputasi yang tinggi melalui strategi pertumbuhan pohon secara vertikal (leaf-wise growth strategy). Meskipun sangat efisien dalam memangkas waktu pelatihan (training time), secara konseptual model ini digunakan untuk mengevaluasi apakah pendekatan berbasis histogram mampu menghasilkan akumulasi kesalahan yang setara atau lebih baik daripada model utama ketika dihadapkan pada karakteristik data polutan yang memiliki fluktuasi jangka pendek yang sangat tajam.
+Prophet – Model pembanding berbasis statistik yang dirancang menggunakan pendekatan decomposable additive model untuk memisahkan komponen tren makro dan pola musiman harian (diurnal) secara otomatis. Peran Prophet dalam penelitian ini adalah sebagai baseline pembanding konvensional. Secara konseptual, model statistik ini digunakan untuk menguji sejauh mana model berbasis machine learning mampu memberikan peningkatan performa penekanan kesalahan yang signifikan, mengingat landasan matematis Prophet yang kaku pada deret Fourier umumnya memiliki keterbatasan dalam mengadaptasi riak fluktuasi acak berfrekuensi tinggi (per menit).
+3.2.5.5 Penggunaan Model Klasifikasi
+Random Forest sebagai Model Klasifikasi Utama
+Random Forest merupakan algoritma ensemble yang membangun banyak decision tree secara paralel dan menggabungkan hasil voting untuk menghasilkan prediksi final. Dalam penelitian ini, Random Forest digunakan untuk menghasilkan label klasifikasi kualitas udara berdasarkan kategori ISPU, yaitu Baik, Sedang, Tidak Sehat, Sangat Tidak Sehat, dan Berbahaya.
+ 
+Keunggulan Random Forest dalam penelitian ini meliputi:
+Kemampuan menangani hubungan non-linear antar parameter polutan
+Ketahanan terhadap overfitting tanpa memerlukan tuning hyperparameter kompleks
+Feature importance yang memungkinkan analisis kontribusi masing-masing polutan
+Kecepatan pelatihan yang tinggi (39x lebih cepat dari Gradient Boosting)
+
+XGBoost sebagai Model Peramalan Utama
+XGBoost digunakan sebagai model utama untuk memprediksi konsentrasi polutan pada horizon waktu 60 menit ke depan. Keunggulan XGBoost dalam penelitian ini antara lain kemampuan menangani data dengan kompleksitas tinggi, regularisasi eksplisit (L1 dan L2) untuk mengurangi overfitting, keunggulan dalam menangani hubungan non-linear dan interaksi kompleks antar fitur, serta performa yang sangat tinggi pada berbagai studi prediksi kualitas udara.
+
+3.2.5.6 Penggunaan Model Peramalan
+Untuk melakukan peramalan kadar polutan di masa depan, penelitian ini menggunakan pendekatan machine learning berbasis supervised learning dengan XGBoost sebagai model prediksi utama. Selain itu, LightGBM dan Prophet digunakan sebagai model pembanding untuk mengevaluasi kestabilan dan konsistensi hasil prediksi.
+
+XGBoost sebagai Model Prediksi Utama
+XGBoost diimplementasikan sebagai model prediksi numerik (regression) untuk meramalkan nilai polutan pada horizon waktu 60 menit ke depan. Pendekatan ini dilakukan dengan mengonversi permasalahan deret waktu menjadi masalah regresi terawasi (time series regression).
+
+Dalam implementasinya, prediksi dilakukan dengan memanfaatkan:
+Fitur lag waktu, seperti nilai polutan pada waktu ke-(t−1), (t−2), hingga (t−60)
+Fitur temporal, seperti jam, hari, dan indikator periode waktu tertentu
+Fitur meteorologis, seperti suhu dan kelembapan udara
+Fitur rolling statistics (rata-rata dan standar deviasi bergerak)
+
+Keunggulan XGBoost sebagai model prediksi dalam penelitian ini antara lain kemampuan menangkap hubungan non-linear dan interaksi kompleks antar variabel polutan dan faktor lingkungan, regularisasi eksplisit untuk mencegah overfitting, pemanfaatan second-order gradient untuk konvergensi yang lebih cepat, serta skalabilitas yang memungkinkan pembaruan model secara bertahap.
+
+LightGBM sebagai Model Pembanding
+LightGBM digunakan sebagai model pembanding yang mengimplementasikan arsitektur gradient boosting dengan pendekatan leaf-wise tree growth, berbeda dengan XGBoost yang menggunakan level-wise. Keunggulan LightGBM meliputi kecepatan pelatihan yang lebih tinggi dan konsumsi memori yang lebih rendah, sehingga cocok untuk dataset dengan jumlah baris yang besar. Feature engineering yang digunakan identik dengan XGBoost untuk memastikan perbandingan yang adil. LightGBM menjadi tolok ukur untuk mengevaluasi apakah kompleksitas XGBoost memberikan peningkatan akurasi yang signifikan.
+
+Prophet sebagai Model Pembanding
+Prophet digunakan sebagai model pembanding untuk memberikan perspektif peramalan berbasis pendekatan statistik-additive. Model ini memisahkan deret waktu menjadi beberapa komponen utama, yaitu tren, musiman, dan noise.
+Peran Prophet dalam penelitian ini adalah:
+Menjadi baseline model peramalan deret waktu
+Membandingkan akurasi dan stabilitas peramalan terhadap LightGBM
+Mengevaluasi kemampuan model dalam menangkap pola musiman harian dan mingguan
+Meskipun Prophet relatif lebih sederhana dibandingkan LightGBM, penggunaannya penting untuk menilai apakah kompleksitas model machine learning memberikan peningkatan performa yang signifikan dibandingkan metode peramalan konvensional.
+
+3.2.5.7 Evaluasi Kinerja Model
+Mean Absolute Error (MAE) mengukur rata-rata selisih absolut antara nilai hasil peramalan dan nilai aktual. Metrik ini memberikan gambaran langsung mengenai besar kesalahan peramalan tanpa memperhatikan arah kesalahan. MAE bersifat mudah diinterpretasikan karena berada pada satuan yang sama dengan variabel yang diprediksi, sehingga cocok untuk mengevaluasi akurasi peramalan kadar polutan dan ISPU.
+Root Mean Squared Error (RMSE) mengukur akar dari rata-rata kuadrat selisih antara nilai peramalan dan nilai aktual. Metrik ini memberikan penalti yang lebih besar terhadap kesalahan peramalan yang ekstrem (outlier), sehingga sensitif terhadap deviasi besar. RMSE digunakan untuk menilai stabilitas dan ketelitian model dalam meramalkan perubahan kualitas udara yang signifikan.
+Mean Absolute Percentage Error (MAPE) mengukur tingkat kesalahan peramalan dalam bentuk persentase terhadap nilai aktual. Metrik ini berguna untuk menilai tingkat kesalahan relatif model dan memudahkan perbandingan performa antar model dalam konteks yang lebih intuitif. Namun, penggunaan MAPE diperhatikan secara hati-hati pada nilai aktual yang sangat kecil untuk menghindari distorsi nilai kesalahan.
+Hasil evaluasi berdasarkan ketiga metrik tersebut (MAE, RMSE, dan MAPE) digunakan untuk membandingkan kinerja model XGBoost dan Prophet secara objektif. Model dengan nilai kesalahan MAE, RMSE, dan MAPE yang lebih rendah akan dipilih sebagai model peramalan utama yang diintegrasikan ke dalam sistem operasional. Selain itu, hasil evaluasi ini juga menjadi dasar untuk menilai kelayakan model dalam mendukung penyajian informasi prediktif yang akurat dan andal pada dashboard pemantauan kualitas udara berbasis web.
+Untuk Model Klasifikasi, metrik evaluasi yang digunakan meliputi: Accuracy, Precision, Recall, F1-Score (weighted dan macro), dan Confusion Matrix.
+
+3.2.5.8 Horizon Peramalan 60 Menit
+Sistem peramalan yang dikembangkan memiliki kemampuan untuk meramalkan konsentrasi polutan hingga 60 menit ke depan (1 jam). Hal ini berbeda dengan penelitian lain yang hanya meramalkan 1 menit ke depan, karena horizon peramalan yang lebih panjang memberikan manfaat yang lebih besar bagi pengguna dalam perencanaan aktivitas dan pengambilan keputusan terkait kesehatan.
+Dashboard menampilkan 60 titik peramalan yang masing-masing mewakili peramalan 1 menit, 2 menit, hingga 60 menit ke depan. Setiap iterasi peramalan menggunakan nilai peramalan sebelumnya sebagai input untuk step berikutnya (recursive forecasting), memastikan kontinuitas data antar titik waktu yang berurutan.
+
+3.2.6 Implementasi Backend dan Logika Pemrosesan Data
+Implementasi backend pada sistem pemantauan kualitas udara ini dirancang untuk menangani data sensor berfrekuensi tinggi secara efisien, stabil, dan berkelanjutan. Data yang dikirimkan oleh perangkat IoT berupa parameter polutan udara dan kondisi meteorologis diterima melalui REST API Supabase dan disimpan terlebih dahulu ke dalam tabel data mentah tb_konsentrasi_gas. Penyimpanan data mentah ini bertujuan untuk menjaga integritas data asli hasil pengukuran sensor serta memungkinkan proses analisis lanjutan apabila diperlukan.
+
+
+Gambar 3.3 Struktur Tabel Data mentah
+Seiring berjalannya waktu, tabel data mentah mengalami pertumbuhan data yang sangat cepat karena pengiriman data dilakukan secara periodik dalam interval waktu pendek. Apabila data mentah tersebut diakses secara langsung oleh aplikasi dashboard untuk keperluan visualisasi, maka akan muncul permasalahan performa query akibat volume data yang besar, serta ketidakstabilan tampilan grafik karena perubahan data yang terlalu sering. Kondisi ini dapat mengurangi responsivitas sistem dan kenyamanan pengguna dalam memantau tren kualitas udara.
+Untuk mengatasi permasalahan tersebut, backend sistem ini mengimplementasikan mekanisme pemrosesan data berbasis agregasi ter-materialisasi (materialized aggregation). Pendekatan ini dilakukan dengan membangun tabel agregasi terpisah di Supabase yang berfungsi menyimpan data hasil pengolahan dari tabel data mentah. Data pada tabel agregasi telah diringkas berdasarkan interval waktu tertentu, seperti per jam atau per hari, sehingga jumlah data yang diakses oleh dashboard menjadi lebih kecil dan lebih representatif terhadap pola kualitas udara yang ingin ditampilkan.
+
+Gambar 3.4 Struktur Tabel Data agregasi
+Proses agregasi data dijalankan menggunakan Supabase Edge Functions yang berperan sebagai lapisan logika pemrosesan backend. Edge Function ini secara periodik mengambil data dari tabel tb_konsentrasi_gas, melakukan pengelompokan data berdasarkan rentang waktu yang telah ditentukan, kemudian menghitung nilai agregat seperti rata-rata konsentrasi polutan, nilai maksimum, dan minimum. Hasil pengolahan tersebut selanjutnya disimpan ke dalam tabel agregasi yang telah disediakan.
+
+
+Gambar 3.5 Alur Agregasi Otomatis
+Alur agregasi data dimulai dari pemicu terjadwal yang mengirimkan permintaan HTTP ke Edge Function Supabase. Edge Function memvalidasi permintaan, menginisialisasi koneksi menggunakan service role key, lalu memanggil fungsi RPC di database untuk melakukan agregasi data dari tabel mentah ke tabel agregasi. Setelah proses selesai, sistem mengevaluasi hasil eksekusi; jika berhasil, data agregasi disimpan dan siap digunakan untuk visualisasi, sedangkan jika gagal, kesalahan dicatat dan respons kesalahan dikembalikan.
+
+3.2.6.1 Otomasi Pemrosesan Data Terjadwal
+Untuk memastikan proses pemrosesan dan agregasi data berjalan secara konsisten tanpa interaksi pengguna, sistem backend menerapkan mekanisme eksekusi terjadwal. Proses ini dijalankan secara otomatis pada interval waktu tertentu untuk mengeksekusi fungsi pemrosesan data di sisi server. Pendekatan ini memungkinkan data hasil agregasi selalu diperbarui secara berkala, sekaligus menjaga stabilitas performa sistem dengan memisahkan proses komputasi dari permintaan langsung dashboard. Pada tahap implementasi, mekanisme eksekusi terjadwal tersebut direalisasikan menggunakan cron job yang dijalankan pada lingkungan server Supabase. Cron job digunakan untuk memicu Edge Function pada interval waktu tertentu sesuai kebutuhan sistem.
+
+
+Gambar 3.6 Riwayat eksekusi agregasi Cron Job
+3.2.7 Proses Pembuatan Dashboard
+Tahap pembuatan dashboard berbasis web difokuskan pada perancangan antarmuka yang berfungsi sebagai pusat visualisasi dan penyampaian informasi kualitas udara kepada pengguna. Dashboard ini dirancang untuk mengintegrasikan data sensor kualitas udara yang diperoleh secara real-time dengan hasil analisis dan prediksi yang dihasilkan oleh sistem pemodelan. Seluruh data tersebut diakses melalui Supabase menggunakan REST API, sehingga proses pengambilan data dapat dilakukan secara efisien, terstruktur, dan mudah dikembangkan di masa mendatang.
+Dalam implementasinya, dashboard secara periodik mengambil data konsentrasi polutan seperti PM2.5, PM10, CO, NO₂, dan O3 serta parameter pendukung lainnya yang tersimpan pada basis data Supabase. Data ini kemudian diproses pada sisi frontend untuk ditampilkan dalam bentuk grafik deret waktu (time-series) yang memungkinkan pengguna mengamati pola perubahan kualitas udara dari waktu ke waktu. Penggunaan visualisasi berbasis grafik dipilih karena mampu menyajikan informasi numerik yang kompleks secara lebih intuitif dan mudah dipahami oleh pengguna non-teknis. Selain menampilkan data historis dan real-time, dashboard juga menyajikan hasil prediksi kualitas udara yang dihasilkan oleh model machine learning. Informasi prediktif ini ditampilkan berdampingan dengan data aktual, sehingga pengguna dapat membandingkan kondisi saat ini dengan perkiraan kondisi udara pada periode waktu mendatang. 
+
+3.2.8 Perencanaan Pengambilan Sampel dan Analisis Spasial Kualitas Udara
+Tahapan perencanaan pengambilan sampel dan analisis spasial kualitas udara dilakukan untuk mengidentifikasi variasi kondisi kualitas udara pada titik pemantauan dengan karakteristik aktivitas yang berbeda di Kota Surabaya. Analisis spasial digunakan untuk memahami distribusi kualitas udara berdasarkan karakteristik lingkungan dan sumber emisi dominan pada masing-masing lokasi pengamatan. 
+
+3.2.8.1 Pengambilan Sampel Data Spasial
+Pengambilan sampel data spasial dilakukan pada tiga titik pengamatan yang mewakili karakteristik lingkungan yang berbeda di Kota Surabaya, yaitu titik pemantauan Ngagel, titik pemantauan Rungkut, dan titik pemantauan Margomulyo. Pemilihan lokasi dilakukan secara purposive sampling dengan mempertimbangkan karakteristik aktivitas dominan pada masing-masing titik pemantauan. Penempatan alat pemantau dilakukan secara spesifik pada titik koordinat geografis yang telah ditetapkan agar representasi data yang diambil tetap presisi dan dapat dipertanggungjawabkan secara spasial. Rincian lokasi pengambilan sampel kualitas udara ditunjukkan pada Tabel 3.2.
+    Tabel 3.2 Titik Koordinat Lokasi Pengambilan Sampel Spasial
+Titik Pemantauan
+Representasi Aktivitas
+Lokasi Jalan / Area
+Titik Koordinat
+Ngagel
+Lalu Lintas Perkotaan & Permukiman
+Jl. Raya Ngagel, Wonokromo
+-7.290305, 112.760404
+Rungkut
+Industri Manufaktur & Pendidikan
+Jalan Rungkut Madya
+-7.332245, 112.789994
+Margomulyo
+Industri Logistik & Lalu Lintas Berat
+Simpang Jl. Margomulyo, Tandes
+-7.258845, 112.682067
+
+
+Titik pemantauan Rungkut dipilih sebagai representasi titik pemantauan industri manufaktur yang dipengaruhi oleh aktivitas titik pemantauan industri dan distribusi barang. Sementara itu, titik pemantauan Margomulyo dipilih sebagai representasi titik pemantauan industri-logistik dan pergudangan yang didominasi oleh aktivitas kendaraan berat dan transportasi logistik. Pada setiap lokasi pengamatan, alat pemantauan kualitas udara ditempatkan pada titik yang dapat merepresentasikan kondisi lingkungan sekitar dan memiliki akses pengamatan yang memadai. Sebelum pengambilan data dilakukan, alat dipastikan berada dalam kondisi stabil dan telah melalui proses warming-up untuk mengurangi kesalahan pengukuran. Data kualitas udara yang dikumpulkan meliputi konsentrasi PM2.5, PM10, karbon monoksida (CO), suhu udara, dan kelembapan udara. Pengukuran dilakukan selama periode waktu tertentu pada masing-masing titik pengamatan, kemudian setiap data dikaitkan dengan koordinat geografis lokasi pengambilan sampel untuk mendukung analisis spasial dan visualisasi distribusi kualitas udara. 
+Hasil pengukuran dari ketiga titik tersebut digunakan untuk membandingkan kondisi kualitas udara berdasarkan karakteristik lingkungan yang berbeda, sehingga dapat memberikan gambaran mengenai pengaruh aktivitas perkotaan, industri manufaktur, dan logistik terhadap kualitas udara di Kota Surabaya.
+
+3.2.8.2 Analisis Data Spasial
+Analisis data spasial dilakukan sebagai studi kasus tambahan dengan membandingkan hasil pengukuran kualitas udara pada tiga lokasi yang mewakili karakteristik lingkungan berbeda, yaitu titik pemantauan Ngagel, Rungkut, dan Margomulyo. Parameter utama yang dievaluasi meliputi konsentrasi PM2.5, PM10, dan karbon monoksida COO. Untuk membuktikan secara statistik apakah terdapat perbedaan tingkat paparan emisi yang signifikan akibat karakteristik aktivitas di masing-masing wilayah, analisis tidak hanya dilakukan secara deskriptif, tetapi dilanjutkan dengan uji inferensial komparatif menggunakan metode One-Way ANOVA.
+Skenario analisis spasial ini diawali dengan pengujian asumsi parametrik melalui uji normalitas Shapiro-Wilk dan uji homogenitas varians Levene. Apabila hasil komputasi ANOVA menolak hipotesis nol H0, tahapan analisis akan dilanjutkan dengan uji komparasi ganda Post-hoc Tukey HSD. Pengujian lanjutan ini diterapkan untuk memetakan secara spesisi pasangan titik lokasi mana saja yang memiliki perbedaan tingkat pencemaran paling tajam di lapangan.
+
+3.2.8.3 Interpretasi Hasil Analisis
+Interpretasi hasil analisis dilakukan dengan mengaitkan signifikansi perbedaan nilai parameter kualitas udara yang diperoleh melalui uji statistik pada setiap lokasi pengamatan dengan karakteristik lingkungan dan aktivitas di sekitarnya. Hasil komparasi pada titik pemantauan Ngagel, Rungkut, dan Margomulyo akan dianalisis lebih dalam untuk memahami pengaruh aktivitas lalu lintas perkotaan, industri manufaktur, dan titik pemantauan logistik terhadap tingkat paparan polusi udara. Interpretasi ini digunakan untuk menjelaskan pola variasi emisi yang teramati, sekaligus mengevaluasi kemampuan model analitik pada sistem pemantauan berbasis IoT dalam merespons dan merepresentasikan kondisi lingkungan pada lokasi pengamatan yang berbeda.
+
+3.3 Desain Mockup
+Bab ini membahas perancangan antarmuka pengguna (user interface) untuk sistem pemantauan kualitas udara berbasis web. Desain mockup dashboard dirancang dengan pendekatan user-centered design untuk memberikan visualisasi data yang mudah dipahami oleh berbagai kalangan pengguna. Dashboard terdiri dari beberapa halaman utama yang dapat diakses melalui navigasi tab, yaitu Overview untuk ringkasan kualitas udara real-time, dan Prediksi Kualitas udara berbasis machine learning.
+
+3.3.1 Dashboard Overview
+Gambar 3.7 menampilkan mock-up halaman utama (Overview) dari dashboard pemantauan kualitas udara. Halaman ini dirancang sebagai pusat informasi utama yang memberikan ringkasan komprehensif mengenai status mutu udara saat ini. Pada bagian pojok kanan atas, terdapat indikator tanggal dan waktu (timestamp) yang terus diperbarui untuk menegaskan bahwa sistem menyajikan data yang bersifat real-time.
+Antarmuka halaman ini terbagi menjadi beberapa panel informasi utama sebagai berikut:
+Panel Klasifikasi Kualitas Udara: Panel ini merupakan visualisasi langsung dari hasil output model algoritma Random Forest. Di sebelah kiri, terdapat gauge chart berbentuk setengah lingkaran yang menampilkan status kategori ISPU polutan dominan (contoh: "Baik"). Di sebelah kanan gauge, sistem menyajikan narasi penjelasan terkait dampak kesehatan dari kondisi udara tersebut secara deskriptif, sehingga mudah dipahami oleh masyarakat awam. Panel ini juga dilengkapi dengan legenda rentang nilai dan warna ISPU (mulai dari rentang 0-50 untuk "Baik" hingga 301-500 untuk "Berbahaya").
+Kartu Metrik Polutan (Pollutant Metric Cards): Tepat di bawah panel klasifikasi, terdapat lima kartu metrik yang disusun secara sejajar (horizontal). Masing-masing kartu merepresentasikan parameter polutan yang dipantau, yaitu PM2.5, PM10, NO₂, CO, dan O₃. Kartu-kartu ini menampilkan angka spesifik konsentrasi dalam format ISPU beserta label status keselamatannya (contoh: "Aman"). Warna latar belakang kartu akan berubah secara dinamis mengikuti tingkat keparahan polutan berdasarkan standar indeks warna ISPU.
+Panel Ringkasan PM2.5: Terletak di bagian kiri bawah, panel ini berfungsi untuk memberikan wawasan historis jangka pendek mengenai polutan paling kritis (PM2.5). Panel ini menampilkan rata-rata ISPU PM2.5 selama 7 hari terakhir dalam bentuk slider bar berwarna, lengkap dengan nilai historis terendah, tertinggi, nilai mendekati puncak (hampir tertinggi), serta indikator persentase tren pergerakan polutan (naik atau turun).
+Panel Kondisi Ruang / Lingkungan: Berada di tengah bagian bawah, panel ini menyajikan data meteorologi mikro atau parameter lingkungan lokal tempat sensor utama dipasang. Informasi yang disajikan mencakup pembacaan Suhu (contoh: 34.5°C) dan Kelembapan (contoh: 63.3%), yang berfungsi sebagai variabel pendukung untuk memahami faktor fisik yang memengaruhi akumulasi polutan di udara sekitar sensor.
+
+
+Gambar 3.7 Mock-up Metrics Card
+
+
+3.3.2 Data Cuaca BMKG dan Tren Polutan
+Gambar 3.8 menampilkan mock-up antarmuka panel "Data BMKG" yang berfungsi mengintegrasikan parameter meteorologi eksternal ke dalam sistem pemantauan kualitas udara. Panel ini dirancang dengan tata letak (layout) berbasis kartu (card) yang bersih dan modern, serta dilengkapi dengan tombol interaktif Refresh di sudut kanan atas yang memungkinkan pengguna untuk memuat ulang data cuaca secara manual kapan saja.
+Informasi meteorologi disajikan secara intuitif yang diawali dengan indikator kondisi cuaca umum (seperti "Cerah Berawan"), lengkap dengan ikon visual yang merepresentasikan keadaan langit aktual. Tepat di bawah indikator utama tersebut, terdapat empat metrik parameter cuaca spesifik yang disusun dalam format grid, yaitu:
+Suhu: Menampilkan temperatur lingkungan aktual (contoh: 29°C) dengan ikon termometer.
+Kelembapan: Menampilkan persentase kelembapan udara relatif (contoh: 67%) dengan ikon tetesan air.
+Angin: Menampilkan kecepatan pergerakan angin (contoh: 12.7 km/h) dengan ikon hembusan angin.
+Arah: Menunjukkan indikator arah mata angin dominan (contoh: W yang merepresentasikan West atau Barat) dengan ikon kompas.
+Kehadiran informasi cuaca ini sangat esensial di dalam dashboard, mengingat parameter meteorologi seperti arah angin, kecepatan angin, suhu, dan kelembapan merupakan variabel prediktor yang memiliki korelasi dan pengaruh langsung terhadap tingkat dispersi maupun akumulasi polutan udara di suatu titik pemantauan.
+
+
+Gambar 3.8 Mock-up Integrasi Data BMKG
+3.3.3 Prediksi Kualitas Udara dengan Model Machine Learning
+Gambar 3.9 menampilkan mock-up halaman "Statistik & Analisis Data" yang secara khusus menyajikan hasil peramalan kualitas udara menggunakan model machine learning. Antarmuka pada halaman ini dirancang untuk memberikan wawasan mendalam terkait proyeksi kondisi udara di masa depan dan terbagi menjadi dua bagian visual utama:
+Panel Prediksi 1 Jam (ISPU): Terletak di bagian atas, panel ini memvisualisasikan proyeksi nilai ISPU untuk tiga parameter polutan utama (PM2.5, PM10, dan CO) selama 60 menit (1 jam) ke depan menggunakan grafik area (area chart) berlapis. Grafik ini menggunakan representasi warna yang berbeda untuk setiap polutan (ungu untuk PM2.5, hijau untuk PM10, dan oranye untuk CO) agar pengguna dapat melihat fluktuasi ketiganya secara simultan. Pada bagian kiri atas, terdapat kartu indikator yang menampilkan status kualitas udara dominan (contoh: "Baik") beserta rincian nilai ISPU tiap polutan. Panel ini juga dilengkapi tombol toggle di sudut kanan atas yang memungkinkan pengguna untuk beralih antara tampilan "Grafik" visual atau "Tabel" data numerik.
+Panel Forecasting & Analitik: Berada di bagian bawah, panel ini secara spesifik menampilkan hasil peramalan nilai konsentrasi polutan mentah (dalam satuan µg/m³) menggunakan algoritma peramalan XGBoost. Visualisasi grafik deret waktu dirancang secara intuitif dengan membedakan bentuk garis: sisi kiri dengan area biru dan garis tegas (solid line) merepresentasikan data aktual saat ini, sedangkan sisi kanan dengan area oranye dan garis putus-putus (dashed line) merepresentasikan tren hasil peramalan ke masa depan. 
+
+
+Gambar 3.9 Mock-up Hasil Prediksi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BAB 4
+HASIL PENELITIAN
+
+Pada bab ini membahas tentang implementasi teknis pengembangan dashboard real-time untuk monitoring dan prediksi kualitas udara di Kota Surabaya. Sistem dirancang menggunakan arsitektur backend terintegrasi yang mampu menangani data sensor berfrekuensi tinggi melalui mekanisme penyimpanan, agregasi, dan otomasi pemrosesan data guna menjaga kinerja query dan stabilitas visualisasi. Data kualitas udara yang diterima secara periodik diproses lebih lanjut untuk menghasilkan informasi teragregasi yang siap ditampilkan pada dashboard. Selain itu, sistem mengimplementasikan model prediksi kualitas udara berbasis machine learning yang telah melalui tahap pelatihan dan evaluasi, sehingga mampu menghasilkan peramalan yang akurat berdasarkan data historis.
+
+4.1 Parameter Eksperimen
+Parameter Model XGBoost
+Pada proyek akhir ini, model XGBoost digunakan sebagai model utama untuk prediksi kualitas udara. Parameter utama yang digunakan dapat dilihat pada Tabel 4.1.
+
+Tabel 4.1 Hyperparameter Model XGBoost
+No
+Parameter
+Nilai
+Deskripsi
+1
+n_estimators
+300
+Jumlah pohon boosting yang dibangun
+2
+max_depth
+6
+Kedalaman maksimum setiap pohon
+3
+learning_rate
+0.05
+Laju pembelajaran (step size)
+4
+reg_alpha (L1)
+0.1
+Regularisasi L1 untuk sparsity
+5
+reg_lambda (L2)
+1.0
+Regularisasi L2 untuk stabilitas
+6
+objective
+reg:squarederror
+Fungsi objektif regresi
+7
+random_state
+42
+Seed untuk reproduktibilitas
+
+Parameter Model LightGBM
+Pada proyek akhir ini, model Light Gradient Boosting Machine (LightGBM) digunakan sebagai model pembanding untuk peramalan kualitas udara.. Parameter utama yang digunakan dapat dilihat pada Tabel 4.2
+
+Tabel 4.2 Hyperparameter Model LightGBM
+No
+Parameter
+Nilai Aktual
+Deskripsi
+1
+n_estimators
+100
+Jumlah pohon keputusan boosting yang dibangun pada model.
+2
+max_depth
+6
+Batasan kedalaman maksimum pembelahan pada struktur vertikal daun.
+3
+learning_rate
+0.1
+Laju pembelajaran model untuk penyesuaian bobot residual komputasi.
+4
+random_state
+42
+Bilangan acak konstan untuk menjamin reproduksibilitas hasil pemodelan.
+
+Parameter Model Prophet
+Model Prophet digunakan sebagai model pembanding untuk peramalan deret waktu karena kemampuannya dalam menangani tren dan pola musiman secara otomatis. Parameter utama yang digunakan dapat dilihat pada Tabel 4.3.
+
+Tabel 4.3 Parameter Model Prophet
+No
+Parameter Target
+Mode Fungsi
+Changepoint Prior Scale (cps)
+Daily Seasonality
+1
+PM2.5​
+Additive
+0.01
+TRUE
+2
+PM10​
+Additive
+0.01
+TRUE
+3
+CO
+Additive
+0.05
+TRUE
+
+4.2 Karakteristik Data
+Data yang digunakan dalam penelitian ini merupakan data kualitas udara yang diperoleh dari sensor berbasis Internet of Things (IoT) yang ditempatkan di wilayah Kota Surabaya. Data dikumpulkan secara kontinu dengan frekuensi tinggi (per menit) dan dikirimkan ke sistem backend melalui REST API untuk kemudian disimpan dalam basis data Supabase (PostgreSQL). Dataset ini mencakup parameter polutan utama dan variabel meteorologis yang digunakan sebagai dasar analisis monitoring serta pemodelan prediksi kualitas udara yang ditunjukkan pada Tabel 4.4.
+
+Tabel 4.4 Karakteristik Dataset
+No
+Atribut
+Deskripsi
+Tipe Data
+1
+created_at
+Waktu pencatatan data sensor, direkam secara real-time dengan interval per menit.
+datetime
+2
+pm25_ugm3
+Konsentrasi partikel PM2.5 dalam satuan mikrogram per meter kubik (µg/m³).
+numeric
+3
+pm10_ugm3
+Konsentrasi partikel PM10 dalam satuan mikrogram per meter kubik (µg/m³).
+numeric
+4
+co_ugm3
+Konsentrasi karbon monoksida (CO) dalam satuan mikrogram per meter kubik (µg/m³).
+numeric
+5
+no2_ugm3
+Konsentrasi nitrogen dioksida (NO₂) dalam satuan mikrogram per meter kubik (µg/m³).
+numeric
+6
+o3_ugm3
+Konsentrasi ozon (O₃) dalam satuan mikrogram per meter kubik (µg/m³).
+numeric
+7
+temperature
+Suhu udara lingkungan yang diukur oleh sensor dalam derajat Celcius (°C).
+numeric
+8
+humidity
+Kelembapan relatif udara dalam persentase (%).
+numeric
+
+4.3 Lokasi Uji Coba
+Permohonan izin diajukan kepada dosen pembimbing untuk melakukan penempatan dan pengujian perangkat sensor kualitas udara di lingkungan kampus. Perangkat sensor ditempatkan di area luar ruangan yang berada di sekitar gedung Smart Automation Workshop Politeknik Elektronika Negeri Surabaya, tepatnya di sekitar ruang 07.03, dengan mempertimbangkan aspek keamanan, aksesibilitas, dan representasi kondisi udara lingkungan sekitar. Selanjutnya, proses pengumpulan, pengolahan, serta analisis data dilakukan secara daring menggunakan laptop sebagai bagian dari pengembangan sistem dan analisis hasil penelitian.
+4.4 Waktu Uji Coba
+Uji coba pada penelitian ini dilaksanakan dalam rentang waktu Mei hingga Juni 2026. Pada periode tersebut dilakukan serangkaian tahapan penelitian yang meliputi pengambilan data kualitas udara menggunakan perangkat sensor, pengiriman dan penyimpanan data ke sistem backend, pengolahan serta agregasi data, pengembangan dan pengujian dashboard berbasis web, hingga percobaan membuat model peramalan. Setiap tahapan dilaksanakan secara bertahap dan terstruktur sesuai dengan rancangan sistem yang telah ditetapkan, guna memastikan fungsi pemantauan dan prediksi kualitas udara dapat berjalan secara optimal dan menghasilkan informasi yang akurat.
+
+4.5 Spesifikasi Peralatan Uji Coba
+Untuk mendukung pelaksanaan uji coba sistem pemantauan dan prediksi kualitas udara, diperlukan peralatan dengan spesifikasi tertentu agar proses pengambilan data, pemrosesan, dan visualisasi dapat berjalan dengan baik. Spesifikasi perangkat yang digunakan mampu untuk melakukan pengolahan dan pengembangan sistem, serta infrastruktur pendukung jaringan. Rincian spesifikasi perangkat keras yang digunakan selama proses uji coba dan eksperimen disajikan pada Tabel 4.5.
+
+Tabel 4.5 Spesifikasi Peralatan Uji Coba
+No
+Parameter
+Spesifikasi
+1
+Perangkat
+Laptop LOQ 15
+2
+Sistem Operasi
+Windows 11 Home
+3
+Tipe Sistem
+64-bit Operating System
+4
+Prosesor (CPU)
+Intel® Core™ i5-12450HX @ 1.80 GHz (hingga 2.30 GHz)
+5
+Memori (RAM)
+12 GB
+
+4.6 Implementasi Arsitektur Sistem untuk Agregasi Data
+Pada proyek ini, proses agregasi data tidak dilakukan secara langsung setiap kali data sensor diterima, melainkan dijalankan secara berkala untuk menjaga efisiensi sistem dan kestabilan kinerja. Pendekatan ini memungkinkan sistem mengelola volume data yang terus bertambah tanpa membebani proses pengambilan data utama. Oleh karena itu, diperlukan suatu mekanisme yang mampu menjalankan proses agregasi secara otomatis pada interval waktu tertentu sesuai dengan kebutuhan sistem
+
+
+4.6.1 Implementasi Ingestion Data dan Perangkat IoT
+Proses akuisisi data adalah fondasi krusial bagi seluruh sistem. Untuk memastikan integritas data dari sumbernya, dirancang sebuah arsitektur yang terdiri dari tiga lapisan utama: Sensor, API, dan Database. Arsitektur ini menjamin aliran data yang andal dari perangkat keras hingga penyimpanan cloud secara real-time.
+
+Gambar 4.1 Alur Data Ingestion
+Sensor Kualitas Udara: Sensor, yang terintegrasi dengan mikrokontroler seperti ESP32, adalah titik awal pengumpulan data. Secara berkala mengukur konsentrasi polutan (PM2.5, PM10, NO2, CO, O3) dan memformatnya, bersama dengan stempel waktu (timestamp) yang presisi, menjadi sebuah payload JSON. Timestamp ini menjadi kunci untuk semua analisis deret waktu selanjutnya.
+API Ingestion Data: Payload JSON kemudian dikirimkan melalui protokol HTTP POST ke sebuah endpoint API. API ini berfungsi sebagai jembatan yang terstandarisasi antara perangkat keras dan infrastruktur cloud. Penggunaan API memberikan keunggulan krusial: memisahkan logika perangkat keras dari basis data, memungkinkan validasi data, dan menambahkan lapisan keamanan.
+Supabase PostgreSQL: Lapisan terakhir adalah Supabase PostgreSQL, yang berfungsi sebagai penyimpanan permanen. Saat menerima payload JSON dari sensor, Supabase secara otomatis menyimpannya sebagai sebuah baris baru dalam tabel tb_konsentrasi_gas. Proses ini berjalan terus-menerus, memastikan database selalu diperbarui dengan data terkini dari lapangan.
+Secara keseluruhan, alur kerja ini menciptakan data pipeline yang kokoh. Sensor mengumpulkan data, API memastikan transmisi yang aman dan terstruktur, dan Supabase menyediakan penyimpanan yang skalabel. 
+
+4.6.2 Spesifikasi dan Karakteristik Data
+Sistem memanfaatkan beberapa sensor lingkungan dan gas untuk memperoleh parameter kualitas udara secara komprehensif, yaitu:
+DHT22Digunakan untuk mengukur suhu udara (°C) dan kelembapan relatif (%). Sensor ini berfungsi sebagai parameter pendukung yang berpengaruh terhadap persepsi kualitas udara dan stabilitas sensor gas.
+GP2Y1010AU0FMerupakan sensor particulate matter (PM) yang digunakan untuk mendeteksi konsentrasi PM2.5 (dan estimasi PM10) dalam satuan µg/m³. Sensor ini bekerja dengan prinsip optik berbasis hamburan cahaya.
+MiCS-6814Sensor gas multi-kanal yang digunakan untuk mendeteksi beberapa jenis gas, antara lain:
+CO (Carbon Monoxide)
+NO₂ (Nitrogen Dioxide)
+MQ-131Digunakan untuk mendeteksi ozon (O₃) di udara. Ozon merupakan polutan sekunder yang signifikan dalam penilaian kualitas udara ambien.
+
+4.6.2.1 Mekanisme Pengiriman Data ke Backend
+Sistem menggunakan komunikasi HTTPS berbasis REST API untuk mengirimkan data hasil pembacaan sensor ke backend Supabase. Setiap payload dikirim menggunakan metode HTTP POST dengan format JSON, disertai header autentikasi Supabase berupa apikey dan Authorization: Bearer.
+
+4.6.2.2 Payload Data Konsentrasi Gas dan Lingkungan
+Payload ini berisi data hasil konversi sensor ke satuan fisis (µg/m³) serta parameter lingkungan dari DHT22. Format JSON yang dikirim adalah sebagai berikut:
+{"pm25_ugm3": 18.6,
+  "pm10_ugm3": 32.4,
+  "co_ugm3": 850.2,
+  "no2_ugm3": 42.7,
+  "o3_ugm3": 58.9,
+  "temperature": 29.4,
+  "humidity": 72.1}
+
+Keterangan:
+pm25_ugm3, pm10_ugm3 diperoleh dari sensor GP2Y1010AU0F
+co_ugm3, no2_ugm3 dari sensor MiCS-6814
+o3_ugm3 dari sensor MQ-131
+temperature dan humidity dari sensor DHT22
+
+4.7 Hasil Eksperimen 
+Uji coba proyek akhir ini menghasilkan beberapa hasil eksperimen untuk mencapai tujuan yang telah didefinisikan.
+
+4.7.1 Pengambilan Data dari Database
+Proses inisialisasi dan pengambilan data diawali dengan melakukan koneksi terhadap Database yang telah terintegrasi dengan alat IoT. Selanjutnya, sistem memuat kredensial Supabase berupa URL dan Role Key dari berkas .env untuk menjaga keamanan akses, kemudian mendefinisikan struktur tabel dan kolom data sensor yang digunakan. Setelah dilakukan validasi terhadap kredensial yang tersedia, klien Supabase diinisialisasi sehingga sistem siap melakukan pengambilan data konsentrasi gas dan parameter lingkungan sebagai input pada tahap analisis dan pemodelan selanjutnya. Gambar 4.2 menunjukkan detail dari logs sebagai bukti pengambilan data dari python telah berhasil dilakukan.
+
+Gambar 4.2 Detail Logs Pengambilan Data
+4.7.2 Preprocessing Data
+Setelah berhasil melakukan pengambilan data dari Database, langkah yang dilakukan selanjutnya adalah preprocessing. Pada tahap ini dilakukan pengecekan nilai kosong atau null pada data mentah, jika terdapat baris yang mengandung nilai kosong maka akan langsung dilakukan penghapusan atau drop.
+ 
+Gambar 4.3 Hasil Preprocessing
+4.7.3 Analisis Eksplorasi Data (EDA)
+4.7.3.1 Karakteristik dan Ringkasan Statistik
+Pada tahap ini, dilakukan analisis deskriptif terhadap dataset yang mencakup total 27.986 baris data pengamatan berfrekuensi tinggi tanpa adanya nilai kosong di seluruh parameter.
+Tabel 4.6 Ringkasan statistik data
+Metrik Statistik
+PM2.5​ (μg/m3)
+PM10​ (μg/m3)
+CO (μg/m3)
+NO2​ (μg/m3)
+O3​ (μg/m3)
+Suhu (∘C)
+Kelembapan (%)
+Count 
+27,986
+27,986
+27,986
+27,986
+27,986
+27,986
+27,986
+Mean 
+16.06
+17.94
+2923.69
+0.11
+22.46
+34.68
+59.83
+Std 
+3.07
+4.31
+493.45
+5.74
+15.7
+2.05
+7.8
+Min 
+8.02
+7.71
+918.37
+0
+1.08
+29.6
+26.4
+Q25% 
+14.18
+15.38
+2610.66
+0
+19.63
+33.5
+56.4
+Q50% 
+15.42
+17.23
+2928.03
+0
+19.63
+34.6
+61.2
+Q75% 
+17.36
+19.56
+3244.52
+0
+19.63
+34.9
+65.3
+Max 
+141.25
+242.34
+8237.73
+309.59
+140.42
+47.6
+98
+
+Berdasarkan data statistik pada Tabel 4.6, polutan PM2.5 memiliki nilai rata-rata (mean) sebesar 16,06 dengan rentang deviasi yang relatif stabil = 3,07. Parameter PM10 menunjukkan rata-rata sebesar 17,94. Variabel bergerak pada tingkat rata-rata 2923,69 dengan nilai maksimum mencapai 8237,73 mengindikasikan adanya lonjakan polusi pada waktu-waktu tertentu akibat fluktuasi aktivitas antropogenik di sekitar sensor. Sementara itu, parameter kondisi lingkungan mencatat rata-rata suhu udara yang cukup tinggi, yaitu 34,68 dengan kelembapan relatif berada di angka 59,8.
+
+4.7.3.2 Analisis Tren Temporal dan Distribusi Polutan
+Visualisasi deret waktu (time series plot) pada Gambar 4.4 dan visualisasi grafik rata-rata bergerak (rolling mean dengan window MA-5 dan MA-30) pada Gambar 4.5 digunakan untuk mereduksi noise berfrekuensi tinggi serta mengamati pergerakan tren jangka panjang polutan dari pertengahan Mei hingga Juni 2026.
+
+Gambar 4.4 Visualisasi time series
+
+
+Gambar 4.5 Visualisasi rolling mean
+Secara umum, ketiga polutan berada pada level dasar (baseline) yang stabil, namun terdapat beberapa lonjakan ekstrem (spikes). Lonjakan paling signifikan pada PM2.5 mencapai 141,25 dan PM10 mencapai 242,34 terjadi secara simultan di sekitar tanggal 30 Mei 2026. Pengamatan sebaran frekuensi melalui plot histogram pada Gambar 4.6 menegaskan bahwa distribusi PM 2.5 dan PM10 terkonsentrasi padat di sekitar nilai rata-ratanya (right-skewed akibat keberadaan pencilan ekstrem), sedangkan distribusi CO membentuk kurva yang lebih mendekati distribusi normal (bell-shaped) di rentang 2000 hingga 4000.
+
+
+Gambar 4.6 Histogram Sebaran Polutan
+4.7.3.3 Analisis Pola Diurnal (Harian) Polutan
+Analisis menggunakan boxplot per jam (0–23 WIB) pada Gambar 4.7 memperlihatkan karakteristik perilaku harian polutan yang unik:
+
+
+Gambar 4.7 Boxplot Pola Harian
+PM2.5 dan PM10 menunjukkan pola fluktuasi yang mirip, dengan sebaran data yang cenderung mengecil pada jam-jam siang hari (jam 11–16) dan sedikit meningkat dengan variabilitas pencilan (outliers) yang lebih tinggi pada tengah malam hingga dini hari (jam 22–03).
+Karbon Monoksida (CO) menampilkan pola diurnal yang berkorelasi kuat dengan siklus aktivitas perkotaan (rush hour). Konsentrasi CO mulai merangkak naik sejak pagi hari, mencapai puncaknya pada rentang jam 09.00 hingga 11.00 WIB, kemudian melandai secara bertahap, dan kembali mengalami kenaikan sekunder pada malam hari di sekitar jam 19.00 hingga 21.00 WIB.
+
+4.7.4 Analisis Hubungan Antar Variabel (Korelasi)
+4.7.4.1 Matriks Korelasi Pearson
+Matriks korelasi digunakan untuk mengukur kekuatan hubungan linear antar parameter polutan dan faktor meteorologi. Hasil analisis menunjukkan hubungan korelasi positif yang sangat kuat antara PM2.5 dan PM10 dengan koefisien sebesar r = 0,70. Hubungan linear ini dipertegas oleh grafik scatter plot pada Gambar 4.8 yang menunjukkan pola kemiringan linier searah secara linear.
+
+Gambar 4.8 Korelasi Pearson
+Sebaliknya, polutan gas CO menunjukkan hubungan korelasi negatif yang lemah terhadap PM2.5( r = -0,22) dan PM10( r = -0,21). Untuk parameter meteorologi, ditemukan hubungan korelasi negatif kuat antara suhu dan kelembapan (r = -0,72), di mana peningkatan suhu lingkungan diikuti secara signifikan oleh penurunan kelembapan udara sekitar sensor.
+
+4.7.4.2 Analisis Korelasi Silang (Cross-Correlation Function - CCF)
+Untuk melihat hubungan ketergantungan antar variabel pada dimensi pergeseran waktu (lag), analisis CCF dilakukan hingga batas rentang 60 menit ke belakang:
+
+
+Gambar 4.9 Visualisasi Cross Correlation Function
+CCF PM2.5 vs PM10: Hubungan korelasi silang berada di level tertinggi (>0,65) pada lag awal (0–5 menit) dan menurun secara sangat lambat hingga lag 60. Hal ini menandakan adanya kesamaan sumber emisi partikulat padat secara real-time.
+CCF PM2.5 vs CO & PM10 vs CO: Kedua pasangan ini menunjukkan nilai korelasi silang negatif yang konsisten stabil di sekitar -0,20 di sepanjang lag 0 hingga 60 menit, membuktikan tidak adanya efek penundaan waktu (time-lagged effect) yang mengubah karakteristik hubungan antara gas CO dan partikulat debu halus.
+
+4.7.5 Uji Stasioneritas dan Analisis Autokorelasi
+4.7.5.1 Uji Stasioneritas (Augmented Dickey-Fuller)
+Berdasarkan pengujian statistik menggunakan ADF, didapatkan hasil bahwa ketiga target polutan telah memenuhi syarat dasar pemodelan deret waktu tanpa memerlukan proses differencing tambahan. Nilai statistik uji ADF untuk ketiga polutan menunjukkan signifikansi yang sangat tinggi:
+
+     Tabel 4.7 Hasil Uji ADF
+Parameter Polutan
+Nilai ADF Statistic
+Nilai Ambang (p-value)
+Ambang Batas (α)
+Status
+PM2.5​
+-7.5887
+0
+0.05
+STASIONER
+PM10​
+-8.2093
+0
+0.05
+STASIONER
+CO
+-4.6148
+0.000121
+0.05
+STASIONER
+
+Berdasarkan data pada Tabel 4.7, pengujian stasioneritas dilakukan secara formal menggunakan metode statistik Augmented Dickey-Fuller (ADF) terhadap tiga variabel target utama peramalan. Hipotesis nol H0 pada uji ini menyatakan bahwa data deret waktu memiliki akar unit (unit root) atau bersifat tidak stasioner.
+Hasil komputasi menunjukkan nilai p-value untuk variabel PM2.5 dan PM10 berada di angka 0,000000, sedangkan variabel CO berada di angka 0,000121. Karena nilai probabilitas (p-value) dari ketiga parameter polutan tersebut jauh lebih kecil dari ambang batas signifikansi α = 0,05, maka terdapat bukti empiris yang sangat kuat untuk menolak H0 dan menerima hipotesis alternatif (H1). Dengan demikian, dapat disimpulkan secara definitif bahwa ketiga data deret waktu polutan tersebut bersifat stasioner pada tingkat level asli (original level data), sehingga aman dan layak untuk diintegrasikan secara langsung ke dalam model machine learning (XGBoost dan LightGBM) tanpa memerlukan proses transformasi differencing tambahan.
+
+4.7.5.2 Analisis ACF dan PACF Multi-Polutan
+Grafik ACF untuk PM2.5, PM10, dan CO pada Gambar 4.10 menunjukkan pola penurunan yang sangat lambat (slow decay) secara konsisten melintasi batas signifikansi hingga lag 60 menit. Pola ACF yang melandai lambat ini merupakan karakteristik khas data beresolusi tinggi (per menit) yang memiliki ketergantungan temporal jangka panjang (long-term memory dependency).
+
+
+             Gambar 4.10 Visualisasi ACF dan PACF
+Grafik PACF untuk ketiga polutan menunjukkan pola terputus yang ekstrem (die out atau sharp cut-off) setelah lag ke-1 atau ke-2. Nilai PACF pada lag 1 berada di level tertinggi (>0,65), dan langsung menurun drastis mendekati batas nol pada lag-lag berikutnya. Karakteristik PACF ini mendasari keputusan penting dalam tahap feature engineering model regresi pohon (XGBoost & LightGBM), di mana penggunaan komponen fitur lag 1 menit akan menjadi prediktor paling dominan dan kritis dalam menentukan akurasi hasil peramalan 60 menit ke depan
+
+4.7.6 Hasil Implementasi Model Peramalan
+Evaluasi performa model peramalan dilakukan untuk mengukur tingkat akurasi algoritma dalam memproyeksikan konsentrasi polutan pada cakupan jangka pendek (horizon 60 menit). Dalam konteks pemantauan kualitas udara yang bersifat dinamis, pemilihan metrik evaluasi yang tepat sangat krusial untuk mencerminkan responsivitas model terhadap fluktuasi data lapangan. Oleh karena itu, evaluasi model didasarkan pada metrik Mean Absolute Percentage Error (MAPE) dan Mean Absolute Error (MAE).
+Pemilihan metrik MAPE dan MAE sebagai parameter evaluasi utama didasarkan pada karakteristik data lingkungan yang memiliki variansi tinggi dan rentan terhadap lonjakan data (spikes). Metrik MAPE memberikan gambaran persentase kesalahan relatif yang sangat intuitif dalam menilai keandalan model di seluruh rentang nilai konsentrasi polutan, sedangkan MAE memberikan estimasi rata-rata besaran absolut kesalahan prediksi dalam satuan konsentrasi yang sama (µg/m3 atau ppb). Pendekatan ini dipilih untuk memastikan bahwa model yang diimplementasikan tidak hanya akurat secara statistik, tetapi juga memberikan interpretasi kesalahan yang konsisten dan relevan secara operasional bagi sistem monitoring lingkungan.
+Perbandingan performa antara algoritma XGBoost, LightGBM, dan Prophet dilakukan dengan menggunakan dataset uji yang terpisah, di mana setiap model diuji kemampuannya dalam menangkap tren fluktuasi data per-menit. Pengujian ini bertujuan untuk mengidentifikasi model dengan error rate paling minimal dalam memprediksi profil polusi udara pada titik pemantauan secara real-time.
+
+4.7.6.1 Implementasi Model XGBoost
+Tahap preprocessing dimulai dengan pengambilan data dari database Supabase menggunakan teknik pagination untuk menangani dataset berukuran besar secara efisien, dengan batch sebesar 1000 baris per iterasi dalam rentang waktu 30 hari terakhir. Setelah seluruh data terkumpul dalam DataFrame pandas, dilakukan konversi tipe data dimana semua kolom numerik dikonversi menggunakan pd.to_numeric() dengan parameter errors='coerce'. Proses cleaning dilakukan dengan menghapus seluruh baris yang mengandung nilai kosong menggunakan dropna().
+Model XGBoost diimplementasikan sebagai arsitektur regresi pohon keputusan utama untuk memetakan hubungan non-linear dari fitur historis multivariat. Konfigurasi hiperparameter latih yang diterapkan meliputi n_estimators=300 untuk membatasi jumlah tahapan boosting sekuensial, max_depth=6 guna mengontrol kompleksitas pohon agar terhindar dari overfitting, serta learning_rate=0.05 sebagai ukuran langkah konvergensi fungsi loss. Parameter yang digunakan ditampilkan pada Tabel 4.8 berikut:
+Tabel 4.8 Parameter terbaik model XGBoost
+Parameter
+Nilai
+Deskripsi
+n_estimators
+300
+Jumlah iterasi boosting
+max_depth
+6
+Kedalaman maksimum pohon
+learning_rate
+0.05
+Laju pembelajaran model
+subsample
+0.8
+Fraksi sampel data untuk setiap pohon
+colsample_bytree
+0.8
+Fraksi fitur untuk setiap pohon
+reg alpha (L1)
+0.1
+Koefisien regularisasi L1 untuk mendorong fleksibilitas pembobotan.
+reg_lambda (L2)
+1.0
+Koefisien regularisasi L2 untuk menjaga stabilitas pohon.
+
+Model XGBoost menunjukkan performa yang cukup tinggi pada holdout test set dengan hasil evaluasi yang disajikan pada Tabel 4.9 berikut:
+
+ Tabel 4.9 Metrik Evaluasi Model XGBoost
+Target Polutan
+MAE
+RMSE
+MAPE
+PM2.5​
+1.03
+1.56
+7.50%
+PM10​
+1.3
+1.78
+9.00%
+CO
+171.37
+225.06
+6.36%
+
+Berdasarkan Tabel 4.9, model XGBoost menunjukkan tingkat akurasi peramalan yang sangat impresif pada holdout test set. Berdasarkan evaluasi kinerja, nilai Mean Absolute Percentage Error (MAPE) tercatat konsisten berada di bawah ambang batas 10% untuk seluruh parameter, yakni 7,50% untuk PM2.5, 9,00% untuk PM10, dan yang paling menonjol sebesar 6,36% untuk parameter gas CO. Dalam standar evaluasi peramalan deret waktu, nilai MAPE di bawah 10% mengklasifikasikan model ini ke dalam kategori highly accurate forecasting (peramalan sangat akurat). Hal ini mengonfirmasi keandalan algoritma gradient boosting sekuensial dalam meredam pengaruh pencilan ekstrem data lapangan perkotaan secara presisi, menjadikannya sangat andal untuk proyeksi fluktuasi polutan jangka pendek.
+
+4.7.6.2 Implementasi Model LightGBM
+Model LightGBM (Light Gradient Boosting Machine) diterapkan sebagai model pembanding berbasis gradient boosting pohon keputusan yang mengandalkan teknik pertumbuhan daun secara vertikal (leaf-wise growth strategy) dan histogram-based splitting untuk mempercepat efisiensi komputasi. Konfigurasi latih model ini menggunakan kombinasi hiperparameter optimal berupa max_depth=6, n_estimators=100, dan learning_rate=0.1. Parameter optimal yang diperoleh ditampilkan pada Tabel 4.10 berikut:
+
+Tabel 4.10 Parameter terbaik model LightGBM
+Parameter
+Nilai
+Deskripsi
+Random_state
+42
+Seed untuk reprodusibilitas
+max_depth
+6
+Kedalaman maksimum pohon
+learning_rate
+0.1
+Laju pembelajaran model
+n_estimators
+100
+Jumlah iterasi boosting
+
+Model LightGBM menunjukkan performa yang sangat baik pada holdout test set. Hasil evaluasi model disajikan pada Tabel 4.11 berikut:
+
+
+Tabel 4.11 Metrik Evaluasi Model LightGBM
+Target Polutan
+MAE
+RMSE
+MAPE
+PM2.5​
+1.68
+2.39
+13.75%
+PM10​
+2.03
+2.59
+16.94%
+CO
+753.13
+910.86
+56.24%
+
+Hasil pengujian pada Tabel 4.11 membuktikan bahwa LightGBM mampu memberikan performa prediksi yang memadai pada sektor polutan partikulat, dengan nilai MAPE sebesar 13,75% untuk PM2.5 dan 16,94% untuk PM10. Angka ini masih masuk dalam kategori peramalan yang baik. Namun, kinerja LightGBM mengalami penurunan yang sangat drastis saat memodelkan polutan gas CO, di mana tingkat kesalahannya melonjak signifikan hingga 56,24%. Tingginya persentase kesalahan ini dipicu oleh arsitektur pembelahan vertikal leaf-wise LightGBM yang cenderung terlalu sensitif terhadap akumulasi kesalahan rekursif jangka pendek pada parameter gas yang fluktuasinya sangat tajam akibat emisi lalu lintas.
+
+4.7.6.3 Implementasi Model Prophet
+Model Prophet digunakan sebagai representasi pendekatan statistik deret waktu decomposable additive untuk memisahkan komponen tren makro dan pengaruh musiman harian (diurnal) secara otomatis. Eksperimen dirancang secara paralel dengan membangun tiga skenario pemodelan terpisah formal, di mana masing-masing skenario menempatkan data polutan sebagai target tunggal (), serta memanfaatkan parameter cuaca lingkungan bertindak sebagai variabel eksogen tambahan (extra regressors). Kinerja evaluasi dari model Prophet dipaparkan pada Tabel 4.12.
+
+ Tabel 4.12 Metrik Evaluasi Model Prophet
+Target Polutan
+MAE
+RMSE
+MAPE
+PM2.5​
+2.54
+2.78
+18.47%
+PM10​
+3.71
+4.04
+24.66%
+CO
+1965.65
+1986.77
+59.39%
+
+Model Prophet menghasilkan kinerja yang paling tidak akurat di antara seluruh model pembanding yang diuji. Prophet mencatatkan nilai kesalahan persentase (MAPE) sebesar 18,47% untuk PM2.5 dan 24,66% untuk PM10.  Keterbatasan model ini memuncak pada skenario peramalan parameter CO,  di mana MAPE mencapai angka ekstrem 59,39%. Tingginya tingkat kesalahan relatif ini membuktikan bahwa landasan matematis Prophet, yang mengandalkan fungsi kontinuitas deret Fourier dengan asumsi pola musiman kaku, mengalami kegagalan fungsi adaptasi (severe underfitting) dalam menangkap riak dinamika polusi perkotaan Surabaya berfrekuensi per menit.
+
+4.7.6.4 Perbandingan Performa Ketiga Model
+Untuk memberikan gambaran komprehensif mengenai performa masing-masing model, dilakukan perbandingan metrik evaluasi dari ketiga algoritma yang telah dilatih. Hasil perbandingan disajikan pada Tabel 4.13 berikut:
+
+Tabel 4.13 Perbandingan Metrik evaluasi ketiga model
+Target Polutan
+Model Peramalan
+MAE
+RMSE
+MAPE
+Ranking Kinerja
+PM2.5​
+XGBoost 
+1.03
+1.56
+7.50%
+1
+PM2.5​
+LightGBM
+1.68
+2.39
+13.75%
+2
+PM2.5​
+Prophet
+2.54
+2.78
+18.47%
+3
+PM10​
+XGBoost 
+1.3
+1.78
+9.00%
+1
+PM10​
+LightGBM
+2.03
+2.59
+16.94%
+2
+PM10​
+Prophet
+3.71
+4.04
+24.66%
+3
+CO
+XGBoost
+171.37
+225.06
+6.36%
+1
+CO
+LightGBM
+753.13
+910.86
+56.24%
+2
+CO
+Prophet
+1965.65
+1986.77
+59.39%
+3
+
+Berdasarkan akumulasi metrik komparasi pada Tabel 4.13, hasil pengujian membuktikan keunggulan mutlak XGBoost atas LightGBM dan Prophet. XGBoost menjadi satu-satunya algoritma yang mampu mempertahankan nilai MAPE di bawah 10% untuk seluruh polutan, menjadikannya masuk dalam kategori peramalan tingkat tinggi. Perbedaan performa paling mencolok terlihat pada kemampuan model melacak polutan gas CO. Ketika LightGBM dan Prophet kehilangan arah dengan persentase kesalahan di atas 56%, XGBoost mampu menekan tingkat kesalahan hingga 6,36%. Melalui pembuktian metrik persentase kesalahan ini, model XGBoost divalidasi sebagai basis utama analitik prediksi pada bagian backend sistem.
+
+4.7.7 Implementasi Model Klasifikasi ISPU
+Selain model peramalan untuk meramalkan konsentrasi polutan, sistem ini juga memerlukan model klasifikasi untuk menentukan kategori kualitas udara berdasarkan standar ISPU. Model klasifikasi digunakan untuk memberikan informasi yang lebih mudah dipahami oleh pengguna, yaitu berupa kategori kualitatif (Baik, Sedang, Tidak Sehat, Sangat Tidak Sehat, Berbahaya) selain nilai numerik konsentrasi polutan.
+
+4.7.7.1 Implementasi Model Random Forest
+Model klasifikasi yang digunakan dalam penelitian ini adalah Random Forest, sebuah algoritma ensemble yang membangun banyak decision tree secara paralel dan menggabungkan hasil voting untuk menghasilkan prediksi final. Random Forest dipilih karena kemampuannya dalam menangani data dengan dimensi tinggi, ketahanan terhadap overfitting, dan kemampuan feature importance.
+
+Tabel 4.14 Spesifikasi Model
+Parameter
+Nilai
+Algoritma
+Random Forest Classifier
+n_estimators
+100
+Fitur Input
+PM2.5; PM10; CO; NO2; O3; Suhu; Kelembapan
+Target
+Kategori ISPU (Baik; Sedang; Tidak Sehat; Sangat Tidak Sehat; Berbahaya)
+Strategi Kelas
+Balanced
+
+       Tabel 4.15 Classification Report Random Forest
+Kategori ISPU
+Precision
+Recall
+F1-Score
+Support
+Baik
+0.98
+1.00
+0.99
+309
+Sedang
+1.00
+1.00
+1.00
+2160
+Tidak Sehat
+1.00
+1.00
+1.00
+239
+Sangat Tidak Sehat
+1.00
+1.00
+1.00
+1945
+Berbahaya
+1.00
+0.97
+0.99
+335
+Accuracy
+
+
+99.70%
+4988
+Macro Avg
+1.00
+0.99
+0.99
+4988
+Weighted Avg
+1.00
+1.00
+1.00
+4988
+
+Model Random Forest berhasil mengklasifikasikan 5 kategori ISPU dengan akurasi keseluruhan  99.70%
+Semua kategori memiliki F1-Score di atas 0.99, menunjukkan performa yang sangat konsisten
+Kategori "Berbahaya" memiliki recall sedikit lebih rendah (0.97) karena jumlah sample yang lebih sedikit (335) dibandingkan kategori lain
+Kategori "Baik" memiliki precision 0.98 yang sedikit lebih rendah, mengindikasikan beberapa sample kategori lain terklasifikasi sebagai "Baik"
+
+4.7.7.2 Implementasi Model Pembanding
+Untuk memastikan bahwa model yang dipilih merupakan model yang paling sesuai, dilakukan perbandingan dengan dua algoritma klasifikasi lain, yaitu Gradient Boosting dan LightGBM. Evaluasi dilakukan menggunakan metrik accuracy, precision, recall, F1-score weighted average, F1-score macro average, serta waktu pelatihan (training time).
+Berdasarkan hasil pengujian pada Tabel 4.16, ketiga model menunjukkan performa yang sangat baik dengan nilai akurasi di atas 99%. Model Gradient Boosting memperoleh nilai accuracy tertinggi sebesar 99,74%, diikuti oleh Random Forest sebesar 99,70%, dan LightGBM sebesar 99,64%. Perbedaan performa antar model relatif kecil, yaitu kurang dari 0,1%.
+Pada metrik precision, recall, dan F1-score weighted average, Gradient Boosting juga memperoleh nilai tertinggi sebesar 99,74%, sedangkan Random Forest dan LightGBM masing-masing memperoleh 99,70% dan 99,64%. Hasil ini menunjukkan bahwa ketiga model mampu melakukan klasifikasi dengan tingkat kesalahan yang sangat rendah.
+Jika dilihat dari F1-score macro average yang merepresentasikan performa model pada seluruh kelas secara lebih seimbang, Gradient Boosting kembali menunjukkan hasil terbaik dengan nilai 99,48%, diikuti Random Forest sebesar 99,46%, dan LightGBM sebesar 99,32%.
+Meskipun Gradient Boosting memberikan performa klasifikasi terbaik, waktu pelatihannya jauh lebih lama yaitu 12,267 detik. Sebaliknya, Random Forest hanya membutuhkan waktu pelatihan sebesar 0,317 detik, sedangkan LightGBM membutuhkan 0,668 detik. Dengan demikian, Random Forest memiliki efisiensi komputasi yang paling baik karena mampu menghasilkan performa yang hampir setara dengan Gradient Boosting namun dengan waktu pelatihan sekitar 39 kali lebih cepat.
+Berdasarkan hasil perbandingan tersebut, model Random Forest dipilih sebagai model utama dalam penelitian ini. Pemilihan tersebut didasarkan pada pertimbangan keseimbangan antara kinerja klasifikasi yang sangat tinggi dan efisiensi waktu pelatihan yang lebih baik dibandingkan model pembanding lainnya.
+
+Tabel 4.16 Perbandingan Kinerja Model Klasifikasi
+Model
+Accuracy
+Precision (W)
+Recall (W)
+F1 (W)
+F1 (M)
+Training Time
+Random Forest
+99.70%
+99.70%
+99.70%
+99.70%
+99.46%
+0.317s
+Gradient Boosting
+99.74%
+99.74%
+99.74%
+99.74%
+99.48%
+12.267s
+LightGBM
+99.64%
+99.64%
+99.64%
+99.64%
+99.32%
+0.668s
+
+Keterangan:
+Precision/Recall/F1 (W) = Weighted Average
+F1 (M) = Macro Average
+Training Time = Waktu yang dibutuhkan untuk pelatihan model
+
+
+
+4.7.7.3 Alasan Pemilihan Random Forest
+Meskipun Gradient Boosting menunjukkan akurasi tertinggi (99.74%), Random Forest dipilih sebagai model klasifikasi yang diimplementasikan dalam sistem karena pertimbangan praktis:
+Selisih akurasi hanya 0.04% (99.70% vs 99.74%), perbedaan yang tidak signifikan secara statistik maupun praktis.
+Random Forest 39x lebih cepat (0.317s vs 12.267 detik).
+Lebih mudah di-maintain tanpa tuning hyperparameter kompleks.
+Lebih jelas untuk analisis kontribusi polutan.
+
+4.7.7.4 Perhitungan ISPU dan Penetapan Polutan Dominan
+Indeks Standar Pencemar Udara (ISPU) dihitung berdasarkan konsentrasi masing-masing parameter polutan menggunakan rumus breakpoint sesuai peraturan Menteri Lingkungan Hidup dan Kehutanan Nomor 14 Tahun 2020.
+
+Keterangan:
+I = ISPU terhitung
+Ia​ = ISPU batas atas
+Ib​ = ISPU batas bawah
+Xa​ = Konsentrasi ambien batas atas (μg/m3)
+Xb​ = Konsentrasi ambien batas bawah (μg/m3)
+Xx​ = Konsentrasi ambien nyata hasil pengukuran (μg/m3)
+
+4.7.8 Hasil Aplikasi Dashboard Web
+Hasil analisis disajikan melalui aplikasi web interaktif berbasis React yang terdiri dari halaman overview dan predict, memungkinkan akses yang lebih mudah dan efisien bagi pengguna.
+
+4.7.8.1 Tampilan Overview
+Gambar 4.11 menampilkan tampilan halaman Dashboard Overview yang menyajikan informasi real-time mengenai kondisi kualitas udara dan parameter meteorologi dalam bentuk visualisasi yang interaktif dan informatif. Halaman ini dirancang sebagai landing page utama yang memberikan ringkasan komprehensif tentang status kualitas udara terkini kepada pengguna.
+
+
+Gambar 4.11 Tampilan Halaman Overview
+Komponen utama dashboard pada Gambar  4.12 berupa lingkaran yang menampilkan kategori ISPU secara visual. Gauge ini terhubung dengan model klasifikasi Random Forest untuk menampilkan prediksi kategori kualitas udara real-time. Tampilan gauge menunjukkan kategori (Baik, Sedang, Tidak Sehat, Sangat Tidak Sehat, Berbahaya) bersama dengan nilai ISPU dan polutan dominan. Di bawah lingkaran terdapat rekomendasi kesehatan untuk kelompok sensitif dan masyarakat umum sesuai kategori yang ditampilkan.
+
+
+Gambar 4.12 Tampilan Klasifikasi Kualitas Udara
+Metric card pada Gambar 4.13 menampilkan lima kartu parameter polutan (PM2.5, PM10, NO₂, CO, O₃) dalam satu baris dengan desain berbasis warna sesuai kategori ISPU. Setiap kartu menunjukkan nilai ISPU terkini, indikator status (Aman/Berisiko), dan batas ideal masing-masing parameter. Desain interaktif memungkinkan pengguna mengklik kartu untuk melihat detail lebih lanjut.
+
+
+
+Gambar 4.13 Tampilan Metric Card
+Pada Gambar 4.14, terdapat tiga panel informasi: (1) Ringkasan PM2.5 yang menampilkan rata-rata PM2.5 beserta standar deviasi, nilai minimum, dan persentil untuk periode tertentu; (2) Kondisi Sensor yang menunjukkan pembacaan suhu dan kelembapan dari lingkungan sekitar sensor; serta (3) Data BMKG yang menyajikan informasi cuaca eksternal meliputi kondisi hujan, suhu, kelembapan, kecepatan dan arah angin dengan timestamp update terakhir. Bagian bawah halaman menampilkan grafik "Pola Harian (Agregasi Per Jam)" yang memvisualisasikan rata-rata konsentrasi polutan berdasarkan jam untuk mengidentifikasi pola temporal harian. Dashboard dilengkapi dengan tombol refresh untuk memperbarui data secara manual dan timestamp pada pojok kanan atas yang menunjukkan waktu update terakhir.
+
+
+Gambar 4.14 Panel Infomasi Tambahan
+Pada Gambar 4.15 menampilkan Visualisasi berupa line chart yang menampilkan pola variasi PM2.5 berdasarkan jam dalam sehari. Data dibedakan antara hari kerja (weekday) dan akhir pekan (weekend) untuk mengidentifikasi perbedaan perilaku polusi. Visualisasi ini membantu pengguna mengidentifikasi jam-jam dengan konsentrasi tertinggi untuk perencanaan aktivitas.
+
+
+Gambar 4.15 Pola Harian data teragregasi
+Gambar 4.16 menampilkan Plot Histogram yang berfungsi untuk menampilkan distribusi atau sebaran frekuensi nilai PM2.5 pada jam sibuk pagi (07:00–09:00 WIB) selama 7 hari terakhir. Grafik ini mengelompokkan data ke dalam beberapa rentang konsentrasi berdasarkan kategori ISPU, sehingga memudahkan dalam melihat jumlah data pada setiap kategori. Dengan visualisasi ini, pengguna dapat dengan cepat mengidentifikasi rentang nilai yang paling dominan serta memperoleh gambaran umum kondisi kualitas udara pada periode waktu tertentu.
+
+
+Gambar 4.16 Distribusi PM2.5 pada jam sibuk
+Pada Gambar 4.17 menampilkan visualisasi berupa line chart multi-polutan menampilkan trend PM2.5 dan PM10 dalam periode waktu yang dapat dipilih (1 jam, 7 jam, 14 jam, 30 jam, atau 90 jam). Pengguna dapat memilih periode waktu melalui tombol toggle yang tersedia. Visualisasi ini memungkinkan analisis perubahan kualitas udara dalam berbagai skala waktu.
+
+Gambar 4.17 Trend data agregasi
+Pada Gambar 4.18 menampilkan heatmap kalender menampilkan konsentrasi PM2.5 dalam bentuk kalender tahunan dengan pewarnaan berdasarkan kategori ISPU. Setiap sel mewakili satu hari dengan warna yang menunjukkan tingkat kualitas udara hari tersebut. Visualisasi ini memberikan gambaran cepat tentang kualitas udara dalam periode tahunan.
+
+
+Gambar 4.18 Heatmap Kalender Kontribusi PM2.5
+Visualisasi density plot pada Gambar 4.19 menampilkan distribusi konsentrasi CO dalam bentuk density plot yang menunjukkan frekuensi kemunculan nilai-nilai CO pada berbagai tingkat. Plot ini membantu pengguna memahami pola sebaran konsentrasi CO secara lebih intuitif.
+Semua komponen visualisasi dirancang dengan prinsip responsive design sehingga dapat diakses melalui berbagai ukuran layar. Data diperbarui secara real-time melalui teknologi Supabase Real-time, dan komponen chart menggunakan library Recharts untuk rendering yang optimal.
+
+
+Gambar 4.19 Sebaran data CO ISPU
+
+4.7.8.2 Tampilan Hasil Prediksi 
+Gambar 4.20 menampilkan Tab Statistik yang menyediakan visualisasi lanjutan untuk analisis data kualitas udara dan evaluasi model machine learning. Berikut adalah komponen visualisasi utama yang tersedia di tab ini:
+
+Gambar 4.20 Halaman Forecast
+Komponen utama Tab Forecast berupa area chart yang menampilkan prediksi nilai ISPU untuk PM2.5, PM10, dan CO dalam rentang waktu 1 jam ke depan (60 titik data dengan interval 1 menit). Area chart menggunakan warna berbeda untuk setiap polutan: ungu untuk PM2.5, hijau untuk PM10, dan oranye untuk CO. Visualisasi ini memungkinkan pengguna melihat pola prediksi dan perubahan nilai ISPU setiap parameter polutan secara bersamaan.
+Komponen ini juga menampilkan kartu status terkini yang menunjukkan prediksi kualitas udara untuk 60 menit ke depan, termasuk kategori ISPU, nilai ISPU total, dan polutan dominan. Pengguna dapat melihat detail prediksi dalam bentuk chart atau tabel dengan tombol toggle yang disediakan.
+
+
+Gambar 4.21 Prediksi Kualitas Udara
+Gambar 4.22 menampilkan visualisasi khusus untuk prediksi PM2.5 yang membedakan antara data aktual (historical) dan data prediksi menggunakan warna dan style yang berbeda. Data aktual ditampilkan dengan area chart berwarna ungu solid, sedangkan data prediksi ditampilkan dengan area chart berwarna oranye dengan garis putus-putus. Pendekatan visual ini memudahkan pengguna membedakan mana data yang sudah terjadi dan mana proyeksi ke depan.
+Side panel menampilkan nilai PM2.5 terkini dan prediksi 1 jam ke depan untuk informasi cepat.
+
+
+Gambar 4.22 Peramalan PM 2.5 dalam 1 jam
+Sama dengan visualisasi PM2.5, Gambar. 4.23 menampilkan prediksi PM10 dengan pembedaan antara data aktual dan prediksi. Data aktual ditampilkan dengan warna hijau zamrud, sementara prediksi menggunakan warna oranye dengan garis putus-putus.
+
+
+Gambar 4.23 Peramalan PM10 dalam 1 jam
+
+Komponen prediksi untuk polutan CO pada Gambar 4.24 menampilkan data aktual dalam warna kuning/amber dan prediksi dalam warna oranye. Visualisasi ini membantu pengguna memahami tren dan proyeksi konsentrasi CO.
+
+Gambar 4.24 Peramalan CO dalam 1 jam
+
+Tab Statistik ini dirancang untuk pengguna yang membutuhkan analisis lebih mendalam tentang data kualitas udara. 
+
+4.7.9 Hasil Pengambilan Sampel dan Analisis Klasifikasi Kualitas Udara
+4.7.9.1 Pengambilan Sampel Data Spasial
+Tahapan ini dilakukan untuk mengumpulkan data kualitas udara yang representatif dari beberapa karakteristik lingkungan berbeda di Kota Surabaya. Pengambilan data dilakukan pada tiga titik pemantauan yang memiliki aktivitas dan kondisi lingkungan yang berbeda, yaitu titik pemantauan Ngagel sebagai representasi area permukiman dan perdagangan, titik pemantauan Rungkut sebagai representasi area pendidikan dan perkotaan, serta titik pemantauan Margomulyo sebagai representasi area industri dan lalu lintas padat.
+Pada setiap titik pemantauan, perangkat monitoring kualitas udara ditempatkan pada satu titik yang dianggap mampu merepresentasikan karakteristik lingkungan di wilayah tersebut. Pengambilan data dilakukan secara bergantian dengan memindahkan perangkat monitoring ke masing-masing lokasi pengamatan. Sebelum proses pengambilan data dimulai, perangkat dipastikan berada dalam kondisi stabil dan telah melalui proses pemanasan (heating) sensor untuk memperoleh hasil pengukuran yang lebih akurat.
+Data yang dikumpulkan meliputi konsentrasi PM2.5, PM10, CO, NO₂, O₃, suhu, dan kelembapan udara yang direkam secara real-time menggunakan perangkat monitoring kualitas udara. Selanjutnya, data dari ketiga lokasi digunakan untuk menganalisis karakteristik kualitas udara pada masing-masing titik pemantauan serta sebagai dasar dalam pengembangan model prediksi kualitas udara.
+Meskipun parameter NO₂ dan O₃ turut direkam selama proses pengambilan data, hasil pengamatan menunjukkan bahwa kedua parameter tersebut memiliki variasi nilai yang relatif kecil dibandingkan parameter PM2.5, PM10, dan CO. Kondisi ini menyebabkan informasi yang diperoleh dari data NO₂ dan O₃ belum cukup untuk menggambarkan perubahan konsentrasi polutan secara signifikan. Oleh karena itu, analisis dan pemodelan pada penelitian ini lebih difokuskan pada parameter PM2.5, PM10, dan CO yang menunjukkan variasi data yang lebih jelas dan representatif terhadap perubahan kualitas udara di lokasi pengamatan.
+Penelitian mengambil data kualitas udara pada titik pemantauan Ngagel pada pagi hari saat periode rush hour. Lokasi pengamatan dipusatkan di ruas Jalan Raya Ngagel, Wonokromo (Koordinat: -7.290305, 112.760404). Selama pengamatan, arus kendaraan terlihat cukup padat dengan dominasi kendaraan roda dua dan roda empat yang melintasi lokasi pengambilan data. Titik pemantauan ini memiliki karakteristik ruas jalan yang relatif sempit dengan dua arah lalu lintas serta bangunan yang saling berdekatan di sepanjang koridor jalan. Kondisi tersebut berpotensi memengaruhi sirkulasi udara di sekitar lokasi pengamatan. Gambar 4.25 menunjukkan lokasi pengambilan data pada titik pemantauan Ngagel.
+
+
+Gambar 4.25 Lokasi Ngagel (-7.290305, 112.760404)
+
+Penelitian mengambil data kualitas udara pada titik pemantauan Rungkut pada siang hari, tepatnya di koridor Jalan Rungkut Madya (Koordinat: -7.332245, 112.789994),. titik pemantauan ini memiliki ruas jalan yang lebih lebar serta area sekitar yang relatif lebih terbuka. Selama pengamatan, lalu lintas didominasi kendaraan pribadi, khususnya mobil dan sepeda motor yang melintas secara kontinu. Selain itu, kondisi cuaca pada saat pengambilan data cenderung panas dengan intensitas sinar matahari yang tinggi. Gambar 4.26 menunjukkan lokasi pengambilan data pada titik pemantauan Rungkut.
+
+
+Gambar 4.26 Lokasi Rungkut (-7.332245, 112.789994)
+
+Penelitian mengambil data kualitas udara pada titik pemantauan Margomulyo pada sore hari. Pengukuran difokuskan pada area persimpangan Jalan Margomulyo, Kecamatan Tandes (Koordinat: -7.258845, 112.682067).  Selama pengamatan, arus kendaraan terlihat relatif lancar meskipun volume kendaraan yang melintas cukup tinggi. Kendaraan umumnya hanya mengalami perlambatan saat fase lampu merah berlangsung. Selain itu, kondisi angin pada saat pengambilan data teramati bertiup cukup kuat dibandingkan lokasi pengamatan lainnya. Gambar 4.27 menunjukkan lokasi pengambilan data pada titik pemantauan Margomulyo.
+
+
+Gambar 4.27 Lokasi Margomulyo (-7.258845, 112.682067)
+
+4.7.9.2 Perbandingan Distribusi Label Antar Wilayah
+Berdasarkan hasil pelabelan menggunakan model Random Forest, wilayah Ngagel didominasi oleh kategori "Sedang" sebesar 95% dengan 3 data (5%) masuk kategori "Tidak Sehat". Hal ini menunjukkan kualitas udara di titik pemantauan Ngagel cenderung lebih buruk dibandingkan lokasi pengamatan lainnya.
+Wilayah Rungkut hampir seluruh data berada pada kategori "Sedang" (98,3%), dengan hanya satu data yang masuk kategori "Baik". Kondisi ini menunjukkan kualitas udara relatif stabil namun belum mencapai kategori baik secara dominan.
+Wilayah Margomulyo menunjukkan kualitas udara terbaik, dengan 88,3% data masuk kategori "Baik" dan sisanya kategori "Sedang". Tidak ditemukan data yang masuk kategori "Tidak Sehat".
+
+Tabel 4.17 Distribusi Label tiap wilayah
+Wilayah
+Baik
+Sedang
+Tidak Sehat
+Total
+Ngagel
+0 (0%)
+59 (95%)
+3 (5%)
+60
+Rungkut
+1 (1,7%)
+59 (98,3%)
+0 (0%)
+60
+Margomulyo
+53 (88.3%)
+7 (12,9%)
+0 (0%)
+60
+
+Kondisi ini diduga dipengaruhi oleh karakteristik lingkungan masing-masing wilayah. Ngagel merupakan titik pemantauan lalu lintas padat dengan ruas jalan relatif sempit dan bangunan yang berdekatan sehingga akumulasi polutan cenderung lebih tinggi. Rungkut memiliki ruas jalan yang lebih lebar dan area yang lebih terbuka meskipun masih dipengaruhi aktivitas industri dan kendaraan. Sementara itu, Margomulyo memiliki arus kendaraan yang relatif lancar saat pengambilan data sehingga konsentrasi polutan yang terukur lebih rendah.
+
+4.7.9.3 Statistik Deskriptif Hasil Pengukuran Kualitas Udara
+Berdasarkan Tabel 4.18, rata-rata nilai ISPU PM2.5 tertinggi terdapat pada wilayah Ngagel sebesar 65,12, diikuti Rungkut sebesar 54,17 dan Margomulyo sebesar 41,17. Hasil ini menunjukkan bahwa konsentrasi partikulat halus di Ngagel cenderung lebih tinggi dibandingkan dua lokasi lainnya. Tingginya nilai PM2.5 pada Ngagel diduga berkaitan dengan aktivitas lalu lintas yang padat pada jam sibuk pagi hari serta kondisi ruas jalan yang relatif sempit sehingga akumulasi polutan lebih mudah terjadi.
+Selain memiliki rata-rata tertinggi, Ngagel juga menunjukkan rentang nilai yang cukup besar dengan nilai maksimum mencapai 79,05. Sementara itu, Margomulyo memiliki rata-rata PM2.5 terendah, mengindikasikan kondisi udara yang relatif lebih baik dibandingkan lokasi lainnya.
+
+Tabel 4.18 Statistik Deskriptif PM2.5
+Statistik
+Ngagel (Pagi)
+Rungkut (Siang)
+Margomulyo (Sore)
+n
+60
+60
+60
+Rata-rata
+65,12
+54,17
+41,17
+Minimum
+54,31
+50,12
+29,83
+Maksimum
+79,05
+60,94
+54,98
+Standar Deviasi
+4,57
+2,35
+5,32
+
+Berdasarkan Tabel 4.19, pola yang serupa juga terlihat pada parameter PM10. Ngagel memiliki rata-rata ISPU PM10 tertinggi sebesar 32,99, sedangkan Rungkut dan Margomulyo masing-masing sebesar 21,37 dan 13,80. Hasil ini menunjukkan bahwa wilayah Ngagel memiliki tingkat pencemaran partikulat kasar yang lebih tinggi dibandingkan lokasi lainnya.
+Tingginya PM10 di Ngagel dapat dikaitkan dengan aktivitas kendaraan bermotor yang intensif serta kemungkinan adanya debu jalan yang terangkat akibat kepadatan lalu lintas. Sebaliknya, Margomulyo menunjukkan nilai PM10 terendah sehingga kualitas udara berdasarkan parameter ini relatif lebih baik.
+
+Tabel 4.19 Statistik Deskriptif PM10
+Statistik
+Ngagel (Pagi)
+Rungkut (Siang)
+Margomulyo (Sore)
+n
+60
+60
+60
+Rata-rata
+32,99
+21,37
+13,8
+Minimum
+23,97
+17,23
+8,17
+Maksimum
+50,92
+28,15
+19,79
+Standar Deviasi
+4,65
+2,31
+2,04
+
+Berbeda dengan PM2.5 dan PM10, rata-rata nilai ISPU CO tertinggi ditemukan di wilayah Rungkut sebesar 20,61, diikuti Margomulyo sebesar 20,31 dan Ngagel sebesar 15,38. Hal ini menunjukkan bahwa konsentrasi karbon monoksida tidak selalu mengikuti pola konsentrasi partikulat.
+Tingginya nilai CO di Rungkut kemungkinan berkaitan dengan aktivitas industri manufaktur dan kendaraan yang melintas di titik pemantauan tersebut. Meskipun demikian, seluruh nilai CO masih berada pada rentang kategori kualitas udara yang relatif baik berdasarkan hasil pelabelan yang diperoleh.
+
+Tabel 4.20 Statistik Deskriptif CO
+Statistik
+Ngagel (Pagi)
+Rungkut (Siang)
+Margomulyo (Sore)
+n
+60
+60
+60
+Rata-rata
+57,45
+51,09
+47,99
+Minimum
+50,5
+47,5
+45,4
+Maksimum
+72,9
+54,6
+51,2
+Standar Deviasi
+5,57
+2,02
+1,6
+4.7.9.4 Studi Kasus Analisis Spasial menggunakan Uji ANOVA
+Sebagai bentuk evaluasi tambahan untuk menguji kapabilitas analitik sistem dalam menangkap variasi paparan emisi di lapangan, dilakukan studi kasus komparatif secara temporal pada tiga lokasi pemantauan dengan tata guna lahan yang berbeda (Ngagel, Rungkut, dan Margomulyo). Untuk membuktikan signifikansi perbedaan rata-rata konsentrasi polutan (PM2.5, PM10, dan CO) secara spasial di ketiga titik tersebut, pengujian hipotesis dilakukan menggunakan metode One-Way Analysis of Variance (ANOVA). Hipotesis yang diuji dirumuskan sebagai berikut:
+
+H0 : Tidak terdapat perbedaan rata-rata konsentrasi polutan yang signifikan antar wilayah pengamatan.
+H1 : Terdapat minimal satu wilayah dengan rata-rata konsentrasi polutan yang berbeda secara signifikan.
+Sebelum pengujian ANOVA dieksekusi, evaluasi asumsi parametrik dilakukan terhadap seluruh dataset target. Hasil uji normalitas Shapiro-Wilk menunjukkan bahwa parameter partikulat (PM2.5 dan PM10) tidak memenuhi asumsi normalitas maupun homogenitas varians (p < 0.05). Di sisi lain, parameter gas CO memiliki distribusi yang normal di wilayah Margomulyo dan Rungkut, serta terbukti memiliki varians antar kelompok yang homogen melalui Levene's Test (p = 0.7834). Meskipun asumsi parametrik dasar pada partikulat tidak terpenuhi secara ketat, komputasi ANOVA tetap dilanjutkan berlandaskan Teorema Limit Pusat (Central Limit Theorem), mengingat uji ini memiliki kekokohan (robustness) matematis terhadap jumlah sampel data yang besar dan seimbang di ketiga lokasi.
+
+Tabel 4.21 Ringkasan Hasil Uji One-Way ANOVA
+Target Polutan
+Nilai Statistik-F
+p-value ANOVA
+Keterangan Uji Levene (p)
+Kesimpulan Hipotesis
+PM2.5
+529.3162
+0
+0.0000 
+Signifikan
+PM10
+548.8682
+0
+0.0000 
+Signifikan
+CO
+231.4541
+0
+0.7834 
+Signifikan
+
+Berdasarkan Tabel 4.21, ketiga parameter polutan menghasilkan p-value sebesar 0.0000. Karena nilai probabilitas tersebut berada jauh di bawah ambang batas signifikansi 0.05, maka hipotesis nol (H0) ditolak. Hal ini membuktikan secara matematis bahwa terdapat perbedaan karakteristik paparan polusi udara yang sangat signifikan di titik pemantauan Ngagel, Rungkut, dan Margomulyo. Untuk memetakan secara presisi titik pemantauan mana saja yang saling memiliki perbedaan nyata, tahapan analisis dilanjutkan dengan uji komparasi ganda Post-hoc Tukey HSD (Honestly Significant Difference) dengan tingkat kesalahan Family-Wise Error Rate (FWER) sebesar 5%.
+
+Tabel 4.22 Ringkasan Uji Post-hoc Tukey HSD
+Target Polutan
+Perbandingan Titik Pengamatan
+Beda Rata-rata
+p-adj
+Tolak H0
+PM2.5
+Margomulyo vs Ngagel
+14.8983
+0
+Ya
+
+Margomulyo vs Rungkut
+5.9038
+0
+Ya
+
+Ngagel vs Rungkut
+-8.9945
+0
+Ya
+PM10
+Margomulyo vs Ngagel
+19.3275
+0
+Ya
+
+Margomulyo vs Rungkut
+7.5690
+0
+Ya
+
+Ngagel vs Rungkut
+-11.7585
+0
+Ya
+CO
+Margomulyo vs Ngagel
+-386.1633
+0
+Ya
+
+Margomulyo vs Rungkut
+9.8677
+0.8855
+Tidak
+
+Ngagel vs Rungkut
+396.0310
+0
+Ya
+
+Berdasarkan Tabel 4.22, terdapat dua interpretasi analitik yang berhasil diidentifikasi. Pertama, tingkat paparan debu partikulat (PM2.5 dan PM10) terbukti berbeda tajam satu sama lain di ketiga wilayah pemantauan. Kedua, pada pemodelan parameter gas karbon monoksida (CO), perbandingan antara wilayah Margomulyo dan Rungkut gagal menolak H0 (p-adj 0.8855 > 0.05). Fakta empiris ini mengonfirmasi bahwa tingkat emisi gas di titik pemantauan industri logistik (Margomulyo) tidak memiliki perbedaan yang signifikan dengan titik pemantauan industri manufaktur (Rungkut), di mana kedua titik pemantauan tersebut saling berbagi karakteristik pencemaran buangan operasional berat yang setara, sedangkan titik pemantauan lalu lintas perkotaan murni (Ngagel) memiliki perilaku fluktuasi emisi gas yang berbeda sendirinya.
+BAB 5
+PENUTUP
+
+5.1 Kesimpulan
+Berdasarkan hasil perancangan, implementasi, dan pengujian yang telah dilakukan pada penelitian Proyek Akhir mengenai pengembangan dashboard real-time untuk monitoring dan prediksi kualitas udara di Kota Surabaya, dapat ditarik beberapa kesimpulan sebagai berikut:
+Sistem telah berhasil mengakuisisi data lingkungan berfrekuensi per menit secara stabil melalui perangkat IoT (ESP32) yang dikirim melalui REST API ke database Supabase. Tantangan pertumbuhan volume data mentah (lebih dari 27.000 baris dalam 30 hari) berhasil diatasi dengan implementasi otomasi Edge Functions berbasis cron job. Metode ini terbukti secara efisien melakukan agregasi ter-materialisasi per jam, sehingga mempercepat performa query visualisasi antarmuka web tanpa membebani memori sistem dashboard.
+Implementasi pemodelan klasifikasi kategori kualitas udara berbasis ISPU menggunakan algoritma Random Forest terbukti sangat andal untuk ekosistem real-time. Evaluasi pada test set independen menunjukkan akurasi komprehensif mencapai 99,70% (F1-Score Makro 99,46%). Model ini dipilih sebagai modul utama karena mampu menghasilkan performa komputasi 39 kali lebih cepat (0,317 detik) dibandingkan algoritma sejenis (Gradient Boosting), menjadikannya sangat ideal untuk operasi pelabelan data streaming tanpa henti (bottleneck).
+Dalam pengujian peramalan 60 menit ke depan, model regresi pohon berdasar struktur level-wise (XGBoost) membuktikan keunggulan komutasi mutlak dibandingkan LightGBM maupun model statistik murni (Prophet). XGBoost tervalidasi mampu menekan akumulasi kesalahan rekursif secara presisi, terbukti dari capaian metrik MAPE yang secara konsisten di bawah 10% (PM2.5 = 7,50%, PM10 = 9,00%, dan CO = 6,36%). Sebaliknya, model dekomposisi aditif Prophet terbukti mengalami kegagalan adaptasi (severe underfitting) terhadap riak fluktuasi data per-menit dengan tingkat kesalahan MAPE menembus 59,39% pada gas CO.
+Implementasi studi kasus spasial memvalidasi responsivitas model analitik sistem. Uji inferensial komparatif One-Way ANOVA menolak hipotesis nol secara absolut (p-value = 0,0000). Uji beda nyata Post-hoc Tukey HSD (FWER 5%) mengonfirmasi bahwa karakteristik tata guna lahan sangat memengaruhi fluktuasi polutan. Wilayah dengan lalu lintas padat perkotaan (Ngagel) menjadi penyumbang paparan partikulat debu paling kritis di Surabaya (rata-rata ISPU PM2.5: 65,12). Di sisi lain, kawasan sentra manufaktur (Rungkut) dan sentra logistik alat berat (Margomulyo) mendominasi pelepasan gas CO secara ekstrem, di mana secara pembuktian probabilitas empiris (p-adj = 0,8855), tingkat emisi karbon di kedua kawasan padat operasional industri tersebut adalah identik atau tidak berbeda secara signifikan.
+
+5.2 Saran
+Berdasarkan hasil penelitian yang telah dilakukan, beberapa saran yang dapat diberikan untuk pengembangan penelitian maupun sistem pada masa mendatang adalah sebagai berikut:
+Penelitian selanjutnya disarankan melakukan penyempurnaan pada konfigurasi perangkat dan wiring sensor agar pengukuran parameter NO₂ dan O₃ dapat menghasilkan variasi data yang lebih representatif.Periode pengambilan data dapat diperpanjang serta mencakup lebih banyak lokasi pengamatan untuk memperoleh karakteristik kualitas udara yang lebih beragam di Kota Surabaya. 
+Perekaman dataset yang hanya berjalan selama 30 hari memiliki keterbatasan dalam mengenali siklus makro lingkungan. Disarankan agar sistem dibiarkan merekam data minimal selama satu siklus peralihan musim (6 bulan), sehingga fitur lag prediktif dapat dilatih untuk mengenali variasi tren curah hujan secara musiman.
+Sistem dashboard dapat dikembangkan lebih lanjut dengan menambahkan fitur notifikasi dini (early warning system) dan rekomendasi tindakan berdasarkan hasil prediksi kualitas udara.
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAFTAR PUSTAKA
+[1]Ismiyati, D. Marlita, and D. Saidah, “Pencemaran Udara Akibat Emisi Gas Buang,” J. Manajeen Transp. Logistik, vol. 1, no. 3, pp. 241–248, 2014, [Online]. Available: https://journal.itltrisakti.ac.id/index.php/jmtranslog/article/view/23/24
+[2]L. Hurek, “BMKG Juanda Peringatkan Cuaca Ekstrem di Surabaya dan Jawa Timur pada hingga 23 Maret 2025,” radarsurabaya. Accessed: Jun. 22, 2025. [Online]. Available: https://radarsurabaya.jawapos.com/surabaya/775787714/bmkg-juanda-peringatkan-cuaca-ekstrem-di-surabaya-dan-jawa-timur-pada-hingga-23-maret-2025
+[3]IQAir, “World Air Quality Report 2023.” [Online]. Available: https://www.iqair.com/world-most-polluted-cities
+[4]A. Bekkar, B. Hssina, N. Abekiri, S. Douzi, and K. Douzi, “Real-time AIoT platform for monitoring and prediction of air quality in Southwestern Morocco,” PLoS One, vol. 19, no. 8, pp. 1–28, 2024, doi: 10.1371/journal.pone.0307214.
+[5]P. Dey, S. Dev, and B. S. Phelan, “BiLSTM-BiGRU: A Fusion Deep Neural Network For Predicting Air Pollutant Concentration,” Int. Geosci. Remote Sens. Symp., vol. 2023-July, pp. 5166–5169, 2023, doi: 10.1109/IGARSS52108.2023.10282742.
+[6]I. S. R. Dasrul Chaniago, Annisa Zahara, “INDEKS STANDAR PENCEMAR UDARA (ISPU) SEBAGAI INFORMASI MUTU UDARA AMBIEN DI INDONESIA.” [Online]. Available: https://ditppu.menlhk.go.id/portal/read/indeks-standar-pencemar-udara-ispu-sebagai-informasi-mutu-udara-ambien-di-indonesia
+[7]M. Kusnandar, “Permen LHK Nomor 14 Tahun 2020,” Permen LHK Nomor 14 Tahun 2020 Tentang Indeks Standar Pencemar Udar., pp. 1–16, 2020.
+[8]J. Pebralia, H. Akhsan, and I. Amri, “Implementasi Internet of Things (Iot) Dalam Monitoring Kualitas Udara Pada Ruang Terbuka,” J. Kumparan Fis., vol. 7, no. 1, pp. 1–8, 2024, doi: 10.33369/jkf.7.1.1-8.
+[9]A. Octaviano, S. Sofiana, D. O. Agustino, and P. Rosyani, “Pemantauan Kualitas Udara Berbasis Internet O Things,” Media Online), vol. 3, no. 2, pp. 147–156, 2022, [Online]. Available: https://djournals.com/klik
+[10]T. Chen and C. Guestrin, “XGBoost: A scalable tree boosting system,” Proc. ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., vol. 13-17-Augu, pp. 785–794, 2016, doi: 10.1145/2939672.2939785.
+[11]Y. Özüpak and F. Alpsalaz, “Air Quality Forecasting Using Machine Learning : Comparative Analysis and Ensemble Strategies for Enhanced Prediction,” Water, Air, Soil Pollut., vol. 236, no. 7, pp. 1–17, 2025, doi: 10.1007/s11270-025-08122-8.
+[12]J. Andrés and O. Mantilla, “Concentrations Using XGBoost and LightGBM Algorithms : A Case Study in Lima , Peru,” pp. 183–206, 2024.
+[13]G. Ke et al., “LightGBM : A Highly Efficient Gradient Boosting Decision Tree,” no. Nips, pp. 1–9, 2017.
+[14]S. Tırınk, “Machine learning-based forecasting of air quality index under long-term environmental patterns : A comparative approach with XGBoost , LightGBM , and SVM,” pp. 1–21, 2025, doi: 10.1371/journal.pone.0334252.
+[15]Z. Zhang, S. Zhang, C. Chen, and J. Yuan, “A systematic survey of air quality prediction based on deep learning,” Alexandria Eng. J., vol. 93, no. September 2023, pp. 128–141, 2024, doi: 10.1016/j.aej.2024.03.031.
+[16]L. Mampitiya, N. Rathnayake, and Y. Hoshino, “MethodsX Performance of machine learning models to forecast PM10 levels ✩,” MethodsX, vol. 12, no. September 2023, p. 102557, 2024, doi: 10.1016/j.mex.2024.102557.
+[17]U. M. Superiorities and D. Through, “Decoding PM 2 . 5 Prediction in Nanning Urban Area , China : Unraveling Model Superiorities and Drawbacks Through,” no. x, 2025.
+[18]R. E. Walpole, R. H. Myers, and S. L. Myers, Probability & Statistics for Engineers & Scientists NINTH GLOBAL EDITION. 
+[19]S. Algorithm, “PM 2 . 5 Concentration Prediction Based on LightGBM Optimized by Adaptive Multi-Strategy Enhanced Sparrow Search Algorithm,” 2023.
+[20]S. I. Purwaningrum, PEMANTAUAN KUALITAS UDARA. Widina Media Utama, 2024.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
