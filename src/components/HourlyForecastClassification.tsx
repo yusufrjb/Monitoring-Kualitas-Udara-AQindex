@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Wind, Clock, TrendingUp, Loader2, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import RiskScoreInfo from '@/components/RiskScoreInfo';
 import { supabase } from '@/lib/supabase';
 
 const BP_PM25 = [[0,15.5,0,50],[15.5,55.4,50,100],[55.4,150.4,100,200],[150.4,250.4,200,300],[250.4,500,300,500]];
@@ -66,7 +65,7 @@ export default function HourlyForecastClassification() {
     const [data, setData] = useState<HourlyData | null>(null);
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState<'chart' | 'table'>('chart');
-    const [robustness, setRobustness] = useState<{ ml_confidence: number; risk_score: number } | null>(null);
+    const [robustness, setRobustness] = useState<{ ml_confidence: number } | null>(null);
 
     useEffect(() => {
         let isMounted = true;
@@ -146,7 +145,6 @@ export default function HourlyForecastClassification() {
                 if (!json.error && isMounted) {
                     setRobustness({
                         ml_confidence: json.ml_confidence || 0,
-                        risk_score: json.risk_score || 0,
                     });
                 }
             } catch { /* skip */ }
@@ -289,16 +287,7 @@ export default function HourlyForecastClassification() {
                                 Confidence:
                                 <span className="font-semibold font-mono">{(robustness.ml_confidence * 100).toFixed(0)}%</span>
                             </span>
-                            <span className="flex items-center gap-1">
-                                Risk:
-                                <span className={cn(
-                                    "font-semibold font-mono",
-                                    robustness.risk_score > 0.6 ? "text-red-500" : robustness.risk_score > 0.3 ? "text-amber-500" : "text-emerald-500"
-                                )}>
-                                    {(robustness.risk_score * 100).toFixed(0)}%
-                                </span>
-                                <RiskScoreInfo />
-                            </span>
+
                         </div>
                     )}
                 </div>

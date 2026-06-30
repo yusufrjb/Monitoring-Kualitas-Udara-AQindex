@@ -43,6 +43,7 @@ log = logging.getLogger(__name__)
 
 TABLE_DATA = "tb_konsentrasi_gas"
 TABLE_HOURLY = "tb_prediksi_hourly"
+TABLE_FITTED = "tb_fitted_values"
 FORECAST_MINUTES = 60
 DATA_WINDOW_MIN = 4320
 
@@ -194,18 +195,24 @@ def fallback_holt_winters(
         new_level = alpha * v + (1 - alpha) * (level + trend)
         trend = beta * (new_level - level) + (1 - beta) * trend
         level = new_level
+    z_score = 1.96
+    residual_std = float(np.std(series)) if len(series) > 1 else level * 0.1
     fc = []
     now = datetime.now(timezone.utc)
     params = ["pm25", "pm10", "co"]
     param_names = {"pm25": "pm25", "pm10": "pm10", "co": "co"}
     for i in range(1, n_steps + 1):
         noise = (np.random.random() - 0.5) * level * 0.05
+        val = max(0, min(max_val, level + i * trend + noise))
+        noise_scale = residual_std * (0.6 if i <= 30 else 0.3)
+        upper = min(max_val, val + z_score * noise_scale)
+        lower = max(0.0, val - z_score * noise_scale)
         fc.append(
             {
                 "target_at": now + timedelta(minutes=i),
-                param_names[col]: round(
-                    max(0, min(max_val, level + i * trend + noise)), 2
-                ),
+                param_names[col]: round(val, 2),
+                f"{param_names[col]}_upper": round(upper, 2),
+                f"{param_names[col]}_lower": round(lower, 2),
             }
         )
     return fc
@@ -322,7 +329,9 @@ def forecast_all_params(
         )
 
         noise_scale = recent_stds[p] * (0.6 if step <= 30 else 0.3 * (1 - hw * 0.2))
-        return blended + np.random.normal(0, noise_scale)
+        return blended + np.random.normal(0, noise_scale), noise_scale
+
+    Z_SCORE = 1.96
 
     for step in range(1, n_steps + 1):
         target_time = now + timedelta(minutes=step)
@@ -338,10 +347,20 @@ def forecast_all_params(
                 xgb_pred = prev_preds[p]
             xgb_pred = max(0.0, min(max_vals[p], xgb_pred))
 
-            final_pred = _blend(p, xgb_pred, step, hour, minute)
+            final_pred, noise_scale = _blend(p, xgb_pred, step, hour, minute)
             final_pred = max(0.0, min(max_vals[p], final_pred))
 
-            results[p].append({"target_at": target_time, p: round(final_pred, 2)})
+            upper = min(max_vals[p], final_pred + Z_SCORE * noise_scale)
+            lower = max(0.0, final_pred - Z_SCORE * noise_scale)
+
+            results[p].append(
+                {
+                    "target_at": target_time,
+                    p: round(final_pred, 2),
+                    f"{p}_upper": round(upper, 2),
+                    f"{p}_lower": round(lower, 2),
+                }
+            )
             raw_series[p].append(final_pred)
             prev_preds[p] = final_pred
             if len(raw_series[p]) > 60:
@@ -392,8 +411,14 @@ def save_hourly_predictions(
                 "forecast_at": forecast_at.isoformat(),
                 "target_at": f_row["target_at"].isoformat(),
                 "pm25_pred": round(f_row.get("pm25", 0), 2),
+                "pm25_upper": round(f_row.get("pm25_upper", 0), 2),
+                "pm25_lower": round(f_row.get("pm25_lower", 0), 2),
                 "pm10_pred": round(f_row.get("pm10", 0), 2),
+                "pm10_upper": round(f_row.get("pm10_upper", 0), 2),
+                "pm10_lower": round(f_row.get("pm10_lower", 0), 2),
                 "co_pred": round(f_row.get("co", 0), 2),
+                "co_upper": round(f_row.get("co_upper", 0), 2),
+                "co_lower": round(f_row.get("co_lower", 0), 2),
                 "ispu": cls["ispu"],
                 "category": cls["category"],
                 "is_historical": False,
@@ -406,6 +431,100 @@ def save_hourly_predictions(
         except Exception as e:
             log.warning(f"  Gagal batch upsert: {e}")
     return rows
+
+
+def save_fitted_values(
+    supabase: Client, df: pd.DataFrame, models: dict, max_vals: dict
+):
+    log.info("--- Fitted Values (In-Sample Predictions) ---")
+    feat = build_features(df)
+    if feat.empty:
+        log.warning("  Feature matrix kosong, skip fitted")
+        return
+
+    model_features = [
+        c for c in feat.columns if c not in ["pm25", "pm10", "co", "no2", "o3"]
+    ]
+
+    # Compute hourly/minute patterns
+    hourly_pat, minute_pat, overall_means = {}, {}, {}
+    for p in FORECAST_PARAMS:
+        series = df[p].dropna()
+        overall_means[p] = float(series.mean())
+        sh = pd.DataFrame({p: series})
+        sh["hour"] = sh.index.hour
+        hourly_pat[p] = sh.groupby("hour")[p].mean().to_dict()
+        sm = pd.DataFrame({p: series})
+        sm["minute"] = sm.index.minute
+        minute_pat[p] = sm.groupby("minute")[p].mean().to_dict()
+
+    rows = []
+    prev_actuals = {p: None for p in FORECAST_PARAMS}
+
+    for idx, row in feat.iterrows():
+        actual_pm25 = row.get("pm25")
+        actual_pm10 = row.get("pm10")
+        actual_co = row.get("co")
+        if pd.isna(actual_pm25) or pd.isna(actual_pm10) or pd.isna(actual_co):
+            continue
+
+        X = pd.DataFrame([{k: row.get(k, 0) for k in model_features}])
+
+        try:
+            preds = {
+                "pm25": float(models["pm25"].predict(X)[0]),
+                "pm10": float(models["pm10"].predict(X)[0]),
+                "co": float(models["co"].predict(X)[0]),
+            }
+        except Exception:
+            continue
+
+        actuals = {
+            "pm25": float(actual_pm25),
+            "pm10": float(actual_pm10),
+            "co": float(actual_co),
+        }
+
+        hour, minute = idx.hour, idx.minute
+        blended = {}
+        for p in FORECAST_PARAMS:
+            xgb_raw = max(0.0, min(max_vals[p], preds[p]))
+            prev = prev_actuals[p] if prev_actuals[p] is not None else xgb_raw
+            hd = hourly_pat[p].get(hour, overall_means[p]) - overall_means[p]
+            md = minute_pat[p].get(minute, overall_means[p]) - overall_means[p]
+            pattern = overall_means[p] + (hd * 0.7 + md * 0.3)
+            blended[p] = round(xgb_raw * 0.5 + prev * 0.3 + pattern * 0.2, 2)
+
+        rows.append(
+            {
+                "timestamp": idx.isoformat(),
+                "pm25_actual": round(float(actual_pm25), 2),
+                "pm25_fitted": blended["pm25"],
+                "pm10_actual": round(float(actual_pm10), 2),
+                "pm10_fitted": blended["pm10"],
+                "co_actual": round(float(actual_co), 2),
+                "co_fitted": blended["co"],
+            }
+        )
+
+        for p in FORECAST_PARAMS:
+            prev_actuals[p] = actuals[p]
+
+    if rows:
+        BATCH = 500
+        for i in range(0, len(rows), BATCH):
+            batch = rows[i : i + BATCH]
+            try:
+                supabase.table(TABLE_FITTED).upsert(
+                    batch, on_conflict="timestamp"
+                ).execute()
+                log.info(
+                    f"  {len(batch)} fitted values diupsert ke {TABLE_FITTED} ({i + 1}-{i + len(batch)})"
+                )
+            except Exception as e:
+                log.warning(f"  Gagal upsert fitted batch: {e}")
+    else:
+        log.info("  Tidak ada fitted values yang dihasilkan")
 
 
 def get_results() -> dict:
@@ -522,7 +641,10 @@ def _do_get_results() -> dict:
         row = {"target_at": target_at}
         for param, forecasts in all_forecasts.items():
             if i < len(forecasts):
-                row[param] = forecasts[i].get(param, 0)
+                for k, v in forecasts[i].items():
+                    if k == "target_at":
+                        continue
+                    row[k] = v
         forecast_rows.append(row)
 
     classifications = classify_forecast(forecast_rows, no2_latest, o3_latest, rf_model)
@@ -532,6 +654,13 @@ def _do_get_results() -> dict:
     except Exception as e:
         log.warning(f"  Gagal simpan ke Supabase: {e}")
 
+    # Fitted values: hanya jika XGBoost models digunakan (bukan fallback)
+    if len(models_loaded) >= 3:
+        try:
+            save_fitted_values(supabase, df, models_loaded, max_vals)
+        except Exception as e:
+            log.warning(f"  Gagal compute fitted values: {e}")
+
     return {
         "method": "XGBoost Forecasting",
         "forecast_at": forecast_at.isoformat(),
@@ -539,8 +668,14 @@ def _do_get_results() -> dict:
             {
                 "target_at": row["target_at"].isoformat(),
                 "pm25": round(row.get("pm25", 0), 2),
+                "pm25_upper": round(row.get("pm25_upper", 0), 2),
+                "pm25_lower": round(row.get("pm25_lower", 0), 2),
                 "pm10": round(row.get("pm10", 0), 2),
+                "pm10_upper": round(row.get("pm10_upper", 0), 2),
+                "pm10_lower": round(row.get("pm10_lower", 0), 2),
                 "co": round(row.get("co", 0), 2),
+                "co_upper": round(row.get("co_upper", 0), 2),
+                "co_lower": round(row.get("co_lower", 0), 2),
             }
             for row in forecast_rows
         ],

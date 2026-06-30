@@ -15,9 +15,8 @@ import joblib
 
 warnings.filterwarnings("ignore")
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "air_quality_classifier_final.pkl")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "random_forest_air_quality.pkl")
 LABELS = ["Baik", "Berbahaya", "Sangat Tidak Sehat", "Sedang", "Tidak Sehat"]
-RISK_W = [0.0, 1.0, 0.8, 0.3, 0.6]
 FEATURES = ["pm25_ugm3", "pm10_ugm3", "co_ugm3", "no2_ugm3", "o3_ugm3"]
 
 BP_PM25 = [
@@ -94,25 +93,17 @@ def classify(pm25, pm10, co, no2, o3):
     dominant = FEATURES[np.argmax(ispis)]
 
     # ── RF robustness layer (confidence + risk score) ──
-    saved = joblib.load(MODEL_PATH)
-    model = saved["model"]
-    le = saved["label_encoder"]
+    model = joblib.load(MODEL_PATH)
     X = np.array([[pm25, pm10, co, no2, o3]], dtype=np.float64)
     proba = model.predict_proba(X)[0]
-    ml_label = le.inverse_transform(model.predict(X))[0]
+    ml_label = model.predict(X)[0]
     ml_confidence = float(round(max(proba), 4))
 
-    # proba index matches model.classes_ which = le.classes_ indices
-    # le.classes_ (sorted): ["Baik","Berbahaya","Sangat Tidak Sehat","Sedang","Tidak Sehat"]
-    # Map each proba[i] to its RISK_W via LABELS
-    le_classes = list(le.classes_)
-    risk_score = 0.0
+    model_classes = list(model.classes_)
     probabilities = {}
     for i in range(len(proba)):
-        label_name = le_classes[i]
-        risk_score += proba[i] * RISK_W[LABELS.index(label_name)]
+        label_name = model_classes[i]
         probabilities[label_name] = round(float(proba[i]), 4)
-    risk_score = round(risk_score, 4)
 
     return {
         "bp_category": str(bp_label),
@@ -120,7 +111,6 @@ def classify(pm25, pm10, co, no2, o3):
         "bp_dominant": str(dominant),
         "ml_category": str(ml_label),
         "ml_confidence": ml_confidence,
-        "risk_score": risk_score,
         "probabilities": probabilities,
         "features": {f: float(v) for f, v in zip(FEATURES, [pm25, pm10, co, no2, o3])},
     }

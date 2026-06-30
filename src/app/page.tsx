@@ -111,7 +111,7 @@ export default function Home() {
         <div className="w-full px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-lg font-semibold text-foreground">Monitor Kualitas Udara</h1>
+              <h1 className="text-lg font-semibold text-foreground">Monitoring Kualitas Udara</h1>
             </div>
             <div className="flex items-center gap-2">
               <span className="inline-flex flex-col items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-600/20">

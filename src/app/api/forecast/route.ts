@@ -69,11 +69,45 @@ export async function GET() {
         const forecastPoints = (predData ?? []).map(r => ({
             time: extractTimePrediction(r.target_at),
             pm25: Number(r.pm25_pred?.toFixed(2) || 0),
+            pm25_upper: r.pm25_upper ? Number(r.pm25_upper.toFixed(2)) : undefined,
+            pm25_lower: r.pm25_lower ? Number(r.pm25_lower.toFixed(2)) : undefined,
             pm10: Number(r.pm10_pred?.toFixed(2) || 0),
+            pm10_upper: r.pm10_upper ? Number(r.pm10_upper.toFixed(2)) : undefined,
+            pm10_lower: r.pm10_lower ? Number(r.pm10_lower.toFixed(2)) : undefined,
             co: Number((r.co_pred || 0).toFixed(2)),
+            co_upper: r.co_upper ? Number(r.co_upper.toFixed(2)) : undefined,
+            co_lower: r.co_lower ? Number(r.co_lower.toFixed(2)) : undefined,
             isHistorical: false,
             timestamp: new Date(r.target_at).getTime(),
         }));
+
+        // Fetch fitted values (in-sample predictions) & merge into historical points
+        const { data: fittedData } = await supabase
+            .from('tb_fitted_values')
+            .select('timestamp, pm25_fitted, pm10_fitted, co_fitted')
+            .gte('timestamp', oneHourAgo)
+            .order('timestamp', { ascending: true });
+
+        const fittedMap = new Map<string, { pm25_fitted: number; pm10_fitted: number; co_fitted: number }>();
+        for (const f of (fittedData ?? [])) {
+            const ts = new Date(f.timestamp).getTime().toString();
+            fittedMap.set(ts, {
+                pm25_fitted: Number(Number(f.pm25_fitted).toFixed(2) || 0),
+                pm10_fitted: Number(Number(f.pm10_fitted).toFixed(2) || 0),
+                co_fitted: Number(Number(f.co_fitted).toFixed(2) || 0),
+            });
+        }
+
+        // Merge fitted into historical points where timestamps match
+        for (const hp of histPoints) {
+            const match = fittedMap.get(hp.timestamp.toString());
+            if (match) {
+                (hp as any).pm25_fitted = match.pm25_fitted;
+                (hp as any).pm10_fitted = match.pm10_fitted;
+                (hp as any).co_fitted = match.co_fitted;
+                (hp as any).isFitted = true;
+            }
+        }
 
         const allPoints = [...histPoints, ...forecastPoints];
 

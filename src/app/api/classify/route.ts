@@ -68,7 +68,6 @@ export async function GET() {
 
         // ── RF robustness layer (confidence + risk score) ──
         let mlConfidence = 0;
-        let riskScore = 0;
         let mlProbabilities: Record<string, number> = {};
         let mlCategory = fallbackCat.label;
         try {
@@ -79,7 +78,6 @@ export async function GET() {
             const ml = JSON.parse(py.trim());
             if (!ml.error) {
                 mlConfidence = ml.ml_confidence;
-                riskScore = ml.risk_score;
                 mlProbabilities = ml.probabilities;
                 mlCategory = ml.ml_category;
             }
@@ -95,7 +93,6 @@ export async function GET() {
             subIspu: fallback.subIspu,
             ml_confidence: mlConfidence,
             ml_category: mlCategory,
-            risk_score: riskScore,
             probabilities: mlProbabilities,
             features: { pm25, pm10, co, no2, o3 },
             method: 'ISPU Breakpoint',

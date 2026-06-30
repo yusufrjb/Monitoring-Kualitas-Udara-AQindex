@@ -17,7 +17,6 @@ import {
 } from "recharts";
 import { supabase } from "@/lib/supabase";
 import HeatmapCalendar from "./HeatmapCalendar";
-import RiskScoreInfo from "./RiskScoreInfo";
 import PeakHourBoxPlot from "./PeakHourBoxPlot";
 import DensityPlotCO from "./DensityPlotCO";
 import { isIdeal, getLimitString } from "@/lib/limits";
@@ -683,19 +682,12 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
               </div>
             </div>
 
-              {/* ── Robustness: Random Forest confidence + risk score ── */}
+              {/* ── Robustness: Random Forest confidence ── */}
               {mlClassData.ml_confidence !== undefined && (
                 <div className="pt-3 border-t border-slate-200">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[11px] text-slate-400 font-medium">Robustness Layer · Random Forest</span>
-                    <span className="flex items-center gap-1">
-                      <span className="text-[11px] font-medium" style={{
-                        color: mlClassData.risk_score > 0.6 ? '#ef4444' : mlClassData.risk_score > 0.3 ? '#f59e0b' : '#10b981'
-                      }}>
-                        Risk Score: {(mlClassData.risk_score * 100).toFixed(0)}%
-                      </span>
-                      <RiskScoreInfo />
-                    </span>
+
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-[11px] text-slate-500 font-medium w-20">Confidence</span>
