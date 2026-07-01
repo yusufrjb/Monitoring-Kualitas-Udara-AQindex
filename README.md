@@ -1,6 +1,6 @@
 # DashboardAQ
 
-**Real-Time Air Quality Monitoring Dashboard** — Pemantauan kualitas udara berbasis standar ISPU (Indeks Standar Pencemar Udara) KLHK Indonesia.
+**Real-Time Air Quality Monitoring Dashboard** — An air quality monitoring system based on Indonesia's ISPU (Indeks Standar Pencemar Udara) standard from KLHK.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.5-000000?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
@@ -12,116 +12,116 @@
 
 ---
 
-## Fitur Utama
+## Key Features
 
-- **Pemantauan Real-Time** — Data sensor PM2.5, PM10, CO, NO2, O3 diperbarui secara langsung melalui Supabase Realtime WebSocket
-- **Klasifikasi ISPU** — Perhitungan Indeks Standar Pencemar Udara sesuai standar KLHK dengan lapisan validasi Random Forest
-- **Prediksi ML** — Forecast multi-parameter 60 menit ke depan menggunakan XGBoost v2 dengan confidence interval
-- **Visualisasi Interaktif** — 11+ jenis grafik (line chart, area chart, bar chart, heatmap kalender, gauge, box plot)
-- **Dark Mode** — Dukungan tema terang/gelap
-- **Responsive Design** — Tampilan mobile-friendly dengan sidebar collapsible
+- **Real-Time Monitoring** — Live PM2.5, PM10, CO, NO2, O3 sensor data via Supabase Realtime WebSocket
+- **ISPU Classification** — Air Quality Index calculation per KLHK standards with Random Forest validation layer
+- **ML Forecasting** — Multi-parameter 60-minute ahead predictions using XGBoost v2 with confidence intervals
+- **Interactive Visualizations** — 11+ chart types (line, area, bar, calendar heatmap, gauge, box plot)
+- **Dark Mode** — Light/dark theme support
+- **Responsive Design** — Mobile-friendly with collapsible sidebar
 
 ---
 
 ## Tech Stack
 
-| Layer | Teknologi |
+| Layer | Technology |
 |-------|-----------|
 | **Framework** | Next.js 15 (App Router), React 19 |
-| **Bahasa** | TypeScript, Python 3 |
+| **Languages** | TypeScript, Python 3 |
 | **Styling** | Tailwind CSS 4, shadcn/ui (Radix UI) |
 | **Charting** | Recharts 2 |
-| **Animasi** | Framer Motion |
+| **Animations** | Framer Motion |
 | **Database** | Supabase (PostgreSQL + Realtime) |
 | **ML** | XGBoost v2, Random Forest, scikit-learn, pandas, numpy |
 | **Runtime** | Bun, Node.js |
 
 ---
 
-## Arsitektur Sistem
+## System Architecture
 
-![Arsitektur Sistem](docs/diagrams/architecture_hd.svg)
+![System Architecture](docs/diagrams/architecture_hd.svg)
 
 ---
 
-## Instalasi & Menjalankan
+## Installation & Setup
 
-### Prasyarat
+### Prerequisites
 
-- Bun (atau Node.js ≥ 18)
+- Bun (or Node.js ≥ 18)
 - Python 3.8+
-- Akun Supabase (PostgreSQL)
+- Supabase account (PostgreSQL)
 
-### Langkah-langkah
+### Steps
 
-1. **Clone repositori**
+1. **Clone the repository**
 
 ```bash
 git clone https://github.com/username/dashboardaq.git
 cd dashboardaq
 ```
 
-2. **Install dependensi**
+2. **Install dependencies**
 
 ```bash
 bun install
 ```
 
-3. **Konfigurasi environment**
+3. **Configure environment**
 
-Buat file `.env` di root proyek:
+Create a `.env` file in the project root:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-4. **Siapkan Python environment**
+4. **Set up Python environment**
 
 ```bash
 cd ml_model
-pip install -r requirements.txt  # atau: pandas numpy scikit-learn xgboost joblib
+pip install -r requirements.txt  # or: pandas numpy scikit-learn xgboost joblib
 cd ..
 ```
 
-5. **Jalankan aplikasi**
+5. **Run the application**
 
 ```bash
 bun run dev
 ```
 
-Perintah ini akan menjalankan Next.js dev server (Turbopack) bersamaan dengan Python watcher daemon.
+This starts the Next.js dev server (Turbopack) alongside the Python watcher daemon.
 
-6. **Buka browser**
+6. **Open in browser**
 
-Navigasi ke [http://localhost:3000](http://localhost:3000)
+Navigate to [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## Machine Learning Pipeline
 
-![Pipeline ML](docs/diagrams/ml_pipeline_hd.svg)
+![ML Pipeline](docs/diagrams/ml_pipeline_hd.svg)
 
-Sistem prediksi menggunakan arsitektur dua lapis:
+The prediction system uses a two-layer architecture:
 
 ### Layer 1 — ISPU Breakpoint (Official KLHK)
-Menghitung Indeks Standar Pencemar Udara berdasarkan tabel breakpoint resmi untuk PM2.5, PM10, CO, NO2, dan O3.
+Computes the Air Quality Index using official breakpoint tables for PM2.5, PM10, CO, NO2, and O3.
 
 ### Layer 2 — Random Forest Classification
-Model machine learning sebagai lapisan validasi untuk memastikan konsistensi klasifikasi.
+A machine learning validation layer to ensure classification consistency.
 
-### Proses Forecasting
+### Forecasting Process
 
-1. **Watcher daemon** (`live_forecast_watcher.py`) berjalan setiap 60 detik
-2. Mengecek ketersediaan data sensor 30 menit terakhir
-3. **Feature engineering**: lag features (1/5/15/60 menit), rolling statistics, time features (hour, dayofweek, dll.)
-4. **XGBoost v2** melakukan recursive multi-step forecast 60 menit ke depan dengan confidence interval (upper/lower bound)
-5. **Fallback** ke Holt-Winters exponential smoothing jika model XGBoost tidak tersedia
-6. Hasil disimpan ke `tb_prediksi_hourly` dan dikirim ke frontend via Realtime
+1. **Watcher daemon** (`live_forecast_watcher.py`) runs every 60 seconds
+2. Checks for sensor data availability within the last 30 minutes
+3. **Feature engineering**: lag features (1/5/15/60 min), rolling statistics, time features (hour, dayofweek, etc.)
+4. **XGBoost v2** performs recursive multi-step 60-minute forecasting with confidence intervals (upper/lower bounds)
+5. **Fallback** to Holt-Winters exponential smoothing when XGBoost models are unavailable
+6. Results are saved to `tb_prediksi_hourly` and pushed to the frontend via Realtime
 
 ---
 
-## Struktur Proyek
+## Project Structure
 
 ```
 src/
@@ -167,34 +167,34 @@ ml_model/
 
 ## API Endpoints
 
-| Endpoint | Deskripsi |
-|----------|-----------|
-| `GET /api/classify` | Klasifikasi ISPU + Random Forest |
-| `GET /api/forecast` | Data forecast (historis + prediksi) |
-| `GET /api/forecast/hourly` | Prediksi 60 menit ke depan |
-| `GET /api/forecast/trigger` | Trigger manual forecast |
-| `GET /api/regression` | Regresi linear antar parameter |
-| `GET /api/aggregates/daily-pm25` | Rata-rata PM2.5 harian |
-| `GET /api/aggregates/hourly-pattern` | Pola jam-an weekday vs weekend |
-| `GET /api/aggregates/peak-hour-distribution` | Distribusi jam sibuk |
-| `GET /api/aggregates/co-density` | Kepadatan CO ISPU |
-| `GET /api/aggregates/percentiles` | Statistik persentil bulanan |
-| `GET /api/aggregates/pollution-rose` | Konsentrasi PM2.5 per arah angin |
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/classify` | ISPU + Random Forest classification |
+| `GET /api/forecast` | Forecast data (historical + predicted) |
+| `GET /api/forecast/hourly` | 60-minute ahead prediction |
+| `GET /api/forecast/trigger` | Manually trigger forecast |
+| `GET /api/regression` | Linear regression between parameters |
+| `GET /api/aggregates/daily-pm25` | Daily PM2.5 averages |
+| `GET /api/aggregates/hourly-pattern` | Weekday vs weekend hourly patterns |
+| `GET /api/aggregates/peak-hour-distribution` | Peak hour distribution |
+| `GET /api/aggregates/co-density` | CO ISPU density distribution |
+| `GET /api/aggregates/percentiles` | Monthly percentile statistics |
+| `GET /api/aggregates/pollution-rose` | PM2.5 by wind direction |
 
 ---
 
-## Kategori ISPU
+## ISPU Categories
 
-| Rentang | Kategori | Warna |
-|---------|----------|-------|
-| 0–50 | Baik | Hijau |
-| 51–100 | Sedang | Biru |
-| 101–200 | Tidak Sehat | Kuning |
-| 201–300 | Sangat Tidak Sehat | Merah |
-| 301–500 | Berbahaya | Ungu |
+| Range | Category | Color |
+|-------|----------|-------|
+| 0–50 | Good | Green |
+| 51–100 | Moderate | Blue |
+| 101–200 | Unhealthy | Yellow |
+| 201–300 | Very Unhealthy | Red |
+| 301–500 | Hazardous | Purple |
 
 ---
 
-## Lisensi
+## License
 
-Proyek ini dikembangkan untuk keperluan akademik.
+This project is developed for academic purposes.
