@@ -183,8 +183,7 @@ src/
 │   ├── api/                    # API route handlers
 │   │   ├── aggregates/         # Data aggregation endpoints
 │   │   ├── classify/           # ISPU + RF classification
-│   │   ├── forecast/           # Forecasting endpoints
-│   │   └── regression/         # Linear regression
+│   │   └── forecast/           # Forecasting endpoints
 │   ├── globals.css             # Tailwind v4 + CSS variables
 │   ├── layout.tsx              # Root layout
 │   ├── page.tsx                # Home (/) dashboard
@@ -227,7 +226,6 @@ ml_model/
 | `GET /api/forecast` | Forecast data (historical + predicted) |
 | `GET /api/forecast/hourly` | 60-minute ahead prediction |
 | `GET /api/forecast/trigger` | Manually trigger forecast |
-| `GET /api/regression` | Linear regression between parameters |
 | `GET /api/aggregates/daily-pm25` | Daily PM2.5 averages |
 | `GET /api/aggregates/hourly-pattern` | Weekday vs weekend hourly patterns |
 | `GET /api/aggregates/peak-hour-distribution` | Peak hour distribution |
