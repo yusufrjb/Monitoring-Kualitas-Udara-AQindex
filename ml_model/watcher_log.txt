@@ -40742,3 +40742,25 @@
 2026-06-29 11:38:53,841 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
 2026-06-29 11:38:53,842 [INFO] Memulai pipeline peramalan...
 2026-06-29 11:38:53,843 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-30 15:03:02,036 [INFO] Watcher lock stale (PID 26764), melanjutkan...
+2026-06-30 15:03:02,037 [INFO] ==================================================
+2026-06-30 15:03:02,037 [INFO] LIVE FORECAST WATCHER (Interval: 1 Menit)
+2026-06-30 15:03:02,037 [INFO] ==================================================
+2026-06-30 15:03:07,839 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-30 15:03:08,032 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-30 15:03:08,040 [INFO] Memulai pipeline peramalan...
+2026-06-30 15:03:08,040 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-30 15:04:43,720 [INFO]      [Hourly] 2026-06-30 15:04:41,229 [INFO] Selesai!
+2026-06-30 15:04:43,721 [INFO] Pipeline peramalan berhasil.
+2026-06-30 15:04:43,721 [INFO] Selesai dalam 101.68 detik. Tidur selama 0.00 menit...
+2026-06-30 15:04:45,224 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-30 15:04:45,421 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-30 15:04:45,443 [INFO] Memulai pipeline peramalan...
+2026-06-30 15:04:45,445 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-06-30 15:05:31,164 [INFO]      [Hourly] 2026-06-30 15:05:28,605 [INFO] Selesai!
+2026-06-30 15:05:31,164 [INFO] Pipeline peramalan berhasil.
+2026-06-30 15:05:31,164 [INFO] Selesai dalam 47.44 detik. Tidur selama 0.21 menit...
+2026-06-30 15:05:45,742 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-06-30 15:05:46,072 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-06-30 15:05:46,098 [INFO] Memulai pipeline peramalan...
+2026-06-30 15:05:46,098 [INFO]   -> Menjalankan predict_hourly_multi.py

@@ -1,0 +1,82 @@
+flowchart TB
+    subgraph SENSOR["Sensor Hardware"]
+        S1["Sensor PM2.5"]
+        S2["Sensor PM10"]
+        S3["Sensor CO"]
+        S4["Sensor NO2"]
+        S5["Sensor O3"]
+        S6["Sensor Suhu & Kelembaban"]
+    end
+
+    subgraph DATABASE["Supabase PostgreSQL"]
+        DB1["tb_konsentrasi_gas<br/>(Raw sensor data)"]
+        DB2["tb_prediksi_hourly<br/>(Hourly forecasts)"]
+        DB3["tb_fitted_values<br/>(In-sample predictions)"]
+        DB4["air_quality_hourly_agg<br/>(Aggregated data)"]
+    end
+
+    subgraph REALTIME["Supabase Realtime"]
+        RT1["WebSocket<br/>Subscriptions"]
+    end
+
+    subgraph BACKEND["Backend - Next.js API Routes"]
+        API1["/api/classify<br/>ISPU + RF Classification"]
+        API2["/api/forecast<br/>Forecast data"]
+        API3["/api/forecast/hourly<br/>60-min prediction"]
+        API5["/api/regression<br/>Linear regression"]
+        API6["/api/aggregates/*<br/>Data aggregation"]
+    end
+
+    subgraph ML_PIPELINE["ML Pipeline (Python)"]
+        WATCHER["live_forecast_watcher.py<br/>(daemon every 60s)"]
+        XGBOOST["predict_hourly_multi.py<br/>XGBoost v2 Recursive<br/>60-step forecast"]
+        RF["classify.py<br/>Random Forest<br/>5-class ISPU"]
+        FALLBACK["Holt-Winters<br/>Exponential Smoothing<br/>(fallback)"]
+    end
+
+    subgraph FRONTEND["React Frontend (Next.js App Router)"]
+        PAGE1["/ (Overview)<br/>Dashboard utama"]
+        PAGE2["/statistik<br/>Analisis & Forecast"]
+        COMP1["OverviewTab.tsx<br/>All visualizations"]
+        COMP2["HeatmapCalendar.tsx<br/>Monthly heatmap"]
+        COMP3["PeakHourBoxPlot.tsx<br/>Peak distribution"]
+        COMP4["DensityPlotCO.tsx<br/>CO density"]
+        COMP5["HourlyForecastClassification.tsx<br/>1-hour forecast"]
+        COMP6["MLForecastPrototype.tsx<br/>Multi-parameter forecast"]
+    end
+
+    subgraph EXTERNAL["External"]
+        BMKG["BMKG Public API<br/>(Cuaca Surabaya)"]
+    end
+
+    S1 & S2 & S3 & S4 & S5 & S6 --> DB1
+    DB1 --> API1 & API5 & API6
+    DB4 --> API6
+    DB2 --> API2 & API3
+    DB1 --> RT1
+    RT1 --> FRONTEND
+    DB1 --> WATCHER
+    WATCHER --> XGBOOST
+    XGBOOST --> RF
+    XGBOOST --> FALLBACK
+    FALLBACK --> DB2
+    RF --> DB2
+    XGBOOST --> DB3
+    API1 & API2 & API3 & API5 & API6 --> FRONTEND
+    BMKG --> COMP1
+
+    classDef sensor fill:#e74c3c,color:#fff
+    classDef db fill:#3498db,color:#fff
+    classDef realtime fill:#2ecc71,color:#fff
+    classDef backend fill:#9b59b6,color:#fff
+    classDef ml fill:#e67e22,color:#fff
+    classDef frontend fill:#1abc9c,color:#fff
+    classDef external fill:#95a5a6,color:#fff
+
+    class S1,S2,S3,S4,S5,S6 sensor
+    class DB1,DB2,DB3,DB4 db
+    class RT1 realtime
+    class API1,API2,API3,API5,API6 backend
+    class WATCHER,XGBOOST,RF,FALLBACK ml
+    class PAGE1,PAGE2,COMP1,COMP2,COMP3,COMP4,COMP5,COMP6 frontend
+    class BMKG external

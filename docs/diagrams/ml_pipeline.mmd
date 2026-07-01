@@ -1,0 +1,94 @@
+flowchart TB
+    subgraph TRIGGER["Trigger (Every 60 seconds)"]
+        DAEMON["live_forecast_watcher.py<br/>Running as daemon"]
+        CHECK["Cek: sensor_has_recent_data()<br/>Apakah ada data sensor<br/>< 30 menit terakhir?"]
+        CONDITION{"Data tersedia?"}
+    end
+
+    subgraph FETCH["Data Fetching"]
+        FETCH_DATA["fetch_recent_data()<br/>Ambil 4320 menit data sensor<br/>dari tb_konsentrasi_gas"]
+        PARAMS["Parameter:<br/>pm25_ugm3, pm10_ugm3,<br/>co_ugm3, temperature, humidity"]
+    end
+
+    subgraph FEATURES["Feature Engineering (build_features())"]
+        LAG["Lag Features:<br/>lag_1min, lag_5min<br/>lag_15min, lag_60min"]
+        ROLLING["Rolling Statistics:<br/>rolling_5min_mean<br/>rolling_5min_std<br/>rolling_15min_mean"]
+        TIME["Time Features:<br/>minute, hour<br/>dayofweek<br/>day_sin / day_cos"]
+    end
+
+    subgraph MODEL["XGBoost v2 Forecasting (forecast_all_params())"]
+        XGB_PM25["xgb_pm25_v2.pkl<br/>PM2.5 Model"]
+        XGB_PM10["xgb_pm10_v2.pkl<br/>PM10 Model"]
+        XGB_CO["xgb_co_v2.pkl<br/>CO Model"]
+        RECURSIVE["Recursive 60-step<br/>multi-stage forecast"]
+        BLENDING["Pattern Blending:<br/>Hourly pattern<br/>Minute pattern<br/>Short-term trend"]
+        CI["Confidence Interval:<br/>Upper bound (95%)<br/>Lower bound (95%)"]
+    end
+
+    subgraph FALLBACK["Fallback Mechanism"]
+        HOLTWINTERS["Holt-Winters<br/>Exponential Smoothing"]
+        COND_FALLBACK{"XGBoost<br/>models loaded?"}
+    end
+
+    subgraph CLASSIFY["ISPU Classification (classify_forecast())"]
+        RF_MODEL["random_forest_air_quality.pkl<br/>Random Forest Classifier"]
+        CATEGORIES["5 Kategori:<br/>Baik (0-50)<br/>Sedang (51-100)<br/>Tidak Sehat (101-200)<br/>Sangat Tidak Sehat (201-300)<br/>Berbahaya (301-500)"]
+        CONFIDENCE["Confidence Score<br/>Probabilitas prediksi"]
+    end
+
+    subgraph SAVE["Save Results"]
+        SAVE_HOURLY["save_hourly_predictions()<br/>Upsert ke tb_prediksi_hourly<br/>forecast_at, target_at<br/>pm25_pred, upper, lower<br/>pm10_pred, upper, lower<br/>co_pred, upper, lower<br/>ispu, category"]
+        SAVE_FITTED["save_fitted_values()<br/>Upsert ke tb_fitted_values<br/>timestamp<br/>actual vs fitted"]
+    end
+
+    subgraph FRONTEND_DISPLAY["Frontend Display"]
+        FORECAST_PAGE["/statistik<br/>HourlyForecastClassification.tsx<br/>MLForecastPrototype.tsx"]
+        REALTIME_UPDATE["Supabase Realtime<br/>Auto-refresh"]
+    end
+
+    DAEMON --> CHECK
+    CHECK --> CONDITION
+    CONDITION -->|"Ya"| FETCH_DATA
+    CONDITION -->|"Tidak (tunggu 60s)"| DAEMON
+    FETCH_DATA --> PARAMS
+    PARAMS --> LAG
+    LAG --> ROLLING
+    ROLLING --> TIME
+    TIME --> COND_FALLBACK
+    COND_FALLBACK -->|"Available"| XGB_PM25
+    COND_FALLBACK -->|"Available"| XGB_PM10
+    COND_FALLBACK -->|"Available"| XGB_CO
+    COND_FALLBACK -->|"Not Available"| HOLTWINTERS
+    XGB_PM25 & XGB_PM10 & XGB_CO --> RECURSIVE
+    RECURSIVE --> BLENDING
+    BLENDING --> CI
+    HOLTWINTERS --> CI
+    CI --> RF_MODEL
+    RF_MODEL --> CATEGORIES
+    CATEGORIES --> CONFIDENCE
+    CONFIDENCE --> SAVE_HOURLY
+    CONFIDENCE --> SAVE_FITTED
+    SAVE_HOURLY --> SUPABASE_DB["tb_prediksi_hourly (Supabase)"]
+    SAVE_FITTED --> SUPABASE_DB2["tb_fitted_values (Supabase)"]
+    SUPABASE_DB & SUPABASE_DB2 --> REALTIME_UPDATE
+    REALTIME_UPDATE --> FORECAST_PAGE
+
+    classDef trigger fill:#2c3e50,color:#fff
+    classDef fetch fill:#3498db,color:#fff
+    classDef feature fill:#9b59b6,color:#fff
+    classDef model fill:#e67e22,color:#fff
+    classDef fallback fill:#e74c3c,color:#fff
+    classDef classify fill:#2ecc71,color:#fff
+    classDef save fill:#1abc9c,color:#fff
+    classDef display fill:#f39c12,color:#fff
+    classDef db fill:#34495e,color:#fff
+
+    class DAEMON,CHECK,CONDITION trigger
+    class FETCH_DATA,PARAMS fetch
+    class LAG,ROLLING,TIME feature
+    class XGB_PM25,XGB_PM10,XGB_CO,RECURSIVE,BLENDING,CI model
+    class HOLTWINTERS,COND_FALLBACK fallback
+    class RF_MODEL,CATEGORIES,CONFIDENCE classify
+    class SAVE_HOURLY,SAVE_FITTED save
+    class FORECAST_PAGE,REALTIME_UPDATE display
+    class SUPABASE_DB,SUPABASE_DB2 db
