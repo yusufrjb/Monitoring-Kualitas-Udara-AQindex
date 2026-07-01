@@ -21,7 +21,6 @@ flowchart TB
         XGB_PM10["xgb_pm10_v2.pkl<br/>PM10 Model"]
         XGB_CO["xgb_co_v2.pkl<br/>CO Model"]
         RECURSIVE["Recursive 60-step<br/>multi-stage forecast"]
-        BLENDING["Pattern Blending:<br/>Hourly pattern<br/>Minute pattern<br/>Short-term trend"]
         CI["Confidence Interval:<br/>Upper bound (95%)<br/>Lower bound (95%)"]
     end
 
@@ -60,8 +59,7 @@ flowchart TB
     COND_FALLBACK -->|"Available"| XGB_CO
     COND_FALLBACK -->|"Not Available"| HOLTWINTERS
     XGB_PM25 & XGB_PM10 & XGB_CO --> RECURSIVE
-    RECURSIVE --> BLENDING
-    BLENDING --> CI
+    RECURSIVE --> CI
     HOLTWINTERS --> CI
     CI --> RF_MODEL
     RF_MODEL --> CATEGORIES
@@ -86,7 +84,7 @@ flowchart TB
     class DAEMON,CHECK,CONDITION trigger
     class FETCH_DATA,PARAMS fetch
     class LAG,ROLLING,TIME feature
-    class XGB_PM25,XGB_PM10,XGB_CO,RECURSIVE,BLENDING,CI model
+    class XGB_PM25,XGB_PM10,XGB_CO,RECURSIVE,CI model
     class HOLTWINTERS,COND_FALLBACK fallback
     class RF_MODEL,CATEGORIES,CONFIDENCE classify
     class SAVE_HOURLY,SAVE_FITTED save
