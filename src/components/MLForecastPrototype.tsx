@@ -209,7 +209,7 @@ export default function ForecastDashboard() {
                 <div className="space-y-8">
                     {renderChart('pm25', { hist: '#6366f1', fore: '#f97316' }, 'PM2.5', 'µg/m³')}
                     {renderChart('pm10', { hist: '#10b981', fore: '#f97316' }, 'PM10', 'µg/m³')}
-                    {renderChart('co', { hist: '#f59e0b', fore: '#f97316' }, 'CO', 'ppb')}
+                    {renderChart('co', { hist: '#f59e0b', fore: '#f97316' }, 'CO', 'µg/m³')}
                 </div>
             )}
         </div>

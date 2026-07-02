@@ -24,7 +24,6 @@ flowchart TB
         XGB_PM10["xgb_pm10_v2.pkl\nPM10 Model"]
         XGB_CO["xgb_co_v2.pkl\nCO Model"]
         RECURSIVE["Recursive 60-step\nmulti-stage forecast"]
-        BLENDING["Pattern Blending:\n• Hourly pattern\n• Minute pattern\n• Short-term trend"]
         CI["Confidence Interval:\n• Upper bound (95%)\n• Lower bound (95%)"]
     end
 
@@ -67,8 +66,7 @@ flowchart TB
     COND_FALLBACK -->|"Not Available"| HOLTWINTERS
 
     XGB_PM25 & XGB_PM10 & XGB_CO --> RECURSIVE
-    RECURSIVE --> BLENDING
-    BLENDING --> CI
+    RECURSIVE --> CI
 
     HOLTWINTERS --> CI
 
@@ -98,7 +96,7 @@ flowchart TB
     class DAEMON,CHECK,CONDITION trigger
     class FETCH_DATA,PARAMS fetch
     class LAG,ROLLING,TIME feature
-    class XGB_PM25,XGB_PM10,XGB_CO,RECURSIVE,BLENDING,CI model
+    class XGB_PM25,XGB_PM10,XGB_CO,RECURSIVE,CI model
     class HOLTWINTERS,COND_FALLBACK fallback
     class RF_MODEL,CATEGORIES,CONFIDENCE classify
     class SAVE_HOURLY,SAVE_FITTED save
@@ -117,3 +115,11 @@ flowchart TB
 | Fallback | Holt-Winters | Jika model XGBoost gagal load | Jika diperlukan |
 | Classification | `classify.py` / Random Forest | Klasifikasi 5 kategori ISPU | Setelah forecast |
 | Save | `predict_hourly_multi.py:save_*()` | Upsert ke Supabase | Setiap siklus |
+
+## Diagram Files
+
+| Versi | File | Dimensi | Rasio | Cocok untuk |
+|-------|------|---------|-------|-------------|
+| HD (Tall) | `docs/diagrams/ml_pipeline_hd.svg` | 1588 x 5196 | 1:3.3 | Dokumentasi detail |
+| Compact (Horizontal) | `docs/diagrams/ml_pipeline_compact.svg` | 3170 x 580 | 5.5:1 | Layar lebar / slide |
+| Square (Box) | `docs/diagrams/ml_pipeline_square.svg` | 1150 x 950 | 1.2:1 | **Lampiran email/dokumen** |

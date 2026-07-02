@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="950" viewBox="0 0 1150 950">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#666"/>
+    </marker>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <style>
+    .subgraph { fill:#f4f4f5; stroke:#d4d4d8; stroke-width:1.5; rx:8; ry:8; }
+    .subgraph-title { fill:rgba(0,0,0,0.5); font-family:system-ui,sans-serif; font-size:13px; font-weight:600; text-anchor:middle; }
+    .node { rx:6; ry:6; stroke-width:1.5; }
+    .node-text { font-family:system-ui,sans-serif; font-size:11px; fill:#fff; text-anchor:middle; dominant-baseline:middle; }
+    .node-title { font-size:12px; font-weight:600; }
+    .diamond { fill:#fff; stroke:#666; stroke-width:1.5; }
+    .diamond-text { font-size:11px; fill:#333; text-anchor:middle; dominant-baseline:middle; }
+    .edge { stroke:#666; stroke-width:1.5; fill:none; marker-end:url(#arrow); }
+    .edge-label { fill:#666; font-family:system-ui,sans-serif; font-size:10px; text-anchor:middle; }
+  </style>
+
+  <!-- ============ TOP ROW: TRIGGER → FETCH → FEATURES → MODEL ============ -->
+
+  <!-- 1. TRIGGER subgraph -->
+  <rect class="subgraph" x="35" y="35" width="200" height="230" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="135" y="55">TRIGGER (60s)</text>
+
+  <rect class="node" x="55" y="65" width="160" height="40" fill="#2c3e50"/>
+  <text class="node-text node-title" x="135" y="85">live_forecast_watcher</text>
+
+  <path class="edge" d="M135,105 L135,125"/>
+  <rect class="node" x="55" y="128" width="160" height="40" fill="#2c3e50"/>
+  <text class="node-text" x="135" y="148">sensor_has_recent_data()?</text>
+
+  <path class="edge" d="M135,168 L135,188"/>
+  <polygon class="diamond" points="135,190 185,230 135,270 85,230"/>
+  <text class="diamond-text" x="135" y="230">Data tersedia?</text>
+
+  <!-- TRIGGER → FETCH -->
+  <path class="edge" d="M235,230 L275,230"/><text class="edge-label" x="255" y="220">Ya</text>
+
+  <!-- 2. FETCH subgraph -->
+  <rect class="subgraph" x="280" y="55" width="200" height="170" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="380" y="75">DATA FETCHING</text>
+
+  <rect class="node" x="300" y="85" width="160" height="40" fill="#3498db"/>
+  <text class="node-text" x="380" y="105">fetch_recent_data()</text>
+
+  <path class="edge" d="M380,125 L380,140"/>
+  <rect class="node" x="300" y="143" width="160" height="50" fill="#3498db"/>
+  <text class="node-text" x="380" y="163">pm25, pm10, co</text>
+  <text class="node-text" x="380" y="178">temperature, humidity</text>
+
+  <!-- FETCH → FEATURES -->
+  <path class="edge" d="M480,175 L515,175"/>
+
+  <!-- 3. FEATURES subgraph -->
+  <rect class="subgraph" x="520" y="35" width="200" height="250" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="620" y="55">FEATURE ENGINEERING</text>
+
+  <rect class="node" x="540" y="70" width="160" height="40" fill="#9b59b6"/>
+  <text class="node-text" x="620" y="90">Lag: 1, 5, 15, 60m</text>
+
+  <path class="edge" d="M620,110 L620,130"/>
+  <rect class="node" x="540" y="133" width="160" height="40" fill="#9b59b6"/>
+  <text class="node-text" x="620" y="153">Rolling: mean, std</text>
+
+  <path class="edge" d="M620,173 L620,193"/>
+  <rect class="node" x="540" y="196" width="160" height="50" fill="#9b59b6"/>
+  <text class="node-text" x="620" y="216">Time: hour, dayofweek</text>
+  <text class="node-text" x="620" y="233">day_sin / day_cos</text>
+
+  <!-- FEATURES → MODEL -->
+  <path class="edge" d="M720,175 L755,175"/>
+
+  <!-- 4. MODEL subgraph -->
+  <rect class="subgraph" x="760" y="25" width="350" height="280" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="935" y="45">XGBoost v2 FORECASTING</text>
+
+  <rect class="node" x="780" y="60" width="150" height="35" fill="#e67e22"/>
+  <text class="node-text" x="855" y="77">xgb_pm25_v2.pkl</text>
+  <rect class="node" x="940" y="60" width="150" height="35" fill="#e67e22"/>
+  <text class="node-text" x="1015" y="77">xgb_pm10_v2.pkl</text>
+  <rect class="node" x="780" y="105" width="150" height="35" fill="#e67e22"/>
+  <text class="node-text" x="855" y="122">xgb_co_v2.pkl</text>
+
+  <path class="edge" d="M855,95 L855,105"/>
+  <path class="edge" d="M1015,95 L1015,140 L910,140"/>
+  <path class="edge" d="M855,140 L910,140"/>
+
+  <rect class="node" x="780" y="145" width="310" height="45" fill="#e67e22"/>
+  <text class="node-text node-title" x="935" y="160">60-step Recursive Forecast</text>
+  <text class="node-text" x="935" y="178">multi-stage rolling prediction</text>
+
+  <rect class="node" x="780" y="200" width="310" height="50" fill="#e67e22"/>
+  <text class="node-text node-title" x="935" y="215">Confidence Interval</text>
+  <text class="node-text" x="935" y="235">Upper bound (95%) / Lower bound (95%)</text>
+
+  <path class="edge" d="M935,190 L935,200"/>
+
+  <!-- ============ VERTICAL CONNECTIONS ============ -->
+
+  <!-- FEATURES to FALLBACK -->
+  <path class="edge" d="M620,285 L620,515"/>
+  <rect x="540" y="395" width="160" height="30" rx="4" fill="#e74c3c" opacity="0.12"/>
+  <text x="620" y="414" font-family="system-ui,sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="600">XGBoost not available</text>
+
+  <!-- MODEL to CLASSIFY -->
+  <path class="edge" d="M935,305 L935,515"/>
+
+  <!-- ============ BOTTOM ROW: FALLBACK → CLASSIFY → SAVE → DISPLAY ============ -->
+
+  <!-- 5. FALLBACK subgraph -->
+  <rect class="subgraph" x="520" y="520" width="200" height="110" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="620" y="540">FALLBACK</text>
+
+  <rect class="node" x="540" y="555" width="160" height="40" fill="#e74c3c"/>
+  <text class="node-text" x="620" y="575">Holt-Winters</text>
+
+  <!-- FALLBACK → CLASSIFY -->
+  <path class="edge" d="M720,575 L750,575"/>
+
+  <!-- 6. CLASSIFY subgraph -->
+  <rect class="subgraph" x="755" y="510" width="355" height="200" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="932" y="530">ISPU CLASSIFICATION</text>
+
+  <rect class="node" x="775" y="545" width="315" height="35" fill="#2ecc71"/>
+  <text class="node-text" x="932" y="562">Random Forest Classifier</text>
+
+  <path class="edge" d="M932,580 L932,595"/>
+  <rect class="node" x="775" y="598" width="315" height="40" fill="#2ecc71"/>
+  <text class="node-text" x="932" y="618">5 Kategori ISPU (0-500)</text>
+
+  <path class="edge" d="M932,638 L932,653"/>
+  <rect class="node" x="775" y="656" width="315" height="35" fill="#2ecc71"/>
+  <text class="node-text" x="932" y="673">Confidence Score</text>
+
+  <!-- CLASSIFY → SAVE -->
+  <path class="edge" d="M755,670 L490,670"/>
+  <text class="edge-label" x="622" y="660">save</text>
+
+  <!-- 7. SAVE subgraph -->
+  <rect class="subgraph" x="280" y="600" width="210" height="165" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="385" y="620">SAVE RESULTS</text>
+
+  <rect class="node" x="300" y="635" width="170" height="35" fill="#1abc9c"/>
+  <text class="node-text" x="385" y="652">save_hourly_predictions()</text>
+  <rect class="node" x="300" y="680" width="170" height="35" fill="#1abc9c"/>
+  <text class="node-text" x="385" y="697">save_fitted_values()</text>
+
+  <path class="edge" d="M385,670 L385,680"/>
+
+  <!-- SAVE → DISPLAY -->
+  <path class="edge" d="M280,695 L240,695"/>
+
+  <!-- 8. DISPLAY subgraph -->
+  <rect class="subgraph" x="35" y="625" width="200" height="130" filter="url(#shadow)"/>
+  <text class="subgraph-title" x="135" y="645">FRONTEND DISPLAY</text>
+
+  <rect class="node" x="55" y="658" width="160" height="35" fill="#f39c12"/>
+  <text class="node-text" x="135" y="675">Supabase Realtime</text>
+
+  <path class="edge" d="M135,693 L135,708"/>
+  <rect class="node" x="55" y="710" width="160" height="35" fill="#f39c12"/>
+  <text class="node-text" x="135" y="727">/statistik Forecast</text>
+
+  <!-- ============ LEGEND ============ -->
+  <rect x="870" y="780" width="240" height="140" rx="6" fill="#f8f8f8" stroke="#ddd"/>
+  <text x="885" y="800" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#333">LEGEND</text>
+  <rect x="885" y="812" width="40" height="14" rx="4" fill="#2c3e50"/>
+  <text x="935" y="824" font-family="system-ui,sans-serif" font-size="10" fill="#666">Trigger / Daemon</text>
+  <rect x="885" y="832" width="40" height="14" rx="4" fill="#3498db"/>
+  <text x="935" y="844" font-family="system-ui,sans-serif" font-size="10" fill="#666">Data Fetching</text>
+  <rect x="885" y="852" width="40" height="14" rx="4" fill="#9b59b6"/>
+  <text x="935" y="864" font-family="system-ui,sans-serif" font-size="10" fill="#666">Feature Engineering</text>
+  <rect x="885" y="872" width="40" height="14" rx="4" fill="#e67e22"/>
+  <text x="935" y="884" font-family="system-ui,sans-serif" font-size="10" fill="#666">XGBoost Model</text>
+  <rect x="885" y="892" width="40" height="14" rx="4" fill="#2ecc71"/>
+  <text x="935" y="904" font-family="system-ui,sans-serif" font-size="10" fill="#666">Classification</text>
+  <rect x="885" y="912" width="40" height="14" rx="4" fill="#1abc9c"/>
+  <text x="935" y="924" font-family="system-ui,sans-serif" font-size="10" fill="#666">Save / Display</text>
+
+  <!-- INFO NOTE -->
+  <rect x="35" y="800" width="200" height="120" rx="6" fill="#f8f8f8" stroke="#ddd"/>
+  <text x="50" y="818" font-family="system-ui,sans-serif" font-size="11" fill="#555" font-weight="600">Notes</text>
+  <text x="50" y="836" font-family="system-ui,sans-serif" font-size="10" fill="#666">Pipeline berjalan setiap 60 detik.</text>
+  <text x="50" y="854" font-family="system-ui,sans-serif" font-size="10" fill="#666">Jika XGBoost gagal load,</text>
+  <text x="50" y="872" font-family="system-ui,sans-serif" font-size="10" fill="#666">Holt-Winters digunakan sbg</text>
+  <text x="50" y="890" font-family="system-ui,sans-serif" font-size="10" fill="#666">fallback mechanism.</text>
+</svg>

@@ -66,7 +66,7 @@ export default function Sidebar({
             </div>
             {open && (
               <span className="whitespace-nowrap text-sm font-semibold text-white">
-                AirQuality
+                AQindex
               </span>
             )}
           </div>
