@@ -16,7 +16,7 @@ export default function TentangPage() {
             Tentang
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Informasi tentang DashboardAQ
+            Informasi tentang AQindex
           </p>
         </div>
 
@@ -26,7 +26,7 @@ export default function TentangPage() {
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg mx-auto mb-4">
               <Wind size={32} />
             </div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">DashboardAQ v3.0</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-2">AQindex v3.0</h2>
             <p className="text-muted-foreground mb-4">
               Sistem Monitoring Kualitas Udara Real-time
             </p>
@@ -208,10 +208,10 @@ export default function TentangPage() {
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-2">
               <span>Dibuat dengan</span>
               <Heart size={14} className="text-red-500 fill-red-500" />
-              <span>oleh Tim DashboardAQ</span>
+              <span>oleh Tim AQindex</span>
             </div>
             <p className="text-xs text-muted-foreground">
-              DashboardAQ v3.0 • © 2026 All rights reserved
+              AQindex v3.0 • © 2026 All rights reserved
             </p>
           </div>
         </div>

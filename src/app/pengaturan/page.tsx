@@ -182,7 +182,7 @@ export default function PengaturanPage() {
           </div>
 
           <div className="text-center text-xs text-muted-foreground">
-            <p>DashboardAQ v3.0 • © 2026</p>
+            <p>AQindex v3.0 • © 2026</p>
           </div>
         </div>
       </div>
