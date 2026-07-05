@@ -2,8 +2,15 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { execSync } from 'child_process';
 import path from 'path';
+import fs from 'fs';
 
 const SCRIPT_PATH = path.resolve(process.cwd(), 'ml_model', 'classify.py');
+const PYTHON_VENV = path.resolve(process.cwd(), 'ml_model', 'venv', 'bin', 'python3');
+const PYTHON_BIN = (() => {
+  if (process.env.PYTHON_PATH) return process.env.PYTHON_PATH;
+  try { if (fs.existsSync(PYTHON_VENV)) return PYTHON_VENV; } catch {}
+  return 'python3';
+})();
 
 const CATEGORIES = [
     { min: 0, max: 50, label: 'Baik', color: '#10b981', bg: 'bg-emerald-500', bgLight: 'bg-emerald-50', text: 'text-emerald-700' },
@@ -72,7 +79,7 @@ export async function GET() {
         let mlCategory = fallbackCat.label;
         try {
             const py = execSync(
-                `python "${SCRIPT_PATH}" ${pm25} ${pm10} ${co} ${no2} ${o3}`,
+                `"${PYTHON_BIN}" "${SCRIPT_PATH}" ${pm25} ${pm10} ${co} ${no2} ${o3}`,
                 { timeout: 15000, encoding: 'utf-8' }
             );
             const ml = JSON.parse(py.trim());
@@ -81,8 +88,8 @@ export async function GET() {
                 mlProbabilities = ml.probabilities;
                 mlCategory = ml.ml_category;
             }
-        } catch (_e) {
-            // ML gagal — lanjut tanpa robustness info
+        } catch (e) {
+            console.error('[/api/classify] Robustness layer error:', e instanceof Error ? e.message : e);
         }
 
         const result: Record<string, unknown> = {

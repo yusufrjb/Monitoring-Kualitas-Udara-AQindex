@@ -113,9 +113,11 @@ def classify_rf(rf_model, pm25, pm10, co, no2, o3_ugm3):
         ],
         columns=RF_FEATURES,
     )
+    proba = rf_model.predict_proba(X)[0]
     label = rf_model.predict(X)[0]
+    ml_confidence = float(round(max(proba), 4))
     ispu = ISPU_MIDPOINT.get(label, 0)
-    return ispu, label
+    return ispu, label, ml_confidence, proba
 
 
 def fetch_recent_data(supabase: Client, minutes: int = DATA_WINDOW_MIN) -> pd.DataFrame:
@@ -388,13 +390,16 @@ def classify_forecast(
         pm25 = row.get("pm25", 0)
         pm10 = row.get("pm10", 0)
         co = row.get("co", 0)
-        ispu, label = classify_rf(rf_model, pm25, pm10, co, no2_latest, o3_latest)
+        ispu, label, ml_confidence, proba = classify_rf(
+            rf_model, pm25, pm10, co, no2_latest, o3_latest
+        )
         result.append(
             {
                 "target_at": row["target_at"],
                 "ispu": ispu,
                 "category": label,
                 "dominant": "",
+                "ml_confidence": ml_confidence,
                 "color": CAT_COLORS.get(label, "#94a3b8"),
             }
         )
@@ -685,6 +690,7 @@ def _do_get_results() -> dict:
                 "ispu": cls["ispu"],
                 "category": cls["category"],
                 "dominant": cls["dominant"],
+                "ml_confidence": cls["ml_confidence"],
                 "color": cls["color"],
             }
             for row, cls in zip(forecast_rows, classifications)
