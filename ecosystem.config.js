@@ -13,8 +13,8 @@ module.exports = {
     {
       name: 'dashboardaq-watcher',
       cwd: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex/ml_model',
-      script: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex/ml_model/venv/bin/python3',
-      args: 'live_forecast_watcher.py',
+      script: 'live_forecast_watcher.py',
+      interpreter: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex/ml_model/venv/bin/python3',
     },
   ],
 };
