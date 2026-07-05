@@ -5,10 +5,7 @@ module.exports = {
       cwd: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex',
       script: 'bun',
       args: 'run start',
-      env: {
-        PORT: 3000,
-        PYTHON_PATH: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex/ml_model/venv/bin/python3',
-      },
+      env: { PORT: 3000 },
     },
     {
       name: 'dashboardaq-watcher',
