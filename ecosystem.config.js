@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'aqindex-web',
+      name: 'dashboardaq-web',
       cwd: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex',
       script: 'bun',
       args: 'run start',
@@ -11,7 +11,7 @@ module.exports = {
       },
     },
     {
-      name: 'aqindex-watcher',
+      name: 'dashboardaq-watcher',
       cwd: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex/ml_model',
       script: 'live_forecast_watcher.py',
       interpreter: '/home/yusuf/Monitoring-Kualitas-Udara-AQindex/ml_model/venv/bin/python3',

@@ -19,4 +19,4 @@ jobs:
             git pull origin main
             bun install
             bun run build
-            pm2 restart aqindex-web
+            pm2 restart dashboardaq-web
