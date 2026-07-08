@@ -11,7 +11,7 @@
 ## Halaman Utama (`/`)
 
 ### 1. Header
-- Judul "Monitor Kualitas Udara"
+- Judul "Monitoring Kualitas Udara"
 - Jam digital real-time (WIB) dengan detik + pulsing green dot
 
 ### 2. Klasifikasi ISPU — Circular Gauge
