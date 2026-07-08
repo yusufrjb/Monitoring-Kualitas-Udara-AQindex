@@ -8,7 +8,7 @@
 
 ---
 
-## Halaman UTama (`/`)
+## Halaman Utama (`/`)
 
 ### 1. Header
 - Judul "Monitoring Kualitas Udara"
