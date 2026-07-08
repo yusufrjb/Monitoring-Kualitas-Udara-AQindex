@@ -17,9 +17,8 @@ const MONTHS = [
 const DAYS = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
 
 export default function HeatmapCalendar() {
-    const today = new Date();
-    const [currentYear, setCurrentYear] = useState(today.getFullYear());
-    const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1); // 1-12
+    const [currentYear, setCurrentYear] = useState<number | null>(null);
+    const [currentMonth, setCurrentMonth] = useState<number | null>(null);
     const [data, setData] = useState<HeatmapData[]>([]);
     const [loading, setLoading] = useState(false);
     const [hoveredDay, setHoveredDay] = useState<{
@@ -29,6 +28,12 @@ export default function HeatmapCalendar() {
         x: number;
         y: number;
     } | null>(null);
+
+    useEffect(() => {
+        const today = new Date();
+        setCurrentYear(today.getFullYear());
+        setCurrentMonth(today.getMonth() + 1);
+    }, []);
 
     const fetchData = useCallback(async (year: number, month: number) => {
         setLoading(true);
@@ -46,31 +51,35 @@ export default function HeatmapCalendar() {
     }, []);
 
     useEffect(() => {
-        fetchData(currentYear, currentMonth);
+        if (currentYear !== null && currentMonth !== null) {
+            fetchData(currentYear, currentMonth);
+        }
     }, [currentYear, currentMonth, fetchData]);
 
     const prevMonth = () => {
+        if (currentMonth === null) return;
         if (currentMonth === 1) {
             setCurrentMonth(12);
-            setCurrentYear((y) => y - 1);
+            setCurrentYear((y) => (y !== null ? y - 1 : y));
         } else {
-            setCurrentMonth((m) => m - 1);
+            setCurrentMonth((m) => (m !== null ? m - 1 : m));
         }
     };
 
     const nextMonth = () => {
+        if (currentMonth === null) return;
         if (currentMonth === 12) {
             setCurrentMonth(1);
-            setCurrentYear((y) => y + 1);
+            setCurrentYear((y) => (y !== null ? y + 1 : y));
         } else {
-            setCurrentMonth((m) => m + 1);
+            setCurrentMonth((m) => (m !== null ? m + 1 : m));
         }
     };
 
     // Generate calendar grid (6 rows, 7 cols)
     const calendarDays = useMemo(() => {
-        // get first day of month
-        // 0 = Sunday, 1 = Monday, etc.
+        if (currentYear === null || currentMonth === null) return [];
+
         const firstDayObj = new Date(currentYear, currentMonth - 1, 1);
         const lastDayObj = new Date(currentYear, currentMonth, 0);
         const daysInMonth = lastDayObj.getDate();
@@ -158,15 +167,15 @@ export default function HeatmapCalendar() {
                         <ChevronLeft size={16} />
                     </button>
                     <div className="text-[11px] font-medium w-28 text-center bg-slate-50 px-2 py-1 rounded-md border border-border">
-                        {MONTHS[currentMonth - 1]} {currentYear}
+                        {currentMonth !== null && currentYear !== null ? `${MONTHS[currentMonth - 1]} ${currentYear}` : "--"}
                     </div>
-                    <button onClick={nextMonth} className="p-1 rounded-md bg-muted/40 hover:bg-muted/80 text-muted-foreground transition" disabled={currentMonth === today.getMonth() + 1 && currentYear === today.getFullYear()}>
+                    <button onClick={nextMonth} className="p-1 rounded-md bg-muted/40 hover:bg-muted/80 text-muted-foreground transition" disabled={currentMonth === null || currentYear === null ? false : currentMonth === new Date().getMonth() + 1 && currentYear === new Date().getFullYear()}>
                         <ChevronRight size={16} />
                     </button>
                 </div>
             </div>
 
-            {loading ? (
+            {loading || currentYear === null || currentMonth === null ? (
                 <div className="flex-1 w-full flex items-center justify-center min-h-[160px]">
                     <div className="h-6 w-6 rounded-full border-2 border-muted border-t-primary animate-spin" />
                 </div>

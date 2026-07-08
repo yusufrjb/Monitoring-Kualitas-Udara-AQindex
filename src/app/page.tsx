@@ -9,7 +9,7 @@ import { RealtimeData } from "@/types";
 export default function Home() {
   const [realtimeData, setRealtimeData] = useState<RealtimeData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -115,11 +115,20 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-2">
               <span className="inline-flex flex-col items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-600/20">
-                <span>{currentTime.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })}</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  {currentTime.toLocaleTimeString("id-ID", { timeZone: "Asia/Jakarta", hour: "2-digit", minute: "2-digit", second: "2-digit" })}
-                </span>
+                {currentTime ? (
+                  <>
+                    <span>{currentTime.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })}</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      {currentTime.toLocaleTimeString("id-ID", { timeZone: "Asia/Jakarta", hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                    </span>
+                  </>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    --
+                  </span>
+                )}
               </span>
             </div>
           </div>

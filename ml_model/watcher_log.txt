@@ -40996,3 +40996,11 @@
 2026-07-02 09:23:10,374 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
 2026-07-02 09:23:10,386 [INFO] Memulai pipeline peramalan...
 2026-07-02 09:23:10,386 [INFO]   -> Menjalankan predict_hourly_multi.py
+2026-07-08 17:19:48,673 [INFO] Watcher lock stale (PID 10172), melanjutkan...
+2026-07-08 17:19:48,674 [INFO] ==================================================
+2026-07-08 17:19:48,674 [INFO] LIVE FORECAST WATCHER (Interval: 1 Menit)
+2026-07-08 17:19:48,674 [INFO] ==================================================
+2026-07-08 17:19:58,130 [INFO] HTTP Request: GET http://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/1.1 301 Moved Permanently"
+2026-07-08 17:19:58,304 [INFO] HTTP Request: GET https://knpwncirbhcytssrxcqx.supabase.co/rest/v1/tb_konsentrasi_gas?select=created_at&order=created_at.desc&limit=1 "HTTP/2 200 OK"
+2026-07-08 17:19:58,315 [INFO] Memulai pipeline peramalan...
+2026-07-08 17:19:58,315 [INFO]   -> Menjalankan predict_hourly_multi.py
