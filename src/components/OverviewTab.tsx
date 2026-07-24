@@ -15,7 +15,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { supabase } from "@/lib/supabase";
 import HeatmapCalendar from "./HeatmapCalendar";
 import PeakHourBoxPlot from "./PeakHourBoxPlot";
 import DensityPlotCO from "./DensityPlotCO";
@@ -319,117 +318,139 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
   const [hourlyPatternMeta, setHourlyPatternMeta] = useState<any>(null);
   const [hourlyLoading, setHourlyLoading] = useState(false);
 
-  const [refreshKey, setRefreshKey] = useState(0);
-
-  // Auto-refresh when new data arrives via Supabase Realtime
-  useEffect(() => {
-    const channel = supabase
-      .channel("overview-realtime")
-      .on("postgres_changes", { event: "*", schema: "public", table: "tb_konsentrasi_gas" }, () => {
-        // Increment key to trigger data refetch in child components and chart
-        setRefreshKey(prev => prev + 1);
-      })
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
+  // Conversion functions from µg/m³ to ISPU (Permen LHK 14/2020)
+  const pm25ToISPU = useCallback((ugm3: number) => {
+    if (ugm3 <= 15.5) return (ugm3 / 15.5) * 50;
+    if (ugm3 <= 55.4) return 50 + ((ugm3 - 15.5) / 39.9) * 50;
+    if (ugm3 <= 150.4) return 100 + ((ugm3 - 150.4 - 55.4) / 95) * 100;
+    if (ugm3 <= 250.4) return 200 + ((ugm3 - 150.4) / 100) * 100;
+    return 300 + ((ugm3 - 250.4) / 249.6) * 200;
   }, []);
 
-  const fetchChartData = useCallback(async () => {
+  const pm10ToISPU = useCallback((ugm3: number) => {
+    if (ugm3 <= 50) return (ugm3 / 50) * 50;
+    if (ugm3 <= 150) return 50 + ((ugm3 - 50) / 100) * 50;
+    if (ugm3 <= 350) return 100 + ((ugm3 - 150) / 200) * 100;
+    if (ugm3 <= 420) return 200 + ((ugm3 - 350) / 70) * 100;
+    return 300 + ((ugm3 - 420) / 80) * 200;
+  }, []);
+
+  const no2ToISPU = useCallback((ugm3: number) => {
+    if (ugm3 <= 80) return (ugm3 / 80) * 50;
+    if (ugm3 <= 200) return 50 + ((ugm3 - 80) / 120) * 50;
+    if (ugm3 <= 1130) return 100 + ((ugm3 - 200) / 930) * 100;
+    if (ugm3 <= 2260) return 200 + ((ugm3 - 1130) / 1130) * 100;
+    return 300 + ((ugm3 - 2260) / 740) * 200;
+  }, []);
+
+  const coToISPU = useCallback((ugm3: number) => {
+    if (ugm3 <= 4000) return (ugm3 / 4000) * 50;
+    if (ugm3 <= 8000) return 50 + ((ugm3 - 4000) / 4000) * 50;
+    if (ugm3 <= 15000) return 100 + ((ugm3 - 8000) / 7000) * 100;
+    if (ugm3 <= 30000) return 200 + ((ugm3 - 15000) / 15000) * 100;
+    return 300 + ((ugm3 - 30000) / 15000) * 200;
+  }, []);
+
+  // Single combined fetch for chart + hourly pattern + co-density data
+  const fetchOverviewStats = useCallback(async () => {
     setChartLoading(true);
+    setHourlyLoading(true);
     try {
-      const since = new Date();
-      since.setDate(since.getDate() - timePeriod);
-      const sinceIso = since.toISOString();
+      const res = await fetch(`/api/aggregates/overview-stats?days=${timePeriod}`);
+      if (!res.ok) throw new Error("Gagal mengambil data overview");
+      const { hourlyAgg } = await res.json();
 
-      // Use air_quality_hourly_agg table for better performance
-      const { data, error } = await supabase
-        .from('air_quality_hourly_agg')
-        .select('time, pm25_ugm3, pm10_corrected_ugm3, no2_ugm3, co_ugm3')
-        .gte('time', sinceIso)
-        .order('time', { ascending: true });
-
-      if (error) throw error;
-
-      const rows = data || [];
-
-      // Conversion functions from µg/m³ to ISPU (Permen LHK 14/2020)
-      const pm25ToISPU = (ugm3: number) => {
-        if (ugm3 <= 15.5) return (ugm3 / 15.5) * 50;
-        if (ugm3 <= 55.4) return 50 + ((ugm3 - 15.5) / 39.9) * 50;
-        if (ugm3 <= 150.4) return 100 + ((ugm3 - 55.4) / 95) * 100;
-        if (ugm3 <= 250.4) return 200 + ((ugm3 - 150.4) / 100) * 100;
-        return 300 + ((ugm3 - 250.4) / 249.6) * 200;
-      };
-
-      const pm10ToISPU = (ugm3: number) => {
-        if (ugm3 <= 50) return (ugm3 / 50) * 50;
-        if (ugm3 <= 150) return 50 + ((ugm3 - 50) / 100) * 50;
-        if (ugm3 <= 350) return 100 + ((ugm3 - 150) / 200) * 100;
-        if (ugm3 <= 420) return 200 + ((ugm3 - 350) / 70) * 100;
-        return 300 + ((ugm3 - 420) / 80) * 200;
-      };
-
-      const no2ToISPU = (ugm3: number) => {
-        if (ugm3 <= 80) return (ugm3 / 80) * 50;
-        if (ugm3 <= 200) return 50 + ((ugm3 - 80) / 120) * 50;
-        if (ugm3 <= 1130) return 100 + ((ugm3 - 200) / 930) * 100;
-        if (ugm3 <= 2260) return 200 + ((ugm3 - 1130) / 1130) * 100;
-        return 300 + ((ugm3 - 2260) / 740) * 200;
-      };
-
-      const coToISPU = (ugm3: number) => {
-        if (ugm3 <= 4000) return (ugm3 / 4000) * 50;
-        if (ugm3 <= 8000) return 50 + ((ugm3 - 4000) / 4000) * 50;
-        if (ugm3 <= 15000) return 100 + ((ugm3 - 8000) / 7000) * 100;
-        if (ugm3 <= 30000) return 200 + ((ugm3 - 15000) / 15000) * 100;
-        return 300 + ((ugm3 - 30000) / 15000) * 200;
-      };
-
+      // Process chart data from hourlyAgg
       setChartData(
-        rows.map((row: any) => ({
+        (hourlyAgg || []).map((row: any) => ({
           time: row.time,
           pm25: pm25ToISPU(row.pm25_ugm3 || 0),
           pm10: pm10ToISPU(row.pm10_corrected_ugm3 || 0),
           no2: no2ToISPU(row.no2_ugm3 || 0),
           co: coToISPU(row.co_ugm3 || 0),
-          o3: 0, // O3 not available in hourly agg table
+          o3: 0,
         }))
       );
+
+      // Process hourly pattern from hourlyAgg (same data, different aggregation)
+      const hourlyData: Record<number, { weekday: number[]; weekend: number[] }> = {};
+      for (let h = 0; h < 24; h++) hourlyData[h] = { weekday: [], weekend: [] };
+
+      for (const row of hourlyAgg || []) {
+        if (!row.time || row.pm25_ugm3 == null) continue;
+        const date = new Date(row.time);
+        const dateInJakarta = new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+        const dayOfWeek = dateInJakarta.getDay();
+        const hour = dateInJakarta.getHours();
+        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+        const ispuValue = pm25ToISPU(row.pm25_ugm3);
+        if (isWeekend) hourlyData[hour].weekend.push(ispuValue);
+        else hourlyData[hour].weekday.push(ispuValue);
+      }
+
+      const hourlyAverages = Array.from({ length: 24 }, (_, hour) => {
+        const wdv = hourlyData[hour].weekday;
+        const wev = hourlyData[hour].weekend;
+        return {
+          hour,
+          label: `${String(hour).padStart(2, "0")}:00`,
+          weekday_avg: Number(wdv.length > 0 ? (wdv.reduce((a, b) => a + b, 0) / wdv.length).toFixed(2) : "0"),
+          weekend_avg: Number(wev.length > 0 ? (wev.reduce((a, b) => a + b, 0) / wev.length).toFixed(2) : "0"),
+        };
+      });
+
+      const weekendDaysSet = new Set<string>();
+      const weekdayDaysSet = new Set<string>();
+      for (const row of hourlyAgg || []) {
+        if (!row.time || row.pm25_ugm3 == null) continue;
+        const date = new Date(row.time);
+        const dj = new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+        const dow = dj.getDay();
+        const ds = `${dj.getFullYear()}-${String(dj.getMonth() + 1).padStart(2, '0')}-${String(dj.getDate()).padStart(2, '0')}`;
+        if (dow === 0 || dow === 6) weekendDaysSet.add(ds); else weekdayDaysSet.add(ds);
+      }
+
+      setHourlyPatternData(hourlyAverages);
+      setHourlyPatternMeta({
+        hasWeekendData: Object.values(hourlyData).some(d => d.weekend.length > 0),
+        totalWeekendDays: weekendDaysSet.size,
+        totalWeekdayDays: weekdayDaysSet.size,
+      });
     } catch {
       setChartData([]);
-    } finally {
-      setChartLoading(false);
-    }
-  }, [timePeriod, refreshKey]); // re-run chart fetch when refreshKey increments
-
-  useEffect(() => { fetchChartData(); }, [fetchChartData]);
-
-  const fetchHourlyPattern = useCallback(async () => {
-    setHourlyLoading(true);
-    try {
-      const res = await fetch("/api/aggregates/hourly-pattern?days=7");
-      if (!res.ok) throw new Error("Gagal mengambil pola harian");
-      const response = await res.json();
-      
-      if (response.data && response.meta) {
-        setHourlyPatternData(response.data);
-        setHourlyPatternMeta(response.meta);
-      } else {
-        setHourlyPatternData(response);
-        setHourlyPatternMeta(null);
-      }
-    } catch (err) {
-      console.error(err);
       setHourlyPatternData([]);
       setHourlyPatternMeta(null);
     } finally {
+      setChartLoading(false);
       setHourlyLoading(false);
     }
-  }, [refreshKey]); // re-run pattern fetch when refreshKey increments
+  }, [timePeriod, pm25ToISPU, pm10ToISPU, no2ToISPU, coToISPU]);
 
-  useEffect(() => { fetchHourlyPattern(); }, [fetchHourlyPattern]);
+  useEffect(() => { fetchOverviewStats(); }, [fetchOverviewStats]);
+
+  const [mlClassData, setMlClassData] = useState<any>(null);
+
+  const fetchMlClass = useCallback(async () => {
+    try {
+      const res = await fetch("/api/classify");
+      if (!res.ok) return;
+      const json = await res.json();
+      if (!json.error) setMlClassData(json);
+    } catch (err) {
+      console.error("ML classification error:", err);
+    }
+  }, []);
+
+  useEffect(() => { fetchMlClass(); }, [fetchMlClass]);
+
+  // Periodic refresh every 5 minutes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchOverviewStats();
+      fetchMlClass();
+    }, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [fetchOverviewStats, fetchMlClass]);
 
   const fetchBmkg = useCallback(async () => {
     setBmkgLoading(true);
@@ -471,23 +492,6 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
       o3: calcStats(o3Vals),
     };
   }, [chartData]);
-
-  // dailyPattern calculation removed; now fetched from backend API via fetchHourlyPattern
-
-  const [mlClassData, setMlClassData] = useState<any>(null);
-
-  const fetchMlClass = useCallback(async () => {
-    try {
-      const res = await fetch("/api/classify");
-      if (!res.ok) return;
-      const json = await res.json();
-      if (!json.error) setMlClassData(json);
-    } catch (err) {
-      console.error("ML classification error:", err);
-    }
-  }, []);
-
-  useEffect(() => { fetchMlClass(); }, [fetchMlClass, refreshKey]);
 
   const formatXAxis = useCallback(
     (tick: string) => {
@@ -951,7 +955,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
               </p>
             </div>
             <button
-              onClick={fetchHourlyPattern}
+              onClick={fetchOverviewStats}
               disabled={hourlyLoading}
               className="flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-50"
             >
@@ -986,7 +990,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
           )}
         </div>
         <div className="w-full flex">
-          <PeakHourBoxPlot refreshKey={refreshKey} />
+          <PeakHourBoxPlot />
         </div>
       </div>
       {/* ── Trend + Stats ────────────────────────────────────────────────────── */}
@@ -1061,7 +1065,7 @@ export default function OverviewTab({ realtimeData, historicalData: _historicalD
 
       {/* Density Plot CO - Visualisasi terbawah */}
       <div className="w-full">
-        <DensityPlotCO refreshKey={refreshKey} />
+        <DensityPlotCO />
       </div>
 
     </div>

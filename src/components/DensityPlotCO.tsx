@@ -8,7 +8,7 @@ interface BinData {
     count: number;
 }
 
-export default function DensityPlotCO({ days = 7, refreshKey = 0 }: { days?: number, refreshKey?: number }) {
+export default function DensityPlotCO({ days = 7 }: { days?: number }) {
     const [bins, setBins] = useState<BinData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -27,7 +27,7 @@ export default function DensityPlotCO({ days = 7, refreshKey = 0 }: { days?: num
             }
         }
         fetchData();
-    }, [days, refreshKey]);
+    }, [days]);
 
     if (loading) {
         return (

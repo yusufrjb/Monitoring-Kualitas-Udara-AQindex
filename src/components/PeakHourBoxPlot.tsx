@@ -12,7 +12,7 @@ interface HistogramData {
     color: string;
 }
 
-export default function PeakHourDistribution({ days = 7, refreshKey = 0 }: { days?: number, refreshKey?: number }) {
+export default function PeakHourDistribution({ days = 7 }: { days?: number }) {
     const [histogramData, setHistogramData] = useState<HistogramData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -36,7 +36,7 @@ export default function PeakHourDistribution({ days = 7, refreshKey = 0 }: { day
             }
         }
         fetchData();
-    }, [days, refreshKey]);
+    }, [days]);
 
     // Create histogram bins based on ISPU categories
     function createHistogramBins(data: any) {

@@ -14,7 +14,7 @@ export async function GET() {
         if (latestForecast && latestForecast.length > 0) {
             const { data: filteredPred } = await supabase
                 .from('tb_prediksi_hourly')
-                .select('*')
+                .select('forecast_at, target_at, pm25_pred, pm10_pred, co_pred, pm25_upper, pm25_lower, pm10_upper, pm10_lower, co_upper, co_lower')
                 .eq('forecast_at', latestForecast[0].forecast_at)
                 .order('target_at', { ascending: true });
             predData = filteredPred || [];

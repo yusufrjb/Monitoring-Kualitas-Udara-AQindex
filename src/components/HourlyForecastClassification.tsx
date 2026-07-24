@@ -80,7 +80,7 @@ export default function HourlyForecastClassification() {
 
             const { data: rows } = await supabase
                 .from('tb_prediksi_hourly')
-                .select('*')
+                .select('target_at, pm25_pred, pm10_pred, co_pred, ispu, category, color, dominant')
                 .eq('forecast_at', latestForecast[0].forecast_at)
                 .order('target_at', { ascending: true });
 

@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import { withCache } from '@/lib/cache';
 
 const SCRIPT_PATH = path.resolve(process.cwd(), 'ml_model', 'classify.py');
 const PYTHON_VENV = path.resolve(process.cwd(), 'ml_model', 'venv', 'bin', 'python3');
@@ -51,61 +52,65 @@ function ispuFromFeatures(pm25: number, pm10: number, co: number): { ispu: numbe
 
 export async function GET() {
     try {
-        const { data, error } = await supabase
-            .from('tb_konsentrasi_gas')
-            .select('pm25_ugm3, pm10_ugm3, co_ugm3, no2_ugm3, o3_ugm3, created_at')
-            .order('created_at', { ascending: false })
-            .limit(1);
+        const result = await withCache("classify", 2 * 60 * 1000, async () => {
+            const { data, error } = await supabase
+                .from('tb_konsentrasi_gas')
+                .select('pm25_ugm3, pm10_ugm3, co_ugm3, no2_ugm3, o3_ugm3, created_at')
+                .order('created_at', { ascending: false })
+                .limit(1);
 
-        if (error) throw error;
-        if (!data || data.length === 0) {
-            return NextResponse.json({ error: 'No data' }, { status: 404 });
-        }
-
-        const row = data[0];
-        const pm25 = Number(row.pm25_ugm3) || 0;
-        const pm10 = Number(row.pm10_ugm3) || 0;
-        const co = Number(row.co_ugm3) || 0;
-        const no2 = Number(row.no2_ugm3) || 0;
-        const o3 = Number(row.o3_ugm3) || 0;
-
-        // ── ISPU breakpoint (kategori resmi) ──
-        const fallback = ispuFromFeatures(pm25, pm10, co);
-        const fallbackCat = getCategory(fallback.ispu);
-
-        // ── RF robustness layer (confidence + risk score) ──
-        let mlConfidence = 0;
-        let mlProbabilities: Record<string, number> = {};
-        let mlCategory = fallbackCat.label;
-        try {
-            const py = execSync(
-                `"${PYTHON_BIN}" "${SCRIPT_PATH}" ${pm25} ${pm10} ${co} ${no2} ${o3}`,
-                { timeout: 15000, encoding: 'utf-8' }
-            );
-            const ml = JSON.parse(py.trim());
-            if (!ml.error) {
-                mlConfidence = ml.ml_confidence;
-                mlProbabilities = ml.probabilities;
-                mlCategory = ml.ml_category;
+            if (error) throw error;
+            if (!data || data.length === 0) {
+                return { error: 'No data' };
             }
-        } catch (e) {
-            console.error('[/api/classify] Robustness layer error:', e instanceof Error ? e.message : e);
-        }
 
-        const result: Record<string, unknown> = {
-            category: fallbackCat.label,
-            ispu: fallback.ispu,
-            color: fallbackCat.color,
-            dominant: fallback.dominant,
-            subIspu: fallback.subIspu,
-            ml_confidence: mlConfidence,
-            ml_category: mlCategory,
-            probabilities: mlProbabilities,
-            features: { pm25, pm10, co, no2, o3 },
-            method: 'ISPU Breakpoint',
-            robustness: 'Random Forest',
-        };
-        result.timestamp = row.created_at;
+            const row = data[0];
+            const pm25 = Number(row.pm25_ugm3) || 0;
+            const pm10 = Number(row.pm10_ugm3) || 0;
+            const co = Number(row.co_ugm3) || 0;
+            const no2 = Number(row.no2_ugm3) || 0;
+            const o3 = Number(row.o3_ugm3) || 0;
+
+            const fallback = ispuFromFeatures(pm25, pm10, co);
+            const fallbackCat = getCategory(fallback.ispu);
+
+            let mlConfidence = 0;
+            let mlProbabilities: Record<string, number> = {};
+            let mlCategory = fallbackCat.label;
+            try {
+                const py = execSync(
+                    `"${PYTHON_BIN}" "${SCRIPT_PATH}" ${pm25} ${pm10} ${co} ${no2} ${o3}`,
+                    { timeout: 15000, encoding: 'utf-8' }
+                );
+                const ml = JSON.parse(py.trim());
+                if (!ml.error) {
+                    mlConfidence = ml.ml_confidence;
+                    mlProbabilities = ml.probabilities;
+                    mlCategory = ml.ml_category;
+                }
+            } catch (e) {
+                console.error('[/api/classify] Robustness layer error:', e instanceof Error ? e.message : e);
+            }
+
+            return {
+                category: fallbackCat.label,
+                ispu: fallback.ispu,
+                color: fallbackCat.color,
+                dominant: fallback.dominant,
+                subIspu: fallback.subIspu,
+                ml_confidence: mlConfidence,
+                ml_category: mlCategory,
+                probabilities: mlProbabilities,
+                features: { pm25, pm10, co, no2, o3 },
+                method: 'ISPU Breakpoint',
+                robustness: 'Random Forest',
+                timestamp: row.created_at,
+            };
+        });
+
+        if ('error' in result && result.error) {
+            return NextResponse.json({ error: result.error }, { status: 404 });
+        }
         return NextResponse.json(result);
     } catch (err) {
         console.error('[/api/classify]', err);

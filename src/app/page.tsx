@@ -17,13 +17,13 @@ export default function Home() {
         const [gasResponse, predResponse] = await Promise.all([
           supabase
             .from("tb_konsentrasi_gas")
-            .select("*")
+            .select("temperature, humidity, created_at")
             .order("created_at", { ascending: false })
             .limit(1)
             .single(),
           supabase
             .from("tb_prediksi_kualitas_udara")
-            .select("*")
+            .select("pm2_5_ispu, pm10_ispu, no2_ispu, co_ispu, o3_ispu, created_at")
             .order("created_at", { ascending: false })
             .limit(1)
             .single()
@@ -63,7 +63,7 @@ export default function Home() {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 60000);
+    const interval = setInterval(fetchData, 300000); // 5 minutes (data is also updated via Realtime)
 
     // Subscribe to changes from the prediction table since that has the core ISPU
     const channel = supabase
